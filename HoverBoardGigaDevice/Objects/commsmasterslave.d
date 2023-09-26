@@ -25,6 +25,6 @@
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h \
   Src\..\Inc\it.h Src\..\Inc\..\Inc\config.h Src\..\Inc\comms.h \
   Src\..\Inc\commsMasterSlave.h Src\..\Inc\setup.h Src\..\Inc\config.h \
-  Src\..\Inc\defines.h Src\..\Inc\defines_2-11.h Src\..\Inc\bldc.h \
+  Src\..\Inc\defines.h Src\..\Inc\defines_2-0.h Src\..\Inc\bldc.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h
