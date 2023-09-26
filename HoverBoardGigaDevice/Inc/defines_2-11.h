@@ -62,11 +62,11 @@
 
 // Hall sensor defines
 // mateuszfcg tested with PA1,PA2,PA0 
-#define HALL_A_PIN	GPIO_PIN_1
-#define HALL_A_PORT	GPIOA
-#define HALL_B_PIN	GPIO_PIN_2
-#define HALL_B_PORT	GPIOA
-#define HALL_C_PIN	GPIO_PIN_0
+#define HALL_A_PIN	GPIO_PIN_0	// robo from front+back-photo
+#define HALL_A_PORT	GPIOB
+#define HALL_B_PIN	GPIO_PIN_1	// robo from front+back-photo
+#define HALL_B_PORT	GPIOB
+#define HALL_C_PIN	GPIO_PIN_5	// robo from front+back-photo
 #define HALL_C_PORT	GPIOA
 
 // Usart master slave defines
@@ -81,12 +81,12 @@
 // Usart steer defines
 #define USART_STEER_COM USART0					
 #ifdef USART_STEER_COM
-	#define USART_STEER_RCU RCU_USART0			
-	#define USART_STEER_AF	GPIO_AF_0				
-	#define USART_STEER_COM_TX_PIN	GPIO_PIN_6
-	#define USART_STEER_COM_TX_PORT	GPIOB
-	#define USART_STEER_COM_RX_PIN	GPIO_PIN_7
-	#define USART_STEER_COM_RX_PORT	GPIOB
+	#define USART_STEER_RCU RCU_USART1
+	#define USART_STEER_AF	GPIO_AF_1				
+	#define USART_STEER_COM_TX_PIN	GPIO_PIN_2	// robo from front+back-photo
+	#define USART_STEER_COM_TX_PORT	GPIOA
+	#define USART_STEER_COM_RX_PIN	GPIO_PIN_3	// robo from front+back-photo
+	#define USART_STEER_COM_RX_PORT	GPIOA
 #endif
 
 // ADC defines
@@ -102,20 +102,20 @@
 // main.c:306: gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET); 
 // and turns off power on Shutdown:
 // main.c:513:	 gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, RESET); 
-#define SELF_HOLD_PIN		GPIO_PIN_13		// lerwinDE: master: A11 is used a hold bin, slave: A11 is buzzer pini
-#define SELF_HOLD_PORT	GPIOA				// TODO
+#define SELF_HOLD_PIN		TODO_PIN
+#define SELF_HOLD_PORT	TODO_PORT
 
 // Button defines
 // on/off (POW) push-button. So also a connection (i guess with some smd resistor in between) to a MCU pin.
 // main.c:457: if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) 
-#define BUTTON_PIN	GPIO_PIN_2			// robo, based on Herleybob:defines.h
-#define BUTTON_PORT	GPIOB						// robo, based on Herleybob:defines.h
+#define BUTTON_PIN	TODO_PIN
+#define BUTTON_PORT	TODO_PORT
 
 
 #ifdef BUZZER
 	// Buzzer defines
-	#define BUZZER_PIN	GPIO_PIN_11		// robo, based on Herleybob:defines.h
-	#define BUZZER_PORT	GPIOA				// robo, based on Herleybob:defines.h
+	#define BUZZER_PIN	TODO_PIN
+	#define BUZZER_PORT	TODO_PORT
 #endif
 
 #ifdef MASTER
@@ -124,15 +124,15 @@
 	// This seems to be a digital input that hast to be high in order to enable the motors. 
 	// main.c:381: chargeStateLowActive = gpio_input_bit_get(CHARGE_STATE_PORT, CHARGE_STATE_PIN);
 	// If not found it should be okay to simply comment this line because chargeStateLowActive in initialised as set = true
-	#define CHARGE_STATE_PIN GPIO_PIN_0		// TODO
-	#define CHARGE_STATE_PORT GPIOF				// TODO
+	#define CHARGE_STATE_PIN TODO_PIN
+	#define CHARGE_STATE_PORT TODO_PORT
 #endif
 
 // photo diodes / light barriers on the backside
-#define PHOTO_L_PIN		GPIO_PIN_15
-#define PHOTO_L_PORT	GPIOC
-#define PHOTO_R_PIN		GPIO_PIN_14
-#define PHOTO_R_PORT	GPIOC
+#define PHOTO_L_PIN		TODO_PIN
+#define PHOTO_L_PORT	TODO_PORT
+#define PHOTO_R_PIN		TODO_PIN
+#define PHOTO_R_PORT	TODO_PORT
 
 
 

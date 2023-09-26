@@ -24,6 +24,9 @@
 #ifdef LAYOUT_2_7
 	#include "defines_2-7.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #endif
+#ifdef LAYOUT_2_11
+	#include "defines_2-11.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+#endif
 
 #ifdef DEBUG_LED_PIN
   #define DEBUG_LedSet(bSet){gpio_bit_write(DEBUG_LED_PORT, DEBUG_LED_PIN, bSet);}

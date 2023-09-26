@@ -18,6 +18,7 @@
 	//#define LAYOUT_2_2	// motor is spinning but needs a push to startup :-/
 	//#define LAYOUT_2_3	// 2023/09/19 motor does not run stable (sound like skipping steps in a stepper motor but it is rotating). mosfets heating up :-(
 	//#define LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
+	//#define LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
 #endif
 
 
