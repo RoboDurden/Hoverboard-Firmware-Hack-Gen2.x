@@ -119,6 +119,13 @@ Bonus: Kristian Kosev (krisstakos) has  included **rename.bat** which will renam
 - Hold the powerbutton while flashing the firmware, as the controller releases the power latch and switches itself off during flashing
 - If Flashing with Keil using a ST-Link dongle crashes, download a fixed dll here: https://developer.arm.com/documentation/ka005381/latest
 - ST-Link_Utility and Stm32CubeProgrammer seem to have problems to programm the GD32F130. Try ` st-flash write hoverboard.bin 0x8000000 ` with this open source utility: https://github.com/stlink-org/stlink/releases (ordinary Windows 10 64 bit: x86_64-w64-mingw32.zip )
+- If you are running Windows, make a batch file in the st-flash-exe folder with the single line `st-flash --connect-under-reset write hoverboard.bin 0x8000000`
+https://pionierland.de/hoverhack/gen2/ReadyToFlash/st-flash%201.7.0%20Windows%20x86%2064bit.zip
+locate your latest hoverboard.bin file in HoverBoardGigaDevice/BinariesToFlash
+If this does not work, you need the NREST pin Or simply turn hoverboard off and on again and then click the enter key to start the bat file. Repeat many times..
+You can also rework the RST pin of these cheap ST-Link-V2 dongles to work for our SWD protocol (not the UART):
+![NREST for SWD](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/NREST_for_SWD.jpg)
+Unplugging the st-link-v2 of course also helps sometimes..
 
 ---
 
