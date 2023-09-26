@@ -74,6 +74,13 @@
 - [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/25)
 
 
+#### todo: version/layout 2.11: = GD32F130
+![layout 2.11](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-11.jpg)
+- [details](Schematics_2.11/)
+- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27)
+
+
+
 ---
 
 ### Hoverboard-Firmware-Hack-Gen2.x
