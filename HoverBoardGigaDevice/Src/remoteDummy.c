@@ -16,6 +16,7 @@ void RemoteUpdate(void)
 		speed = 3 * (ABS((	((int32_t)msTicks/3+100) % 400) - 200) - 100);
 		speed = CLAMP(speed , -1000, 1000);
 		//speed = 100;
+		//speed = 0;	// uncomment this to turn the motor manually when TEST_HALL2LED
 	#else
 		SetEnable(SET);
 		SetPWM(-speed);
