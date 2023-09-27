@@ -125,6 +125,8 @@ locate your latest hoverboard.bin file in HoverBoardGigaDevice/BinariesToFlash
 If this does not work, you need the NREST pin Or simply turn hoverboard off and on again and then click the enter key to start the bat file. Repeat many times..
 You can also rework the RST pin of these cheap ST-Link-V2 dongles to work for our SWD protocol (not the UART):
 ![NREST for SWD](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/NREST_for_SWD.jpg)
+For the following ST-Link dongle continue here: https://research.kudelskisecurity.com/2020/04/15/swd-part-3-swo-and-nrst/
+![NREST for SWD V2](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/NREST_for_SWD_V2.jpg)
 Unplugging the st-link-v2 of course also helps sometimes..
 
 ---
