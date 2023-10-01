@@ -90,13 +90,12 @@
 	#define USART_STEER_COM_RX_PORT	GPIOB
 #endif
 
-// ADC defines
-//#define VBATT_PIN	GPIO_PIN_0		// uncomment this line when you have verified the pin/port
-#define VBATT_PORT GPIOA			
-#define VBATT_CHANNEL ADC_CHANNEL_17
-//#define CURRENT_DC_PIN	GPIO_PIN_1	// uncomment this line when you have verified the pin/port
+#define VBATT_PIN GPIO_PIN_5
+#define VBATT_PORT GPIOA
+#define VBATT_CHANNEL ADC_CHANNEL_5
+#define CURRENT_DC_PIN GPIO_PIN_6
 #define CURRENT_DC_PORT GPIOA
-#define CURRENT_DC_CHANNEL ADC_CHANNEL_2
+#define CURRENT_DC_CHANNEL ADC_CHANNEL_6
 
 // Self hold defines
 // important pin keeps the mosfet open after the on/off button got pushed !
