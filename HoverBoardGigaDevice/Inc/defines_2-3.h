@@ -1,5 +1,4 @@
 // from https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-
 #ifdef MASTER	// this layout has buzzer on the master board !
 	#define BUZZER
 #endif
@@ -11,12 +10,12 @@
 
 
 // LED defines, colors probably mismatch !
-#define LED_GREEN 			GPIO_PIN_15
-#define LED_GREEN_PORT 	GPIOA
-#define LED_ORANGE 			GPIO_PIN_14
-#define LED_ORANGE_PORT	GPIOA
-#define LED_RED 				GPIO_PIN_3
-#define LED_RED_PORT 		GPIOB
+#define LED_GREEN 			GPIO_PIN_3
+#define LED_GREEN_PORT 	GPIOB
+#define LED_ORANGE 			GPIO_PIN_4
+#define LED_ORANGE_PORT	GPIOB
+#define LED_RED 				GPIO_PIN_15
+#define LED_RED_PORT 		GPIOA
 
 #define UPPER_LED_PIN 	GPIO_PIN_4
 #define UPPER_LED_PORT 	GPIOB
@@ -63,12 +62,12 @@
 #define TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT	TODO_PORT		// TODO
 
 // Hall sensor defines
-// mateuszfcg tested with PA1,PA2,PA0 
-#define HALL_A_PIN	GPIO_PIN_1
+// Der_Pinguin tested with PA0,PA1,PA2 and it works fine now 
+#define HALL_A_PIN	GPIO_PIN_0
 #define HALL_A_PORT	GPIOA
-#define HALL_B_PIN	GPIO_PIN_2
+#define HALL_B_PIN	GPIO_PIN_1
 #define HALL_B_PORT	GPIOA
-#define HALL_C_PIN	GPIO_PIN_0
+#define HALL_C_PIN	GPIO_PIN_2
 #define HALL_C_PORT	GPIOA
 
 // Usart master slave defines
@@ -104,15 +103,14 @@
 // main.c:306: gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET); 
 // and turns off power on Shutdown:
 // main.c:513:	 gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, RESET); 
-#define SELF_HOLD_PIN		GPIO_PIN_13		// lerwinDE: master: A11 is used a hold bin, slave: A11 is buzzer pini
+#define SELF_HOLD_PIN		GPIO_PIN_3		// lerwinDE: master: A11 is used a hold bin, slave: A11 is buzzer pini
 #define SELF_HOLD_PORT	GPIOA				// TODO
 
 // Button defines
 // on/off (POW) push-button. So also a connection (i guess with some smd resistor in between) to a MCU pin.
 // main.c:457: if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) 
-#define BUTTON_PIN	GPIO_PIN_2			// robo, based on Herleybob:defines.h
-#define BUTTON_PORT	GPIOB						// robo, based on Herleybob:defines.h
-
+#define BUTTON_PIN	GPIO_PIN_4			// robo, based on Herleybob:defines.h
+#define BUTTON_PORT	GPIOA						// robo, based on Herleybob:defines.h
 
 #ifdef BUZZER
 	// Buzzer defines
