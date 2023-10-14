@@ -34,6 +34,7 @@
 //#include "gd32f1x0.h"
 #include "../Inc/config.h"
 
+
 //----------------------------------------------------------------------------
 // Update USART master slave input
 //----------------------------------------------------------------------------
@@ -45,6 +46,7 @@ void UpdateUSARTMasterSlaveInput(void);
 //----------------------------------------------------------------------------
 void SendSlave(int16_t pwmSlave, FlagStatus enable, FlagStatus shutoff, FlagStatus chargeState, uint8_t identifier, int16_t value);
 #endif
+
 #ifdef SLAVE
 //----------------------------------------------------------------------------
 // Send master frame via USART

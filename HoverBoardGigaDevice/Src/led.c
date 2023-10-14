@@ -1,7 +1,5 @@
-#include "../Inc/target.h"
-#include "../Inc/led.h"
-#include "../Inc/config.h"	// to choose the defines_2-x.h
 #include "../Inc/defines.h"
+#include "../Inc/led.h"
 
 // Only slave has LED mechanism
 #ifdef SLAVE

@@ -28,10 +28,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../Inc/target.h"
-#include "../Inc/config.h"	// to choose the defines_2-x.h
 #include "../Inc/defines.h"
-#include "../Inc/setup.h"
 #include "../Inc/comms.h"
 #include "../Inc/commsMasterSlave.h"
 #include "../Inc/commsBluetooth.h"
@@ -50,7 +47,10 @@ extern uint32_t hornCounter_ms;
 #define USART_BLUETOOTH_TX_BYTES 11   // Transmit byte count including start '/' and stop character '\n'
 #define USART_BLUETOOTH_RX_BYTES 11   // Receive byte count including start '/' and stop character '\n'
 
-extern uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
+extern uint8_t usart0_rx_buf[1];
+extern uint8_t usart1_rx_buf[1];
+//extern uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
+
 static uint8_t sBluetoothRecord = 0;
 static uint8_t sUSARTBluetoothRecordBuffer[USART_BLUETOOTH_RX_BYTES];
 static uint8_t sUSARTBluetoothRecordBufferCounter = 0;
@@ -63,7 +63,14 @@ void SendBluetoothDevice(uint8_t identifier, int16_t value);
 //----------------------------------------------------------------------------
 void UpdateUSARTBluetoothInput(void)
 {
-	uint8_t character = usartSteer_COM_rx_buf[0];
+	//uint8_t character = usartSteer_COM_rx_buf[0];
+	#ifdef USART0_REMOTE
+		uint8_t character = usart0_rx_buf[0];
+	#endif
+	#ifdef USART1_REMOTE
+		uint8_t character = usart1_rx_buf[0];
+	#endif
+	
 	
 	// Start character is captured, start record
 	if (character == '/')

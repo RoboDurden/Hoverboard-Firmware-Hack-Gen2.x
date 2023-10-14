@@ -1,10 +1,6 @@
-#include "../Inc/target.h"
+#include "../Inc/defines.h"
 #include "../Inc/it.h"
 #include "../Inc/comms.h"
-#include "../Inc/remote.h"
-#include "../Inc/setup.h"
-#include "../Inc/config.h"
-#include "../Inc/defines.h"
 #include "../Inc/bldc.h"
 #include "stdio.h"
 #include "string.h"
@@ -14,10 +10,10 @@
 #pragma pack(1)
 
 // Only master communicates with steerin device
-#ifdef MASTER
+#ifdef MASTER_OR_SINGLE
 
-
-extern uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
+extern uint8_t usart0_rx_buf[1];
+extern uint8_t usart1_rx_buf[1];
 
 extern int32_t steer;
 extern int32_t speed;
@@ -57,9 +53,13 @@ int16_t getChannel(uint8_t ch) {
   }
 }
 
+uint32_t iTimeLast = 0;
+
 void RemoteUpdate(void) 	// Update Channel values form crsfData
 {
-  if(crsfData[1] == 24){
+
+  if(crsfData[1] == 24)
+	{
     channels[0]  = ((crsfData[3]|crsfData[4]<< 8) & 0x07FF);
     channels[1]  = ((crsfData[4]>>3|crsfData[5]<<5) & 0x07FF);
     channels[2]  = ((crsfData[5]>>6|crsfData[6]<<2|crsfData[7]<<10) & 0x07FF);
@@ -80,8 +80,12 @@ void RemoteUpdate(void) 	// Update Channel values form crsfData
 		speed = channels[1]-1024;
 		steer = channels[0]-1024;
 		speedLimit = channels[5];
-		
   }
+	
+	if (millis() - iTimeLast > 500)
+	{
+		speed = steer = 0;
+	}
 
 }
 
@@ -118,7 +122,14 @@ uint8_t crsf_crc8(const uint8_t *ptr, uint8_t len) {
 void RemoteCallback(void)	// Get Crsf Packet
 {
 	uint8_t crc;
-	uint8_t inData = usartSteer_COM_rx_buf[0];
+	#ifdef USART0_REMOTE
+		uint8_t inData = usart0_rx_buf[0];
+	#endif
+	#ifdef USART1_REMOTE
+		uint8_t inData = usart1_rx_buf[0];
+	#endif
+	
+	
 	if (bufferIndex==0){
 		if(inData == CRSF_ADDRESS_FLIGHT_CONTROLLER){
 			inBuffer[bufferIndex++] = inData;
@@ -137,11 +148,16 @@ void RemoteCallback(void)	// Get Crsf Packet
 		uint8_t crc=crsf_crc8(&inBuffer[2],inBuffer[1]-1);
 		inBuffer[24]=crc;
 		//If crc is correct copy buffer data to crsfData
-		if( frameLength==CRSF_FRAME_LENGTH && inBuffer[0]== CRSF_ADDRESS_FLIGHT_CONTROLLER){
-			if(crc == inBuffer[25]){
+		if( frameLength==CRSF_FRAME_LENGTH && inBuffer[0]== CRSF_ADDRESS_FLIGHT_CONTROLLER)
+		{
+			if(crc == inBuffer[25])
+			{
 				memcpy(crsfData,inBuffer,CRSF_PACKET_SIZE);
 				failsafe_status = CRSF_SIGNAL_OK;
-			}else{
+				iTimeLast = millis();
+			}
+			else
+			{
 				failsafe_status = CRSF_SIGNAL_LOST;
 			}
 		}
@@ -149,7 +165,8 @@ void RemoteCallback(void)	// Get Crsf Packet
 	}
 }
 
-#endif	// MASTER
+
+#endif	// MASTER_OR_SINGLE
 
 #endif // REMOTE_CRSF
 

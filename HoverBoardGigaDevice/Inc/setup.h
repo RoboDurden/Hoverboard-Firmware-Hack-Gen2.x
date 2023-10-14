@@ -34,13 +34,21 @@
 //#include "gd32f1x0.h"
 #include "../Inc/config.h"
 
+//#define USART0_RX_BUFFERSIZE 1
+//#define USART1_RX_BUFFERSIZE 1
+#define USART0_DATA_RX_ADDRESS ((uint32_t)0x40013824)	//((uint32_t)0x40013824)
+#define USART1_DATA_RX_ADDRESS ((uint32_t)0x40004424)
 
+
+
+/*
 #define USART_MASTERSLAVE_RX_BUFFERSIZE 1
 #define USART_MASTERSLAVE_DATA_RX_ADDRESS ((uint32_t)0x40004424)
 
 #define USART_STEER_COM_RX_BUFFERSIZE 1
 #define USART_STEER_COM_DATA_RX_ADDRESS ((uint32_t)0x40013824)	//((uint32_t)0x40013824)
 // HarlebBob #define USART1_TDATA_ADDRESS    	((uint32_t)0x40004428)
+*/
 
 //----------------------------------------------------------------------------
 // Initializes the interrupts

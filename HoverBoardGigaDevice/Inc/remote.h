@@ -8,6 +8,9 @@
 	#ifdef REMOTE_UART
 		#include "../Inc/remoteUart.h"
 	#endif
+	#ifdef REMOTE_UARTBUS
+		#include "../Inc/remoteUartBus.h"
+	#endif
 	#ifdef REMOTE_CRSF
 		#include "../Inc/remoteCrsf.h"
 	#endif

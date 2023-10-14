@@ -3,10 +3,10 @@
 
 #include "../Inc/config.h"
 
-#define USART_STEER_COM_BAUD 115200
+#define REMOTE_BAUD 115200
 
 // Only master communicates with steering device
-#ifdef MASTER
+#ifdef MASTER_OR_SINGLE
 
 #define CRSF_SIGNAL_OK          0x00
 #define CRSF_SIGNAL_LOST        0x01

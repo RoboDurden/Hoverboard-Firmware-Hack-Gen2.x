@@ -10,6 +10,7 @@
 ".\objects\remoteuart.o"
 ".\objects\remotecrsf.o"
 ".\objects\remotedummy.o"
+".\objects\remoteuartbus.o"
 ".\objects\gd32f1x0_adc.o"
 ".\objects\gd32f1x0_dbg.o"
 ".\objects\gd32f1x0_dma.o"

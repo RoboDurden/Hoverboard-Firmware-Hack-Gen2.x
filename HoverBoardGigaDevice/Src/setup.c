@@ -29,12 +29,8 @@
 */
 
 
-#include "../Inc/target.h"
-#include "../Inc/setup.h"
-#include "../Inc/config.h"
 #include "../Inc/defines.h"
 #include "../Inc/it.h"
-#include "../Inc/remote.h"
 
 #define TIMEOUT_FREQ  1000
 
@@ -48,8 +44,13 @@ timer_oc_parameter_struct timerBldc_oc_parameter_struct;
 
 // DMA (USART) structs
 dma_parameter_struct dma_init_struct_usart;
-uint8_t usartMasterSlave_rx_buf[USART_MASTERSLAVE_RX_BUFFERSIZE];
-uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
+
+//uint8_t usartMasterSlave_rx_buf[USART_MASTERSLAVE_RX_BUFFERSIZE];
+//uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
+
+uint8_t usart0_rx_buf[1];
+uint8_t usart1_rx_buf[1];
+
 
 // DMA (ADC) structs
 dma_parameter_struct dma_init_struct_adc;
@@ -170,15 +171,6 @@ void GPIO_init(void)
 	gpio_mode_set(HALL_B_PORT , GPIO_MODE_INPUT, GPIO_PUPD_NONE, HALL_B_PIN);
 	gpio_mode_set(HALL_C_PORT , GPIO_MODE_INPUT, GPIO_PUPD_NONE, HALL_C_PIN);	
 	
-	#ifdef USART_MASTERSLAVE
-		// Init USART_MASTERSLAVE
-		gpio_mode_set(USART_MASTERSLAVE_TX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART_MASTERSLAVE_TX_PIN);	
-		gpio_mode_set(USART_MASTERSLAVE_RX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART_MASTERSLAVE_RX_PIN);
-		gpio_output_options_set(USART_MASTERSLAVE_TX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART_MASTERSLAVE_TX_PIN);
-		gpio_output_options_set(USART_MASTERSLAVE_RX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART_MASTERSLAVE_RX_PIN);	
-		gpio_af_set(USART_MASTERSLAVE_TX_PORT, GPIO_AF_1, USART_MASTERSLAVE_TX_PIN);
-		gpio_af_set(USART_MASTERSLAVE_RX_PORT, GPIO_AF_1, USART_MASTERSLAVE_RX_PIN);
-	#endif
 	
 	// Init ADC pins
 	#ifdef VBATT_PIN
@@ -220,7 +212,19 @@ void GPIO_init(void)
 	// Init self hold
 	gpio_mode_set(SELF_HOLD_PORT , GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, SELF_HOLD_PIN);	
 	gpio_output_options_set(SELF_HOLD_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, SELF_HOLD_PIN);
-	
+
+
+/*
+	#ifdef USART_MASTERSLAVE
+		// Init USART_MASTERSLAVE
+		gpio_mode_set(USART_MASTERSLAVE_TX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART_MASTERSLAVE_TX_PIN);	
+		gpio_mode_set(USART_MASTERSLAVE_RX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART_MASTERSLAVE_RX_PIN);
+		gpio_output_options_set(USART_MASTERSLAVE_TX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART_MASTERSLAVE_TX_PIN);
+		gpio_output_options_set(USART_MASTERSLAVE_RX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART_MASTERSLAVE_RX_PIN);	
+		gpio_af_set(USART_MASTERSLAVE_TX_PORT, USART_MASTERSLAVE_AF, USART_MASTERSLAVE_TX_PIN);
+		gpio_af_set(USART_MASTERSLAVE_RX_PORT, USART_MASTERSLAVE_AF, USART_MASTERSLAVE_RX_PIN);
+	#endif
+
 	#ifdef USART_STEER_COM
 		// Init USART0
 		gpio_mode_set(USART_STEER_COM_TX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART_STEER_COM_TX_PIN);	
@@ -230,6 +234,7 @@ void GPIO_init(void)
 		gpio_af_set(USART_STEER_COM_TX_PORT, USART_STEER_AF, USART_STEER_COM_TX_PIN);
 		gpio_af_set(USART_STEER_COM_RX_PORT, USART_STEER_AF, USART_STEER_COM_RX_PIN);
 	#endif
+	*/
 	
 #ifdef BUZZER
 	// Init buzzer
@@ -415,6 +420,7 @@ void ADC_init(void)
 	adc_special_function_config(ADC_SCAN_MODE, ENABLE);
 }
 
+/*
 //----------------------------------------------------------------------------
 // Initializes the usart master slave
 //----------------------------------------------------------------------------
@@ -423,7 +429,7 @@ void USART_MasterSlave_init(void)
 	#ifdef USART_MASTERSLAVE
 		
 		// Enable ADC and DMA clock
-		rcu_periph_clock_enable(RCU_USART1);
+		rcu_periph_clock_enable(USART_MASTERSLAVE_RCU);	// RCU_USART1
 		rcu_periph_clock_enable(RCU_DMA);
 		
 		// Init USART for 115200 baud, 8N1
@@ -437,6 +443,8 @@ void USART_MasterSlave_init(void)
 		usart_transmit_config(USART_MASTERSLAVE, USART_TRANSMIT_ENABLE);
 		usart_receive_config(USART_MASTERSLAVE, USART_RECEIVE_ENABLE);
 		
+		//syscfg_dma_remap_enable(SYSCFG_DMA_REMAP_USART0RX|SYSCFG_DMA_REMAP_USART0TX);
+	
 		// Enable USART
 		usart_enable(USART_MASTERSLAVE);
 		
@@ -473,7 +481,143 @@ void USART_MasterSlave_init(void)
 		dma_channel_enable(DMA_CH4);
 	#endif
 }
+*/
 
+void USART1_Init(uint32_t iBaud)
+{
+#ifdef HAS_USART1
+	
+	// Init USART1
+	gpio_mode_set(USART1_TX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART1_TX_PIN);	
+	gpio_mode_set(USART1_RX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART1_RX_PIN);
+	gpio_output_options_set(USART1_TX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART1_TX_PIN);
+	gpio_output_options_set(USART1_RX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART1_RX_PIN);	
+	gpio_af_set(USART1_TX_PORT, GPIO_AF_1, USART1_TX_PIN);	// GD32F130: GPIO_AF_1 = USART
+	gpio_af_set(USART1_RX_PORT, GPIO_AF_1, USART1_RX_PIN);
+	
+	
+	// Enable ADC and DMA clock
+	rcu_periph_clock_enable(RCU_USART1);
+	rcu_periph_clock_enable(RCU_DMA);
+	
+	// Init USART for 115200 baud, 8N1
+	usart_baudrate_set(USART1, iBaud);
+	usart_parity_config(USART1, USART_PM_NONE);
+	usart_word_length_set(USART1, USART_WL_8BIT);
+	usart_stop_bit_set(USART1, USART_STB_1BIT);
+	usart_oversample_config(USART1, USART_OVSMOD_16);
+	
+	// Enable both transmitter and receiver
+	usart_transmit_config(USART1, USART_TRANSMIT_ENABLE);
+	usart_receive_config(USART1, USART_RECEIVE_ENABLE);
+	
+	//syscfg_dma_remap_enable(SYSCFG_DMA_REMAP_USART0RX|SYSCFG_DMA_REMAP_USART0TX);
+
+	// Enable USART
+	usart_enable(USART1);
+	
+	// Interrupt channel 3/4 enable
+	TARGET_nvic_irq_enable(DMA_Channel3_4_IRQn, 2, 0);
+	
+	// Initialize DMA channel 4 for USART_SLAVE RX
+	dma_deinit(DMA_CH4);
+	dma_init_struct_usart.direction = DMA_PERIPHERAL_TO_MEMORY;
+	dma_init_struct_usart.memory_addr = (uint32_t)usart1_rx_buf;
+	dma_init_struct_usart.memory_inc = DMA_MEMORY_INCREASE_ENABLE;
+	dma_init_struct_usart.memory_width = DMA_MEMORY_WIDTH_8BIT;
+	dma_init_struct_usart.number = 1;
+	dma_init_struct_usart.periph_addr = USART1_DATA_RX_ADDRESS;
+	dma_init_struct_usart.periph_inc = DMA_PERIPH_INCREASE_DISABLE;
+	dma_init_struct_usart.periph_width = DMA_PERIPHERAL_WIDTH_8BIT;
+	dma_init_struct_usart.priority = DMA_PRIORITY_ULTRA_HIGH;
+	dma_init(DMA_CH4, &dma_init_struct_usart);
+	
+	// Configure DMA mode
+	dma_circulation_enable(DMA_CH4);
+	dma_memory_to_memory_disable(DMA_CH4);
+
+	// USART DMA enable for transmission and receive
+	usart_dma_receive_config(USART1, USART_DENR_ENABLE);
+	
+	// Enable DMA transfer complete interrupt
+	dma_interrupt_enable(DMA_CH4, DMA_CHXCTL_FTFIE);
+	
+	// At least clear number of remaining data to be transferred by the DMA 
+	dma_transfer_number_config(DMA_CH4, 1);
+	
+	// Enable dma receive channel
+	dma_channel_enable(DMA_CH4);
+#endif
+}
+
+void USART0_Init(uint32_t iBaud)
+{
+#ifdef HAS_USART0
+	
+	// Init USART0
+	gpio_mode_set(USART0_TX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART0_TX_PIN);	
+	gpio_mode_set(USART0_RX_PORT , GPIO_MODE_AF, GPIO_PUPD_PULLUP, USART0_RX_PIN);
+	gpio_output_options_set(USART0_TX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART0_TX_PIN);
+	gpio_output_options_set(USART0_RX_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, USART0_RX_PIN);	
+	gpio_af_set(USART0_TX_PORT, GPIO_AF_0, USART0_TX_PIN);	// GD32F130: GPIO_AF_0 = USART, GPIO_AF_1 = I2C
+	gpio_af_set(USART0_RX_PORT, GPIO_AF_0, USART0_RX_PIN);
+	
+		// Enable ADC and DMA clock
+	rcu_periph_clock_enable(RCU_USART0);
+	rcu_periph_clock_enable(RCU_DMA);
+	
+	// Init USART for USART0_BAUD baud, 8N1
+	usart_baudrate_set(USART0, iBaud);
+	usart_parity_config(USART0, USART_PM_NONE);
+	usart_word_length_set(USART0, USART_WL_8BIT);
+	usart_stop_bit_set(USART0, USART_STB_1BIT);
+	usart_oversample_config(USART0, USART_OVSMOD_16);
+	
+	
+	// Enable both transmitter and receiver
+	usart_transmit_config(USART0, USART_TRANSMIT_ENABLE);
+	//usart_invert_config(USART0, USART_SWAP_ENABLE);	// HarleyBob
+	usart_receive_config(USART0, USART_RECEIVE_ENABLE);
+	
+	// Enable USART
+	usart_enable(USART0);
+	
+	// Interrupt channel 1/2 enable
+	TARGET_nvic_irq_enable(DMA_Channel1_2_IRQn, 2, 0);
+	
+	// Initialize DMA channel 2 for USART0 RX
+	dma_deinit(DMA_CH2);
+	dma_init_struct_usart.direction = DMA_PERIPHERAL_TO_MEMORY;
+	dma_init_struct_usart.memory_addr = (uint32_t)usart0_rx_buf;
+	dma_init_struct_usart.memory_inc = DMA_MEMORY_INCREASE_ENABLE;
+	dma_init_struct_usart.memory_width = DMA_MEMORY_WIDTH_8BIT;
+	dma_init_struct_usart.number = 1;
+	dma_init_struct_usart.periph_addr = USART0_DATA_RX_ADDRESS;
+	dma_init_struct_usart.periph_inc = DMA_PERIPH_INCREASE_DISABLE;
+	dma_init_struct_usart.periph_width = DMA_PERIPHERAL_WIDTH_8BIT;
+	dma_init_struct_usart.priority = DMA_PRIORITY_ULTRA_HIGH;
+	dma_init(DMA_CH2, &dma_init_struct_usart);
+	
+	// Configure DMA mode
+	dma_circulation_enable(DMA_CH2);
+	dma_memory_to_memory_disable(DMA_CH2);
+
+	// USART DMA enable for transmission and receive
+	usart_dma_receive_config(USART0, USART_DENR_ENABLE);
+	
+	// Enable DMA transfer complete interrupt
+	dma_interrupt_enable(DMA_CH2, DMA_CHXCTL_FTFIE);
+	
+	// At least clear number of remaining data to be transferred by the DMA 
+	dma_transfer_number_config(DMA_CH2, 1);
+	
+	// Enable dma receive channel
+	dma_channel_enable(DMA_CH2);
+	
+#endif
+}
+
+/*
 //----------------------------------------------------------------------------
 // Initializes the usart steer/bluetooth
 //----------------------------------------------------------------------------
@@ -534,3 +678,4 @@ void USART_Steer_COM_init(void)
 	dma_channel_enable(DMA_CH2);
 #endif
 }
+*/

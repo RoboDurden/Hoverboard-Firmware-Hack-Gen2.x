@@ -439,6 +439,11 @@
               <FileType>1</FileType>
               <FilePath>.\Src\remoteDummy.c</FilePath>
             </File>
+            <File>
+              <FileName>remoteUartBus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\remoteUartBus.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -553,6 +558,11 @@
               <FileName>remoteDummy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\remoteDummy.h</FilePath>
+            </File>
+            <File>
+              <FileName>remoteUartBus.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\remoteUartBus.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -997,6 +1007,11 @@
               <FileType>1</FileType>
               <FilePath>.\Src\remoteDummy.c</FilePath>
             </File>
+            <File>
+              <FileName>remoteUartBus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\remoteUartBus.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1111,6 +1126,11 @@
               <FileName>remoteDummy.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\remoteDummy.h</FilePath>
+            </File>
+            <File>
+              <FileName>remoteUartBus.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\remoteUartBus.h</FilePath>
             </File>
           </Files>
         </Group>

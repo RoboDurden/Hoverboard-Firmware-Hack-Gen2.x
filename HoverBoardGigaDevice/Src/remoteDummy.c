@@ -1,6 +1,3 @@
-#include "../Inc/target.h"
-#include "../Inc/remote.h"
-#include "../Inc/config.h"
 #include "../Inc/defines.h"
 
 #ifdef REMOTE_DUMMY
@@ -12,7 +9,7 @@ extern uint32_t msTicks;
 
 void RemoteUpdate(void)
 {
-	#ifdef MASTER
+	#ifdef MASTER_OR_SINGLE
 		speed = 3 * (ABS((	((int32_t)msTicks/3+100) % 400) - 200) - 100);
 		speed = CLAMP(speed , -1000, 1000);
 		//speed = 100;

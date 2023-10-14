@@ -6,10 +6,6 @@
 #define TODO_PIN	GPIO_PIN_15	// B15 is not accessibla on the smaller QFN32 32 pin MCU version
 
 
-#define DEBUG_LED_PIN 	GPIO_PIN_1	// lerwinDE: blue led panel
-#define DEBUG_LED_PORT 	GPIOF				// lerwinDE: blue led panel
-
-
 // LED defines
 #define LED_GREEN 			TODO_PIN	// lerwinDE: GPIO_PIN_14 - in conflict with flash pins DIO and CLK !!!
 #define LED_GREEN_PORT 	TODO_PORT	// lerwinDE: GPIOA
@@ -22,8 +18,6 @@
 #define UPPER_LED_PORT 	TODO_PORT	// TODO
 #define LOWER_LED_PIN 	TODO_PIN	// TODO
 #define LOWER_LED_PORT 	TODO_PORT	// TODO
-
-
 
 
 // Mosfet output
@@ -69,14 +63,31 @@
 #define HALL_C_PIN GPIO_PIN_3		// robo, based on Herleybob:defines.h C = W ?
 #define HALL_C_PORT GPIOB				// robo, based on Herleybob:defines.h C = W ?
 
-// Usart master slave defines
-#define USART_MASTERSLAVE USART1	// robo no second uart port yet.
-#ifdef USART_MASTERSLAVE
-	#define USART_MASTERSLAVE_TX_PIN GPIO_PIN_2		// lerwinDE :-)
-	#define USART_MASTERSLAVE_TX_PORT GPIOA				// lerwinDE :-)
-	#define USART_MASTERSLAVE_RX_PIN GPIO_PIN_15	// lerwinDE :-)
-	#define USART_MASTERSLAVE_RX_PORT GPIOA				// lerwinDE :-)
+
+// GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
+#define HAS_USART0	// uncomment if this layout has a usart0
+#ifdef HAS_USART0
+	#define USART0_TX_PIN	GPIO_PIN_6
+	#define USART0_TX_PORT	GPIOB
+	#define USART0_RX_PIN	GPIO_PIN_7
+	#define USART0_RX_PORT	GPIOB
+	
+	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
+
+// GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
+//#define HAS_USART1	// uncomment if this layout has a usart1
+#ifdef HAS_USART1
+	#define USART1_TX_PIN		GPIO_PIN_2	// lerwinDE :-)
+	#define USART1_TX_PORT	GPIOA
+	#define USART1_RX_PIN		GPIO_PIN_15	// lerwinDE :-)
+	#define USART1_RX_PORT	GPIOA
+	
+	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	//#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
+#endif
+
 
 // ADC defines
 //#define VBATT_PIN	GPIO_PIN_0				// robo, no gpio_mode_set() inHerleybob:setup.c
@@ -100,14 +111,6 @@
 #define BUTTON_PIN GPIO_PIN_2			// robo, based on Herleybob:defines.h
 #define BUTTON_PORT GPIOB						// robo, based on Herleybob:defines.h
 
-// Usart steer defines
-#define USART_STEER_COM USART0					
-#define USART_STEER_RCU RCU_USART0			
-#define USART_STEER_AF	GPIO_AF_0				
-#define USART_STEER_COM_TX_PIN GPIO_PIN_6		// lerwinDE :-)
-#define USART_STEER_COM_TX_PORT GPIOB				// lerwinDE :-)
-#define USART_STEER_COM_RX_PIN GPIO_PIN_7	// lerwinDE :-)
-#define USART_STEER_COM_RX_PORT GPIOB				// lerwinDE :-)
 
 #ifdef BUZZER
 	// Buzzer defines

@@ -1,9 +1,5 @@
-
-
 #ifndef CONFIG_H
 #define CONFIG_H
-
-//#include "gd32f1x0.h"
 
 // ################################################################################
 // select one of the supported circuit boards and whether to compile the slave- or master board
@@ -13,43 +9,52 @@
 #ifdef GD32E230
 	#define LAYOUT_2_7	// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #else
-	#define LAYOUT_2_0	// https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
+	//#define LAYOUT_2_0	// 100% ready.. https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
 	//#define LAYOUT_2_1	// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
 	//#define LAYOUT_2_2	// motor is spinning but needs a push to startup :-/
-	//#define LAYOUT_2_3	// 2023/09/19 motor does not run stable (sound like skipping steps in a stepper motor but it is rotating). mosfets heating up :-(
+	#define LAYOUT_2_3	// 99% ready.. https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
 	//#define LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
 	//#define LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
 #endif
 
 
-#define MASTER		// uncomment if firmware is for slave board
+//#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
+//#define SLAVE			// uncomment for SLAVE firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
+#define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
 
 
-#define REMOTE_DUMMY
-//#define REMOTE_UART
-//#define REMOTE_CRSF
 
-#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+//#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
 
-#ifdef MASTER
+#if defined(MASTER) || defined(SINGLE)
+	#define MASTER_OR_SINGLE
+	
+	#define REMOTE_DUMMY
+	//#define REMOTE_UART
+	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
+	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
+
+	#ifdef REMOTE_UARTBUS
+		#define SLAVE_ID	2		// must be unique for all hoverboards connected to the bus
+	#endif
 
 	#define SPEED_COEFFICIENT   -1
 	#define STEER_COEFFICIENT   1
 	
 	#define CHECK_BUTTON		// disable = add '//' if you use a slave board as master
-#else
-	#define SLAVE 												// Select if firmware is for master or slave board
 #endif
 
 
 // ################################################################################
+
+#define BAT_CELLS         	7        // battery number of cells. Normal Hoverboard battery: 10s
 
 #define PWM_FREQ         		16000     // PWM frequency in Hz
 #define DEAD_TIME        		60        // PWM deadtime (60 = 1�s, measured by oscilloscope)
 
 #define DC_CUR_LIMIT     		15        // Motor DC current limit in amps
 
-#define BAT_CELLS         	5        // battery number of cells. Normal Hoverboard battery: 10s
 
 //#define BLDC_WEAKENING		// some kind of field weaking added by HarleyBob for his gen2.2 firmware ?
 
@@ -59,7 +64,7 @@
 
 #define TIMEOUT_MS          2000      // Time in milliseconds without steering commands before pwm emergency off
 
-#ifdef MASTER
+#ifdef MASTER_OR_SINGLE
 	#define INACTIVITY_TIMEOUT 	8        	// Minutes of not driving until poweroff (not very precise)
 
 	// ################################################################################
@@ -84,6 +89,10 @@
 	*/
 
 	// ################################################################################
+#endif
+
+#if defined(MASTER) || defined(SLAVE)
+	#define MASTER_OR_SLAVE
 #endif
 
 // ###### ARMCHAIR ######

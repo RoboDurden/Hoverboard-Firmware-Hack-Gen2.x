@@ -1,11 +1,8 @@
 // improved and unified serial communication by Robo Durden :-)
-#include "../Inc/target.h"
+#include "../Inc/defines.h"
 #include "../Inc/it.h"
 #include "../Inc/comms.h"
 #include "../Inc/commsMasterSlave.h"
-#include "../Inc/setup.h"
-#include "../Inc/config.h"
-#include "../Inc/defines.h"
 #include "../Inc/bldc.h"
 #include "stdio.h"
 #include "string.h"
@@ -48,7 +45,7 @@ FlagStatus GetBeepsBackwardsMaster(void)
 }
 
 
-#ifdef USART_MASTERSLAVE
+#ifdef MASTER_OR_SLAVE
 
 #pragma pack(1)
 
@@ -92,7 +89,9 @@ FlagStatus GetBeepsBackwardsMaster(void)
 	void CheckGeneralValue(uint8_t identifier, int16_t value);
 #endif
 
-extern uint8_t usartMasterSlave_rx_buf[USART_MASTERSLAVE_RX_BUFFERSIZE];
+extern uint8_t usart0_rx_buf[1];
+extern uint8_t usart1_rx_buf[1];
+//extern uint8_t usartMasterSlave_rx_buf[USART_MASTERSLAVE_RX_BUFFERSIZE];
 
 void SendBuffer(uint32_t usart_periph, uint8_t buffer[], uint8_t length);
 uint16_t CalcCRC(uint8_t *ptr, int count);
@@ -110,7 +109,15 @@ void ProessReceived(SerialReceive* pData);
 // Update USART steer input
 void UpdateUSARTMasterSlaveInput(void)
 {
-	uint8_t cRead = usartMasterSlave_rx_buf[0];
+	
+	//uint8_t cRead = usartMasterSlave_rx_buf[0];
+	#ifdef USART0_MASTERSLAVE
+		uint8_t cRead = usart0_rx_buf[0];
+	#endif
+	#ifdef USART1_MASTERSLAVE
+		uint8_t cRead = usart1_rx_buf[0];
+	#endif
+	
 	if (cRead == '/')	// Start character is captured, start record
 		iReceivePos = 0;
 
@@ -220,10 +227,8 @@ void ProessReceived(SerialReceive* pData)
 	// Set functions according to the variables
 	gpio_bit_write(LED_GREEN_PORT, LED_GREEN, chargeStateLowActive == SET ? SET : RESET);
 	gpio_bit_write(LED_RED_PORT, LED_RED, chargeStateLowActive == RESET ? SET : RESET);
-	#ifndef TEST_SPEED	// only use received uart command if NOT in TEST_SPEED mode
-		SetEnable(enable);
-		SetPWM(pwmSlave);
-	#endif
+	SetEnable(enable);
+	SetPWM(pwmSlave);
 	CheckGeneralValue(identifier, value);
 	
 	// Send answer
@@ -260,7 +265,6 @@ void SendSlave(int16_t pwmSlave, FlagStatus enable, FlagStatus shutoff, FlagStat
 	
 	oData.checksum = 	CalcCRC((uint8_t*) &oData, sizeof(oData) - 2);	// (first bytes except crc)
 	SendBuffer(USART_MASTERSLAVE, (uint8_t*) &oData, sizeof(oData));
-	
 	//oDataSlave.wState = 11;
 }
 

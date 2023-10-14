@@ -28,16 +28,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../Inc/target.h"
-#include "../Inc/it.h"
-#include "../Inc/config.h"
 #include "../Inc/defines.h"
+#include "../Inc/it.h"
 #include "../Inc/bldc.h"
 #include "../Inc/led.h"
 #include "../Inc/commsMasterSlave.h"
 
 //#include "../Inc/commsSteering.h"
-#include "../Inc/remote.h"
 
 #include "../Inc/commsBluetooth.h"
 
@@ -135,6 +132,8 @@ void TIMER0_BRK_UP_TRG_COM_IRQHandler(void)
 	timer_interrupt_flag_clear(TIMER_BLDC, TIMER_INT_UP);
 }
 
+extern uint32_t steerCounter;								// Steer counter for setting update rate
+
 //----------------------------------------------------------------------------
 // This function handles DMA_Channel0_IRQHandler interrupt
 // Is called, when the ADC scan sequence is finished
@@ -142,6 +141,7 @@ void TIMER0_BRK_UP_TRG_COM_IRQHandler(void)
 //----------------------------------------------------------------------------
 void DMA_Channel0_IRQHandler(void)
 {
+	//DEBUG_LedSet(	(steerCounter%20) < 5	,0)	
 	// Calculate motor PWMs
 	CalculateBLDC();
 	
@@ -156,39 +156,48 @@ void DMA_Channel0_IRQHandler(void)
 	}
 }
 
-#ifdef USART_STEER_COM
+uint16_t iUartCounter = 0;
+
+#ifdef HAS_USART0
 	// This function handles DMA_Channel1_2_IRQHandler interrupt
 	// Is asynchronously called when USART0 RX finished
 	void DMA_Channel1_2_IRQHandler(void)
 	{
-		//DEBUG_LedSet(SET) // (steerCounter%20) < 10		
+		//DEBUG_LedSet(	(steerCounter%20) < 10	,0)
 		// USART steer/bluetooth RX
 		if (dma_interrupt_flag_get(DMA_CH2, DMA_INT_FLAG_FTF))
 		{
-	#ifdef MASTER
-			RemoteCallback();
-	#endif
-	#ifdef SLAVE
-			// Update USART bluetooth input mechanism
-			UpdateUSARTBluetoothInput();
-	#endif
+			//DEBUG_LedSet(	(iUartCounter++%10) < 5	,0)
+			#if defined(USART0_REMOTE) && defined(MASTER_OR_SINGLE)
+					RemoteCallback();
+			#elif defined(USART0_MASTERSLAVE) && defined(MASTER_OR_SLAVE)
+					UpdateUSARTMasterSlaveInput();
+					// Update USART bluetooth input mechanism
+					//UpdateUSARTBluetoothInput();
+			#endif
 			dma_interrupt_flag_clear(DMA_CH2, DMA_INT_FLAG_FTF);        
 		}
 	}
 #endif
 
-#ifdef USART_MASTERSLAVE
+#ifdef HAS_USART1
 	//----------------------------------------------------------------------------
 	// This function handles DMA_Channel3_4_IRQHandler interrupt
 	// Is asynchronously called when USART_SLAVE RX finished
 	//----------------------------------------------------------------------------
 	void DMA_Channel3_4_IRQHandler(void)
 	{
+		DEBUG_LedSet(	(steerCounter%10) < 5	,0)
 		// USART master slave RX
 		if (dma_interrupt_flag_get(DMA_CH4, DMA_INT_FLAG_FTF))
 		{
-			// Update USART master slave input mechanism
-			UpdateUSARTMasterSlaveInput();
+			#if defined(USART1_REMOTE) && defined(MASTER_OR_SINGLE)
+					RemoteCallback();
+			#elif defined(USART1_MASTERSLAVE) && defined(MASTER_OR_SLAVE)
+					UpdateUSARTMasterSlaveInput();
+					// Update USART bluetooth input mechanism
+					//UpdateUSARTBluetoothInput();
+			#endif
 			
 			dma_interrupt_flag_clear(DMA_CH4, DMA_INT_FLAG_FTF);        
 		}

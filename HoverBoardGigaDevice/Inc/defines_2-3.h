@@ -70,25 +70,31 @@
 #define HALL_C_PIN	GPIO_PIN_2
 #define HALL_C_PORT	GPIOA
 
-// Usart master slave defines
-//#define USART_MASTERSLAVE USART1	// robo no second uart port for this board
-#ifdef USART_MASTERSLAVE
-	#define USART_MASTERSLAVE_TX_PIN	TODO_PIN
-	#define USART_MASTERSLAVE_TX_PORT	TODO_PORT
-	#define USART_MASTERSLAVE_RX_PIN	TODO_PIN
-	#define USART_MASTERSLAVE_RX_PORT	TODO_PORT
+// GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
+#define HAS_USART0	// uncomment if this layout has a usart0
+#ifdef HAS_USART0
+	#define USART0_TX_PIN	GPIO_PIN_6
+	#define USART0_TX_PORT	GPIOB
+	#define USART0_RX_PIN	GPIO_PIN_7
+	#define USART0_RX_PORT	GPIOB
+	
+	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
 
-// Usart steer defines
-#define USART_STEER_COM USART0					
-#ifdef USART_STEER_COM
-	#define USART_STEER_RCU RCU_USART0			
-	#define USART_STEER_AF	GPIO_AF_0				
-	#define USART_STEER_COM_TX_PIN	GPIO_PIN_6
-	#define USART_STEER_COM_TX_PORT	GPIOB
-	#define USART_STEER_COM_RX_PIN	GPIO_PIN_7
-	#define USART_STEER_COM_RX_PORT	GPIOB
+
+// GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
+//#define HAS_USART1	// uncomment if this layout has a usart0
+#ifdef HAS_USART1
+	#define USART1_TX_PIN		TODO_PIN
+	#define USART1_TX_PORT	TODO_PORT
+	#define USART1_RX_PIN		TODO_PIN
+	#define USART1_RX_PORT	TODO_PORT
+	
+	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	//#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
+
 
 #define VBATT_PIN GPIO_PIN_5
 #define VBATT_PORT GPIOA
@@ -96,6 +102,9 @@
 #define CURRENT_DC_PIN GPIO_PIN_6
 #define CURRENT_DC_PORT GPIOA
 #define CURRENT_DC_CHANNEL ADC_CHANNEL_6
+
+#define ADC_BATTERY_VOLT      0.025656547849	// V_Batt to V_BattMeasure = factor 30: ( (ADC-Data/4095) *3,3V *30 )
+
 
 // Self hold defines
 // important pin keeps the mosfet open after the on/off button got pushed !
@@ -133,8 +142,9 @@
 #define PHOTO_R_PIN		GPIO_PIN_14
 #define PHOTO_R_PORT	GPIOC
 
-
-
+#define DATA_PIN		GPIO_PIN_11	// empty header to the left/down has only one data pin :-/
+#define DATA_PORT	GPIOB					// could be used as I2C1_SDA (AF1 = alternate function 1)
+																// but PB10 = I2C1_SCL is not routed to some header ?
 // Debug pin defines - seems to be never used in code.
 #define DEBUG_PIN TODO_PIN	// TODO
 #define DEBUG_PORT TODO_PORT			// TODO`

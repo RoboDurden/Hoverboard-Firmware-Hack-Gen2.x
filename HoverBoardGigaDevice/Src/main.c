@@ -1,17 +1,13 @@
 #define ARM_MATH_CM3
 
-#include "../Inc/target.h"
 
 
-#include "../Inc/setup.h"
-#include "../Inc/config.h"
 #include "../Inc/defines.h"
 #include "../Inc/it.h"
 #include "../Inc/bldc.h"
 #include "../Inc/commsMasterSlave.h"
 
 //#include "../Inc/commsSteering.h"
-#include "../Inc/remote.h"
 
 #include "../Inc/commsBluetooth.h"
 #include "stdio.h"
@@ -39,10 +35,11 @@ int32_t speed = 0; 												// global variable for speed.    -1000 to 1000
 int16_t speedLimit = 1000;
     
 
-#ifdef MASTER
-
-
-DataSlave oDataSlave;
+#ifdef MASTER_OR_SLAVE
+	DataSlave oDataSlave;
+#endif
+	
+#ifdef MASTER_OR_SINGLE
 
 int32_t steer = 0; 												// global variable for steering. -1000 to 1000
 FlagStatus activateWeakening = RESET;			// global variable for weakening
@@ -255,7 +252,7 @@ const float lookUpTableAngle[181] =
 //----------------------------------------------------------------------------
 int main (void)
 {
-#ifdef MASTER
+#ifdef MASTER_OR_SINGLE
 	FlagStatus enable = RESET;
 	FlagStatus enableSlave = RESET;
 	FlagStatus chargeStateLowActive = SET;
@@ -288,13 +285,17 @@ int main (void)
 	
 	// Init GPIOs
 	GPIO_init();
-	//DEBUG_LedSet(SET)
+	DEBUG_LedSet(SET,0)
 	
 	// Activate self hold direct after GPIO-init
 	gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
 
-	// Init usart master slave
-	USART_MasterSlave_init();
+	#ifdef USART0_BAUD
+			USART0_Init(USART0_BAUD);
+	#endif
+	#ifdef USART1_BAUD
+			USART1_Init(USART1_BAUD);
+	#endif
 	
 	// Init ADC
 	ADC_init();
@@ -306,8 +307,6 @@ int main (void)
 	// afterwards watchdog will be fired
 	fwdgt_counter_reload();
 
-	// Init usart steer/bluetooth
-	USART_Steer_COM_init();
 
 	// Startup-Sound
 	BUZZER_MelodyDown()
@@ -318,14 +317,13 @@ int main (void)
 	Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
 #endif
 
-	//DEBUG_LedSet(RESET)
+	DEBUG_LedSet(RESET,0)
   while(1)
 	{
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
-		//DEBUG_LedSet((steerCounter%20) < 10)		
-
+		//DEBUG_LedSet(	(steerCounter%20) < 10	,0)
 		
-	#ifdef MASTER
+	#ifdef MASTER_OR_SINGLE
 		if ((steerCounter % 2) == 0)
 			RemoteUpdate();
 
@@ -370,35 +368,38 @@ int main (void)
 		// Enable channel output
 		SetEnable(enable);
 
-		// Decide if slave will be enabled
-		enableSlave = (enable == SET && timedOut == RESET) ? SET : RESET;
-		
-		// Decide which process value has to be sent
-		switch(sendSlaveIdentifier)
-		{
-			case 0:
-				sendSlaveValue = currentDC * 100;
-				break;
-			case 1:
-				sendSlaveValue = batteryVoltage * 100;
-				break;
-			case 2:
-				sendSlaveValue = realSpeed * 100;
-				break;
-				default:
-					break;
-		}
-		
-    // Set output
+		    // Set output
 		SetPWM(pwmMaster);
 
+
 		#ifdef USART_MASTERSLAVE
+			// Decide if slave will be enabled
+			enableSlave = (enable == SET && timedOut == RESET) ? SET : RESET;
+
+			// Decide which process value has to be sent
+			switch(sendSlaveIdentifier)
+			{
+				case 0:
+					sendSlaveValue = currentDC * 100;
+					break;
+				case 1:
+					sendSlaveValue = batteryVoltage * 100;
+					break;
+				case 2:
+					sendSlaveValue = realSpeed * 100;
+					break;
+					default:
+						break;
+			}
+
 			SendSlave(-pwmSlave, enableSlave, RESET, chargeStateLowActive, sendSlaveIdentifier, sendSlaveValue);
+
+			// Increment identifier
+			sendSlaveIdentifier++;
+			if (sendSlaveIdentifier > 2)	sendSlaveIdentifier = 0;
+
 		#endif
 		
-		// Increment identifier
-		sendSlaveIdentifier++;
-		if (sendSlaveIdentifier > 2)	sendSlaveIdentifier = 0;
 		
 		
 		// Show green battery symbol when battery level BAT_LOW_LVL1 is reached
@@ -470,14 +471,13 @@ int main (void)
   }
 }
 
-#ifdef MASTER
+#ifdef MASTER_OR_SINGLE
 //----------------------------------------------------------------------------
 // Turns the device off
 //----------------------------------------------------------------------------
 void ShutOff(void)
 {
 	BUZZER_MelodyUp()
-
 	
 	#ifdef USART_MASTERSLAVE
 		// Send shut off command to slave
@@ -504,23 +504,21 @@ void ShutOff(void)
 //----------------------------------------------------------------------------
 void ShowBatteryState(uint32_t pin)
 {
-	#ifdef TEST_HALL2LED	
-		return;
+	#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
+		if(pin == LED_ORANGE){
+			#ifdef THIRD_LED
+			//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, SET);
+			#else
+				gpio_bit_write(LED_GREEN_PORT, LED_GREEN, SET);
+				gpio_bit_write(LED_RED_PORT, LED_RED, SET);
+			#endif
+		}
+		else{
+			gpio_bit_write(LED_GREEN_PORT, LED_GREEN, pin == LED_GREEN ? SET : RESET);
+			gpio_bit_write(LED_RED_PORT, LED_RED, pin == LED_RED ? SET : RESET);
+			gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, RESET);
+		}
 	#endif
-	
-	if(pin == LED_ORANGE){
-		#ifdef THIRD_LED
-		//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, SET);
-		#else
-			gpio_bit_write(LED_GREEN_PORT, LED_GREEN, SET);
-			gpio_bit_write(LED_RED_PORT, LED_RED, SET);
-		#endif
-	}
-	else{
-		gpio_bit_write(LED_GREEN_PORT, LED_GREEN, pin == LED_GREEN ? SET : RESET);
-		gpio_bit_write(LED_RED_PORT, LED_RED, pin == LED_RED ? SET : RESET);
-		gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, RESET);
-	}
 }
 
 //----------------------------------------------------------------------------

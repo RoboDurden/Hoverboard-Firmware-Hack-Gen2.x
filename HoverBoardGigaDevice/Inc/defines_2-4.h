@@ -62,14 +62,30 @@
 #define HALL_C_PIN GPIO_PIN_4	// Batman313v
 #define HALL_C_PORT GPIOB		// Batman313v
 
-// Usart master slave defines
-#define USART_MASTERSLAVE USART1
-#ifdef USART_MASTERSLAVE
-	#define USART_MASTERSLAVE_TX_PIN GPIO_PIN_2		//SAME AS 2.0 :-)
-	#define USART_MASTERSLAVE_TX_PORT GPIOA			//SAME AS 2.0 :-)
-	#define USART_MASTERSLAVE_RX_PIN GPIO_PIN_3		//SAME AS 2.0 :-)
-	#define USART_MASTERSLAVE_RX_PORT GPIOA			//SAME AS 2.0 :-)
+// GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
+#define HAS_USART0	// uncomment if this layout has a usart0
+#ifdef HAS_USART0
+	#define USART0_TX_PIN	GPIO_PIN_6
+	#define USART0_TX_PORT	GPIOB
+	#define USART0_RX_PIN	GPIO_PIN_7
+	#define USART0_RX_PORT	GPIOB
+	
+	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
+
+// GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
+#define HAS_USART1	// uncomment if this layout has a usart1
+#ifdef HAS_USART1
+	#define USART1_TX_PIN		GPIO_PIN_2
+	#define USART1_TX_PORT	GPIOA
+	#define USART1_RX_PIN		GPIO_PIN_3
+	#define USART1_RX_PORT	GPIOA
+	
+	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	//#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
+#endif
+
 
 // ADC defines
 #define VBATT_PIN	GPIO_PIN_0			// Batman313v, might be CURRENT_DC !!!
@@ -93,14 +109,6 @@
 #define BUTTON_PIN GPIO_PIN_5		// Batman313v
 #define BUTTON_PORT GPIOA			// Batman313v
 
-// Usart steer defines
-#define USART_STEER_COM USART0
-#define USART_STEER_RCU RCU_USART0
-#define USART_STEER_AF	GPIO_AF_0
-#define USART_STEER_COM_TX_PIN GPIO_PIN_6	//SAME AS 2.0 but left open at missing bluetooth chip 
-#define USART_STEER_COM_TX_PORT GPIOB		//SAME AS 2.0 but left open at missing bluetooth chip 
-#define USART_STEER_COM_RX_PIN GPIO_PIN_7	//SAME AS 2.0 but left open at missing bluetooth chip 
-#define USART_STEER_COM_RX_PORT GPIOB		//SAME AS 2.0 but left open at missing bluetooth chip 
 
 #ifdef BUZZER
 	// Buzzer defines

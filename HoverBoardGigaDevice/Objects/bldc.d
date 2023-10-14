@@ -1,4 +1,5 @@
-./objects/bldc.o: Src\bldc.c Src\..\Inc\target.h \
+./objects/bldc.o: Src\bldc.c Src\..\Inc\defines.h \
+  Src\..\Inc\..\Inc\target.h \
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include\gd32f1x0.h \
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
@@ -23,5 +24,6 @@
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_wwdgt.h \
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h \
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h \
-  Src\..\Inc\setup.h Src\..\Inc\..\Inc\config.h Src\..\Inc\config.h \
-  Src\..\Inc\defines.h Src\..\Inc\defines_2-0.h
+  Src\..\Inc\..\Inc\setup.h Src\..\Inc\..\Inc\config.h \
+  Src\..\Inc\..\Inc\remote.h Src\..\Inc\..\Inc\remoteDummy.h \
+  Src\..\Inc\defines_2-3.h

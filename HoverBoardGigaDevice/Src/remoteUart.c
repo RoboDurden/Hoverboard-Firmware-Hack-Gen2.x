@@ -1,10 +1,6 @@
-#include "../Inc/target.h"
+#include "../Inc/defines.h"
 #include "../Inc/it.h"
 #include "../Inc/comms.h"
-#include "../Inc/remote.h"
-#include "../Inc/setup.h"
-#include "../Inc/config.h"
-#include "../Inc/defines.h"
 #include "../Inc/bldc.h"
 #include "stdio.h"
 #include "string.h"
@@ -14,12 +10,16 @@
 #pragma pack(1)
 
 // Only master communicates with steerin device
-#ifdef MASTER
+#ifdef MASTER_OR_SINGLE
 //#define USART_STEER_TX_BYTES 2   // Transmit byte count including start '/' and stop character '\n'
 #define USART_STEER_RX_BYTES 7   // Receive byte count including start '/' and stop character '\n'
 
-extern uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
+extern uint8_t usart0_rx_buf[1];
+extern uint8_t usart1_rx_buf[1];
+//extern uint8_t usartSteer_COM_rx_buf[USART_STEER_COM_RX_BUFFERSIZE];
 //static uint8_t aReceiveBuffer[USART_STEER_RX_BYTES];
+
+
 static int16_t iReceivePos = 0;	
 
 extern int32_t steer;
@@ -59,20 +59,33 @@ typedef struct{				// ´#pragma pack(1)´ needed to get correct sizeof()
 //static uint8_t aDebug[sizeof(SerialServer2Hover)];
 
 
+uint32_t iTimeLast = 0;
 
 // Send frame to steer device
 void RemoteUpdate(void)
 {
+	if (millis() - iTimeLast > 500)
+	{
+		speed = steer = 0;
+	}
+
 	// Ask for steer input
 	SerialHover2Server oData;
 	oData.cStart = START_FRAME;
 	oData.iVolt = (uint16_t)	(batteryVoltage * 100);
 	oData.iAmpL = (int16_t) 	(currentDC * 100);
-	oData.iAmpR = (int16_t) 	(oDataSlave.currentDC * 100);
 	oData.iSpeedL = (int16_t) (realSpeed * 100);
-	oData.iSpeedR = (int16_t) (oDataSlave.realSpeed * 100);
 	oData.iOdomL = (int32_t) iOdom;
-	oData.iOdomR = (int32_t) oDataSlave.iOdom;
+	
+	#ifdef MASTER_OR_SLAVE
+		oData.iAmpR = (int16_t) 	(oDataSlave.currentDC * 100);
+		oData.iSpeedR = (int16_t) (oDataSlave.realSpeed * 100);
+		oData.iOdomR = (int32_t) oDataSlave.iOdom;
+	#else
+		oData.iAmpR = 0;
+		oData.iSpeedR = 0;
+		oData.iOdomR = 0;
+	#endif
 /*	
 	oData.iVolt = aDebug[0];
 	oData.iAmpL = aDebug[1];
@@ -85,10 +98,15 @@ void RemoteUpdate(void)
 
 	oData.checksum = 	CalcCRC((uint8_t*) &oData, sizeof(oData) - 2);	// (first bytes except crc)
 
-	#ifdef USART_STEER_COM
-		SendBuffer(USART_STEER_COM, (uint8_t*) &oData, sizeof(oData));
+	#ifdef USART0_REMOTE
+		SendBuffer(USART0, (uint8_t*) &oData, sizeof(oData));
 	#endif
-	
+	#ifdef USART1_REMOTE
+		SendBuffer(USART1, (uint8_t*) &oData, sizeof(oData));
+	#endif
+
+
+
 	//oDataSlave.wState = 11;
 }
 
@@ -99,7 +117,13 @@ extern uint32_t steerCounter;								// Steer counter for setting update rate
 // static int16_t iReceivePos = -1;		// if >= 0 incoming bytes are recorded until message size reached
 void RemoteCallback(void)
 {
-	uint8_t cRead = usartSteer_COM_rx_buf[0];
+	#ifdef USART0_REMOTE
+		uint8_t cRead = usart0_rx_buf[0];
+	#endif
+	#ifdef USART1_REMOTE
+		uint8_t cRead = usart1_rx_buf[0];
+	#endif
+	//DEBUG_LedSet((steerCounter%20) < 10,0)	// 	
 	if (cRead == '/')	// Start character is captured, start record
 	{
 		iReceivePos = 0;
@@ -118,11 +142,9 @@ void RemoteCallback(void)
 			//if (1)
 			if (pData->checksum == CalcCRC(aReceiveBuffer, sizeof(SerialServer2Hover) - 2))	//  first bytes except crc
 			{
-				//DEBUG_LedSet(SET) // 		(steerCounter%2) < 1
-				#ifndef TEST_SPEED	// only use received uart command if NOT in TEST_SPEED mode
-					speed = pData->iSpeed;
-					steer = pData->iSteer;
-				#endif
+				//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
+				speed = pData->iSpeed;
+				steer = pData->iSteer;
 				//if (speed > 300) speed = 300;	else if (speed < -300) speed = -300;		// for testing this function
 
 				ResetTimeout();	// Reset the pwm timout to avoid stopping motors
@@ -134,14 +156,21 @@ void RemoteCallback(void)
 // Update USART steer input
 void RemoteUpdateNew(void)	// get rid of this stupid struct __attribute__((packed, aligned(1))) "bug" by not using uint8_t in struct
 {
-	uint8_t cRead = aReceiveBuffer[iReceivePos] = usartSteer_COM_rx_buf[0];
+	#ifdef USART0_REMOTE
+		uint8_t cRead = usart0_rx_buf[0];
+	#endif
+	#ifdef USART1_REMOTE
+		uint8_t cRead = usart1_rx_buf[0];
+	#endif
+	aReceiveBuffer[iReceivePos] = cRead;
+	//uint8_t cRead = aReceiveBuffer[iReceivePos] = usartSteer_COM_rx_buf[0];
 	switch (iReceivePos)
 	{
 	case 0:	// waiting for first byte of cStart
 		if (cRead == (START_FRAME >> 8)	)	
 		{
 			iReceivePos++;
-			//DEBUG_LedSet(RESET)
+			//DEBUG_LedSet(RESET,0)
 		}
 		break;
 	case 1:	// expecting second byte of START_FRAME
@@ -163,11 +192,11 @@ void RemoteUpdateNew(void)	// get rid of this stupid struct __attribute__((packe
 			if (1)	// disable checksum for testing ONLY !
 			//if (pData->checksum == CalcCRC(aReceiveBuffer, sizeof(SerialServer2Hover) - 2))	//  first bytes except crc
 			{
-				//DEBUG_LedSet(SET) // 		(steerCounter%2) < 1
-				#ifndef TEST_SPEED	// only use received uart command if NOT in TEST_SPEED mode
-					speed = pData->iSpeed;
-					steer = pData->iSteer;
-				#endif
+				//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
+				speed = pData->iSpeed;
+				steer = pData->iSteer;
+				iTimeLast = millis();
+
 				if (speed > 300) speed = 300;	else if (speed < -300) speed = -300;		// for testing this function
 
 				ResetTimeout();	// Reset the pwm timout to avoid stopping motors

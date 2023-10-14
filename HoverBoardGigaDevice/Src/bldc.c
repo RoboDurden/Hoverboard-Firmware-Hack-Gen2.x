@@ -1,7 +1,4 @@
 
-#include "../Inc/target.h"
-#include "../Inc/setup.h"
-#include "../Inc/config.h"
 #include "../Inc/defines.h"
 
 // Internal constants
@@ -184,15 +181,15 @@ void CalculateBLDC(void)
 	if (currentDC > DC_CUR_LIMIT || bldc_enable == RESET || timedOut == SET)
 	{
 		timer_automatic_output_disable(TIMER_BLDC);		
-		//DEBUG_LedSet(SET)
+		//DEBUG_LedSet(SET,0)
   }
 	else
 	{
 		timer_automatic_output_enable(TIMER_BLDC);
-		//DEBUG_LedSet(hall_c == 0)
+		//DEBUG_LedSet(hall_c == 0,0)
   }
 
-	//if (timedOut == SET)	DEBUG_LedSet((steerCounter%2) < 1)		
+	//if (timedOut == SET)	DEBUG_LedSet((steerCounter%2) < 1,0)		
 	
 	// Read hall sensors
 	hall_a = gpio_input_bit_get(HALL_A_PORT, HALL_A_PIN);
