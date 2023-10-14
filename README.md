@@ -1,3 +1,6 @@
+### 2023/10/14 youtube video: https://youtu.be/_wU6mSyRgx4
+Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
+
 ### Update 2.x:
 - This is a fork from https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
 - with different defines_2-x.h for two different board layouts :-) 
