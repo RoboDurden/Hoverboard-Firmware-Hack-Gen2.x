@@ -29,18 +29,17 @@ Project File Date:  10/13/2023
 Build target 'GD32F130C8'
 compiling setup.c...
 compiling bldc.c...
-compiling comms.c...
-compiling it.c...
-compiling commsBluetooth.c...
-compiling led.c...
-compiling commsMasterSlave.c...
-compiling remoteUart.c...
 compiling main.c...
+compiling commsBluetooth.c...
+compiling commsMasterSlave.c...
+compiling it.c...
+compiling led.c...
+compiling remoteUart.c...
+compiling remoteCrsf.c...
 compiling remoteDummy.c...
 compiling remoteUartBus.c...
-compiling remoteCrsf.c...
 linking...
-Program Size: Code=19910 RO-data=1158 RW-data=12 ZI-data=2372  
+Program Size: Code=19582 RO-data=1158 RW-data=12 ZI-data=2372  
 FromELF: creating hex file...
 After Build - User command #1: fromelf.exe --bin Objects\hoverboard.axf --output BinariesToFlash\hoverboard.bin
 After Build - User command #2: moveOutput.bat
@@ -90,16 +89,16 @@ Package Vendor: GigaDevice
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: GigaDevice::Device:GD32F1x0_StdPeripherals:ADC:3.2.0
-      Source file:   Device/Firmware/Peripherals/src/gd32f1x0_adc.c
       Include file:  Device/Firmware/Peripherals/inc/gd32f1x0_adc.h
+      Source file:   Device/Firmware/Peripherals/src/gd32f1x0_adc.c
 
    * Component: GigaDevice::Device:GD32F1x0_StdPeripherals:DMA:3.2.0
       Source file:   Device/Firmware/Peripherals/src/gd32f1x0_dma.c
       Include file:  Device/Firmware/Peripherals/inc/gd32f1x0_dma.h
 
    * Component: GigaDevice::Device:GD32F1x0_StdPeripherals:FWDGT:3.2.0
-      Include file:  Device/Firmware/Peripherals/inc/gd32f1x0_fwdgt.h
       Source file:   Device/Firmware/Peripherals/src/gd32f1x0_fwdgt.c
+      Include file:  Device/Firmware/Peripherals/inc/gd32f1x0_fwdgt.h
 
    * Component: GigaDevice::Device:GD32F1x0_StdPeripherals:GPIO:3.2.0
       Include file:  Device/Firmware/Peripherals/inc/gd32f1x0_gpio.h
@@ -110,8 +109,8 @@ Package Vendor: GigaDevice
       Source file:   Device/Firmware/Peripherals/src/gd32f1x0_i2c.c
 
    * Component: GigaDevice::Device:GD32F1x0_StdPeripherals:MCUDBG:3.2.0
-      Source file:   Device/Firmware/Peripherals/src/gd32f1x0_dbg.c
       Include file:  Device/Firmware/Peripherals/inc/gd32f1x0_dbg.h
+      Source file:   Device/Firmware/Peripherals/src/gd32f1x0_dbg.c
 
    * Component: GigaDevice::Device:GD32F1x0_StdPeripherals:MISC:3.2.0
       Source file:   Device/Firmware/Peripherals/src/gd32f1x0_misc.c
@@ -150,9 +149,9 @@ Package Vendor: GigaDevice
 
    * Component: GigaDevice::Device:Startup:3.2.0
       Include file:  Device/Include/gd32f1x0.h
-      Source file:   Device/Source/system_gd32f1x0.c
       Source file:   Device/Source/startup_gd32f1x0.s
-Build Time Elapsed:  00:00:06
+      Source file:   Device/Source/system_gd32f1x0.c
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>

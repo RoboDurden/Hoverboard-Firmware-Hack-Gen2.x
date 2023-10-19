@@ -9,10 +9,10 @@
 #ifdef GD32E230
 	#define LAYOUT_2_7	// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #else
-	#define LAYOUT_2_0	// 100% ready.. https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
+	//#define LAYOUT_2_0	// 100% ready.. https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
 	//#define LAYOUT_2_1	// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
 	//#define LAYOUT_2_2	// motor is spinning but needs a push to startup :-/
-	//#define LAYOUT_2_3	// 99% ready.. https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+	#define LAYOUT_2_3	// 99% ready.. https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
 	//#define LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
 	//#define LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
 #endif

@@ -22,9 +22,6 @@
 #define LOWER_LED_PIN 	GPIO_PIN_5
 #define LOWER_LED_PORT 	GPIOB
 
-#define DEBUG_LED_PIN 	LED_RED
-#define DEBUG_LED_PORT 	LED_RED_PORT
-
 
 // Mosfet output
 // seems to be an ordinary LED output ?
