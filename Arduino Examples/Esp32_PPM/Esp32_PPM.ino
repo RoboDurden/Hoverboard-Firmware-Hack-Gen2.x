@@ -6,6 +6,8 @@
 //    10s binary for 2.0 board https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/blob/main/HoverBoardGigaDevice/BinariesToFlash/hoverboard%202.0%20single%20UartBus.bin
 //
 //    please share feedback to https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x
+//
+//   if you add steering channel, please send your code to robo@robo4future.de - thanks.
 
 #define ESP32
 #define _DEBUG      // debug output to first hardware serial port
