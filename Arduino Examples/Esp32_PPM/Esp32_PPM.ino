@@ -3,13 +3,15 @@
 //
 //    taken from https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/9#issuecomment-1769209126
 //
+//    10s binary for 2.0 board https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/blob/main/HoverBoardGigaDevice/BinariesToFlash/hoverboard%202.0%20single%20UartBus.bin
+//
 //    please share feedback to https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x
 
 #define ESP32
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
 
-//#define REMOTE_UARTBUS  // uncomment to connect multiple SINGLE boards to the same UART_BUS
+#define REMOTE_UARTBUS  // uncomment to connect multiple SINGLE boards to the same UART_BUS
 
 #include "util.h"
 #include "hoverserial.h"
