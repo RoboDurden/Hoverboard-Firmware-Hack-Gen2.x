@@ -104,9 +104,9 @@ else
       int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
       int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
       
-      HoverSend(oSerialHover,1,iSpeedL);  // hoverboard will answer immediatly on having received this message ...
+      HoverSend(oSerialHover,0,iSpeedL);  // hoverboard will answer immediatly on having received this message ...
       delay(10);
-      HoverSend(oSerialHover,2,iSpeedR);  // but wait 10 ms for the RX line to be clear again
+      HoverSend(oSerialHover,1,iSpeedR);  // but wait 10 ms for the RX line to be clear again
     }
   #else
     if (bReceived)  // Reply only when you receive data

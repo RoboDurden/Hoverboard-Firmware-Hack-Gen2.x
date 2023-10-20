@@ -24,19 +24,19 @@
 
 
 
-#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
 //#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
 
 #if defined(MASTER) || defined(SINGLE)
 	#define MASTER_OR_SINGLE
 	
-	#define REMOTE_DUMMY
+	//#define REMOTE_DUMMY
 	//#define REMOTE_UART
-	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
+	#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
 	#ifdef REMOTE_UARTBUS
-		#define SLAVE_ID	2		// must be unique for all hoverboards connected to the bus
+		#define SLAVE_ID	1		// must be unique for all hoverboards connected to the bus
 	#endif
 
 	#define SPEED_COEFFICIENT   -1
@@ -48,7 +48,7 @@
 
 // ################################################################################
 
-#define BAT_CELLS         	7        // battery number of cells. Normal Hoverboard battery: 10s
+#define BAT_CELLS         	10        // battery number of cells. Normal Hoverboard battery: 10s
 
 #define PWM_FREQ         		16000     // PWM frequency in Hz
 #define DEAD_TIME        		60        // PWM deadtime (60 = 1�s, measured by oscilloscope)

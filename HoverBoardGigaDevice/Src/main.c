@@ -447,15 +447,15 @@ int main (void)
 			}
 		#endif
 		
-		// Calculate inactivity timeout (Except, when charger is active -> keep device running)
-    if (ABS(pwmMaster) > 50 || ABS(pwmSlave) > 50 || !chargeStateLowActive)
-		{
-      inactivity_timeout_counter = 0;
-    }
-		else
-		{
-      inactivity_timeout_counter++;
-    }
+	// Calculate inactivity timeout (Except, when charger is active -> keep device running)
+	if (ABS(pwmMaster) > 50 || ABS(pwmSlave) > 50 || !chargeStateLowActive)
+	{
+		inactivity_timeout_counter = 0;
+	}
+	else
+	{
+		inactivity_timeout_counter++;
+	}
 		
 		// Shut off device after INACTIVITY_TIMEOUT in minutes
     if (inactivity_timeout_counter > (INACTIVITY_TIMEOUT * 60 * 1000) / (DELAY_IN_MAIN_LOOP + 1))
