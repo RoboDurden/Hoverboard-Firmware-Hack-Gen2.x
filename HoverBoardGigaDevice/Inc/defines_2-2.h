@@ -5,19 +5,20 @@
 #define TODO_PORT GPIOB				// this should be a pin that does no harm if input or output
 #define TODO_PIN	GPIO_PIN_15	// B15 is not accessibla on the smaller QFN32 32 pin MCU version
 
+// 2.2 unused/unkown: B4 B5 A6 A5 A4 A3 A2 A1 A0
 
 // LED defines
-#define LED_GREEN 			TODO_PIN	// lerwinDE: GPIO_PIN_14 - in conflict with flash pins DIO and CLK !!!
-#define LED_GREEN_PORT 	TODO_PORT	// lerwinDE: GPIOA
-#define LED_ORANGE 			TODO_PIN	// TODO
-#define LED_ORANGE_PORT	TODO_PORT	// TODO
-#define LED_RED 				TODO_PIN		// lerwinDE: GPIO_PIN_13 - in conflict with flash pins DIO and CLK !!!
-#define LED_RED_PORT 		TODO_PORT		// lerwinDE: GPIOA
+#define LED_GREEN 			TODO_PIN	//GPIO_PIN_13	// lerwinDE: in conflict with flash pins DIO and CLK !!!
+#define LED_GREEN_PORT 	TODO_PORT	//GPIOA				// only auto-flash.bat succeeds after multiple power-on
+#define LED_ORANGE 			GPIO_PIN_1	// upper module with 4x blue led
+#define LED_ORANGE_PORT	GPIOF
+#define LED_RED 				TODO_PIN	//GPIO_PIN_14	// lerwinDE: in conflict with flash pins DIO and CLK !!!
+#define LED_RED_PORT 		TODO_PORT	//GPIOA				// only auto-flash.bat succeeds after multiple power-on
 
-#define UPPER_LED_PIN 	TODO_PIN	// TODO
-#define UPPER_LED_PORT 	TODO_PORT	// TODO
-#define LOWER_LED_PIN 	TODO_PIN	// TODO
-#define LOWER_LED_PORT 	TODO_PORT	// TODO
+#define UPPER_LED_PIN 	TODO_PIN	
+#define UPPER_LED_PORT 	TODO_PORT	
+#define LOWER_LED_PIN 	TODO_PIN	
+#define LOWER_LED_PORT 	TODO_PORT	
 
 
 // Mosfet output
@@ -77,15 +78,15 @@
 #endif
 
 // GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
-//#define HAS_USART1	// uncomment if this layout has a usart1
+#define HAS_USART1	// uncomment if this layout has a usart1
 #ifdef HAS_USART1
-	#define USART1_TX_PIN		GPIO_PIN_2	// lerwinDE :-)
+	#define USART1_TX_PIN		GPIO_PIN_2
 	#define USART1_TX_PORT	GPIOA
-	#define USART1_RX_PIN		GPIO_PIN_15	// lerwinDE :-)
+	#define USART1_RX_PIN		GPIO_PIN_15
 	#define USART1_RX_PORT	GPIOA
 	
 	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	//#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
+	//#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
 
 

@@ -34,22 +34,36 @@ void setup()
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif
 
+  //pinMode(39, OUTPUT);
+  //pinMode(37, OUTPUT);
 
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
 unsigned long iLast = 0;
 unsigned long iNext = 0;
+unsigned long iTimeNextState = 3000;
+uint8_t  wState = 1;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+
 void loop()
 {
   unsigned long iNow = millis();
   digitalWrite(LED_BUILTIN, (iNow%2000) < 500);
+  //digitalWrite(39, (iNow%500) < 250);
+  //digitalWrite(37, (iNow%500) < 100);
 
   int iSpeed = 3 * (ABS( (int)((iNow/20+100) % 400) - 200) - 100);   // repeats from +300 to -300 to +300 :-)
   int iSteer = 1 * (ABS( (int)((iNow/400+100) % 400) - 200) - 100);   // repeats from +100 to -100 to +100 :-)
   //int iSteer = 0;
   //iSpeed /= 10;
 
+  if (iNow > iTimeNextState)
+  {
+    iTimeNextState = iNow + 3000;
+    wState = wState << 1;
+    if (wState == 128) wState = 1;  // remove this line to test Shutoff()
+  }
+  
   boolean bReceived = Receive(oSerialHover,oHoverFeedback);   
   if (bReceived)
   {
@@ -68,13 +82,13 @@ void loop()
       int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
       int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
       
-      HoverSend(oSerialHover,0,iSpeedL);  // hoverboard will answer immediatly on having received this message ...
+      HoverSend(oSerialHover,0,iSpeedL,wState);  // hoverboard will answer immediatly on having received this message ...
       delay(10);
-      HoverSend(oSerialHover,1,iSpeedR);  // but wait 10 ms for the RX line to be clear again
+      HoverSend(oSerialHover,1,iSpeedR,wState);  // but wait 10 ms for the RX line to be clear again
     }
   #else
     if (bReceived)  // Reply only when you receive data
-      HoverSend(oSerialHover,iSteer,iSpeed);
+      HoverSend(oSerialHover,iSteer,iSpeed,wState,wState);
   #endif
 
 }

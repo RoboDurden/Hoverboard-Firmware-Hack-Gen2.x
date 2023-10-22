@@ -30,12 +30,16 @@ extern float batteryVoltage; 							// global variable for battery voltage
 extern float currentDC; 									// global variable for current dc
 extern float realSpeed; 									// global variable for real Speed
 extern DataSlave oDataSlave;
+extern uint8_t  wStateSlave;
+extern uint8_t  wState;
 
 typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
    uint8_t cStart;		//  = '/';
    //uint16_t cStart;		//  = #define START_FRAME         0xABCD
    int16_t  iSpeed;
    int16_t  iSteer;
+   uint8_t  wStateMaster;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+   uint8_t  wStateSlave;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
    uint16_t checksum;
 } SerialServer2Hover;
 
@@ -145,6 +149,8 @@ void RemoteCallback(void)
 				//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
 				speed = pData->iSpeed;
 				steer = pData->iSteer;
+				wState = pData->wStateMaster;
+				wStateSlave = pData->wStateSlave;
 				//if (speed > 300) speed = 300;	else if (speed < -300) speed = -300;		// for testing this function
 
 				ResetTimeout();	// Reset the pwm timout to avoid stopping motors

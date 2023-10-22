@@ -6,29 +6,22 @@
 #include "../Inc/config.h"
 #include "../Inc/remote.h"
 
-
-#ifdef LAYOUT_2_0
+#if LAYOUT == 0
 	#include "defines_2-0.h"		// https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
-	// hall input pins A,B,C = B11,F1,C14 , etc.
-#endif
-#ifdef LAYOUT_2_1
+#elif LAYOUT == 1
 	#include "defines_2-1.h"		// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
-#endif
-#ifdef LAYOUT_2_2
+#elif LAYOUT == 2
 	#include "defines_2-2.h"		// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
-#endif
-#ifdef LAYOUT_2_3
+#elif LAYOUT == 3
 	#include "defines_2-3.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-#endif
-#ifdef LAYOUT_2_4
+#elif LAYOUT == 4
 	#include "defines_2-4.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
-#endif
-#ifdef LAYOUT_2_7
+#elif LAYOUT == 7
 	#include "defines_2-7.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
-#endif
-#ifdef LAYOUT_2_11
+#elif LAYOUT == 11
 	#include "defines_2-11.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #endif
+
 
 /*
 #ifdef DEBUG_LED_PIN

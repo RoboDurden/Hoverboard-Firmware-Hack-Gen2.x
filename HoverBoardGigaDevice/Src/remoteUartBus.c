@@ -20,6 +20,7 @@ static int16_t iReceivePos = 0;
 
 extern int32_t steer;
 extern int32_t speed;
+extern uint8_t  wState;
 
 extern int32_t iOdom;
 extern float batteryVoltage; 							// global variable for battery voltage
@@ -31,6 +32,7 @@ typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
    uint8_t iSlave;		//  contains the slave id this message is intended for
    //uint16_t cStart;		//  = #define START_FRAME         0xABCD
    int16_t  iSpeed;
+   uint8_t  wState;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
    uint16_t checksum;
 } SerialServer2Hover;
 
@@ -61,6 +63,9 @@ void RemoteUpdate(void)
 		speed = 0;
 	}
 }
+
+extern 	uint32_t steerCounter;
+
 
 void AnswerMaster(void)
 {
@@ -120,6 +125,8 @@ void RemoteCallback(void)
 				{
 					//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
 					speed = pData->iSpeed;
+					wState = pData->wState;
+					
 					iTimeLast = millis();
 					//if (speed > 300) speed = 300;	else if (speed < -300) speed = -300;		// for testing this function
 

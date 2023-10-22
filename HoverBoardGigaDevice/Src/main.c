@@ -33,7 +33,18 @@
 uint32_t steerCounter = 0;								// Steer counter for setting update rate
 int32_t speed = 0; 												// global variable for speed.    -1000 to 1000
 int16_t speedLimit = 1000;
-    
+
+#define STATE_LedGreen 1	
+#define STATE_LedOrange 2	
+#define STATE_LedRed 4	
+#define STATE_LedUp 8
+#define STATE_LedDown 16
+#define STATE_LedBattLevel 32
+#define STATE_Disable 64
+#define STATE_Shutoff 128
+
+uint8_t  wState = STATE_LedBattLevel;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+uint8_t  wStateSlave = STATE_LedBattLevel;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
 
 #ifdef MASTER_OR_SLAVE
 	DataSlave oDataSlave;
@@ -285,7 +296,8 @@ int main (void)
 	
 	// Init GPIOs
 	GPIO_init();
-	DEBUG_LedSet(SET,0)
+	DEBUG_LedSet(SET,1)
+
 	
 	// Activate self hold direct after GPIO-init
 	gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
@@ -317,11 +329,11 @@ int main (void)
 	Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
 #endif
 
-	DEBUG_LedSet(RESET,0)
+	DEBUG_LedSet(RESET,1)
   while(1)
 	{
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
-		//DEBUG_LedSet(	(steerCounter%20) < 10	,0)
+		//DEBUG_LedSet(	(steerCounter%20) < 10	,1)
 		
 	#ifdef MASTER_OR_SINGLE
 		if ((steerCounter % 2) == 0)
@@ -358,6 +370,7 @@ int main (void)
 		
 		// Enable is depending on charger is connected or not
 		enable = chargeStateLowActive;
+		if (wState & STATE_Disable)	enable = RESET;
 		
 		// Enable is depending on arm switch
 		//#ifdef USART_CRSF
@@ -400,8 +413,18 @@ int main (void)
 
 		#endif
 		
-		
-		
+		if (!(wState & STATE_LedBattLevel))
+		{
+			gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
+			gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
+			gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
+		}
+		gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, wState & STATE_LedUp ? SET : RESET);
+		gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, wState & STATE_LedDown ? SET : RESET);
+
+		if (wState & STATE_Shutoff)	ShutOff();
+
+			
 		// Show green battery symbol when battery level BAT_LOW_LVL1 is reached
     if (batteryVoltage > BAT_LOW_LVL1)
 		{
@@ -504,6 +527,9 @@ void ShutOff(void)
 //----------------------------------------------------------------------------
 void ShowBatteryState(uint32_t pin)
 {
+	if (!(wState & STATE_LedBattLevel))
+			return;
+	
 	#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
 		if(pin == LED_ORANGE){
 			#ifdef THIRD_LED

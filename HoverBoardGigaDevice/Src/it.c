@@ -187,7 +187,7 @@ uint16_t iUartCounter = 0;
 	//----------------------------------------------------------------------------
 	void DMA_Channel3_4_IRQHandler(void)
 	{
-		DEBUG_LedSet(	(steerCounter%10) < 5	,0)
+		//DEBUG_LedSet(	(steerCounter%10) < 5	,0)
 		// USART master slave RX
 		if (dma_interrupt_flag_get(DMA_CH4, DMA_INT_FLAG_FTF))
 		{

@@ -7,21 +7,23 @@
 
 // LAYOUT_2_X is used in defines.h
 #ifdef GD32E230
-	#define LAYOUT_2_7	// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+	//LAYOUT_2_7	// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+	#define LAYOUT 7
 #else
-	//#define LAYOUT_2_0	// 100% ready.. https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
-	//#define LAYOUT_2_1	// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
-	//#define LAYOUT_2_2	// motor is spinning but needs a push to startup :-/
-	#define LAYOUT_2_3	// 99% ready.. https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-	//#define LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
-	//#define LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
+	//LAYOUT_2_0	// 100% ready.. https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
+	//LAYOUT_2_1	// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
+	//LAYOUT_2_2	// 90% ready. battery voltage and currentDC missing. motor spinning.
+	//LAYOUT_2_3	// 99% ready.. https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+	//LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
+	//LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
+	#define LAYOUT 11
 #endif
-
 
 //#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
 //#define SLAVE			// uncomment for SLAVE firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
 #define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
 
+#define BAT_CELLS         	10        // battery number of cells. Normal Hoverboard battery: 10s
 
 
 //#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
@@ -30,13 +32,13 @@
 #if defined(MASTER) || defined(SINGLE)
 	#define MASTER_OR_SINGLE
 	
-	//#define REMOTE_DUMMY
+	#define REMOTE_DUMMY
 	//#define REMOTE_UART
-	#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
+	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
 	#ifdef REMOTE_UARTBUS
-		#define SLAVE_ID	1		// must be unique for all hoverboards connected to the bus
+		#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
 	#endif
 
 	#define SPEED_COEFFICIENT   -1
@@ -48,7 +50,6 @@
 
 // ################################################################################
 
-#define BAT_CELLS         	10        // battery number of cells. Normal Hoverboard battery: 10s
 
 #define PWM_FREQ         		16000     // PWM frequency in Hz
 #define DEAD_TIME        		60        // PWM deadtime (60 = 1�s, measured by oscilloscope)

@@ -65,15 +65,17 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
      uint8_t  cStart = '/';                              // old version
      uint8_t  iSlave;    //  contains the slave id this message is intended for
      int16_t  iSpeed = 0;
+     uint8_t  wState = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
      uint16_t checksum;
   } SerialServer2Hover;
 
-  template <typename O,typename I> void HoverSend(O& oSerial, uint8_t iSlave, I iSpeed)
+  template <typename O,typename I> void HoverSend(O& oSerial, uint8_t iSlave, I iSpeed, uint8_t  wState=32)
   {
     //DEBUGT("iSteer",iSteer);DEBUGN("iSpeed",iSpeed);
     SerialServer2Hover oData;
     oData.iSlave    = iSlave;
     oData.iSpeed    = (int16_t)iSpeed;
+    oData.wState    = wState;
     oData.checksum = CalcCRC((uint8_t*)&oData, sizeof(SerialServer2Hover)-2); // first bytes except crc
     oSerial.write((uint8_t*) &oData, sizeof(SerialServer2Hover)); 
     //DebugOut((uint8_t*) &oData, sizeof(oData)); 
@@ -108,15 +110,19 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
      uint8_t cStart = '/';                              // old version
      int16_t  iSpeed = 0;
      int16_t  iSteer = 0;
+     uint8_t  wStateMaster = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+     uint8_t  wStateSlave = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
      uint16_t checksum;
   } SerialServer2Hover;
 
-  template <typename O,typename I> void HoverSend(O& oSerial, I iSteer, I iSpeed)
+  template <typename O,typename I> void HoverSend(O& oSerial, I iSteer, I iSpeed,uint8_t  wStateMaster=32, uint8_t  wStateSlave=0)
   {
     //DEBUGT("iSteer",iSteer);DEBUGN("iSpeed",iSpeed);
     SerialServer2Hover oData;
     oData.iSpeed    = (int16_t)iSpeed;
     oData.iSteer    = (int16_t)iSteer;
+    oData.wStateMaster  = wStateMaster;
+    oData.wStateSlave   = wStateSlave;
     oData.checksum = CalcCRC((uint8_t*)&oData, sizeof(SerialServer2Hover)-2); // first bytes except crc
     oSerial.write((uint8_t*) &oData, sizeof(SerialServer2Hover)); 
     //DebugOut((uint8_t*) &oData, sizeof(oData)); 
