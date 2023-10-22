@@ -55,6 +55,9 @@ void setup()
 
 unsigned long iLast = 0;
 unsigned long iNext = 0;
+unsigned long iTimeNextState = 3000;
+uint8_t  wState = 1;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+
 void loop()
 {
   unsigned long iNow = millis();
@@ -64,6 +67,13 @@ void loop()
   //int iSteer = 1 * (ABS( (int)((iNow/400+100) % 400) - 200) - 100);   // repeats from +100 to -100 to +100 :-)
   int iSteer = -100;
   int iSpeed = 0;
+
+  if (iNow > iTimeNextState)
+  {
+    iTimeNextState = iNow + 3000;
+    wState = wState << 1;
+    if (wState == 128) wState = 1;  // remove this line to test Shutoff()
+  }
 
 //if below uncommented then you can see all channels and values - this code is from example sketch from library PPMReader  
 // for (byte channel = 1; channel <= channelAmount; ++channel) {
@@ -104,13 +114,13 @@ else
       int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
       int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
       
-      HoverSend(oSerialHover,0,iSpeedL);  // hoverboard will answer immediatly on having received this message ...
+      HoverSend(oSerialHover,0,iSpeedL,wState);  // hoverboard will answer immediatly on having received this message ...
       delay(10);
-      HoverSend(oSerialHover,1,iSpeedR);  // but wait 10 ms for the RX line to be clear again
+      HoverSend(oSerialHover,1,iSpeedR,wState);  // but wait 10 ms for the RX line to be clear again
     }
   #else
     if (bReceived)  // Reply only when you receive data
-      HoverSend(oSerialHover,iSteer,iSpeed);
+      HoverSend(oSerialHover,iSteer,iSpeed,wState,wState);
   #endif
 
 }
