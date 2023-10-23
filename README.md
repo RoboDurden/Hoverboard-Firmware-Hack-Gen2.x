@@ -1,3 +1,16 @@
+### 2023/10/23 the following layouts are ready to use (99%):
+
+- 2.0
+- 2.2 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
+- 2.3 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+
+layouts worth testing (with a 2A cc constant current power supply / dcdc-step-down converter):
+
+- 2.1 this repo here was a fork from a running 2.1 firmware
+- 2.4 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
+- 2.7 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+- 2.11 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
+  
 ### 2023/10/14 youtube video: https://youtu.be/_wU6mSyRgx4
 Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 
