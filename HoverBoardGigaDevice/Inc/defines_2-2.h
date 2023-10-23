@@ -5,12 +5,12 @@
 #define TODO_PORT GPIOB				// this should be a pin that does no harm if input or output
 #define TODO_PIN	GPIO_PIN_15	// B15 is not accessibla on the smaller QFN32 32 pin MCU version
 
-// 2.2 unused/unkown: B4 B5 A6 A5 A4 A3 A2 A1 A0
+// 2.2 unused/unkown: B4 B5 A6 A2 A0
 
 // LED defines
 #define LED_GREEN 			TODO_PIN	//GPIO_PIN_13	// lerwinDE: in conflict with flash pins DIO and CLK !!!
 #define LED_GREEN_PORT 	TODO_PORT	//GPIOA				// only auto-flash.bat succeeds after multiple power-on
-#define LED_ORANGE 			GPIO_PIN_1	// upper module with 4x blue led
+#define LED_ORANGE 			GPIO_PIN_1	// UPPER_LED with 4x blue led
 #define LED_ORANGE_PORT	GPIOF
 #define LED_RED 				TODO_PIN	//GPIO_PIN_14	// lerwinDE: in conflict with flash pins DIO and CLK !!!
 #define LED_RED_PORT 		TODO_PORT	//GPIOA				// only auto-flash.bat succeeds after multiple power-on
@@ -49,6 +49,12 @@
 #define TIMER_BLDC_YH_PORT GPIOA				// robo, based on Herleybob:defines.h
 #define TIMER_BLDC_YL_PIN GPIO_PIN_1		// robo, based on Herleybob:defines.h
 #define TIMER_BLDC_YL_PORT GPIOB				// robo, based on Herleybob:defines.h
+
+
+
+//#define BLDC_CUR_G_PIN PA5
+//#define BLDC_CUR_B_PIN PA4
+
 
 // Timer BLDC short circuit emergency shutoff define
 // Is initialized here but never used somewhere else in code.
@@ -90,13 +96,16 @@
 #endif
 
 
+
 // ADC defines
-//#define VBATT_PIN	GPIO_PIN_0				// robo, no gpio_mode_set() inHerleybob:setup.c
+#define VBATT_PIN	GPIO_PIN_1				// robo, no gpio_mode_set() inHerleybob:setup.c
 #define VBATT_PORT GPIOA						// robo, no gpio_mode_set() inHerleybob:setup.c
-#define VBATT_CHANNEL ADC_CHANNEL_17	// robo, based on Herleybob:setup.c: adc_regular_channel_config(2,ADC_CHANNEL_17,ADC_SAMPLETIME_13POINT5);
-//#define CURRENT_DC_PIN	GPIO_PIN_1	// robo, no gpio_mode_set() inHerleybob:setup.c
+#define VBATT_CHANNEL ADC_CHANNEL_1	// robo, based on Herleybob:setup.c: adc_regular_channel_config(2,ADC_CHANNEL_17,ADC_SAMPLETIME_13POINT5);
+#define ADC_BATTERY_VOLT      0.02500961912134820371101460718516 // V_Batt to V_BattMeasure = factor 30: ( (ADC-Data/4095) *3,3V *30 )
+
+#define CURRENT_DC_PIN	GPIO_PIN_3	// robo, no gpio_mode_set() inHerleybob:setup.c
 #define CURRENT_DC_PORT GPIOA				// robo, no gpio_mode_set() inHerleybob:setup.c
-#define CURRENT_DC_CHANNEL ADC_CHANNEL_2	// robo, maybe adc_buf_t:adc is potentiometer input
+#define CURRENT_DC_CHANNEL ADC_CHANNEL_3	// robo, maybe adc_buf_t:adc is potentiometer input
 
 // Self hold defines
 // important pin keeps the mosfet open after the on/off button got pushed !

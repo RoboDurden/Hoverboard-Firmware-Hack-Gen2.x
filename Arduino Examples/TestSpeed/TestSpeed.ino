@@ -29,7 +29,7 @@ void setup()
   #endif
   
   #ifdef ESP32
-    HoverSetupEsp32(oSerialHover,19200,39,37);      // baud, rx, tx
+    HoverSetupEsp32(oSerialHover,19200,39,35);      // baud, rx, tx
   #else
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif
@@ -56,6 +56,7 @@ void loop()
   int iSteer = 1 * (ABS( (int)((iNow/400+100) % 400) - 200) - 100);   // repeats from +100 to -100 to +100 :-)
   //int iSteer = 0;
   //iSpeed /= 10;
+  //iSpeed = 500;
 
   if (iNow > iTimeNextState)
   {
@@ -67,9 +68,9 @@ void loop()
   boolean bReceived = Receive(oSerialHover,oHoverFeedback);   
   if (bReceived)
   {
-    DEBUGT("millis",iNow-iLast);
+    //DEBUGT("millis",iNow-iLast);
     DEBUGT("iSpeed",iSpeed);
-    DEBUGT("iSteer",iSteer);
+    //DEBUGT("iSteer",iSteer);
     HoverLog(oHoverFeedback);
     iLast = iNow;
    }
