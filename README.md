@@ -1,11 +1,24 @@
+### 2023/10/23 the following layouts are ready to use (99%):
+
+- 2.0
+- 2.2 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
+- 2.3 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+
+layouts worth testing (with a 2A cc constant current power supply / dcdc-step-down converter):
+
+- 2.1 this repo here was a fork from a running 2.1 firmware
+- 2.4 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
+- 2.7 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+- 2.11 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
+  
 ### 2023/10/14 youtube video: https://youtu.be/_wU6mSyRgx4
 Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 
 ### Update 2.x:
 - This is a fork from https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
 - with different defines_2-x.h for two different board layouts :-) 
-- Simply choose ` #define LAYOUT_2_0 ` or ` #define LAYOUT_2_1 ` in ` Inc/config.h ` :-))
-- as only UART control is supported you can download compiled binaries [here](HoverBoardGigaDevice/BinariesToFlash/) or there: [pionierland.de/hoverhack/gen2/ReadyToFlash](https://pionierland.de/hoverhack/gen2/ReadyToFlash/) (the test-firmwares will ignore uart speed and will repeat speed from -300 to 300 instead)
+- Simply set `#define LAYOUT x` to your 2.x board in `Inc/config.h` :-))
+- You can download compiled binaries [here](HoverBoardGigaDevice/BinariesToFlash/) or there: [pionierland.de/hoverhack/gen2/ReadyToFlash](https://pionierland.de/hoverhack/gen2/ReadyToFlash/) (the test-firmwares will ignore uart speed and will repeat speed from -300 to 300 instead)
 - Binaries probably not yet working: [HoverBoardGigaDevice/BinariesToTest/](HoverBoardGigaDevice/BinariesToTest/)
 - Make sure your board is one of the supported layouts ! **Wrong pin assignments can shortcut the battery and kill the mosfets !!**
 
@@ -26,13 +39,13 @@ Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 ![layout 2.1](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-1.jpg)
 
 
-#### todo: version/layout 2.2:
+#### version/layout 2.2:
 ![layout 2.2](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-2.jpg)
 - [details](Schematics_2.2/)
 - [how to unlock..](https://github.com/JRomainG/GD32F130K6-hoverboard-hack)
 
 
-#### todo: version/layout 2.3:
+#### version/layout 2.3:
 ![layout 2.3](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-3.jpg)
 - [details](Schematics_2.3/)
 - [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20)
