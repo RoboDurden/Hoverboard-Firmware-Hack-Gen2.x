@@ -102,6 +102,16 @@ The structure of the firmware is based on the firmware hack of Niklas Fauth (htt
 
 ---
 
+### Control Methods (Remote_XY)
+
+- #define REMOTE_DUMMY  // will spin forward and backward with no remote control
+- #define REMOTE_UART    // uart serial protocol with 19200 baud as Arduino Nano SoftwareSerial can not do 115200
+- #define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
+  ![UartBus](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/UartBus.jpg)
+- #define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
+
+---
+
 #### Hardware
 
 The hardware has two main boards, which are identical equipped. They are connected via USART. Additionally there are some LED PCB connected at LED1(battery indicator) and LED2(auxiliry lights). There is an programming connector for ST-Link/V2 and they break out GND, USART/I2C, 5V on a second pinhead(look at the picture).
