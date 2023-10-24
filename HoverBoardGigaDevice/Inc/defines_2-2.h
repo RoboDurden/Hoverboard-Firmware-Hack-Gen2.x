@@ -95,6 +95,9 @@
 	//#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
 
+//#define USART_REMOTE 			0		// either 0 or 1 if REMOTE_XY needs a USART port
+//#define USART_MASTERSLAVE	1		// either 0 or 1 for MASTER or SLAVE
+
 
 
 // ADC defines

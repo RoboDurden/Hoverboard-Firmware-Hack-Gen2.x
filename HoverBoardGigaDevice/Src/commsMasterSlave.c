@@ -7,30 +7,51 @@
 #include "stdio.h"
 #include "string.h"
 
-// Variables which will be written by master frame
-int16_t currentDCMaster = 0;
-int16_t batteryMaster = 0;
-int16_t realSpeedMaster = 0;
 FlagStatus mosfetOutMaster = RESET;
 FlagStatus beepsBackwardsMaster = RESET;
 
-// Returns current value sent by master
-int16_t GetCurrentDCMaster(void)
+//----------------------------------------------------------------------------
+// Send buffer via USART
+//----------------------------------------------------------------------------
+void SendBuffer(uint32_t usart_periph, uint8_t buffer[], uint8_t length)
 {
-	return currentDCMaster;
+	uint8_t index = 0;
+	
+	for(; index < length; index++)
+	{
+    usart_data_transmit(usart_periph, buffer[index]);
+    while (usart_flag_get(usart_periph, USART_FLAG_TC) == RESET) {}
+	}
 }
 
-// Returns battery value sent by master
-int16_t GetBatteryMaster(void)
+//----------------------------------------------------------------------------
+// Calculate CRC
+//----------------------------------------------------------------------------
+uint16_t CalcCRC(uint8_t *ptr, int count)
 {
-	return batteryMaster;
+  uint16_t  crc;
+  uint8_t i;
+  crc = 0;
+  while (--count >= 0)
+  {
+    crc = crc ^ (uint16_t) *ptr++ << 8;
+    i = 8;
+    do
+    {
+      if (crc & 0x8000)
+      {
+        crc = crc << 1 ^ 0x1021;
+      }
+      else
+      {
+        crc = crc << 1;
+      }
+    } while(--i);
+  }
+  return (crc);
 }
 
-// Returns realspeed value sent by master
-int16_t GetRealSpeedMaster(void)
-{
-	return realSpeedMaster;
-}
+
 
 // Sets beepsBackwards value which will be send to master
 void SetBeepsBackwardsMaster(FlagStatus value)
@@ -61,8 +82,6 @@ FlagStatus GetBeepsBackwardsMaster(void)
 	typedef struct {			// �#pragma pack(1)� needed to get correct sizeof()
 		uint8_t cStart;		//  = '/';
 		int16_t	iPwmSlave;
-		uint8_t iIdentifier;
-		int16_t iValue;
 		uint8_t	wState;
 		uint16_t checksum;
 	} SerialMaster2Slave;
@@ -76,6 +95,7 @@ FlagStatus GetBeepsBackwardsMaster(void)
 	// Variables which will be written by slave frame
 	extern FlagStatus beepsBackwards;
 	extern DataSlave oDataSlave;
+	extern uint8_t  wStateSlave;
 	
 	
 #else
@@ -85,6 +105,9 @@ FlagStatus GetBeepsBackwardsMaster(void)
 	extern float currentDC; 									// global variable for current dc
 	extern float realSpeed; 									// global variable for real Speed
 	extern int32_t iOdom;
+	extern uint8_t  wState;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+	extern int16_t pwmSlave;
+
 
 	void CheckGeneralValue(uint8_t identifier, int16_t value);
 #endif
@@ -149,7 +172,7 @@ void ProessReceived(SerialReceive* pData)
 	uint8_t byte;
 #else
 	// Result variables
-	int16_t pwmSlave = 0;
+	//int16_t pwmSlave = 0;
 	FlagStatus enable = RESET;
 	FlagStatus shutoff = RESET;
 	FlagStatus chargeStateLowActive = SET;
@@ -164,17 +187,12 @@ void ProessReceived(SerialReceive* pData)
 	
 	
 #ifdef MASTER
-	// Calculate setvalues for LED and mosfets
-	//none = (pData->wState & BIT(7)) ? SET : RESET;
-	//none = (pData->wState & BIT(6)) ? SET : RESET;
-	//none = (pData->wState & BIT(5)) ? SET : RESET;
-	//none = (pData->wState & BIT(4)) ? SET : RESET;
-	beepsBackwards = (pData->wState & BIT(3)) ? SET : RESET;
-	mosfetOut = (pData->wState & BIT(2)) ? SET : RESET;
-	lowerLED 	= (pData->wState & BIT(1)) ? SET : RESET;
-	upperLED 	= (pData->wState & BIT(0)) ? SET : RESET;
 
-	oDataSlave.wState 	= pData->wState = 17;
+	// old protocol not yet ported :-/
+	//beepsBackwards = (pData->wState & BIT(3)) ? SET : RESET;
+	//mosfetOut = (pData->wState & BIT(2)) ? SET : RESET;
+
+	oDataSlave.wState 	= pData->wState;	// = 17;
 	oDataSlave.currentDC = pData->currentDC;
 	oDataSlave.realSpeed = pData->realSpeed;
 	oDataSlave.iOdom 		= pData->iOdom;
@@ -187,49 +205,7 @@ void ProessReceived(SerialReceive* pData)
 #else
 
 	pwmSlave = CLAMP(pData->iPwmSlave,-1000,1000);
-	
-	// Get identifier
-	identifier = pData->iIdentifier;
-	
-	// Calculate result general value
-	value = pData->iValue;;
-	
-	// Calculate setvalues for enable and shutoff
-	//oDataMaster.wState = pData->wState;
-
-	
-	shutoff = (pData->wState & BIT(7)) ? SET : RESET;
-	//none = (pData->wState & BIT(6)) ? SET : RESET;
-	//none = (pData->wState & BIT(5)) ? SET : RESET;
-	//none = (pData->wState & BIT(4)) ? SET : RESET;
-	//none = (pData->wState & BIT(3)) ? SET : RESET;
-	//none = (pData->wState & BIT(2)) ? SET : RESET;
-	chargeStateLowActive = (pData->wState & BIT(1)) ? SET : RESET;
-	enable = (pData->wState & BIT(0)) ? SET : RESET;
-	
-	if (shutoff == SET)
-	{
-		// Disable usart
-		usart_deinit(USART_MASTERSLAVE);
-		
-		// Set pwm and enable to off
-		SetEnable(RESET);
-		SetPWM(0);
-		
-		gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, RESET);
-		while(1)
-		{
-			// Reload watchdog until device is off
-			fwdgt_counter_reload();
-		}
-	}
-	
-	// Set functions according to the variables
-	gpio_bit_write(LED_GREEN_PORT, LED_GREEN, chargeStateLowActive == SET ? SET : RESET);
-	gpio_bit_write(LED_RED_PORT, LED_RED, chargeStateLowActive == RESET ? SET : RESET);
-	SetEnable(enable);
-	SetPWM(pwmSlave);
-	CheckGeneralValue(identifier, value);
+	wState = pData->wState;
 	
 	// Send answer
 	
@@ -244,24 +220,12 @@ void ProessReceived(SerialReceive* pData)
 
 #ifdef MASTER
 
-void SendSlave(int16_t pwmSlave, FlagStatus enable, FlagStatus shutoff, FlagStatus chargeState, uint8_t identifier, int16_t value)
+void SendSlave(int16_t pwmSlave)
 {
-	uint8_t sendByte = 0;
-	sendByte |= (shutoff << 7);
-	sendByte |= (0 << 6);
-	sendByte |= (0 << 5);
-	sendByte |= (0 << 4);
-	sendByte |= (0 << 3);
-	sendByte |= (0 << 2);
-	sendByte |= (chargeState << 1);
-	sendByte |= (enable << 0);
-
 	SerialSend oData;
 	oData.cStart 	= '/';
 	oData.iPwmSlave 	= CLAMP(pwmSlave, -1000, 1000);
-	oData.iIdentifier = identifier;;
-	oData.iValue 			= value;
-	oData.wState 			= sendByte;
+	oData.wState 			= wStateSlave;	//sendByte;
 	
 	oData.checksum = 	CalcCRC((uint8_t*) &oData, sizeof(oData) - 2);	// (first bytes except crc)
 	SendBuffer(USART_MASTERSLAVE, (uint8_t*) &oData, sizeof(oData));
@@ -293,29 +257,6 @@ void SendMaster(FlagStatus upperLEDMaster, FlagStatus lowerLEDMaster, FlagStatus
 	SendBuffer(USART_MASTERSLAVE, (uint8_t*) &oData, sizeof(oData));
 }
 
-
-//----------------------------------------------------------------------------
-// Checks input value from master to set value depending on identifier
-//----------------------------------------------------------------------------
-void CheckGeneralValue(uint8_t identifier, int16_t value)
-{
-	switch(identifier)
-	{
-		case 0:
-			currentDCMaster = value;
-			break;
-		case 1:
-			batteryMaster = value;
-			break;
-		case 2:
-			realSpeedMaster = value;
-			break;
-		case 3:
-			break;
-		default:
-			break;
-	}
-}
 
 
 

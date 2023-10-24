@@ -7,7 +7,7 @@
 
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
-#define REMOTE_UARTBUS
+//#define REMOTE_UARTBUS
 
 #include "util.h"
 #include "hoverserial.h"
@@ -62,7 +62,7 @@ void loop()
   {
     iTimeNextState = iNow + 3000;
     wState = wState << 1;
-    if (wState == 128) wState = 1;  // remove this line to test Shutoff()
+    if (wState == 128) wState = 1;  // remove this line to test Shutoff = 128
   }
   
   boolean bReceived = Receive(oSerialHover,oHoverFeedback);   

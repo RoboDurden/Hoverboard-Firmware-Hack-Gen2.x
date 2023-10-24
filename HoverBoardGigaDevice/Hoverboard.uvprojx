@@ -405,21 +405,6 @@
               <FilePath>.\Src\it.c</FilePath>
             </File>
             <File>
-              <FileName>comms.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\comms.c</FilePath>
-            </File>
-            <File>
-              <FileName>commsBluetooth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\commsBluetooth.c</FilePath>
-            </File>
-            <File>
-              <FileName>commsMasterSlave.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\commsMasterSlave.c</FilePath>
-            </File>
-            <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\led.c</FilePath>
@@ -443,6 +428,11 @@
               <FileName>remoteUartBus.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\remoteUartBus.c</FilePath>
+            </File>
+            <File>
+              <FileName>commsMasterSlave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\commsMasterSlave.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -468,21 +458,6 @@
               <FileName>it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\it.h</FilePath>
-            </File>
-            <File>
-              <FileName>comms.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\comms.h</FilePath>
-            </File>
-            <File>
-              <FileName>commsBluetooth.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\commsBluetooth.h</FilePath>
-            </File>
-            <File>
-              <FileName>commsMasterSlave.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\commsMasterSlave.h</FilePath>
             </File>
             <File>
               <FileName>led.h</FileName>
@@ -563,6 +538,11 @@
               <FileName>remoteUartBus.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\remoteUartBus.h</FilePath>
+            </File>
+            <File>
+              <FileName>commsMasterSlave.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\commsMasterSlave.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -973,21 +953,6 @@
               <FilePath>.\Src\it.c</FilePath>
             </File>
             <File>
-              <FileName>comms.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\comms.c</FilePath>
-            </File>
-            <File>
-              <FileName>commsBluetooth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\commsBluetooth.c</FilePath>
-            </File>
-            <File>
-              <FileName>commsMasterSlave.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\commsMasterSlave.c</FilePath>
-            </File>
-            <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\led.c</FilePath>
@@ -1011,6 +976,11 @@
               <FileName>remoteUartBus.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\remoteUartBus.c</FilePath>
+            </File>
+            <File>
+              <FileName>commsMasterSlave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\commsMasterSlave.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1036,21 +1006,6 @@
               <FileName>it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\it.h</FilePath>
-            </File>
-            <File>
-              <FileName>comms.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\comms.h</FilePath>
-            </File>
-            <File>
-              <FileName>commsBluetooth.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\commsBluetooth.h</FilePath>
-            </File>
-            <File>
-              <FileName>commsMasterSlave.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\commsMasterSlave.h</FilePath>
             </File>
             <File>
               <FileName>led.h</FileName>
@@ -1131,6 +1086,11 @@
               <FileName>remoteUartBus.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\remoteUartBus.h</FilePath>
+            </File>
+            <File>
+              <FileName>commsMasterSlave.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\commsMasterSlave.h</FilePath>
             </File>
           </Files>
         </Group>

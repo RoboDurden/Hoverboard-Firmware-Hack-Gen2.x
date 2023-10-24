@@ -44,7 +44,7 @@ void UpdateUSARTMasterSlaveInput(void);
 //----------------------------------------------------------------------------
 // Send slave frame via USART
 //----------------------------------------------------------------------------
-void SendSlave(int16_t pwmSlave, FlagStatus enable, FlagStatus shutoff, FlagStatus chargeState, uint8_t identifier, int16_t value);
+void SendSlave(int16_t pwmSlave);
 #endif
 
 #ifdef SLAVE
@@ -52,16 +52,6 @@ void SendSlave(int16_t pwmSlave, FlagStatus enable, FlagStatus shutoff, FlagStat
 // Send master frame via USART
 //----------------------------------------------------------------------------
 void SendMaster(FlagStatus upperLEDMaster, FlagStatus lowerLEDMaster, FlagStatus mosfetOutMaster, FlagStatus beepsBackwards);
-
-// Returns current value sent by master
-int16_t GetCurrentDCMaster(void);
-
-// Returns battery value sent by master
-int16_t GetBatteryMaster(void);
-
-// Returns realspeed value sent by master
-int16_t GetRealSpeedMaster(void);
-
 
 	
 //----------------------------------------------------------------------------

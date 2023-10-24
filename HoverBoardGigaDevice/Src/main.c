@@ -49,7 +49,9 @@ uint8_t  wStateSlave = STATE_LedBattLevel;   // 1=ledGreen, 2=ledOrange, 4=ledRe
 #ifdef MASTER_OR_SLAVE
 	DataSlave oDataSlave;
 #endif
-	
+
+void ShutOff(void);
+
 #ifdef MASTER_OR_SINGLE
 
 int32_t steer = 0; 												// global variable for steering. -1000 to 1000
@@ -69,7 +71,6 @@ uint32_t inactivity_timeout_counter = 0;	// Inactivity counter
 
 void ShowBatteryState(uint32_t pin);
 void BeepsBackwards(FlagStatus beepsBackwards);
-void ShutOff(void);
 
 const float lookUpTableAngle[181] =  
 {
@@ -258,27 +259,27 @@ const float lookUpTableAngle[181] =
 #endif
 
 
+	FlagStatus enable = RESET;
+		int16_t pwmSlave = 0;
+
 //----------------------------------------------------------------------------
 // MAIN function
 //----------------------------------------------------------------------------
 int main (void)
 {
-#ifdef MASTER_OR_SINGLE
-	FlagStatus enable = RESET;
-	FlagStatus enableSlave = RESET;
-	FlagStatus chargeStateLowActive = SET;
-	int16_t sendSlaveValue = 0;
-	uint8_t sendSlaveIdentifier = 0;
-  int16_t pwmSlave = 0;
-	int16_t pwmMaster = 0;
-	int16_t scaledSpeed = 0;
-	int16_t scaledSteer  = 0;
-	float expo = 0;
-	float steerAngle = 0;
-	float xScale = 0;
-#endif
-
 	
+	#ifdef MASTER_OR_SINGLE
+		FlagStatus enableSlave = RESET;
+		FlagStatus chargeStateLowActive = SET;
+		int16_t sendSlaveValue = 0;
+		uint8_t sendSlaveIdentifier = 0;
+		int16_t pwmMaster = 0;
+		int16_t scaledSpeed = 0;
+		int16_t scaledSteer  = 0;
+		float expo = 0;
+		float steerAngle = 0;
+		float xScale = 0;
+	#endif
 	
 	//SystemClock_Config();
   SystemCoreClockUpdate();
@@ -335,41 +336,120 @@ int main (void)
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
 		//DEBUG_LedSet(	(steerCounter%20) < 10	,1)
 		
-	#ifdef MASTER_OR_SINGLE
-		if ((steerCounter % 2) == 0)
-			RemoteUpdate();
+		#ifdef SLAVE	
+			SetPWM(pwmSlave);
+		#else	//MASTER_OR_SINGLE
+			if ((steerCounter % 2) == 0)
+				RemoteUpdate();
 
-		// Calculate expo rate for less steering with higher speeds
-		expo = MAP((float)ABS(speed), 0, 1000, 1, 0.5);
-		
-	  // Each speedvalue or steervalue between 50 and -50 means absolutely no pwm
-		// -> to get the device calm 'around zero speed'
-		scaledSpeed = speed < 50 && speed > -50 ? 0 : CLAMP(speed, -speedLimit, speedLimit) * SPEED_COEFFICIENT;
-		scaledSteer = steer < 50 && steer > -50 ? 0 : CLAMP(steer, -speedLimit, speedLimit) * STEER_COEFFICIENT * expo;
-		
-		// Map to an angle of 180 degress to 0 degrees for array access (means angle -90 to 90 degrees)
-		steerAngle = MAP((float)scaledSteer, -1000, 1000, 180, 0);
-		xScale = lookUpTableAngle[(uint16_t)steerAngle];
+			// Calculate expo rate for less steering with higher speeds
+			expo = MAP((float)ABS(speed), 0, 1000, 1, 0.5);
+			
+			// Each speedvalue or steervalue between 50 and -50 means absolutely no pwm
+			// -> to get the device calm 'around zero speed'
+			scaledSpeed = speed < 50 && speed > -50 ? 0 : CLAMP(speed, -speedLimit, speedLimit) * SPEED_COEFFICIENT;
+			scaledSteer = steer < 50 && steer > -50 ? 0 : CLAMP(steer, -speedLimit, speedLimit) * STEER_COEFFICIENT * expo;
+			
+			// Map to an angle of 180 degress to 0 degrees for array access (means angle -90 to 90 degrees)
+			steerAngle = MAP((float)scaledSteer, -1000, 1000, 180, 0);
+			xScale = lookUpTableAngle[(uint16_t)steerAngle];
 
-		// Mix steering and speed value for right and left speed
-		if(steerAngle >= 90)
-		{
-			pwmSlave = CLAMP(scaledSpeed, -1000, 1000);
-			pwmMaster = CLAMP(pwmSlave / xScale, -1000, 1000);
-		}
-		else
-		{
-			pwmMaster = CLAMP(scaledSpeed, -1000, 1000);
-			pwmSlave = CLAMP(xScale * pwmMaster, -1000, 1000);
-		}
-		
+			// Mix steering and speed value for right and left speed
+			if(steerAngle >= 90)
+			{
+				pwmSlave = CLAMP(scaledSpeed, -1000, 1000);
+				pwmMaster = CLAMP(pwmSlave / xScale, -1000, 1000);
+			}
+			else
+			{
+				pwmMaster = CLAMP(scaledSpeed, -1000, 1000);
+				pwmSlave = CLAMP(xScale * pwmMaster, -1000, 1000);
+			}
+
+					// Set output
+			SetPWM(pwmMaster);
+
+			#ifdef USART_MASTERSLAVE
+				// Decide if slave will be enabled
+				if  ((enable == SET && timedOut == RESET))
+					wStateSlave = wStateSlave & !STATE_Disable;
+				else
+					wStateSlave |= STATE_Disable;
+
+				SendSlave(-pwmSlave);
+
+			#endif
+
+				
+			// Show green battery symbol when battery level BAT_LOW_LVL1 is reached
+			if (batteryVoltage > BAT_LOW_LVL1)
+			{
+				// Show green battery light
+				ShowBatteryState(LED_GREEN);
+				
+				// Beeps backwards
+				BeepsBackwards(beepsBackwards);
+			}
+			
+			// Make silent sound and show orange battery symbol when battery level BAT_LOW_LVL2 is reached
+			else if (batteryVoltage > BAT_LOW_LVL2 && batteryVoltage < BAT_LOW_LVL1)
+			{
+				// Show orange battery light
+				ShowBatteryState(LED_ORANGE);
+				
+				BuzzerSet(5,8)	// (iFrequency, iPattern)
+			}
+			// Make even more sound and show red battery symbol when battery level BAT_LOW_DEAD is reached
+			else if  (batteryVoltage > BAT_LOW_DEAD && batteryVoltage < BAT_LOW_LVL2)
+			{
+				// Show red battery light
+				ShowBatteryState(LED_RED);
+
+				BuzzerSet(5,1)	// (iFrequency, iPattern)
+			}
+			// Shut device off, when battery is dead
+			else if (batteryVoltage < BAT_LOW_DEAD)
+			{
+				ShutOff();
+			}
+			else
+			{
+				ShutOff();
+			}
+
+			#ifdef CHECK_BUTTON
+				// Shut device off when button is pressed
+				if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN))
+				{
+					while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) {fwdgt_counter_reload();}
+					ShutOff();
+				}
+			#endif
+			
+			// Calculate inactivity timeout (Except, when charger is active -> keep device running)
+			if (ABS(pwmMaster) > 50 || ABS(pwmSlave) > 50 || !chargeStateLowActive)
+			{
+				inactivity_timeout_counter = 0;
+			}
+			else
+			{
+				inactivity_timeout_counter++;
+			}
+				
+			// Shut off device after INACTIVITY_TIMEOUT in minutes
+			if (inactivity_timeout_counter > (INACTIVITY_TIMEOUT * 60 * 1000) / (DELAY_IN_MAIN_LOOP + 1))
+			{ 
+				ShutOff();
+			}
+		#endif	
+
 		#ifdef CHARGE_STATE_PIN
 			// Read charge state
 			chargeStateLowActive = gpio_input_bit_get(CHARGE_STATE_PORT, CHARGE_STATE_PIN);
+			// Enable is depending on charger is connected or not
+			enable = chargeStateLowActive;
 		#endif
 		
-		// Enable is depending on charger is connected or not
-		enable = chargeStateLowActive;
 		if (wState & STATE_Disable)	enable = RESET;
 		
 		// Enable is depending on arm switch
@@ -381,38 +461,6 @@ int main (void)
 		// Enable channel output
 		SetEnable(enable);
 
-		    // Set output
-		SetPWM(pwmMaster);
-
-
-		#ifdef USART_MASTERSLAVE
-			// Decide if slave will be enabled
-			enableSlave = (enable == SET && timedOut == RESET) ? SET : RESET;
-
-			// Decide which process value has to be sent
-			switch(sendSlaveIdentifier)
-			{
-				case 0:
-					sendSlaveValue = currentDC * 100;
-					break;
-				case 1:
-					sendSlaveValue = batteryVoltage * 100;
-					break;
-				case 2:
-					sendSlaveValue = realSpeed * 100;
-					break;
-					default:
-						break;
-			}
-
-			SendSlave(-pwmSlave, enableSlave, RESET, chargeStateLowActive, sendSlaveIdentifier, sendSlaveValue);
-
-			// Increment identifier
-			sendSlaveIdentifier++;
-			if (sendSlaveIdentifier > 2)	sendSlaveIdentifier = 0;
-
-		#endif
-		
 		if (!(wState & STATE_LedBattLevel))
 		{
 			gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
@@ -424,68 +472,6 @@ int main (void)
 
 		if (wState & STATE_Shutoff)	ShutOff();
 
-			
-		// Show green battery symbol when battery level BAT_LOW_LVL1 is reached
-    if (batteryVoltage > BAT_LOW_LVL1)
-		{
-			// Show green battery light
-			ShowBatteryState(LED_GREEN);
-			
-			// Beeps backwards
-			BeepsBackwards(beepsBackwards);
-		}
-		
-		// Make silent sound and show orange battery symbol when battery level BAT_LOW_LVL2 is reached
-    else if (batteryVoltage > BAT_LOW_LVL2 && batteryVoltage < BAT_LOW_LVL1)
-		{
-			// Show orange battery light
-			ShowBatteryState(LED_ORANGE);
-			
-			BuzzerSet(5,8)	// (iFrequency, iPattern)
-    }
-		// Make even more sound and show red battery symbol when battery level BAT_LOW_DEAD is reached
-		else if  (batteryVoltage > BAT_LOW_DEAD && batteryVoltage < BAT_LOW_LVL2)
-		{
-			// Show red battery light
-			ShowBatteryState(LED_RED);
-
-			BuzzerSet(5,1)	// (iFrequency, iPattern)
-    }
-		// Shut device off, when battery is dead
-		else if (batteryVoltage < BAT_LOW_DEAD)
-		{
-      ShutOff();
-    }
-		else
-		{
-			ShutOff();
-    }
-
-		#ifdef CHECK_BUTTON
-			// Shut device off when button is pressed
-			if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN))
-			{
-				while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) {fwdgt_counter_reload();}
-				ShutOff();
-			}
-		#endif
-		
-	// Calculate inactivity timeout (Except, when charger is active -> keep device running)
-	if (ABS(pwmMaster) > 50 || ABS(pwmSlave) > 50 || !chargeStateLowActive)
-	{
-		inactivity_timeout_counter = 0;
-	}
-	else
-	{
-		inactivity_timeout_counter++;
-	}
-		
-		// Shut off device after INACTIVITY_TIMEOUT in minutes
-    if (inactivity_timeout_counter > (INACTIVITY_TIMEOUT * 60 * 1000) / (DELAY_IN_MAIN_LOOP + 1))
-		{ 
-      ShutOff();
-    }
-#endif	
 
 		Delay(DELAY_IN_MAIN_LOOP);
 		
@@ -494,7 +480,6 @@ int main (void)
   }
 }
 
-#ifdef MASTER_OR_SINGLE
 //----------------------------------------------------------------------------
 // Turns the device off
 //----------------------------------------------------------------------------
@@ -503,8 +488,11 @@ void ShutOff(void)
 	BUZZER_MelodyUp()
 	
 	#ifdef USART_MASTERSLAVE
-		// Send shut off command to slave
-		SendSlave(0, RESET, SET, RESET, RESET, RESET);
+	
+		#ifdef MASTER
+			// Send shut off command to slave
+			SendSlave(0);
+		#endif
 	
 	// Disable usart
 		usart_deinit(USART_MASTERSLAVE);
@@ -521,6 +509,9 @@ void ShutOff(void)
 		fwdgt_counter_reload();
 	}
 }
+
+
+#ifdef MASTER_OR_SINGLE
 
 //----------------------------------------------------------------------------
 // Shows the battery state on the LEDs
