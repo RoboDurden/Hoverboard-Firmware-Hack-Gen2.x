@@ -461,12 +461,14 @@ int main (void)
 		// Enable channel output
 		SetEnable(enable);
 
-		if (!(wState & STATE_LedBattLevel))
-		{
-			gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
-			gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
-			gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
-		}
+		#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
+			if (!(wState & STATE_LedBattLevel))
+			{
+				gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
+				gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
+				gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
+			}
+		#endif
 		gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, wState & STATE_LedUp ? SET : RESET);
 		gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, wState & STATE_LedDown ? SET : RESET);
 

@@ -7,7 +7,7 @@
 
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
-//#define REMOTE_UARTBUS
+#define REMOTE_UARTBUS
 
 #include "util.h"
 #include "hoverserial.h"
@@ -29,7 +29,7 @@ void setup()
   #endif
   
   #ifdef ESP32
-    HoverSetupEsp32(oSerialHover,19200,39,35);      // baud, rx, tx
+    HoverSetupEsp32(oSerialHover,19200,39,37);      // baud, rx, tx
   #else
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif
