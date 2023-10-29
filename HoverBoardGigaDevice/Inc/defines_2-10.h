@@ -124,8 +124,8 @@
 
 #ifdef BUZZER
 	// Buzzer defins
-	#define BUZZER_PIN TODO_PIN
-	#define BUZZER_PORT TODO_PORT
+	#define BUZZER_PIN GPIO_PIN_0
+	#define BUZZER_PORT GPIOF
 #endif
 
 #ifdef MASTER
