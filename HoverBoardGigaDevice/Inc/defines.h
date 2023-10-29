@@ -18,6 +18,8 @@
 	#include "defines_2-4.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
 #elif LAYOUT == 7
 	#include "defines_2-7.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+#elif LAYOUT == 10
+	#include "defines_2-10.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #elif LAYOUT == 11
 	#include "defines_2-11.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #endif

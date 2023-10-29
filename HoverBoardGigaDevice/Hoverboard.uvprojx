@@ -500,6 +500,11 @@
               <FilePath>.\Inc\defines_2-7.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-10.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-10.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-11.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-11.h</FilePath>
@@ -1046,6 +1051,11 @@
               <FileName>defines_2-7.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-7.h</FilePath>
+            </File>
+            <File>
+              <FileName>defines_2-10.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-10.h</FilePath>
             </File>
             <File>
               <FileName>defines_2-11.h</FileName>
