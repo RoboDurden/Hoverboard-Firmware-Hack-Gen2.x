@@ -1,5 +1,5 @@
 // from https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-#ifdef MASTER	// this layout has buzzer on the master board !
+#ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define BUZZER
 #endif
 

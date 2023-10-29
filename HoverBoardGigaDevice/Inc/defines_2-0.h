@@ -1,4 +1,4 @@
-#ifdef MASTER		// layout 2.2 has buzzer on the slave board.
+#ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define BUZZER
 #endif
 
