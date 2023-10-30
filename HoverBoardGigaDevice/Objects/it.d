@@ -24,7 +24,6 @@
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h \
   C:\Users\PAN\ CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h \
   Src\..\Inc\..\Inc\setup.h Src\..\Inc\..\Inc\config.h \
-  Src\..\Inc\..\Inc\remote.h Src\..\Inc\..\Inc\remoteUartBus.h \
-  Src\..\Inc\defines_2-10.h Src\..\Inc\it.h Src\..\Inc\bldc.h \
-  Src\..\Inc\led.h Src\..\Inc\commsMasterSlave.h \
+  Src\..\Inc\..\Inc\remote.h Src\..\Inc\defines_2-10.h Src\..\Inc\it.h \
+  Src\..\Inc\bldc.h Src\..\Inc\led.h Src\..\Inc\commsMasterSlave.h \
   Src\..\Inc\commsBluetooth.h

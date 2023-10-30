@@ -84,7 +84,7 @@
 	#define USART0_RX_PORT	GPIOB
 	
 	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	//#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
+	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
 
 
@@ -96,8 +96,8 @@
 	#define USART1_RX_PIN		GPIO_PIN_3
 	#define USART1_RX_PORT	GPIOA
 	
-	//#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
+	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	//#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
 
 
@@ -112,7 +112,7 @@
 #define CURRENT_DC_CHANNEL ADC_CHANNEL_6
 
 // Self hold defines
-#define SELF_HOLD_PIN GPIO_PIN_12		// thanks to pacraf
+#define SELF_HOLD_PIN GPIO_PIN_2		// thanks to pacraf
 #define SELF_HOLD_PORT GPIOB
 
 // Button defines
@@ -120,7 +120,7 @@
 #define BUTTON_PORT GPIOA
 
 
-// 2.10 unused/unkown: C13 C14 C15 F0 F1 A4 A5 A6 A7 B0 B1 B2 B11 A11 F6 F7 B8 B9 
+// 2.10 unused/unkown: C13 C14 C15 F0 F1 A4 A5 A6 A7 B0 B1 B11 A11 F6 F7 B8 B9 
 
 #ifdef BUZZER
 	// Buzzer defins
@@ -139,8 +139,8 @@
 #define MOSFET_OUT_PORT TODO_PORT
 
 // Timer BLDC short circuit emergency shutoff define
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN TODO_PIN
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT TODO_PORT
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN GPIO_PIN_12	// pacraf: smd transistor connected to BRK = PB12. it is NPN type. robo: so pull down = overcurrent
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT GPIOB
 
 // Debug pin defines
 #define DEBUG_PIN TODO_PIN
