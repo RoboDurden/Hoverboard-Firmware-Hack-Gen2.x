@@ -28,9 +28,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 I (Src\..\Inc\bldc.h)(0x64F989D9)
 I (Src\..\Inc\commsMasterSlave.h)(0x6538083F)
@@ -67,9 +68,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 F (.\Src\setup.c)(0x652A6248)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32F130C8-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER -D_RTE_-o ./objects/setup.o -MD)
 I (Src\..\Inc\defines.h)(0x653E26FD)
 I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
@@ -98,9 +100,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 F (.\Src\it.c)(0x6538CC10)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32F130C8-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER -D_RTE_-o ./objects/it.o -MD)
 I (Src\..\Inc\defines.h)(0x653E26FD)
@@ -130,9 +133,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 I (Src\..\Inc\bldc.h)(0x64F989D9)
 I (Src\..\Inc\led.h)(0x64F989D9)
@@ -166,9 +170,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\led.h)(0x64F989D9)
 F (.\Src\remoteUart.c)(0x6533B542)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32F130C8-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER -D_RTE_-o ./objects/remoteuart.o -MD)
 I (Src\..\Inc\defines.h)(0x653E26FD)
@@ -198,9 +203,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 I (Src\..\Inc\comms.h)(0x64F989D9)
 I (Src\..\Inc\bldc.h)(0x64F989D9)
@@ -234,9 +240,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 I (Src\..\Inc\comms.h)(0x64F989D9)
 I (Src\..\Inc\bldc.h)(0x64F989D9)
@@ -270,9 +277,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 F (.\Src\remoteUartBus.c)(0x6533BFDF)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32F130C8-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32F1x0_DFP/3.2.1/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER -D_RTE_-o ./objects/remoteuartbus.o -MD)
 I (Src\..\Inc\defines.h)(0x653E26FD)
 I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
@@ -301,9 +309,10 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 I (Src\..\Inc\comms.h)(0x64F989D9)
 I (Src\..\Inc\bldc.h)(0x64F989D9)
@@ -337,16 +346,17 @@ I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Dev
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_misc.h)(0x5DAED364)
 I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware\Peripherals\inc\gd32f1x0_opa.h)(0x5DB71C90)
 I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x653FE1AC)
+I (Src\..\Inc\..\Inc\config.h)(0x654003E8)
 I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\defines_2-10.h)(0x653FE11A)
+I (Src\..\Inc\..\Inc\remoteDummy.h)(0x650B1F34)
+I (Src\..\Inc\defines_2-10.h)(0x654002FC)
 I (Src\..\Inc\it.h)(0x64F989D9)
 I (Src\..\Inc\comms.h)(0x64F989D9)
 I (Src\..\Inc\commsMasterSlave.h)(0x6538083F)
 I (Src\..\Inc\bldc.h)(0x64F989D9)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB78)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6388AB78)
-F (.\Inc\config.h)(0x653FE1AC)()
+F (.\Inc\config.h)(0x654003E8)()
 F (.\Inc\setup.h)(0x6527C6CB)()
 F (.\Inc\bldc.h)(0x64F989D9)()
 F (.\Inc\it.h)(0x64F989D9)()
@@ -358,7 +368,7 @@ F (.\Inc\defines_2-2.h)(0x6538027A)()
 F (.\Inc\defines_2-3.h)(0x653E70CE)()
 F (.\Inc\defines_2-4.h)(0x653E70B0)()
 F (.\Inc\defines_2-7.h)(0x652A809C)()
-F (.\Inc\defines_2-10.h)(0x653FE11A)()
+F (.\Inc\defines_2-10.h)(0x654002FC)()
 F (.\Inc\defines_2-11.h)(0x653E7091)()
 F (.\Inc\defines_2-x.h)(0x652A821F)()
 F (.\Inc\target.h)(0x64F99198)()
