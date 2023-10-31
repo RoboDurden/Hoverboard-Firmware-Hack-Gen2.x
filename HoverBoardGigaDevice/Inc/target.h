@@ -45,7 +45,6 @@
 		gpio_mode_set(pin&0xffffff00U, mode, GPIO_PUPD_NONE,BIT(pin&0xfU) );	\
 		gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, speed, BIT(pin&0xfU));\
 	}
-
 	
 	// AF = AlternateFunction
 	#define pinModeAF(pin, AF, pullUpDown) \
