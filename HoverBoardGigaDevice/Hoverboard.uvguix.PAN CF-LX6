@@ -3732,18 +3732,18 @@
       </Doc>
       <Doc>
         <Name>.\Inc\defines_2-7.h</Name>
-        <ColumnNumber>0</ColumnNumber>
+        <ColumnNumber>23</ColumnNumber>
         <TopLine>1</TopLine>
-        <CurrentLine>1</CurrentLine>
+        <CurrentLine>10</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h</Name>
-        <ColumnNumber>38</ColumnNumber>
-        <TopLine>41</TopLine>
-        <CurrentLine>44</CurrentLine>
+        <ColumnNumber>8</ColumnNumber>
+        <TopLine>280</TopLine>
+        <CurrentLine>300</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3759,9 +3759,9 @@
       </Doc>
       <Doc>
         <Name>.\Inc\defines_2-10.h</Name>
-        <ColumnNumber>25</ColumnNumber>
+        <ColumnNumber>29</ColumnNumber>
         <TopLine>65</TopLine>
-        <CurrentLine>79</CurrentLine>
+        <CurrentLine>76</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3840,9 +3840,9 @@
       </Doc>
       <Doc>
         <Name>.\Inc\target.h</Name>
-        <ColumnNumber>23</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>6</TopLine>
-        <CurrentLine>7</CurrentLine>
+        <CurrentLine>14</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

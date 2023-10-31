@@ -27,8 +27,6 @@
 		#define AHB2_BUS_BASE ((uint32_t)0x48000000U)        //!< ahb2 base address
 	*/
 	
-
-	
 	#define pinMode(pin,mode) \
 	{\
 		gpio_mode_set(pin&0xffffff00U, mode, GPIO_PUPD_NONE,BIT(pin&0xfU) );	\
@@ -40,10 +38,9 @@
 		gpio_bit_write(pin&0xffffff00U, BIT(pin&0xfU), set);\
 	}
 
-
-	#define PA15 ( GPIOA | 15 )
-	#define PA12 ( GPIOA | 12 )
-	#define PB3 ( GPIOB | 3 )
+	#define PA15	( GPIOA | 15 )
+	#define PA12	( GPIOA | 12 )
+	#define PB3 	( GPIOB | 3 )
 	
 #endif	
 	
