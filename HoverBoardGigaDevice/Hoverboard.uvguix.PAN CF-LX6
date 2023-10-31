@@ -3607,8 +3607,8 @@
       <Doc>
         <Name>.\Inc\config.h</Name>
         <ColumnNumber>0</ColumnNumber>
-        <TopLine>42</TopLine>
-        <CurrentLine>43</CurrentLine>
+        <TopLine>21</TopLine>
+        <CurrentLine>37</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3759,9 +3759,9 @@
       </Doc>
       <Doc>
         <Name>.\Inc\defines_2-10.h</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>24</TopLine>
-        <CurrentLine>35</CurrentLine>
+        <ColumnNumber>25</ColumnNumber>
+        <TopLine>66</TopLine>
+        <CurrentLine>79</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
