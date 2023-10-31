@@ -464,9 +464,12 @@ int main (void)
 		#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
 			if (!(wState & STATE_LedBattLevel))
 			{
-				gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
-				gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
-				gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
+				digitalWrite(LED_GREEN,wState & STATE_LedGreen ? SET : RESET);
+				digitalWrite(LED_GREEN,wState & STATE_LedOrange ? SET : RESET);
+				digitalWrite(LED_GREEN,wState & STATE_LedRed ? SET : RESET);
+				//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
+				//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
+				//gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
 			}
 		#endif
 		gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, wState & STATE_LedUp ? SET : RESET);
@@ -524,18 +527,26 @@ void ShowBatteryState(uint32_t pin)
 			return;
 	
 	#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
-		if(pin == LED_ORANGE){
+		if(pin == LED_ORANGE)
+		{
 			#ifdef THIRD_LED
-			//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, SET);
+				digitalWrite(LED_ORANGE,SET);
+				//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, SET);
 			#else
-				gpio_bit_write(LED_GREEN_PORT, LED_GREEN, SET);
-				gpio_bit_write(LED_RED_PORT, LED_RED, SET);
+				digitalWrite(LED_GREEN,SET);
+				digitalWrite(LED_RED,SET);
+				//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, SET);
+				//gpio_bit_write(LED_RED_PORT, LED_RED, SET);
 			#endif
 		}
-		else{
-			gpio_bit_write(LED_GREEN_PORT, LED_GREEN, pin == LED_GREEN ? SET : RESET);
-			gpio_bit_write(LED_RED_PORT, LED_RED, pin == LED_RED ? SET : RESET);
-			gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, RESET);
+		else
+		{
+			digitalWrite(LED_GREEN,	pin == LED_GREEN ? SET : RESET);
+			digitalWrite(LED_RED,	pin == LED_RED ? SET : RESET);
+			digitalWrite(LED_ORANGE,	RESET);
+			//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, pin == LED_GREEN ? SET : RESET);
+			//gpio_bit_write(LED_RED_PORT, LED_RED, pin == LED_RED ? SET : RESET);
+			//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, RESET);
 		}
 	#endif
 }

@@ -197,9 +197,12 @@ void CalculateBLDC(void)
 	hall_c = gpio_input_bit_get(HALL_C_PORT, HALL_C_PIN);
 
 	#ifdef TEST_HALL2LED
-		gpio_bit_write(LED_GREEN_PORT, LED_GREEN, hall_a);
-		gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, hall_b);
-		gpio_bit_write(LED_RED_PORT, LED_RED, hall_c);
+		digitalWrite(LED_GREEN,hall_a);
+		digitalWrite(LED_ORANGE,hall_b);
+		digitalWrite(LED_RED,hall_c);
+		//pio_bit_write(LED_GREEN_PORT, LED_GREEN, hall_a);
+		//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, hall_b);
+		//gpio_bit_write(LED_RED_PORT, LED_RED, hall_c);
 	#endif
 	
 	// Determine current position based on hall sensors

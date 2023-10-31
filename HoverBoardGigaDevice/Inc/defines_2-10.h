@@ -28,12 +28,16 @@
 	
 
 // LED defines
-#define LED_GREEN GPIO_PIN_12		// thanks to pacraf, transistors are on led module !
-#define LED_GREEN_PORT GPIOA
-#define LED_ORANGE GPIO_PIN_15	// thanks to pacraf, transistors are on led module !
-#define LED_ORANGE_PORT GPIOA
-#define LED_RED GPIO_PIN_3		// thanks to pacraf, transistors are on led module !
-#define LED_RED_PORT GPIOB
+#define LED_GREEN 	PA12	// thanks to pacraf, transistors are on led module !
+#define LED_ORANGE 	PA15	// thanks to pacraf, transistors are on led module !
+#define LED_RED 		PB3		// thanks to pacraf, transistors are on led module !
+
+//#define LED_GREEN GPIO_PIN_12		// thanks to pacraf, transistors are on led module !
+//#define LED_GREEN_PORT GPIOA
+//#define LED_ORANGE GPIO_PIN_15	// thanks to pacraf, transistors are on led module !
+//#define LED_ORANGE_PORT GPIOA
+//#define LED_RED GPIO_PIN_3		// thanks to pacraf, transistors are on led module !
+//#define LED_RED_PORT GPIOB
 
 #define UPPER_LED_PIN GPIO_PIN_4	// pacraf: additional outputs on black dupont female header
 #define UPPER_LED_PORT GPIOB

@@ -465,6 +465,11 @@
               <FilePath>.\Inc\led.h</FilePath>
             </File>
             <File>
+              <FileName>target.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\target.h</FilePath>
+            </File>
+            <File>
               <FileName>defines.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines.h</FilePath>
@@ -513,11 +518,6 @@
               <FileName>defines_2-x.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x.h</FilePath>
-            </File>
-            <File>
-              <FileName>target.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\target.h</FilePath>
             </File>
             <File>
               <FileName>remote.h</FileName>
@@ -1018,6 +1018,11 @@
               <FilePath>.\Inc\led.h</FilePath>
             </File>
             <File>
+              <FileName>target.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\target.h</FilePath>
+            </File>
+            <File>
               <FileName>defines.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines.h</FilePath>
@@ -1066,11 +1071,6 @@
               <FileName>defines_2-x.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x.h</FilePath>
-            </File>
-            <File>
-              <FileName>target.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\target.h</FilePath>
             </File>
             <File>
               <FileName>remote.h</FileName>
