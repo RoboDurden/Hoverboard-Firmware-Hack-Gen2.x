@@ -301,7 +301,8 @@ int main (void)
 
 	
 	// Activate self hold direct after GPIO-init
-	gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
+	digitalWrite(SELF_HOLD,SET);
+	//gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
 
 	#ifdef USART0_BAUD
 			USART0_Init(USART0_BAUD);
@@ -326,7 +327,8 @@ int main (void)
 
 #ifdef CHECK_BUTTON
 	// Wait until button is released
-	while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+	while (digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+	//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
 	Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
 #endif
 
@@ -419,9 +421,11 @@ int main (void)
 
 			#ifdef CHECK_BUTTON
 				// Shut device off when button is pressed
-				if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN))
+				if (digitalRead(BUTTON))
+				//if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN))
 				{
-					while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) {fwdgt_counter_reload();}
+					while (digitalRead(BUTTON)) {fwdgt_counter_reload();}
+					//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) {fwdgt_counter_reload();}
 					ShutOff();
 				}
 			#endif
@@ -445,7 +449,8 @@ int main (void)
 
 		#ifdef CHARGE_STATE_PIN
 			// Read charge state
-			chargeStateLowActive = gpio_input_bit_get(CHARGE_STATE_PORT, CHARGE_STATE_PIN);
+			chargeStateLowActive = digitalRead(CHARGE_STATE);
+			//chargeStateLowActive = gpio_input_bit_get(CHARGE_STATE_PORT, CHARGE_STATE_PIN);
 			// Enable is depending on charger is connected or not
 			enable = chargeStateLowActive;
 		#endif
@@ -472,8 +477,10 @@ int main (void)
 				//gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
 			}
 		#endif
-		gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, wState & STATE_LedUp ? SET : RESET);
-		gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, wState & STATE_LedDown ? SET : RESET);
+		digitalWrite(UPPER_LED,wState & STATE_LedUp ? SET : RESET);
+		digitalWrite(LOWER_LED,wState & STATE_LedDown ? SET : RESET);
+		//gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, wState & STATE_LedUp ? SET : RESET);
+		//gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, wState & STATE_LedDown ? SET : RESET);
 
 		if (wState & STATE_Shutoff)	ShutOff();
 
@@ -507,7 +514,8 @@ void ShutOff(void)
 	SetEnable(RESET);
 	SetPWM(0);
 	
-	gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, RESET);
+	digitalWrite(SELF_HOLD,RESET);
+	//gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, RESET);
 	while(1)
 	{
 		// Reload watchdog until device is off

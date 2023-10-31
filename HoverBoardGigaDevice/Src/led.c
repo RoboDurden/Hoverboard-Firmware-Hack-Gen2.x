@@ -58,9 +58,12 @@ void CalculateLEDPWM(void)
 	counter_Blue++;
 	
 	// Set LEDs
-	gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, counter_Red >= setValue_Red ? RESET : SET);
-	gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, counter_Green >= setValue_Green ? RESET : SET);
-	gpio_bit_write(MOSFET_OUT_PORT, MOSFET_OUT_PIN, counter_Blue >= setValue_Blue ? RESET : SET);
+	digitalWrite(UPPER_LED, counter_Red >= setValue_Red ? RESET : SET);
+	digitalWrite(LOWER_LED, counter_Green >= setValue_Green ? RESET : SET);
+	digitalWrite(MOSFET_OUT, counter_Blue >= setValue_Blue ? RESET : SET);
+	//gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, counter_Red >= setValue_Red ? RESET : SET);
+	//gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, counter_Green >= setValue_Green ? RESET : SET);
+	//gpio_bit_write(MOSFET_OUT_PORT, MOSFET_OUT_PIN, counter_Blue >= setValue_Blue ? RESET : SET);
 }
 
 //----------------------------------------------------------------------------

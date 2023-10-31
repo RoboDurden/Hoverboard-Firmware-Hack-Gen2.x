@@ -161,12 +161,14 @@ void CalculateBLDC(void)
     if (buzzerTimer % buzzerFreq == 0)
 		{
 			buzzerToggle = buzzerToggle == RESET ? SET : RESET; // toggle variable
-		  gpio_bit_write(BUZZER_PORT, BUZZER_PIN, buzzerToggle);
+			digitalWrite(BUZZER,buzzerToggle);
+		  //gpio_bit_write(BUZZER_PORT, BUZZER_PIN, buzzerToggle);
     }
   }
 	else
 	{
-		gpio_bit_write(BUZZER_PORT, BUZZER_PIN, RESET);
+		digitalWrite(BUZZER,RESET);
+		//gpio_bit_write(BUZZER_PORT, BUZZER_PIN, RESET);
   }
 #endif
 	
@@ -192,9 +194,12 @@ void CalculateBLDC(void)
 	//if (timedOut == SET)	DEBUG_LedSet((steerCounter%2) < 1,0)		
 	
 	// Read hall sensors
-	hall_a = gpio_input_bit_get(HALL_A_PORT, HALL_A_PIN);
-	hall_b = gpio_input_bit_get(HALL_B_PORT, HALL_B_PIN);
-	hall_c = gpio_input_bit_get(HALL_C_PORT, HALL_C_PIN);
+	hall_a = digitalRead(HALL_A);
+	hall_b = digitalRead(HALL_B);
+	hall_c = digitalRead(HALL_C);
+	//hall_a = gpio_input_bit_get(HALL_A_PORT, HALL_A_PIN);
+	//hall_b = gpio_input_bit_get(HALL_B_PORT, HALL_B_PIN);
+	//hall_c = gpio_input_bit_get(HALL_C_PORT, HALL_C_PIN);
 
 	#ifdef TEST_HALL2LED
 		digitalWrite(LED_GREEN,hall_a);

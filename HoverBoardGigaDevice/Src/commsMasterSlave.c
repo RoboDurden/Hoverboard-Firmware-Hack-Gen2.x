@@ -198,9 +198,12 @@ void ProessReceived(SerialReceive* pData)
 	oDataSlave.iOdom 		= pData->iOdom;
 
 	// Set functions according to the variables
-	gpio_bit_write(MOSFET_OUT_PORT, MOSFET_OUT_PIN, mosfetOut);
-	gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, upperLED);
-	gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, lowerLED);
+	digitalWrite(UPPER_LED, upperLED);
+	digitalWrite(LOWER_LED, lowerLED);
+	digitalWrite(MOSFET_OUT, mosfetOut);
+	//gpio_bit_write(MOSFET_OUT_PORT, MOSFET_OUT_PIN, mosfetOut);
+	//gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, upperLED);
+	//gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, lowerLED);
 
 #else
 
