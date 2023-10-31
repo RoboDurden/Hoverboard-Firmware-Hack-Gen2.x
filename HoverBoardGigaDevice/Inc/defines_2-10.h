@@ -71,11 +71,11 @@
 
 
 // Hall sensor defines
-#define HALL_A_PIN GPIO_PIN_1		// thanks to Tommyboi2001. robo: A and C might be reversed
+#define HALL_A_PIN GPIO_PIN_1		// thanks to Tommyboi2001 and pacraf
 #define HALL_A_PORT GPIOA
 #define HALL_B_PIN GPIO_PIN_0
 #define HALL_B_PORT GPIOA
-#define HALL_C_PIN GPIO_PIN_10	// robo: A and C might be reversed, no colors on hall cables..
+#define HALL_C_PIN GPIO_PIN_10	
 #define HALL_C_PORT GPIOB
 
 
