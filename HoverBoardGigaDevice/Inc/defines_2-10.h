@@ -71,12 +71,12 @@
 
 
 // Hall sensor defines
-#define HALL_A_PIN GPIO_PIN_0		// thanks to Tommyboi2001. robo: A and C might be reversed
-#define HALL_A_PORT GPIOA
+#define HALL_A_PIN GPIO_PIN_10		// thanks to Tommyboi2001. robo: A and C might be reversed
+#define HALL_A_PORT GPIOB
 #define HALL_B_PIN GPIO_PIN_1
 #define HALL_B_PORT GPIOA
-#define HALL_C_PIN GPIO_PIN_10	// robo: A and C might be reversed, no colors on hall cables..
-#define HALL_C_PORT GPIOB
+#define HALL_C_PIN GPIO_PIN_0	// robo: A and C might be reversed, no colors on hall cables..
+#define HALL_C_PORT GPIOA
 
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
