@@ -1,6 +1,25 @@
 #ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
-	#define BUZZER
+	#define HAS_BUZZER
 #endif
+
+/* GD32F130 48pin possible IO pins: 
+	C13 C14 C15 F0 F1 A0 A1 A2 
+	A3 A4 A5 A6 A7 B0 B1 B2 B10 B11
+	B12 B13 B14 B15 A8 A9 A10 A11 A12 A13 F6 F7
+	A14 A15 B3 B4 B5 B6 B7 B8 B9 
+	
+	mostly used for 6 BLDC mosfet pins: B13 B14 B15 A8 A9 A10
+	mostly used for USART0: B6 B7
+	mostly used for USART1: A2 A3
+	ST-Flash pins: A13 A14 (also used as green and red led on 2.2)
+	
+	so mostly available for other use:	
+	C13 C14 C15 F0 F1 A0 A1 A4 A5 A6 A7 B0 B1 B2 B10 B11 B12 A11 F6 F7 A12 A15 B3 B4 B5 B8 B9 
+	so available for analog input:
+	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
+*/
+
+#define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 
 // LED defines CORRECT

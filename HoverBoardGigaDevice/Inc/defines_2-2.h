@@ -1,9 +1,21 @@
 #ifdef SLAVE	// this layout has buzzer on the slave board !
-	#define BUZZER
+	#define HAS_BUZZER
 #endif
 
-#define TODO_PORT GPIOB				// this should be a pin that does no harm if input or output
-#define TODO_PIN	GPIO_PIN_15	// B15 is not accessibla on the smaller QFN32 32 pin MCU version
+/* GD32F130 32pin possible IO pins: 
+	
+	mostly used for 6 BLDC mosfet pins: B13 B14 B15 A8 A9 A10
+	mostly used for USART0: B6 B7
+	mostly used for USART1: A2 A3
+	ST-Flash pins: A13 A14 (also used as green and red led on 2.2)
+	
+	so mostly available for other use:	
+	so available for analog input:
+*/
+
+#define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
+//#define TODO_PIN PB15	// would also do as 2.2 only as the QFN32 32 pin mcu version
+
 
 // 2.2 unused/unkown: B4 B5 A6 A2 A0
 

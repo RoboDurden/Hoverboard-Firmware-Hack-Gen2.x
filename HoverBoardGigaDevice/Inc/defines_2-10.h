@@ -5,11 +5,8 @@
 #endif
 
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
-//#define TODO_PORT 	GPIOF		// this should be a pin that does no harm if input or output
-//#define TODO_PIN	GPIO_PIN_4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 /* GD32F130 48pin possible IO pins: 
-
 	C13 C14 C15 F0 F1 A0 A1 A2 
 	A3 A4 A5 A6 A7 B0 B1 B2 B10 B11
 	B12 B13 B14 B15 A8 A9 A10 A11 A12 A13 F6 F7
@@ -23,34 +20,21 @@
 	so mostly available for other use:	
 	C13 C14 C15 F0 F1 A0 A1 A4 A5 A6 A7 B0 B1 B2 B10 B11 B12 A11 F6 F7 A12 A15 B3 B4 B5 B8 B9 
 	so available for analog input:
-	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 
-	
-*/	
+	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
+*/
 	
 
 // LED defines
 #define LED_GREEN 	PA12	// thanks to pacraf, transistors are on led module !
 #define LED_ORANGE 	PA15	// thanks to pacraf, transistors are on led module !
 #define LED_RED 		PB3		// thanks to pacraf, transistors are on led module !
-//#define LED_GREEN GPIO_PIN_12		// thanks to pacraf, transistors are on led module !
-//#define LED_GREEN_PORT GPIOA
-//#define LED_ORANGE GPIO_PIN_15	// thanks to pacraf, transistors are on led module !
-//#define LED_ORANGE_PORT GPIOA
-//#define LED_RED GPIO_PIN_3		// thanks to pacraf, transistors are on led module !
-//#define LED_RED_PORT GPIOB
 
 #define UPPER_LED PF6	// pacraf: "two line "panel leds goes from PF6. of course via transistor and 1k
 //#define UPPER_LED PB4	// pacraf: additional outputs on black dupont female header
 #define LOWER_LED PB5	// pacraf: pulldown, additional outputs on black dupont female header
-//#define UPPER_LED_PIN GPIO_PIN_4	// pacraf: additional outputs on black dupont female header
-//#define UPPER_LED_PORT GPIOB
-//#define LOWER_LED_PIN GPIO_PIN_5	// pacraf: pulldown, additional outputs on black dupont female header
-//#define LOWER_LED_PORT GPIOB
 
 // Mosfet output, little onboard led
 #define MOSFET_OUT PF1
-//#define MOSFET_OUT_PIN TODO_PIN
-//#define MOSFET_OUT_PORT TODO_PORT
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
@@ -61,39 +45,13 @@
 #define BLDC_YL PB13		
 #define TIMER_BLDC_PULLUP	GPIO_PUPD_NONE	// robo: not sure if some boards indeed nned GPIO_PUPD_PULLUP like 2.2 or 2.3
 
-/*
-// Channel G
-#define RCU_TIMER_BLDC RCU_TIMER0
-#define TIMER_BLDC TIMER0
-#define TIMER_BLDC_CHANNEL_G TIMER_CH_2
-//#define TIMER_BLDC_GH_PIN GPIO_PIN_10		// all bldc pins same as 2.0, thanks to Tommyboi2001
-//#define TIMER_BLDC_GH_PORT GPIOA
-//#define TIMER_BLDC_GL_PIN GPIO_PIN_15
-//#define TIMER_BLDC_GL_PORT GPIOB
-// Channel B
-#define TIMER_BLDC_CHANNEL_B TIMER_CH_1
-//#define TIMER_BLDC_BH_PIN GPIO_PIN_9
-//#define TIMER_BLDC_BH_PORT GPIOA
-//#define TIMER_BLDC_BL_PIN GPIO_PIN_14
-//#define TIMER_BLDC_BL_PORT GPIOB
-// Channel Y
-#define TIMER_BLDC_CHANNEL_Y TIMER_CH_0
-//#define TIMER_BLDC_YH_PIN GPIO_PIN_8
-//#define TIMER_BLDC_YH_PORT GPIOA
-//#define TIMER_BLDC_YL_PIN GPIO_PIN_13
-//#define TIMER_BLDC_YL_PORT GPIOB
-*/
+// Timer BLDC short circuit emergency shutoff define
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN PB12	// pacraf: smd transistor connected to BRK = PB12. it is NPN type. robo: so pull down = overcurrent
 
 // Hall sensor defines
 #define HALL_A	PA1		// thanks to Tommyboi2001 and pacraf
 #define HALL_B 	PA0
 #define HALL_C	PB10
-//#define HALL_A_PIN GPIO_PIN_1		// thanks to Tommyboi2001 and pacraf
-//#define HALL_A_PORT GPIOA
-//#define HALL_B_PIN GPIO_PIN_0
-//#define HALL_B_PORT GPIOA
-//#define HALL_C_PIN GPIO_PIN_10	
-//#define HALL_C_PORT GPIOB
 
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
@@ -101,10 +59,6 @@
 #ifdef HAS_USART0
 	#define USART0_TX	PB6	// thanks to pacraf
 	#define USART0_RX	PB7	// thanks to pacraf
-	//#define USART0_TX_PIN	GPIO_PIN_6	// thanks to pacraf
-	//#define USART0_TX_PORT	GPIOB
-	//#define USART0_RX_PIN	GPIO_PIN_7
-	//#define USART0_RX_PORT	GPIOB
 	
 	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
@@ -116,10 +70,6 @@
 #ifdef HAS_USART1
 	#define USART1_TX		PA2	// thanks to pacraf
 	#define USART1_RX		PA3	// thanks to pacraf
-	//#define USART1_TX_PIN		GPIO_PIN_2	// thanks to pacraf
-	//#define USART1_TX_PORT	GPIOA
-	//#define USART1_RX_PIN		GPIO_PIN_3
-	//#define USART1_RX_PORT	GPIOA
 	
 	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	//#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
@@ -130,52 +80,33 @@
 
 // ADC defines
 #define VBATT PA4
-//#define VBATT_PIN	GPIO_PIN_4	// robo just guessing
-//#define VBATT_PORT GPIOA
-//#define VBATT_CHANNEL ADC_CHANNEL_4
 #define ADC_BATTERY_VOLT      0.0171862875 	
 
 #define CURRENT_DC	PA6	// robo just guessing
-//#define CURRENT_DC_PIN	GPIO_PIN_6	// robo just guessing
-//#define CURRENT_DC_PORT GPIOA
-//#define CURRENT_DC_CHANNEL ADC_CHANNEL_6
 #define MOTOR_AMP_CONV_DC_AMP 0.0201465201465  
 
 
 // Self hold defines
 #define SELF_HOLD PB2		// thanks to pacraf
-//#define SELF_HOLD_PIN GPIO_PIN_2		// thanks to pacraf
-//#define SELF_HOLD_PORT GPIOB
 
 // Button defines
 #define BUTTON PA5		// thanks to pacraf :-)
-//#define BUTTON_PIN GPIO_PIN_5		// thanks to pacraf :-)
-//#define BUTTON_PORT GPIOA
 
 
 // 2.10 unused/unkown: C13 C14 C15 F0 A4 A5 A6 A7 B0 B1 B11 A11 F7 B8 B9 
 
+
 #ifdef HAS_BUZZER
 	// Buzzer defins
 	#define BUZZER	PF0
-	//#define BUZZER_PIN GPIO_PIN_0
-	//#define BUZZER_PORT GPIOF
 #endif
 
 #ifdef MASTER
 	// Charge state defines
 	#define CHARGE_STATE TODO_PIN
-	//#define CHARGE_STATE_PIN TODO_PIN
-	//#define CHARGE_STATE_PORT TODO_PORT
 #endif
-
-// Timer BLDC short circuit emergency shutoff define
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN PB12	// pacraf: smd transistor connected to BRK = PB12. it is NPN type. robo: so pull down = overcurrent
-//#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN GPIO_PIN_12	// pacraf: smd transistor connected to BRK = PB12. it is NPN type. robo: so pull down = overcurrent
-//#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT GPIOB
 
 
 // Debug pin defines -  no longer has any function in code !
 #define DEBUG_PIN TODO_PIN
 #define DEBUG_PORT TODO_PORT
-
