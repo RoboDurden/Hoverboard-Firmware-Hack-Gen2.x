@@ -101,9 +101,18 @@
 	#define PC14	( GPIOC | 14 )
 	#define PC13	( GPIOC | 13 )
 
-	#define PF4	( GPIOC | 4 )
-	#define PF1	( GPIOC | 1 )
-	#define PF0	( GPIOC | 0 )
+	#define PF7	( GPIOF | 7 )
+	#define PF6	( GPIOF | 6 )
+	#define PF4	( GPIOF | 4 )
+	#define PF1	( GPIOF | 1 )
+	#define PF0	( GPIOF | 0 )
+
+
+/* GD32F130 48pin possible IO pins: 
+	C13 C14 C15 F0 F1 A0 A1 A2 
+	A3 A4 A5 A6 A7 B0 B1 B2 B10 B11
+	B12 B13 B14 B15 A8 A9 A10 A11 A12 A13 F6 F7
+	A14 A15 B3 B4 B5 B6 B7 B8 B9 	*/ 
 
 #endif	
 	

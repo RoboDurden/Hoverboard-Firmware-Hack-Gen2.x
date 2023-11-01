@@ -298,6 +298,7 @@ int main (void)
 	// Init GPIOs
 	GPIO_init();
 	DEBUG_LedSet(SET,1)
+	digitalWrite(UPPER_LED,SET);
 
 	
 	// Activate self hold direct after GPIO-init
@@ -333,10 +334,12 @@ int main (void)
 #endif
 
 	DEBUG_LedSet(RESET,1)
+	digitalWrite(UPPER_LED,RESET);
   while(1)
 	{
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
 		//DEBUG_LedSet(	(steerCounter%20) < 10	,1)
+		digitalWrite(MOSFET_OUT,	(steerCounter%20) < 10	);	// onboard led blinking :-)
 		
 		#ifdef SLAVE	
 			SetPWM(pwmSlave);

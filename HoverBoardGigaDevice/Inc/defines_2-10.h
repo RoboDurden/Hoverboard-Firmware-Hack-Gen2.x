@@ -39,13 +39,18 @@
 //#define LED_RED GPIO_PIN_3		// thanks to pacraf, transistors are on led module !
 //#define LED_RED_PORT GPIOB
 
-#define UPPER_LED PB4	// pacraf: additional outputs on black dupont female header
+#define UPPER_LED PF6	// pacraf: "two line "panel leds goes from PF6. of course via transistor and 1k
+//#define UPPER_LED PB4	// pacraf: additional outputs on black dupont female header
 #define LOWER_LED PB5	// pacraf: pulldown, additional outputs on black dupont female header
 //#define UPPER_LED_PIN GPIO_PIN_4	// pacraf: additional outputs on black dupont female header
 //#define UPPER_LED_PORT GPIOB
 //#define LOWER_LED_PIN GPIO_PIN_5	// pacraf: pulldown, additional outputs on black dupont female header
 //#define LOWER_LED_PORT GPIOB
 
+// Mosfet output, little onboard led
+#define MOSFET_OUT PF1
+//#define MOSFET_OUT_PIN TODO_PIN
+//#define MOSFET_OUT_PORT TODO_PORT
 
 
 // Brushless Control DC (BLDC) defines
@@ -141,7 +146,7 @@
 //#define BUTTON_PORT GPIOA
 
 
-// 2.10 unused/unkown: C13 C14 C15 F0 F1 A4 A5 A6 A7 B0 B1 B11 A11 F6 F7 B8 B9 
+// 2.10 unused/unkown: C13 C14 C15 F0 A4 A5 A6 A7 B0 B1 B11 A11 F7 B8 B9 
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
@@ -157,17 +162,13 @@
 	//#define CHARGE_STATE_PORT TODO_PORT
 #endif
 
-// Mosfet output
-#define MOSFET_OUT TODO_PIN
-//#define MOSFET_OUT_PIN TODO_PIN
-//#define MOSFET_OUT_PORT TODO_PORT
-
 // Timer BLDC short circuit emergency shutoff define
 #define TIMER_BLDC_EMERGENCY_SHUTDOWN PB12	// pacraf: smd transistor connected to BRK = PB12. it is NPN type. robo: so pull down = overcurrent
 //#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN GPIO_PIN_12	// pacraf: smd transistor connected to BRK = PB12. it is NPN type. robo: so pull down = overcurrent
 //#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT GPIOB
 
-// Debug pin defines
+
+// Debug pin defines -  no longer has any function in code !
 #define DEBUG_PIN TODO_PIN
 #define DEBUG_PORT TODO_PORT
 
