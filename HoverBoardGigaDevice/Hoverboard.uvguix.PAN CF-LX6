@@ -3608,7 +3608,7 @@
         <Name>.\Inc\config.h</Name>
         <ColumnNumber>2</ColumnNumber>
         <TopLine>16</TopLine>
-        <CurrentLine>34</CurrentLine>
+        <CurrentLine>26</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3651,9 +3651,9 @@
       </Doc>
       <Doc>
         <Name>.\Src\commsMasterSlave.c</Name>
-        <ColumnNumber>5</ColumnNumber>
-        <TopLine>199</TopLine>
-        <CurrentLine>208</CurrentLine>
+        <ColumnNumber>6</ColumnNumber>
+        <TopLine>263</TopLine>
+        <CurrentLine>284</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3761,7 +3761,7 @@
         <Name>.\Inc\defines_2-10.h</Name>
         <ColumnNumber>0</ColumnNumber>
         <TopLine>25</TopLine>
-        <CurrentLine>35</CurrentLine>
+        <CurrentLine>27</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
