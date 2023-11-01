@@ -47,6 +47,7 @@ uint8_t HSBtoRed(uint16_t hue, uint8_t sat);
 uint8_t HSBtoGreen(uint16_t hue, uint8_t sat);
 uint8_t HSBtoBlue(uint16_t hue, uint8_t sat);
 
+/* outdated code
 //----------------------------------------------------------------------------
 // Update RGB LED output with 16kHz
 //----------------------------------------------------------------------------
@@ -65,6 +66,7 @@ void CalculateLEDPWM(void)
 	//gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, counter_Green >= setValue_Green ? RESET : SET);
 	//gpio_bit_write(MOSFET_OUT_PORT, MOSFET_OUT_PIN, counter_Blue >= setValue_Blue ? RESET : SET);
 }
+*/
 
 //----------------------------------------------------------------------------
 // Update RGB LED program every 1ms

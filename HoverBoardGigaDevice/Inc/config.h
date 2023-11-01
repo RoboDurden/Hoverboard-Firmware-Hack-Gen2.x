@@ -18,7 +18,7 @@
 	LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
 	LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
 	*/
-	#define LAYOUT 0
+	#define LAYOUT 10
 #endif
 
 //#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
@@ -30,8 +30,8 @@
 #if defined(MASTER) || defined(SINGLE)
 	#define MASTER_OR_SINGLE
 	
-	//#define REMOTE_DUMMY
-	#define REMOTE_UART
+	#define REMOTE_DUMMY
+	//#define REMOTE_UART
 	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 

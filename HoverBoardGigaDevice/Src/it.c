@@ -144,11 +144,13 @@ void DMA_Channel0_IRQHandler(void)
 	//DEBUG_LedSet(	(steerCounter%20) < 5	,0)	
 	// Calculate motor PWMs
 	CalculateBLDC();
-	
+
+	/* outdated
 	#ifdef SLAVE
 	// Calculates RGB LED
 	CalculateLEDPWM();
 	#endif
+	*/
 	
 	if (dma_interrupt_flag_get(DMA_CH0, DMA_INT_FLAG_FTF))
 	{
