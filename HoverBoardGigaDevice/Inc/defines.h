@@ -24,6 +24,13 @@
 	#include "defines_2-11.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #endif
 
+#ifndef TIMER_BLDC	// these defines should be equal for all Gen2 boards as they only have on bldc capable TIMER = TIMER0
+	#define TIMER_BLDC 		TIMER0
+	#define RCU_TIMER_BLDC 		RCU_TIMER0
+	#define TIMER_BLDC_CHANNEL_G 	TIMER_CH_2
+	#define TIMER_BLDC_CHANNEL_B 	TIMER_CH_1
+	#define TIMER_BLDC_CHANNEL_Y 	TIMER_CH_0
+#endif
 
 /*
 #ifdef DEBUG_LED_PIN

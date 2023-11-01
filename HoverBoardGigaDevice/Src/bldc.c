@@ -146,11 +146,11 @@ void CalculateBLDC(void)
   }
 	
 	// Calculate battery voltage every 100 cycles
-	#ifdef VBATT_PIN
+	#ifdef VBATT
 		if (buzzerTimer % 100 == 0)
 			batteryVoltage = batteryVoltage * 0.999 + ((float)adc_buffer.v_batt * ADC_BATTERY_VOLT) * 0.001;
 	#else
-		batteryVoltage = BAT_CELLS * 3.6;		// testing with no VBATT_PIN yet
+		batteryVoltage = BAT_CELLS * 3.6;		// testing with no VBATT pin yet
 	#endif
 	
   buzzerTimer++;	// also used to calculate battery voltage :-/
@@ -173,10 +173,10 @@ void CalculateBLDC(void)
 #endif
 	
 	// Calculate current DC
-	#ifdef CURRENT_DC_PIN
+	#ifdef CURRENT_DC
 		currentDC = ABS((adc_buffer.current_dc - offsetdc) * MOTOR_AMP_CONV_DC_AMP);
 	#else
-		currentDC = 0.42; 	// testing with no CURRENT_DC_PIN yet
+		currentDC = 0.42; 	// testing with no CURRENT_DC pin yet
 	#endif
 	
   // Disable PWM when current limit is reached (current chopping), enable is not set or timeout is reached

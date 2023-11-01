@@ -47,12 +47,14 @@
 	}
 	
 	// AF = AlternateFunction
-	#define pinModeAF(pin, AF, pullUpDown) \
+	#define pinModeAF(pin, AF, pullUpDown,speed) \
 	{\
 		gpio_mode_set(pin&0xffffff00U , GPIO_MODE_AF, pullUpDown, BIT(pin&0xfU));	\
-		gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, BIT(pin&0xfU));	\
+		gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, speed, BIT(pin&0xfU));	\
 		gpio_af_set(pin&0xffffff00U, AF(pin), BIT(pin&0xfU));		\
 	}
+	//GD32F130xx Datasheet	2.6.7. GD32F130xx pin alternate function	
+	#define AF_TIMER0_BLDC(pin)	GPIO_AF_2	// GD32F130: all TIMER0 AF are AF2
 	#define AF_TIMER0_BRKIN(pin)	(pin==PA6 ? GPIO_AF_2 : GPIO_AF_2)	// GD32F130: AF2 = PA6 or PB12
 	#define AF_USART0_TX(pin)	(pin==PB6 ? GPIO_AF_0 : GPIO_AF_2)			// GD32F130: AF0 = PB6 , AF1 = PA2 or PA9 or PA14
 	#define AF_USART0_RX(pin)	(pin==PB7 ? GPIO_AF_0 : GPIO_AF_2)			// GD32F130: AF0 = PB7 , AF1 = PA3 or PA15 

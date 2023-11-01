@@ -52,30 +52,37 @@
 //#define MOSFET_OUT_PIN TODO_PIN
 //#define MOSFET_OUT_PORT TODO_PORT
 
-
 // Brushless Control DC (BLDC) defines
-#define TIMER_BLDC_PULLUP	GPIO_PUPD_NONE	// robo
+#define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
+#define BLDC_GL PB15		
+#define BLDC_BH PA9			// blue
+#define BLDC_BL PB14		
+#define BLDC_YH PA8			// yellow
+#define BLDC_YL PB13		
+#define TIMER_BLDC_PULLUP	GPIO_PUPD_NONE	// robo: not sure if some boards indeed nned GPIO_PUPD_PULLUP like 2.2 or 2.3
+
+/*
 // Channel G
 #define RCU_TIMER_BLDC RCU_TIMER0
 #define TIMER_BLDC TIMER0
 #define TIMER_BLDC_CHANNEL_G TIMER_CH_2
-#define TIMER_BLDC_GH_PIN GPIO_PIN_10		// all bldc pins same as 2.0, thanks to Tommyboi2001
-#define TIMER_BLDC_GH_PORT GPIOA
-#define TIMER_BLDC_GL_PIN GPIO_PIN_15
-#define TIMER_BLDC_GL_PORT GPIOB
+//#define TIMER_BLDC_GH_PIN GPIO_PIN_10		// all bldc pins same as 2.0, thanks to Tommyboi2001
+//#define TIMER_BLDC_GH_PORT GPIOA
+//#define TIMER_BLDC_GL_PIN GPIO_PIN_15
+//#define TIMER_BLDC_GL_PORT GPIOB
 // Channel B
 #define TIMER_BLDC_CHANNEL_B TIMER_CH_1
-#define TIMER_BLDC_BH_PIN GPIO_PIN_9
-#define TIMER_BLDC_BH_PORT GPIOA
-#define TIMER_BLDC_BL_PIN GPIO_PIN_14
-#define TIMER_BLDC_BL_PORT GPIOB
+//#define TIMER_BLDC_BH_PIN GPIO_PIN_9
+//#define TIMER_BLDC_BH_PORT GPIOA
+//#define TIMER_BLDC_BL_PIN GPIO_PIN_14
+//#define TIMER_BLDC_BL_PORT GPIOB
 // Channel Y
 #define TIMER_BLDC_CHANNEL_Y TIMER_CH_0
-#define TIMER_BLDC_YH_PIN GPIO_PIN_8
-#define TIMER_BLDC_YH_PORT GPIOA
-#define TIMER_BLDC_YL_PIN GPIO_PIN_13
-#define TIMER_BLDC_YL_PORT GPIOB
-
+//#define TIMER_BLDC_YH_PIN GPIO_PIN_8
+//#define TIMER_BLDC_YH_PORT GPIOA
+//#define TIMER_BLDC_YL_PIN GPIO_PIN_13
+//#define TIMER_BLDC_YL_PORT GPIOB
+*/
 
 // Hall sensor defines
 #define HALL_A	PA1		// thanks to Tommyboi2001 and pacraf
