@@ -146,6 +146,12 @@ void GPIO_init(void)
 
 	pinMode(UPPER_LED,	GPIO_MODE_OUTPUT);
 	pinMode(LOWER_LED,	GPIO_MODE_OUTPUT);
+
+	pinMode(MOSFET_OUT,	GPIO_MODE_OUTPUT);
+
+	// Init mosfet output
+	//gpio_mode_set(MOSFET_OUT_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, MOSFET_OUT_PIN);	
+	//gpio_output_options_set(MOSFET_OUT_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, MOSFET_OUT_PIN);
 	
 	// Init green LED
 	//gpio_mode_set(LED_GREEN_PORT , GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,LED_GREEN);	
@@ -171,9 +177,6 @@ void GPIO_init(void)
 		gpio_output_options_set(DEBUG_LED_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, DEBUG_LED_PIN);
 	#endif
 	
-	// Init mosfet output
-	//gpio_mode_set(MOSFET_OUT_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, MOSFET_OUT_PIN);	
-	//gpio_output_options_set(MOSFET_OUT_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, MOSFET_OUT_PIN);
 	
 	// Init HAL input
 	pinMode(HALL_A,	GPIO_MODE_INPUT);
