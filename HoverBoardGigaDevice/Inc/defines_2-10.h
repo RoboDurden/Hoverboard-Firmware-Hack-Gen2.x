@@ -24,10 +24,16 @@
 */
 	
 
-// LED defines
-#define LED_GREEN 	PA12	// thanks to pacraf, transistors are on led module !
-#define LED_ORANGE 	PA15	// thanks to pacraf, transistors are on led module !
-#define LED_RED 		PB3		// thanks to pacraf, transistors are on led module !
+// LED defines	- thanks to pacraf, transistors are on led module !
+#ifdef SLAVE
+	#define LED_GREEN 	PA12	
+	#define LED_ORANGE 	PA15
+	#define LED_RED 		PB3
+#else
+	#define LED_GREEN 	PB3	
+	#define LED_ORANGE 	PA12	// only two led on the cross-like led panel but users may attach other stuff
+	#define LED_RED 		PA15		
+#endif
 
 #define UPPER_LED PF6	// pacraf: "two line "panel leds goes from PF6. of course via transistor and 1k
 //#define UPPER_LED PB4	// pacraf: additional outputs on black dupont female header
