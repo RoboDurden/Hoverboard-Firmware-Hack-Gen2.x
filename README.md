@@ -1,8 +1,10 @@
-### 2023/10/23 the following layouts are ready to use (99%):
+### 2023/11/2 the following layouts are ready to use (99%):
 
 - 2.0
 - 2.2 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
 - 2.3 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+- 2.10 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/25
+- 2.13 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33
 
 layouts worth testing (with a 2A cc constant current power supply / dcdc-step-down converter):
 
@@ -100,6 +102,13 @@ Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 ![layout 2.12](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-12.jpg)
 - [details](Schematics_2.12/)
 - [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/28)
+
+
+####version/layout 2.13: = GD32F130
+![layout 2.13](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-13.jpg)
+- [details](Schematics_2.13/)
+- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33)
+
 
 ---
 
