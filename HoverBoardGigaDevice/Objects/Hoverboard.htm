@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Hoverboard.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Hoverboard.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Nov  2 12:35:59 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Nov  2 13:38:17 2023
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -359,8 +359,9 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, it.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f1x0.o(RESET)
 </UL>
-<P><STRONG><a name="[b1]"></a>ResetTimeout</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, it.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCallback
+<P><STRONG><a name="[b0]"></a>ResetTimeout</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, it.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdateNew
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCallback
 </UL>
 
 <P><STRONG><a name="[1c]"></a>TIMER13_IRQHandler</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, it.o(.text))
@@ -396,7 +397,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f1x0.o(RESET)
 </UL>
 <P><STRONG><a name="[ad]"></a>millis</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, it.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCallback
+<BR><BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdateNew
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdate
 </UL>
 
@@ -445,41 +446,38 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, it.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_gd32f1x0.o(RESET)
 </UL>
-<P><STRONG><a name="[56]"></a>RemoteUpdate</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, remoteuartbus.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
+<P><STRONG><a name="[56]"></a>RemoteUpdate</STRONG> (Thumb, 196 bytes, Stack size 0 bytes, remoteuart.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendBuffer
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcCRC
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
 </UL>
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ae]"></a>AnswerMaster</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, remoteuartbus.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendBuffer
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcCRC
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bit_write
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCallback
-</UL>
-
-<P><STRONG><a name="[ac]"></a>RemoteCallback</STRONG> (Thumb, 140 bytes, Stack size 0 bytes, remoteuartbus.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcCRC
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AnswerMaster
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetTimeout
+<P><STRONG><a name="[ac]"></a>RemoteCallback</STRONG> (Thumb, 142 bytes, Stack size 0 bytes, remoteuart.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalcCRC
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetTimeout
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Channel3_4_IRQHandler
 </UL>
 
-<P><STRONG><a name="[b0]"></a>SendBuffer</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, commsmasterslave.o(.text))
+<P><STRONG><a name="[b1]"></a>RemoteUpdateNew</STRONG> (Thumb, 152 bytes, Stack size 0 bytes, remoteuart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetTimeout
+</UL>
+
+<P><STRONG><a name="[af]"></a>SendBuffer</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, commsmasterslave.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_flag_get
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart_data_transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AnswerMaster
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdate
 </UL>
 
-<P><STRONG><a name="[af]"></a>CalcCRC</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, commsmasterslave.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AnswerMaster
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCallback
+<P><STRONG><a name="[ae]"></a>CalcCRC</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, commsmasterslave.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteCallback
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdate
 </UL>
 
 <P><STRONG><a name="[b4]"></a>adc_deinit</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32f1x0_adc.o(.text), UNUSED)
@@ -628,8 +626,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4f]"></a>gpio_bit_write</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32f1x0_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AnswerMaster
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalculateBLDC
+<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalculateBLDC
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ShutOff
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -817,7 +814,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b2]"></a>usart_data_transmit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32f1x0_usart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendBuffer
+<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendBuffer
 </UL>
 
 <P><STRONG><a name="[a2]"></a>usart_oversample_config</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, gd32f1x0_usart.o(.text))
@@ -831,7 +828,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b3]"></a>usart_flag_get</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32f1x0_usart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendBuffer
+<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendBuffer
 </UL>
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_gd32f1x0.o(.text))
@@ -1225,7 +1222,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5e]"></a>__aeabi_f2iz</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, ffix.o(x$fpl$ffix))
-<BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AnswerMaster
+<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdate
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1258,7 +1255,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5d]"></a>__aeabi_fmul</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fmul.o(x$fpl$fmul))
-<BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AnswerMaster
+<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RemoteUpdate
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
