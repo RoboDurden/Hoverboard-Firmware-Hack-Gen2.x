@@ -41,7 +41,7 @@
 */
 
 #ifdef DEBUG_LED
-#define DEBUG_LedSet(bSet,iCol){gpio_bit_write(iCol==0 ? LED_GREEN_PORT : (iCol==1 ? LED_ORANGE_PORT : LED_RED_PORT), iCol==0 ? LED_GREEN : (iCol==1 ? LED_ORANGE : LED_RED), bSet);}
+#define DEBUG_LedSet(bSet,iCol){digitalWrite((iCol==0 ? LED_GREEN : (iCol==1 ? LED_ORANGE : LED_RED)), bSet);}
 #else
   #define DEBUG_LedSet(bSet,iCol)
 #endif

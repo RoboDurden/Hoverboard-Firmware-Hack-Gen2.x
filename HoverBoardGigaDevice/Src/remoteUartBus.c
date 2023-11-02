@@ -29,8 +29,8 @@ extern float realSpeed; 									// global variable for real Speed
 
 typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
    uint8_t cStart;		//  = '/';
-   uint8_t iSlave;		//  contains the slave id this message is intended for
    //uint16_t cStart;		//  = #define START_FRAME         0xABCD
+   uint8_t iSlave;		//  contains the slave id this message is intended for
    int16_t  iSpeed;
    uint8_t  wState;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
    uint16_t checksum;
@@ -69,6 +69,8 @@ extern 	uint32_t steerCounter;
 
 void AnswerMaster(void)
 {
+	DEBUG_LedSet(SET,0)
+	
 	// Ask for steer input
 	SerialHover2Server oData;
 	oData.cStart = START_FRAME;
@@ -123,6 +125,7 @@ void RemoteCallback(void)
 			{
 				if (pData->iSlave == SLAVE_ID)
 				{
+					
 					//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
 					speed = pData->iSpeed;
 					wState = pData->wState;

@@ -7,7 +7,7 @@
 
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
-#define REMOTE_UARTBUS
+//#define REMOTE_UARTBUS
 
 #include "util.h"
 #include "hoverserial.h"
@@ -57,6 +57,7 @@ void loop()
   //int iSteer = 0;
   //iSpeed /= 10;
   //iSpeed = 500;
+  iSpeed = iSteer = 0;
 
   if (iNow > iTimeNextState)
   {

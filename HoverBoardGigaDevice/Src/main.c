@@ -345,8 +345,11 @@ int main (void)
 			SetPWM(pwmSlave);
 		#else	//MASTER_OR_SINGLE
 			if ((steerCounter % 2) == 0)
+			{
 				RemoteUpdate();
-
+				DEBUG_LedSet(RESET,0)
+			}
+			
 			// Calculate expo rate for less steering with higher speeds
 			expo = MAP((float)ABS(speed), 0, 1000, 1, 0.5);
 			

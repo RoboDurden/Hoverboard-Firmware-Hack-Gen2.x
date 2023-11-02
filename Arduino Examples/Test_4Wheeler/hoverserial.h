@@ -190,9 +190,8 @@ template <typename O,typename OF> boolean Receive(O& oSerial, OF& Feedback)
     iAvail--;
 
     #ifdef DEBUG_RX
-      if (millis() > iLastRx + 50)  Serial.println();
-      Serial.print((c < 16) ? " 0" : " ");
-      Serial.print(c,HEX); 
+      //if (millis() > iLastRx + 50)  Serial.println();
+      Serial.print((c < 16) ? " 0" : " ");Serial.print(c,HEX); 
       iLastRx = millis();
     #endif
     
@@ -213,8 +212,8 @@ template <typename O,typename OF> boolean Receive(O& oSerial, OF& Feedback)
           *p++    = oSerial.read();
 
         #ifdef DEBUG_RX
-          Serial.print(" -> ");
-          HoverLog(tmpFeedback);
+          //Serial.print(" -> ");
+          //HoverLog(tmpFeedback);
         #endif
 
         uint16_t checksum = CalcCRC((byte *)&tmpFeedback, sizeof(SerialHover2Server)-2);
@@ -222,7 +221,7 @@ template <typename O,typename OF> boolean Receive(O& oSerial, OF& Feedback)
         {
             memcpy(&Feedback, &tmpFeedback, sizeof(SerialHover2Server));
             #ifdef DEBUG_RX
-              Serial.println(" :-))))))))))");
+              Serial.println(" :-)");
             #endif
             return true;
         }
