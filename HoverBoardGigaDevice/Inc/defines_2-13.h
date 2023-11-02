@@ -57,10 +57,6 @@
 #define HALL_B	PC14
 #define HALL_C	PF1
 
-//#define HALL_A	PB11
-//#define HALL_B	PF1
-//#define HALL_C	PC14
-
 
 // robo: on 2.0 this is the USART0 header to the left of the st-link header: GND , PB4 , PB4 , +5V
 // Debug pin defines -  no longer has any function in code !
@@ -89,12 +85,17 @@
 #endif
 
 
+//	so available for analog input: A5 A6 A7 B0 B1 	
+	
+
 
 // ADC defines
 #define VBATT	PA4
 #define ADC_BATTERY_VOLT      0.0258320368	// robo newly gaged
 
 #define CURRENT_DC	PA6
+
+#define PHASE_CURRENT_X	PA7		// robo: maybe because some oscilating values
 
 // Self hold defines
 #define SELF_HOLD	PB2
