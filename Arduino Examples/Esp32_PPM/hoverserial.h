@@ -182,39 +182,40 @@ void DebugOut(uint8_t aBuffer[], uint8_t iSize)
 //boolean Receive(Serial& oSerial, SerialFeedback& Feedback)
 template <typename O,typename OF> boolean Receive(O& oSerial, OF& Feedback)
 {
-  int iAvail = oSerial.available() - sizeof(SerialHover2Server);
-  int8_t iFirst = 1;
-  while (iAvail >= 3+iFirst )
+  int iTooMuch = oSerial.available() - sizeof(SerialHover2Server) + 1;
+  int8_t bFirst = 1;
+  while (iTooMuch >= bFirst )
   {
     byte c = oSerial.read();  // Read the incoming byte
-    iAvail--;
+    iTooMuch--;
 
     #ifdef DEBUG_RX
-      if (millis() > iLastRx + 50)  Serial.println();
-      Serial.print((c < 16) ? " 0" : " ");
-      Serial.print(c,HEX); 
+      //if (millis() > iLastRx + 50)  Serial.println();
+      Serial.print((c < 16) ? " 0" : " ");Serial.print(c,HEX); 
       iLastRx = millis();
     #endif
     
-    if (iFirst) // test first START byte
+    if (bFirst) // test first START byte
     {
       if (c == (byte)START_FRAME) //if (c == 0xCD)
       {
-        iFirst = 0;
+        bFirst = 0;
       }
     }
     else  // test second START byte
     {
       if (c == START_FRAME >>8 ) //if (c == 0xAB)
       {
+        //DEBUGT(" avail",oSerial.available())
         SerialHover2Server tmpFeedback;
         byte* p = (byte *)&tmpFeedback+2; // start word already read
         for (int i = sizeof(SerialHover2Server); i>2; i--)  
           *p++    = oSerial.read();
 
+        //while(oSerial.available()) oSerial.read();
         #ifdef DEBUG_RX
-          Serial.print(" -> ");
-          HoverLog(tmpFeedback);
+          //Serial.print(" -> ");
+          //HoverLog(tmpFeedback);
         #endif
 
         uint16_t checksum = CalcCRC((byte *)&tmpFeedback, sizeof(SerialHover2Server)-2);
@@ -222,7 +223,7 @@ template <typename O,typename OF> boolean Receive(O& oSerial, OF& Feedback)
         {
             memcpy(&Feedback, &tmpFeedback, sizeof(SerialHover2Server));
             #ifdef DEBUG_RX
-              Serial.println(" :-))))))))))");
+              Serial.println(" :-)");
             #endif
             return true;
         }
@@ -235,7 +236,7 @@ template <typename O,typename OF> boolean Receive(O& oSerial, OF& Feedback)
         return false;       
       }
       if (c != (byte)START_FRAME) //if (c != 0xCD)
-        iFirst = 1;
+        bFirst = 1;
     }
   }
   return false;
