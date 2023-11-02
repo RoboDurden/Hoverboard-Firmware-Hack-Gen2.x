@@ -18,7 +18,7 @@
 	LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
 	LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
 	*/
-	#define LAYOUT 13
+	#define LAYOUT 10
 #endif
 
 //#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
@@ -36,7 +36,7 @@
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
 	#ifdef REMOTE_UARTBUS
-		#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
+		#define SLAVE_ID	3		// must be unique for all hoverboards connected to the bus
 	#endif
 
 //#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
