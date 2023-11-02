@@ -57,7 +57,7 @@ void loop()
   //int iSteer = 0;
   //iSpeed /= 10;
   //iSpeed = 500;
-  iSpeed = iSteer = 0;
+  //iSpeed = iSteer = 0;
 
   if (iNow > iTimeNextState)
   {

@@ -6,7 +6,7 @@
 
 
 #define _DEBUG      // debug output to first hardware serial port
-#define DEBUG_RX    // additional hoverboard-rx debug output
+//#define DEBUG_RX    // additional hoverboard-rx debug output
 
 #define REMOTE_UARTBUS 
 
@@ -56,7 +56,7 @@ void loop()
   //int iSteer = 0;
   //iSpeed /= 10;
   //iSpeed = 500;
-  iSpeed = iSteer = 0;
+  //iSpeed = iSteer = 0;
 
   if (iNow > iTimeNextState)
   {
@@ -81,7 +81,7 @@ void loop()
   if (iNow < iNext)
     return;
 
-  iNext = iNow + 1000;
+  iNext = iNow + 25;
   //DEBUGLN("time",iNow)
   int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
   int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
@@ -92,7 +92,7 @@ void loop()
   aiSpeed[3] = iSpeedR; // back right
 
   
-  DEBUGT("time",iNow)  DEBUGN("HoverSend to",iSendId);
+  //DEBUGT("time",iNow)  DEBUGN("HoverSend to",iSendId);
   HoverSend(oSerialHover,iSendId,aiSpeed[iSendId],wState);  // hoverboard will answer immediatly on having received this message ...
   iSendId++;
   if (iSendId == 4) iSendId = 0;

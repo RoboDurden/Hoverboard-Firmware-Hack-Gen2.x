@@ -476,8 +476,8 @@ int main (void)
 			if (!(wState & STATE_LedBattLevel))
 			{
 				digitalWrite(LED_GREEN,wState & STATE_LedGreen ? SET : RESET);
-				digitalWrite(LED_GREEN,wState & STATE_LedOrange ? SET : RESET);
-				digitalWrite(LED_GREEN,wState & STATE_LedRed ? SET : RESET);
+				digitalWrite(LED_ORANGE,wState & STATE_LedOrange ? SET : RESET);
+				digitalWrite(LED_RED,wState & STATE_LedRed ? SET : RESET);
 				//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
 				//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
 				//gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);

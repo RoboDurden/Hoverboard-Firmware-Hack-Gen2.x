@@ -36,11 +36,11 @@
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
 	#ifdef REMOTE_UARTBUS
-		#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
+		#define SLAVE_ID	1		// must be unique for all hoverboards connected to the bus
 	#endif
 
 //#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
-#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
+//#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
 
 	#define SPEED_COEFFICIENT   -1
 	#define STEER_COEFFICIENT   1

@@ -57,8 +57,8 @@
 	#define USART0_TX	PB6
 	#define USART0_RX	PB7
 	
-	#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	//#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
+	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
 
 
@@ -68,8 +68,8 @@
 	#define USART1_TX		PA2
 	#define USART1_RX		PA3
 	
-	//#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
+	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	//#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
 
 
