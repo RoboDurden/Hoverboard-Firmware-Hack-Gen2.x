@@ -31,12 +31,12 @@
 	#define MASTER_OR_SINGLE
 	
 	//#define REMOTE_DUMMY
-	#define REMOTE_UART
-	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
+	//#define REMOTE_UART
+	#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
 	#ifdef REMOTE_UARTBUS
-		#define SLAVE_ID	2		// must be unique for all hoverboards connected to the bus
+		#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
 	#endif
 
 //#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
