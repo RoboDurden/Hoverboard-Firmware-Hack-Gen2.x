@@ -62,12 +62,31 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
   //typedef struct{   // new version
   //   uint16_t cStart = START_FRAME;   // new version
   typedef struct __attribute__((packed, aligned(1))) {  // old version
-     uint8_t  cStart = '/';                              // old version
-     uint8_t  iSlave;    //  contains the slave id this message is intended for
+     uint8_t  cStart = '/';
+     uint8_t  iDataType = 0;    //  unique id for this data struct
+     uint8_t  iSlave;       //  contains the slave id this message is intended for
      int16_t  iSpeed = 0;
      uint8_t  wState = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
      uint16_t checksum;
   } SerialServer2Hover;
+  typedef struct __attribute__((packed, aligned(1))) {  // old version
+     uint8_t  cStart = '/';
+     uint8_t  iDataType = 1;    //  unique id for this data struct
+     uint8_t  iSlave;       //  contains the slave id this message is intended for
+     int16_t  iSpeed = 0;
+     int16_t  iSteer = 0;
+     uint8_t  wState = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+     uint8_t  wStateSlave = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+     uint16_t checksum;
+  } SerialServer2HoverMaster;
+
+
+  template <typename O,typename D> void HoverSendData(O& oSerial, D& oData)
+  {
+    oData.checksum = CalcCRC((uint8_t*)&oData, sizeof(oData)-2); // first bytes except crc
+    oSerial.write((uint8_t*) &oData, sizeof(oData)); 
+    //DEBUGN(oData.iSlave, sizeof(oData)); 
+  }
 
   template <typename O,typename I> void HoverSend(O& oSerial, uint8_t iSlave, I iSpeed, uint8_t  wState=32)
   {

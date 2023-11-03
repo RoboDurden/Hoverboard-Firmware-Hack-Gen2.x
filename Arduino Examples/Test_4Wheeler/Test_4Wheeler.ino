@@ -9,6 +9,7 @@
 //#define DEBUG_RX    // additional hoverboard-rx debug output
 
 #define REMOTE_UARTBUS 
+//#define SEND2SINGLES  // uncomment this line if you want to send to two master that then will control their slaves
 
 #include "util.h"
 #include "hoverserial.h"
@@ -44,7 +45,8 @@ unsigned long iTimeNextState = 3000;
 uint8_t  wState = 1;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
 
 uint8_t  iSendId = 0;
-int aiSpeed[4];
+//int aiSpeed[4];
+
 
 void loop()
 {
@@ -83,17 +85,53 @@ void loop()
 
   iNext = iNow + 25;
   //DEBUGLN("time",iNow)
-  int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
-  int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
 
-  aiSpeed[0] = iSpeedL; // front left
-  aiSpeed[1] = iSpeedR; // front right
-  aiSpeed[2] = iSpeedL; // back left
-  aiSpeed[3] = iSpeedR; // back right
-
+  #ifdef SEND2SINGLES
+    int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
+    int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
   
-  //DEBUGT("time",iNow)  DEBUGN("HoverSend to",iSendId);
-  HoverSend(oSerialHover,iSendId,aiSpeed[iSendId],wState);  // hoverboard will answer immediatly on having received this message ...
-  iSendId++;
-  if (iSendId == 4) iSendId = 0;
+    SerialServer2Hover oMotor;
+    oMotor.iSlave = iSendId;
+    switch(iSendId++)
+    {
+    case 0: // front left;
+      oMotor.iSpeed = iSpeedL;
+      break;
+    case 1: // front right;
+      oMotor.iSpeed = iSpeedR;
+      break;
+    case 2: // rear left;
+      oMotor.iSpeed = iSpeedL;
+      break;
+    case 3: // rear Right;
+      oMotor.iSpeed = iSpeedR;
+      iSendId = 0;
+      break;
+    }
+    oMotor.wState = wState;
+    
+    //DEBUGT("time",iNow)  DEBUGN("HoverSend to",iSendId);
+    HoverSendData(oSerialHover,oMotor);  // hoverboard will answer immediatly on having received this message ...
+    //HoverSend(oSerialHover,iSendId,aiSpeed[iSendId],wState);  // hoverboard will answer immediatly on having received this message ...
+  #else
+    SerialServer2HoverMaster oMaster;
+    oMaster.iSlave = iSendId;
+    switch(iSendId++)
+    {
+    case 0: // front axis
+      oMaster.iSpeed = iSpeed;
+      oMaster.iSteer = iSteer;
+      break;
+    case 1: // rear axis;
+      oMaster.iSpeed = iSpeed;
+      oMaster.iSteer = iSteer;
+      iSendId = 0;
+      break;
+    }
+    oMaster.wState = wState;    // turn on off some led and shutoff master+slave
+    oMaster.wStateSlave = wState; // turn on off some led 
+    
+    //DEBUGT("time",iNow)  DEBUGN("HoverSend to",iSendId);
+    HoverSendData(oSerialHover,oMaster);  // hoverboard will answer immediatly on having received this message ...
+  #endif
 }
