@@ -1,4 +1,5 @@
-// robo: 2.13 = very much like 2.0 ! But USART0 only on empty header of bluetooth module
+// robo: 2.13 = very much like 2.0 ! But USART0 only on empty header of bluetooth module,
+//	different hall order and an optional third led header (with PB5 and a blinking output)
 
 #ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define HAS_BUZZER

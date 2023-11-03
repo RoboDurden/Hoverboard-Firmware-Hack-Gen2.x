@@ -31,6 +31,7 @@ void setup()
   
   #ifdef ESP32
     HoverSetupEsp32(oSerialHover,19200,39,37);      // baud, rx, tx
+    //pinMode(39, INPUT);
   #else
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif

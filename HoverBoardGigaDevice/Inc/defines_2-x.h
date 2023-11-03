@@ -2,9 +2,23 @@
 	#define BUZZER
 #endif
 
+/* GD32F130 48pin possible IO pins: 
+	C13 C14 C15 F0 F1 A0 A1 A2 
+	A3 A4 A5 A6 A7 B0 B1 B2 B10 B11
+	B12 B13 B14 B15 A8 A9 A10 A11 A12 A13 F6 F7
+	A14 A15 B3 B4 B5 B6 B7 B8 B9 
+	
+	mostly used for 6 BLDC mosfet pins: B13 B14 B15 A8 A9 A10
+	mostly used for USART0: B6 B7
+	mostly used for USART1: A2 A3
+	ST-Flash pins: A13 A14 (also used as green and red led on 2.2)
+	
+	so mostly available for other use:	
+	C13 C14 C15 F0 F1 A0 A1 A4 A5 A6 A7 B0 B1 B2 B10 B11 B12 A11 F6 F7 A12 A15 B3 B4 B5 B8 B9 
+	available for analog input:	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
+*/
 
-#define TODO_PORT 	GPIOF		// this should be a pin that does no harm if input or output
-#define TODO_PIN	GPIO_PIN_4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
+#define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 // LED defines
 #define LED_GREEN TODO_PIN				
@@ -85,7 +99,7 @@
 	#define USART1_RX_PORT	GPIOA
 	
 	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	//#define USART0_REMOTE				// uncomment if this usart is used for optional remote control
+	//#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
 
 // ADC defines
