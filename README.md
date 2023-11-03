@@ -130,6 +130,7 @@ The structure of the firmware is based on the firmware hack of Niklas Fauth (htt
 - #define REMOTE_UART    // uart serial protocol with 19200 baud as Arduino Nano SoftwareSerial can not do 115200
 - #define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
   ![UartBus](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/UartBus.jpg)
+  ![UartBus needs diodes](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/UartBus_needs_Schottky_diodes.jpg)  
 - #define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
 ---
