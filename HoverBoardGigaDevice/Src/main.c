@@ -509,6 +509,7 @@ void ShutOff(void)
 	
 		#ifdef MASTER
 			// Send shut off command to slave
+			wStateSlave = STATE_Shutoff;
 			SendSlave(0);
 		#endif
 	
