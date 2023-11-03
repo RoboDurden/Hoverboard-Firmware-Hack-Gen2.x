@@ -53,14 +53,14 @@ typedef struct{				// ´#pragma pack(1)´ needed to get correct sizeof()
 
 //static uint8_t aDebug[sizeof(SerialServer2Hover)];
 
-uint32_t iTimeLast = 0;
+uint32_t iTimeLastRx = 0;
 
 // Send frame to steer device
 void RemoteUpdate(void)
 {
-	if (millis() - iTimeLast > 50)
+	if (millis() - iTimeLastRx > LOST_CONNECTION_STOP_MILLIS)
 	{
-		speed = 0;
+		speed = steer = 0;
 	}
 }
 
@@ -69,7 +69,6 @@ extern 	uint32_t steerCounter;
 
 void AnswerMaster(void)
 {
-	DEBUG_LedSet(SET,0)
 	
 	// Ask for steer input
 	SerialHover2Server oData;
@@ -130,7 +129,7 @@ void RemoteCallback(void)
 					speed = pData->iSpeed;
 					wState = pData->wState;
 					
-					iTimeLast = millis();
+					iTimeLastRx = millis();
 					//if (speed > 300) speed = 300;	else if (speed < -300) speed = -300;		// for testing this function
 
 					AnswerMaster();

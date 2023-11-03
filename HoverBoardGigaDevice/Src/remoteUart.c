@@ -63,16 +63,21 @@ typedef struct{				// ´#pragma pack(1)´ needed to get correct sizeof()
 //static uint8_t aDebug[sizeof(SerialServer2Hover)];
 
 
-uint32_t iTimeLast = 0;
+uint32_t iTimeLastRx = 0;
+uint32_t iTimeNextTx = 0;
 
 // Send frame to steer device
 void RemoteUpdate(void)
 {
-	if (millis() - iTimeLast > 500)
+	if (millis() - iTimeLastRx > LOST_CONNECTION_STOP_MILLIS)
 	{
 		speed = steer = 0;
 	}
 
+	if (millis() < iTimeNextTx)	
+		return;
+	iTimeNextTx = millis() + SEND_INTERVAL_MS;
+	
 	// Ask for steer input
 	SerialHover2Server oData;
 	oData.cStart = START_FRAME;
@@ -146,7 +151,9 @@ void RemoteCallback(void)
 			//if (1)
 			if (pData->checksum == CalcCRC(aReceiveBuffer, sizeof(SerialServer2Hover) - 2))	//  first bytes except crc
 			{
+				iTimeLastRx = millis();
 				//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
+					DEBUG_LedSet(SET,0)
 				speed = pData->iSpeed;
 				steer = pData->iSteer;
 				wState = pData->wStateMaster;
@@ -159,6 +166,7 @@ void RemoteCallback(void)
 	}
 }
 
+/*
 // Update USART steer input
 void RemoteUpdateNew(void)	// get rid of this stupid struct __attribute__((packed, aligned(1))) "bug" by not using uint8_t in struct
 {
@@ -201,7 +209,7 @@ void RemoteUpdateNew(void)	// get rid of this stupid struct __attribute__((packe
 				//DEBUG_LedSet(SET,0) // 		(steerCounter%2) < 1
 				speed = pData->iSpeed;
 				steer = pData->iSteer;
-				iTimeLast = millis();
+				iTimeLastRx = millis();
 
 				if (speed > 300) speed = 300;	else if (speed < -300) speed = -300;		// for testing this function
 
@@ -210,6 +218,7 @@ void RemoteUpdateNew(void)	// get rid of this stupid struct __attribute__((packe
 		}
 	}
 }
+*/
 
 #endif
 

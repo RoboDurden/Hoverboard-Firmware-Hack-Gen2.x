@@ -20,8 +20,8 @@
 	extern uint8_t buzzerFreq;    						// global variable for the buzzer pitch. can be 1, 2, 3, 4, 5, 6, 7...
 	extern uint8_t buzzerPattern; 						// global variable for the buzzer pattern. can be 1, 2, 3, 4, 5, 6, 7...
   #define BuzzerSet(iFrequency, iPattern) {buzzerFreq = iFrequency;buzzerPattern = iPattern;}
-  #define BUZZER_MelodyDown(){int8_t iFreq=8;for (iFreq; iFreq>= 0; iFreq--){ buzzerFreq = iFreq; Delay(10); } buzzerFreq = 0;}
-  #define BUZZER_MelodyUp(){int8_t iFreq=0; for (iFreq; iFreq<= 8; iFreq++){ buzzerFreq = iFreq; Delay(10); } buzzerFreq = 0;}
+  #define BUZZER_MelodyDown(){int8_t iFreq=8;for (iFreq; iFreq>= 0; iFreq--){ buzzerFreq = iFreq; Delay(100); } buzzerFreq = 0;}
+  #define BUZZER_MelodyUp(){int8_t iFreq=0; for (iFreq; iFreq<= 8; iFreq++){ buzzerFreq = iFreq; Delay(100); } buzzerFreq = 0;}
 #else
   #define BuzzerSet(iFrequency, iPattern)
   #define BUZZER_MelodyDown()
@@ -262,6 +262,8 @@ const float lookUpTableAngle[181] =
 	FlagStatus enable = RESET;
 		int16_t pwmSlave = 0;
 
+
+uint32_t iTimeNextLoop = 0;
 //----------------------------------------------------------------------------
 // MAIN function
 //----------------------------------------------------------------------------
@@ -283,7 +285,7 @@ int main (void)
 	
 	//SystemClock_Config();
   SystemCoreClockUpdate();
-  SysTick_Config(SystemCoreClock / 100);
+  SysTick_Config(SystemCoreClock / 1000);	//  Configure SysTick to generate an interrupt every millisecond
 	
 	// Init watchdog
 	if (	Watchdog_init() == ERROR)
@@ -337,14 +339,18 @@ int main (void)
 	digitalWrite(UPPER_LED,RESET);
   while(1)
 	{
+		if (millis() < iTimeNextLoop)	
+			continue;
+		iTimeNextLoop = millis() + DELAY_IN_MAIN_LOOP;
+		
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
-		//DEBUG_LedSet(	(steerCounter%20) < 10	,1)
-		digitalWrite(MOSFET_OUT,	(steerCounter%20) < 10	);	// onboard led blinking :-)
+		DEBUG_LedSet(	(steerCounter%200) < 10	,1)
+		digitalWrite(MOSFET_OUT,	(steerCounter%200) < 100	);	// onboard led blinking :-)
 		
 		#ifdef SLAVE	
 			SetPWM(pwmSlave);
 		#else	//MASTER_OR_SINGLE
-			if ((steerCounter % 2) == 0)
+			if ((steerCounter % 2) == 0)	// something like DELAY_IN_MAIN_LOOP = 10 ms
 			{
 				RemoteUpdate();
 				DEBUG_LedSet(RESET,0)
@@ -491,7 +497,7 @@ int main (void)
 		if (wState & STATE_Shutoff)	ShutOff();
 
 
-		Delay(DELAY_IN_MAIN_LOOP);
+		//Delay(DELAY_IN_MAIN_LOOP);
 		
 		// Reload watchdog (watchdog fires after 1,6 seconds)
 		fwdgt_counter_reload();
