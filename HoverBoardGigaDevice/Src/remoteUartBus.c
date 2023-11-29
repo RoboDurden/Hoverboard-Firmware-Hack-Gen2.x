@@ -31,7 +31,7 @@ extern float realSpeed; 									// global variable for real Speed
 typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
    uint8_t cStart;			//  = '/';
    //uint16_t cStart;		//  = #define START_FRAME         0xABCD
-   uint8_t  iDataType;  //  unique id for this data struct
+   uint8_t  iDataType;  //  0 = unique id for this data struct
    uint8_t iSlave;			//  contains the slave id this message is intended for
    int16_t  iSpeed;
    uint8_t  wState;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
@@ -40,7 +40,7 @@ typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
 typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
    uint8_t cStart;			//  = '/';
    //uint16_t cStart;		//  = #define START_FRAME         0xABCD
-   uint8_t  iDataType;  //  unique id for this data struct
+   uint8_t  iDataType;  //  1 = unique id for this data struct
    uint8_t 	iSlave;			//  contains the slave id this message is intended for
    int16_t  iSpeed;
    int16_t  iSteer;
@@ -48,6 +48,15 @@ typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
    uint8_t  wStateSlave;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
    uint16_t checksum;
 } SerialServer2HoverMaster;
+typedef struct {			// ´#pragma pack(1)´ needed to get correct sizeof()
+   uint8_t cStart;			//  = '/';
+   //uint16_t cStart;		//  = #define START_FRAME         0xABCD
+   uint8_t  iDataType;  //  2 = unique id for this data struct
+   uint8_t 	iSlave;			//  contains the slave id this message is intended for
+   float  fBatteryVoltage;	// 10s LiIon = 10*3.6 = 36;
+   uint8_t 	iDivemode;			//  0=pwm, 1=speed/10, 3=torque, 4=iOdometer
+   uint16_t checksum;
+} SerialServer2HoverConfig;
 
 static uint8_t aReceiveBuffer[255];	//sizeof(SerialServer2Hover)
 
@@ -140,6 +149,7 @@ void RemoteCallback(void)
 		{
 			case 0: iRxDataSize = sizeof(SerialServer2Hover);	break;
 			case 1: iRxDataSize = sizeof(SerialServer2HoverMaster);	break;
+			case 2: iRxDataSize = sizeof(SerialServer2HoverConfig);	break;
 		}
 		return;
 	}
@@ -176,6 +186,11 @@ void RemoteCallback(void)
 					steer = pData->iSteer;
 					wState = pData->wState;
 					wStateSlave = pData->wStateSlave;
+					break;
+				}
+				case 2: 
+				{
+					SerialServer2HoverConfig* pData = (SerialServer2HoverConfig*) aReceiveBuffer;
 					break;
 				}
 			}
