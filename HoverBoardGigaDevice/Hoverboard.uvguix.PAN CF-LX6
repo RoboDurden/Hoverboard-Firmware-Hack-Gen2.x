@@ -3606,9 +3606,9 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>.\Inc\config.h</Name>
-        <ColumnNumber>4</ColumnNumber>
-        <TopLine>4</TopLine>
-        <CurrentLine>5</CurrentLine>
+        <ColumnNumber>0</ColumnNumber>
+        <TopLine>26</TopLine>
+        <CurrentLine>42</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
