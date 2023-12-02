@@ -116,6 +116,12 @@ Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 - [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/36)
 
 
+#### version/layout 2.15: = GD32F130C8
+![layout 2.15](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-15.jpg)
+- [details](Schematics_2.15/)
+- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38)
+
+
 ---
 
 ### Hoverboard-Firmware-Hack-Gen2.x
