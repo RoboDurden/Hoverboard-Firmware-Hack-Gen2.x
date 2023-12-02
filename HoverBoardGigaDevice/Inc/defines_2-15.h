@@ -22,22 +22,21 @@
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 // LED defines
+#define LED_GREEN PA15	// robo, from andyshmandy pin tracing image
+#define LED_ORANGE PB3	// colors might be wrong !
+#define LED_RED PB4
 
-#define LED_ORANGE PA15	// ORANGE LED 
-#define LED_GREEN PB3	  // GREEN LED
-#define LED_RED PB4			// RED LED
-
-#define UPPER_LED	PB5			// LED 
-#define LOWER_LED	PC13	// IN THE AIR
+#define UPPER_LED	PB5		// robo, from andyshmandy pin tracing image
+#define LOWER_LED	PF1		// upper and lower might be swaped
 
 
 // Mosfet output, little onboard led
-#define MOSFET_OUT	TODO_PIN	//<<<<<<<<<<<<-----------??????????????
+#define MOSFET_OUT	PA1		// robo might be the blue led inside the hover motors
 
 // Brushless Control DC (BLDC) defines
-#define BLDC_GH PA10		// green	, all bldc pins same as 2.0
+#define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
 #define BLDC_GL PB15		
-#define BLDC_BH PA9			// blue 
+#define BLDC_BH PA9			// blue
 #define BLDC_BL PB14		
 #define BLDC_YH PA8			// yellow
 #define BLDC_YL PB13		
@@ -48,14 +47,14 @@
 #define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12
 
 // Hall sensor defines
-#define HALL_A	PB11		   //  CONFIRMED
-#define HALL_B	PC14       //  CONFIRMED
-#define HALL_C	PA1        //  CONFIRMED
+#define HALL_A	PA0		// todo !! robo can not see the hall pins on andyshmandy pin tracing image
+#define HALL_B	PC15			// todo !! robo can not see the hall pins on andyshmandy pin tracing image
+#define HALL_C	PC14		// todo !! robo can not see the hall pins on andyshmandy pin tracing image
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #define HAS_USART0	// uncomment if this layout has a usart0
 #ifdef HAS_USART0
-	#define USART0_TX	PB6
+	#define USART0_TX	PB6		// robo, from andyshmandy pin tracing image
 	#define USART0_RX	PB7
 	
 	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
@@ -66,7 +65,7 @@
 // GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
 #define HAS_USART1	// uncomment if this layout has a usart1
 #ifdef HAS_USART1
-	#define USART1_TX		PA2
+	#define USART1_TX		PA2		// robo, from andyshmandy pin tracing image
 	#define USART1_RX		PA3
 	
 	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
@@ -76,24 +75,24 @@
 
 
 // ADC defines
-#define VBATT	PA4					// CONFIRMED
-#define CURRENT_DC	PA6		// CONFIRMED
+#define VBATT	PA7					// robo just guessing
+#define CURRENT_DC	PA6		// robo just guessing
 
 // Self hold defines
-#define SELF_HOLD	PB2  //todo
+#define SELF_HOLD	PA4 	// robo just geussing
 
 // Button defines
-#define BUTTON	 PC15 //todo
+#define BUTTON	PA5		// robo just guessing
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
-	#define BUZZER	PB10		// todo
+	#define BUZZER	PF0		// robo, from andyshmandy pin tracing image
 #endif
 
 #ifdef MASTER
 	// Charge state defines
-	#define CHARGE_STATE	PF0	// todo
+	#define CHARGE_STATE	TODO_PIN
 #endif
 
 // Debug pin defines -  no longer has any function in code !
-#define DEBUG_PIN TODO_PIN
+#define DEBUG_PIN PB4
