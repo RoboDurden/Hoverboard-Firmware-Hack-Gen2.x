@@ -425,8 +425,12 @@ void ADC_init(void)
 	dma_channel_enable(DMA_CH0);
 	
 	adc_channel_length_config(ADC_REGULAR_CHANNEL, 2);
-	adc_regular_channel_config(0, PIN_TO_CHANNEL(VBATT), ADC_SAMPLETIME_13POINT5);
-	adc_regular_channel_config(1, PIN_TO_CHANNEL(CURRENT_DC), ADC_SAMPLETIME_13POINT5);
+	#ifdef VBATT
+		adc_regular_channel_config(0, PIN_TO_CHANNEL(VBATT), ADC_SAMPLETIME_13POINT5);
+	#endif
+	#ifdef CURRENT_DC
+		adc_regular_channel_config(1, PIN_TO_CHANNEL(CURRENT_DC), ADC_SAMPLETIME_13POINT5);
+	#endif
 	//adc_regular_channel_config(0, VBATT_CHANNEL, ADC_SAMPLETIME_13POINT5);
 	//adc_regular_channel_config(1, CURRENT_DC_CHANNEL, ADC_SAMPLETIME_13POINT5);
 	adc_data_alignment_config(ADC_DATAALIGN_RIGHT);
