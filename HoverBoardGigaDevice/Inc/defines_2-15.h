@@ -31,14 +31,14 @@
 
 
 // Mosfet output, little onboard led
-#define MOSFET_OUT	PA1		// robo might be the blue led inside the hover motors
+#define MOSFET_OUT	TODO_PIN	// robo might be the blue led inside the hover motors
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
 #define BLDC_GL PB15		
-#define BLDC_BH PA9			// blue
+#define BLDC_BH PA9		// blue
 #define BLDC_BL PB14		
-#define BLDC_YH PA8			// yellow
+#define BLDC_YH PA8		// yellow
 #define BLDC_YL PB13		
 #define TIMER_BLDC_PULLUP	GPIO_PUPD_NONE	// robo: not sure if some boards indeed nned GPIO_PUPD_PULLUP like 2.2 or 2.3
 
@@ -47,9 +47,9 @@
 #define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12
 
 // Hall sensor defines
-#define HALL_A	PA0		// todo !! robo can not see the hall pins on andyshmandy pin tracing image
-#define HALL_B	PC15			// todo !! robo can not see the hall pins on andyshmandy pin tracing image
-#define HALL_C	PC14		// todo !! robo can not see the hall pins on andyshmandy pin tracing image
+#define HALL_A	PC14
+#define HALL_B	PA1
+#define HALL_C	PB11
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #define HAS_USART0	// uncomment if this layout has a usart0
@@ -75,7 +75,7 @@
 
 
 // ADC defines
-#define VBATT	PA7					// robo just guessing
+#define VBATT	PA7			// robo just guessing
 #define CURRENT_DC	PA6		// robo just guessing
 
 // Self hold defines
