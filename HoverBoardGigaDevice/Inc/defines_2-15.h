@@ -44,7 +44,7 @@
 
 
 // Timer BLDC short circuit emergency shutoff define
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12		// robo from pin tracing photo
 
 // Hall sensor defines
 #define HALL_A	PC14
@@ -75,18 +75,25 @@
 
 
 // ADC defines
-#define VBATT	PA7			// robo just guessing
-#define CURRENT_DC	PA6		// robo just guessing
+#define VBATT	PA4			// robo just guessing, maybe PA0 PA4 PA5 
+	
+#define CURRENT_DC	PA6		// robo from pin tracing photo
+
+#define PHASE_CURRENT_G	PB1		// robo from pin tracing photo, maybe wong order
+#define PHASE_CURRENT_B	PB0		
+#define PHASE_CURRENT_Y	PA7		
+
+
 
 // Self hold defines
-#define SELF_HOLD	PA4 	// robo just geussing
+#define SELF_HOLD	PB2 	// robo from pin tracing photo
 
 // Button defines
-#define BUTTON	PA5		// robo just guessing
+#define BUTTON	PA5		// robo from pin tracing photo
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
-	#define BUZZER	PF0		// robo, from andyshmandy pin tracing image
+	#define BUZZER	PF0		// robo from pin tracing photo
 #endif
 
 #ifdef MASTER
@@ -95,4 +102,8 @@
 #endif
 
 // Debug pin defines -  no longer has any function in code !
-#define DEBUG_PIN PB4
+#define DEBUG_PIN TODO_PIN
+
+// photo diodes / light barriers on the backside
+#define PHOTO_L_PIN		PA11
+#define PHOTO_R_PIN		PB10
