@@ -530,6 +530,11 @@
               <FilePath>.\Inc\defines_2-15.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-16.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-16.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-x.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x.h</FilePath>
@@ -1096,6 +1101,11 @@
               <FileName>defines_2-15.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-15.h</FilePath>
+            </File>
+            <File>
+              <FileName>defines_2-16.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-16.h</FilePath>
             </File>
             <File>
               <FileName>defines_2-x.h</FileName>

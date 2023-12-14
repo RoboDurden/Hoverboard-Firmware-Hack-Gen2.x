@@ -28,6 +28,8 @@
 	#include "defines_2-14.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/36
 #elif LAYOUT == 15
 	#include "defines_2-15.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/36
+#elif LAYOUT == 16
+	#include "defines_2-16.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/?
 #endif
 
 #ifndef TIMER_BLDC	// these defines should be equal for all Gen2 boards as they only have on bldc capable TIMER = TIMER0
