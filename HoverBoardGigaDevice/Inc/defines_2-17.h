@@ -55,8 +55,8 @@
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #define HAS_USART0	// uncomment if this layout has a usart0
 #ifdef HAS_USART0
-	#define USART0_TX	PB6
-	#define USART0_RX	PB7
+	#define USART0_TX	PA2
+	#define USART0_RX	PA3
 	
 	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
@@ -73,18 +73,15 @@
 #endif
 
 // ADC defines
-#define VBATT	TODO_PIN	//PA5??				
-#define CURRENT_DC	TODO_PIN		
+#define VBATT	PA1				//Unconfirmed
+#define CURRENT_DC PA4	//Unconfirmed
 
-// Self hold defines
 #define SELF_HOLD	PC13  // Confirmed AndyShmandy 12/19/2023
-
-// Button defines
 #define BUTTON	 PB2 		// Confirmed AndyShmandy 12/19/2023
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
-	#define BUZZER	TODO_PIN //PC14
+	#define BUZZER	PC14 //PC14
 #endif
 
 #ifdef MASTER
