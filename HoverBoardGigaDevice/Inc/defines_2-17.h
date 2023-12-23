@@ -22,17 +22,15 @@
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 // LED defines
-// For this layout, Master has no LEDs
-#define LED_ORANGE TODO_PIN	//PA15	// ORANGE LED 
-#define LED_GREEN TODO_PIN	//PB3	  // GREEN LED
-#define LED_RED TODO_PIN	//PB4			// RED LED
-
-#define UPPER_LED	TODO_PIN	//PB5			// LED 
-#define LOWER_LED	TODO_PIN	//PC13	// IN THE AIR
+#define LED_ORANGE TODO_PIN		// Layout 2-17 doesn't have any LEDs on the Master or Slave
+#define LED_GREEN TODO_PIN		// Layout 2-17 doesn't have any LEDs on the Master or Slave
+#define LED_RED TODO_PIN			// Layout 2-17 doesn't have any LEDs on the Master or Slave
+#define UPPER_LED	TODO_PIN		// Layout 2-17 doesn't have any LEDs on the Master or Slave
+#define LOWER_LED	TODO_PIN		// Layout 2-17 doesn't have any LEDs on the Master or Slave
 
 
 // Mosfet output, little onboard led
-#define MOSFET_OUT	TODO_PIN	//<<<<<<<<<<<<-----------??????????????
+#define MOSFET_OUT	TODO_PIN	// Layout 2-17 doesn't have any LEDs on the Master or Slave
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, all bldc pins same as 2.0
@@ -53,35 +51,35 @@
 #define HALL_C	PC15    // Confirmed AndyShmandy 12/19/2023
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
-#define HAS_USART0	// uncomment if this layout has a usart0
-#ifdef HAS_USART0
-	#define USART0_TX	PA2
-	#define USART0_RX	PA3
+//#define HAS_USART0	// uncomment if this layout has a usart0
+#ifdef HAS_USART0			// This layout (2-17) doesn't have USART0 accessible on the board.
+	#define USART0_TX	TODO_PIN 
+	#define USART0_RX	TODO_PIN
 	
-	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
+	#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	//#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
 #endif
 
 // GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
-//#define HAS_USART1	// uncomment if this layout has a usart1
+#define HAS_USART1	// uncomment if this layout has a usart1
 #ifdef HAS_USART1
-	#define USART1_TX		PA2
-	#define USART1_RX		PA3
+	#define USART1_TX		PA2		// Confirmed AndyShmandy 12/22/2023
+	#define USART1_RX		PA3		// Confirmed AndyShmandy 12/22/2023
 	
-	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
-	//#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
+	//#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
+	#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
 
 // ADC defines
-#define VBATT	PA1				//Unconfirmed
-#define CURRENT_DC PA4	//Unconfirmed
+#define VBATT	PB1				// Confirmed AndyShmandy 12/22/2023
+#define CURRENT_DC 	PA7 //Unconfirmed
 
 #define SELF_HOLD	PC13  // Confirmed AndyShmandy 12/19/2023
 #define BUTTON	 PB2 		// Confirmed AndyShmandy 12/19/2023
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
-	#define BUZZER	PC14 //PC14
+	#define BUZZER	PC14	// Confirmed AndyShmandy 12/19/2023
 #endif
 
 #ifdef MASTER
