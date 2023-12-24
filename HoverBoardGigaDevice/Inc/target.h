@@ -56,8 +56,8 @@
 	//GD32F130xx Datasheet	2.6.7. GD32F130xx pin alternate function	
 	#define AF_TIMER0_BLDC(pin)	GPIO_AF_2	// GD32F130: all TIMER0 AF are AF2
 	#define AF_TIMER0_BRKIN(pin)	(pin==PA6 ? GPIO_AF_2 : GPIO_AF_2)	// GD32F130: AF2 = PA6 or PB12
-	#define AF_USART0_TX(pin)	(pin==PB6 ? GPIO_AF_1 : GPIO_AF_2)			// GD32F130: AF0 = PB6 , AF1 = PA2 or PA9 or PA14
-	#define AF_USART0_RX(pin)	(pin==PB7 ? GPIO_AF_1 : GPIO_AF_2)			// GD32F130: AF0 = PB7 , AF1 = PA3 or PA15 
+	#define AF_USART0_TX(pin)	(pin==PB6 ? GPIO_AF_0 : GPIO_AF_1)			// GD32F130: AF0 = PB6 , AF1 = PA2 or PA9 or PA14
+	#define AF_USART0_RX(pin)	(pin==PB7 ? GPIO_AF_0 : GPIO_AF_1)			// GD32F130: AF0 = PB7 , AF1 = PA3 or PA15 
 	#define AF_USART1_TX(pin)	(pin==PA8 ? GPIO_AF_4 : GPIO_AF_1)		// GD32F130: AF4 = PA8 , AF1 = PA2 or PA14
 	#define AF_USART1_RX(pin)	(pin==PB0 ? GPIO_AF_4 : GPIO_AF_1)		// GD32F130: AF4 = PB0 , AF1 = PA3 or PA15
 
