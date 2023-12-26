@@ -11,11 +11,11 @@ uint8_t beepsBackwards = 0;
 uint8_t activateWeakening = 0;
 */
 
-template <typename O,typename I> void HoverSetupEsp32(O& oSerial, I iBaud, I gpio_port_RX, I gpio_port_TX)
+template <typename O,typename I> void HoverSetupEsp32(O& oSerial, I iBaud, I gpio_RX, I gpio_TX)
 {
-  // Starts the serial connection using the baud, protocol, GPIO RX Port, GPIO TX Port
-  // These are the GPIO Port numbers; not necessarily the pin number printed on the PCB.
-  oSerial.begin(iBaud, SERIAL_8N1, gpio_port_RX, gpio_port_TX);
+  // Starts the serial connection using the baud, protocol, GPIO RX, GPIO TX.
+  // These are the GPIO numbers; not necessarily the pin number printed on the PCB.
+  oSerial.begin(iBaud, SERIAL_8N1, gpio_RX, gpio_TX);
 }
 template <typename O,typename I> void HoverSetupArduino(O& oSerial, I iBaud)
 {

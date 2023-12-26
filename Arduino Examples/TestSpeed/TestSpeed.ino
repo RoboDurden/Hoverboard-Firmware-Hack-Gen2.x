@@ -29,9 +29,9 @@ void setup()
   #endif
   
   #ifdef ESP32
-    // Serial interface, baud, RX GPIO Port, TX GPIO Port
-    // Note: The GPIO Port numbers will not necessarily correspond to the
-    // pin number printed on the PCB. Refer to your ESP32 documentation for pin to port mappings.
+    // Serial interface, baud, RX GPIO, TX GPIO
+    // Note: The GPIO numbers will not necessarily correspond to the
+    // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
     HoverSetupEsp32(oSerialHover,19200,39,37);
   #else
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
