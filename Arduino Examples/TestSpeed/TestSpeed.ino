@@ -4,7 +4,7 @@
 //
 //    please share feedback to https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x
 
-
+#define ESP32       // comment out if using Arduino
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
 //#define REMOTE_UARTBUS
@@ -29,13 +29,13 @@ void setup()
   #endif
   
   #ifdef ESP32
-    HoverSetupEsp32(oSerialHover,19200,39,37);      // baud, rx, tx
+    // Serial interface, baud, RX GPIO, TX GPIO
+    // Note: The GPIO numbers will not necessarily correspond to the
+    // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
+    HoverSetupEsp32(oSerialHover,19200,39,37);
   #else
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif
-
-  //pinMode(39, OUTPUT);
-  //pinMode(37, OUTPUT);
 
   pinMode(LED_BUILTIN, OUTPUT);
 }
