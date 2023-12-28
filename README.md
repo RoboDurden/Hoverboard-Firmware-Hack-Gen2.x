@@ -1,4 +1,4 @@
-### 2023/11/2 the following layouts are ready to use (99%):
+### 2023/12/28 the following layouts are ready to use (99%):
 
 - 2.0
 - 2.2 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
