@@ -10,15 +10,7 @@
 	//LAYOUT_2_7	// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 	#define LAYOUT 7
 #else
-	/*
-	LAYOUT_2_0	// 100% ready.. https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
-	LAYOUT_2_1	// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
-	LAYOUT_2_2	// 90% ready. battery voltage and currentDC missing. motor spinning.
-	LAYOUT_2_3	// 99% ready.. https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-	LAYOUT_2_4	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
-	LAYOUT_2_11	// NOT READY !!! https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
-	*/
-	#define LAYOUT 17
+	#define LAYOUT 0
 #endif
 
 //#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
