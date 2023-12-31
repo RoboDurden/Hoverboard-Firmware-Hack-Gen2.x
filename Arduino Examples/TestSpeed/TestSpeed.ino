@@ -7,7 +7,9 @@
 #define ESP32       // comment out if using Arduino
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
-//#define REMOTE_UARTBUS
+#define REMOTE_UARTBUS
+
+#define SEND_MILLIS 100   // send commands to hoverboard every SEND_MILLIS millisesonds
 
 #include "util.h"
 #include "hoverserial.h"
@@ -44,6 +46,7 @@ unsigned long iLast = 0;
 unsigned long iNext = 0;
 unsigned long iTimeNextState = 3000;
 uint8_t  wState = 1;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
+uint8_t  iSendId = 0;   // only ofr UartBus
 
 void loop()
 {
@@ -66,31 +69,38 @@ void loop()
     if (wState == 64) wState = 1;  // remove this line to test Shutoff = 128
   }
   
-  boolean bReceived = Receive(oSerialHover,oHoverFeedback);   
-  if (bReceived)
+  boolean bReceived;   
+  while (bReceived = Receive(oSerialHover,oHoverFeedback))
   {
     DEBUGT("millis",iNow-iLast);
     DEBUGT("iSpeed",iSpeed);
     //DEBUGT("iSteer",iSteer);
     HoverLog(oHoverFeedback);
     iLast = iNow;
-   }
+  }
 
-    if (iNow > iNext)
-    {
-      iNext = iNow + 100;
-      //DEBUGLN("time",iNow)
-      int iSpeedL = CLAMP(iSpeed + iSteer,-1000,1000);
-      int iSpeedR = -CLAMP(iSpeed - iSteer,-1000,1000);
-      
-      #ifdef REMOTE_UARTBUS
-        HoverSend(oSerialHover,0,iSpeedL,wState);  // hoverboard will answer immediatly on having received this message ...
-        delay(10);
-        HoverSend(oSerialHover,1,iSpeedR,wState);  // but wait 10 ms for the RX line to be clear again
-      #else
+  if (iNow > iNext)
+  {
+    //DEBUGLN("time",iNow)
+    
+    #ifdef REMOTE_UARTBUS
+      switch(iSendId++)
+      {
+      case 0: // left motor
+        HoverSend(oSerialHover,0,CLAMP(iSpeed + iSteer,-1000,1000),wState);  // hoverboard will answer immediatly on having received this message ...
+        break;
+      case 1: // right motor
+        HoverSend(oSerialHover,1,-CLAMP(iSpeed - iSteer,-1000,1000),wState);  // hoverboard will answer immediatly on having received this message ...
+        iSendId = 0;
+        break;
+      }
+      iNext = iNow + SEND_MILLIS/2;
+    #else
+      //if (bReceived)  // Reply only when you receive data
         HoverSend(oSerialHover,iSteer,iSpeed,wState,wState);
-    #endif
-    }
-    //if (bReceived)  // Reply only when you receive data
+      
+      iNext = iNow + SEND_MILLIS;
+  #endif
+  }
 
 }

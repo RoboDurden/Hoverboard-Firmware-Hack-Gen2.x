@@ -1,698 +1,0 @@
-Dependencies for Project 'Hoverboard', Target 'GD32E230C8T6': (DO NOT MODIFY !)
-CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\Src\main.c)(0x6538CB62)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/main.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-I (Src\..\Inc\bldc.h)(0x64F989D9)
-I (Src\..\Inc\commsMasterSlave.h)(0x6538083F)
-I (Src\..\Inc\commsBluetooth.h)(0x64F989D9)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x6388AB78)
-F (.\Src\bldc.c)(0x652A577B)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/bldc.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-F (.\Src\setup.c)(0x652A6248)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/setup.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-F (.\Src\it.c)(0x6538CC10)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/it.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-I (Src\..\Inc\bldc.h)(0x64F989D9)
-I (Src\..\Inc\led.h)(0x64F989D9)
-I (Src\..\Inc\commsMasterSlave.h)(0x6538083F)
-I (Src\..\Inc\commsBluetooth.h)(0x64F989D9)
-F (.\Src\led.c)(0x652A5348)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/led.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\led.h)(0x64F989D9)
-F (.\Src\remoteUart.c)(0x6533B542)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/remoteuart.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-I (Src\..\Inc\comms.h)(0x64F989D9)
-I (Src\..\Inc\bldc.h)(0x64F989D9)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6388AB78)
-F (.\Src\remoteCrsf.c)(0x652A9040)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/remotecrsf.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-I (Src\..\Inc\comms.h)(0x64F989D9)
-I (Src\..\Inc\bldc.h)(0x64F989D9)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6388AB78)
-F (.\Src\remoteDummy.c)(0x65363425)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/remotedummy.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-F (.\Src\remoteUartBus.c)(0x6533BFDF)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/remoteuartbus.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-I (Src\..\Inc\comms.h)(0x64F989D9)
-I (Src\..\Inc\bldc.h)(0x64F989D9)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6388AB78)
-F (.\Src\commsMasterSlave.c)(0x65380A19)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/commsmasterslave.o -MD)
-I (Src\..\Inc\defines.h)(0x65358C29)
-I (Src\..\Inc\..\Inc\target.h)(0x64F99198)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (Src\..\Inc\..\Inc\setup.h)(0x6527C6CB)
-I (Src\..\Inc\..\Inc\config.h)(0x6538CC58)
-I (Src\..\Inc\..\Inc\remote.h)(0x65294C07)
-I (Src\..\Inc\..\Inc\remoteUartBus.h)(0x65294DF5)
-I (Src\..\Inc\defines_2-7.h)(0x652A809C)
-I (Src\..\Inc\it.h)(0x64F989D9)
-I (Src\..\Inc\comms.h)(0x64F989D9)
-I (Src\..\Inc\commsMasterSlave.h)(0x6538083F)
-I (Src\..\Inc\bldc.h)(0x64F989D9)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB78)
-I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6388AB78)
-F (.\Inc\config.h)(0x6538CC58)()
-F (.\Inc\setup.h)(0x6527C6CB)()
-F (.\Inc\bldc.h)(0x64F989D9)()
-F (.\Inc\it.h)(0x64F989D9)()
-F (.\Inc\led.h)(0x64F989D9)()
-F (.\Inc\defines.h)(0x65358C29)()
-F (.\Inc\defines_2-0.h)(0x652A806A)()
-F (.\Inc\defines_2-1.h)(0x652A6C61)()
-F (.\Inc\defines_2-2.h)(0x6538027A)()
-F (.\Inc\defines_2-3.h)(0x652B8DBA)()
-F (.\Inc\defines_2-4.h)(0x652A7C77)()
-F (.\Inc\defines_2-7.h)(0x652A809C)()
-F (.\Inc\defines_2-11.h)(0x652A8193)()
-F (.\Inc\defines_2-x.h)(0x652A821F)()
-F (.\Inc\target.h)(0x64F99198)()
-F (.\Inc\remote.h)(0x65294C07)()
-F (.\Inc\remoteUart.h)(0x6526B8ED)()
-F (.\Inc\remoteCrsf.h)(0x652A73F0)()
-F (.\Inc\remoteDummy.h)(0x650B1F34)()
-F (.\Inc\remoteUartBus.h)(0x65294DF5)()
-F (.\Inc\commsMasterSlave.h)(0x6538083F)()
-F (RTE/Device/GD32E230C8/gd32e23x_adc.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_adc.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_dma.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_dma.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_fmc.c)(0x6506C587)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_fmc.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_fwdgt.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_fwdgt.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_gpio.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_gpio.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_i2c.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_i2c.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_misc.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_misc.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_pmu.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_pmu.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_rcu.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_rcu.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_syscfg.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_syscfg.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_timer.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_timer.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_usart.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_usart.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/gd32e23x_wwdgt.c)(0x64F98087)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/gd32e23x_wwdgt.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-F (RTE/Device/GD32E230C8/startup_gd32e23x.s)(0x64F98087)(--cpu=Cortex-M23 --pd "__EVAL SETA 1" --diag_suppress=A1950W-I.\RTE\_GD32E230C8T6-I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include"-I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc"-I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include"--pd "__UVISION_VERSION SETA 538"--pd "_RTE_ SETA 1"--pd "GD32E23x SETA 1"--pd "_RTE_ SETA 1"--list .\listings\startup_gd32e23x.lst--xref -o .\objects\startup_gd32e23x.o--depend .\objects\startup_gd32e23x.d)
-F (RTE/Device/GD32E230C8/system_gd32e23x.c)(0x6506C588)(-xc -std=c90 --target=arm-arm-none-eabi -mcpu=cortex-m23 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -O1 -fno-function-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier-I./RTE/_GD32E230C8T6-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Firmware/Peripherals/inc"-I"C:/Users/PAN CF-LX6/AppData/Local/Arm/Packs/GigaDevice/GD32E23x_DFP/1.0.2/Device/Include"-D__UVISION_VERSION="538" -D_RTE_ -DGD32E23x -D_RTE_ -DGD32E230-o ./objects/system_gd32e23x.o -MD)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm23.h)(0x626FAD4E)
-I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\system_gd32e23x.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include\gd32e23x_libopt.h)(0x5C9389E2)
-I (RTE\_GD32E230C8T6\RTE_Components.h)(0x6506C9F2)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_adc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_dma.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fmc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_fwdgt.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_gpio.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_i2c.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_misc.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_pmu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_rcu.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_syscfg.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_timer.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_usart.h)(0x5C7F90CA)
-I (C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Device\Firmware\Peripherals\inc\gd32e23x_wwdgt.h)(0x5C7F90CA)
-F (RTE/Device/GD32F130C8/gd32f1x0_adc.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_dbg.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_dma.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_fwdgt.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_gpio.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_i2c.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_misc.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_opa.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_pmu.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_rcu.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_syscfg.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_timer.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_usart.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/gd32f1x0_wwdgt.c)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/startup_gd32f1x0.s)(0x64AEBBDD)()
-F (RTE/Device/GD32F130C8/system_gd32f1x0.c)(0x64AEBBDD)()

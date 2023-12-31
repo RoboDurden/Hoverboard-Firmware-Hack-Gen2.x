@@ -88,6 +88,7 @@ void RemoteUpdate(void)
 
 extern 	uint32_t steerCounter;
 
+uint32_t iAnswerMaster = 0;
 
 void AnswerMaster(void)
 {
@@ -100,6 +101,7 @@ void AnswerMaster(void)
 	oData.iAmp = (int16_t) 	(currentDC * 100);
 	oData.iSpeed = (int16_t) (realSpeed * 100);
 	oData.iOdom = (int32_t) iOdom;
+	oData.iOdom = iAnswerMaster++;
 
 	oData.checksum = 	CalcCRC((uint8_t*) &oData, sizeof(oData) - 2);	// (first bytes except crc)
 
