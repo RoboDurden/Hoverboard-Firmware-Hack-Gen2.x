@@ -26,8 +26,8 @@
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 // LED defines
-#define LED_GREEN PA15
-#define LED_ORANGE PB3
+#define LED_GREEN PB3
+#define LED_ORANGE PA15
 #define LED_RED PB4
 
 #define UPPER_LED	PB5	
@@ -51,9 +51,9 @@
 #define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12
 
 // Hall sensor defines
-#define HALL_A	PC14
-#define HALL_B	PA1
-#define HALL_C	PB11
+#define HALL_B	PC14
+#define HALL_C	PA1
+#define HALL_A	PB11
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #define HAS_USART0	// uncomment if this layout has a usart0

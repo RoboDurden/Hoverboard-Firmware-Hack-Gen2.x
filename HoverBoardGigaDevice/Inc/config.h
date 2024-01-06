@@ -13,8 +13,8 @@
 	#define LAYOUT 6
 #endif
 
-//#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
-#define SLAVE			// uncomment for SLAVE firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
+#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
+//#define SLAVE			// uncomment for SLAVE firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
 //#define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
 
 #define BAT_CELLS         	6        // battery number of cells. Normal Hoverboard battery: 10s
