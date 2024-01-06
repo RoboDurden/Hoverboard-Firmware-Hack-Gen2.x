@@ -77,10 +77,13 @@
 #endif
 
 
+// 	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
 
 // ADC defines
 #define VBATT	PA4		// robo just guessing
-#define CURRENT_DC	PA7	// robo just guessing, next guess would be PB0
+#define CURRENT_DC	PB1	// robo just guessing, next guess would be PB0
+// 	PA0 PA6 PB0 PB1 	
+
 
 // Self hold defines
 #define SELF_HOLD	PB2		// robo: called latch on the pin tracing ?
