@@ -69,10 +69,10 @@ void ResetTimeout(void)
 
 //----------------------------------------------------------------------------
 // Timer13_Update_Handler
-// Is called when upcouting of timer13 is finished and the UPDATE-flag is set
+// Is called when upcouting of TIMER_TIMEOUT (timer13) is finished and the UPDATE-flag is set
 // -> period of timer13 running with 1kHz -> interrupt every 1ms
 //----------------------------------------------------------------------------
-void TIMER13_IRQHandler(void)
+void TIMEOUT_IrqHandler(void)
 {	
 	if (timeoutCounter_ms > TIMEOUT_MS)
 	{
@@ -114,7 +114,7 @@ void TIMER13_IRQHandler(void)
 #endif
 	
 	// Clear timer update interrupt flag
-	timer_interrupt_flag_clear(TIMER13, TIMER_INT_UP);
+	timer_interrupt_flag_clear(TIMER_TIMEOUT, TIMER_INT_UP);
 }
 
 //----------------------------------------------------------------------------

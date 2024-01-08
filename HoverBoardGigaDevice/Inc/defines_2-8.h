@@ -116,3 +116,9 @@ typedef enum {
 
 // Debug pin defines -  no longer has any function in code !
 #define DEBUG_PIN PB4
+
+
+#define TIMER_TIMEOUT TIM14
+#define TIMEOUT_IrqHandler TIM14_IRQHandler
+#define RCU_TIMER_TIMEOUT	RCU_TIM14
+#define TIMER_TIMEOUT_IRQn TIM14_IRQn
