@@ -1,12 +1,7 @@
-// WARNING, the pins have been traced on a 2.61 board (two-sys_V1.5.1-AI)
-// 2.61 should be compatible to 2.6 = two-sys_V1.5
-
-// see image Schematics_2.6/hoverboard_gen2-6.1_Uart0_header.jpg on how to access the usart0 serial port.
-// big thanks to AILIFE4798
+// WARNING: no pin tracing yet done, simply a copy of 2.0 to test compiling
 
 
-#ifdef MASTER_OR_SINGLE		// layout 2.2, 2.6 and 2.7 have buzzer on the slave board.
-#else
+#ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define HAS_BUZZER
 #endif
 
@@ -30,16 +25,16 @@
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
 // LED defines
-#define LED_GREEN PB3
-#define LED_ORANGE PA15
-#define LED_RED PB4
+#define LED_GREEN PA15
+#define LED_ORANGE PA12
+#define LED_RED PB3
 
-#define UPPER_LED	PB5	
-#define LOWER_LED	TODO_PIN
+#define UPPER_LED	PA1
+#define LOWER_LED	PA0
 
 
 // Mosfet output, little onboard led
-#define MOSFET_OUT	TODO_PIN
+#define MOSFET_OUT	PC13
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
@@ -56,8 +51,8 @@
 
 // Hall sensor defines
 #define HALL_A	PB11
-#define HALL_B	PC14
-#define HALL_C	PA1
+#define HALL_B	PF1
+#define HALL_C	PC14
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #define HAS_USART0	// uncomment if this layout has a usart0
@@ -81,30 +76,26 @@
 #endif
 
 
-// 	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
 
 // ADC defines
-#define VBATT	PA4		
-#define ADC_BATTERY_VOLT      0.02488682634 	// V_Batt to V_BattMeasure = factor 30: ( (ADC-Data/4095) *3,3V *30 ) 
-
-#define CURRENT_DC	PA6	
-
+#define VBATT	PA4
+#define CURRENT_DC	PA6
 
 // Self hold defines
-#define SELF_HOLD	PB2		// robo: called latch on the pin tracing image
+#define SELF_HOLD	PB2
 
 // Button defines
-#define BUTTON	PA5		// robo: called BTN detect on the pin tracing image
+#define BUTTON	PC15
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
-	#define BUZZER	PB9
+	#define BUZZER	PB10
 #endif
 
 #ifdef MASTER
 	// Charge state defines
-	#define CHARGE_STATE	PC15
+	#define CHARGE_STATE	PF0
 #endif
 
 // Debug pin defines -  no longer has any function in code !
-#define DEBUG_PIN TODO_PIN
+#define DEBUG_PIN PB4

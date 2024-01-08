@@ -375,12 +375,12 @@ ARM Macro Assembler    Page 6
               00000000 
 Command Line: --xref --diag_suppress=9931,A1950W --cpu=Cortex-M0 --depend=.\obj
 ects\startup_mm32spin06xx_s_keil.d -o.\objects\startup_mm32spin06xx_s_keil.o -I
-.\RTE\_MM32SPIN05 -IC:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSI
-S\Core\Include -IC:\Users\Admin\AppData\Local\Arm\Packs\MindMotion\MM32SPIN0x_D
-FP\1.0.8\Device\MM32SPIN06xx_s\Include --predefine="__EVAL SETA 1" --predefine=
-"__UVISION_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="MM32SPIN05
-PF SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_mm32spin06xx_s_
-keil.lst RTE/Device/MM32SPIN05PF/startup_mm32spin06xx_s_keil.s
+.\RTE\_MM32SPIN05 -I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.
+0\CMSIS\Core\Include" -I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\MindMotion
+\MM32SPIN0x_DFP\1.0.8\Device\MM32SPIN06xx_s\Include" --predefine="__EVAL SETA 1
+" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefi
+ne="MM32SPIN05PF SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_m
+m32spin06xx_s_keil.lst RTE/Device/MM32SPIN05PF/startup_mm32spin06xx_s_keil.s
 
 
 

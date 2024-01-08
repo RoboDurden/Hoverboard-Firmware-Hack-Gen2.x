@@ -20,6 +20,8 @@
 	#include "defines_2-6.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/49
 #elif LAYOUT == 7
 	#include "defines_2-7.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+#elif LAYOUT == 8
+	#include "defines_2-8.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/22
 #elif LAYOUT == 10
 	#include "defines_2-10.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 #elif LAYOUT == 11
@@ -127,7 +129,7 @@
 	#define MOTOR_AMP_CONV_DC_AMP 0.201465201465  // 3,3V * 1/3 - 0,004Ohm * IL(ampere) = (ADC-Data/4095) *3,3V
 #endif
 #ifndef ADC_BATTERY_VOLT
-	#define ADC_BATTERY_VOLT      0.02488682634 	// V_Batt to V_BattMeasure = factor 30: ( (ADC-Data/4095) *3,3V *30 )
+	#define ADC_BATTERY_VOLT      0.024169921875  	// V_Batt to V_BattMeasure = factor 30: ( (ADC-Data/4095) *3,3V *30 )
 #endif
 
 

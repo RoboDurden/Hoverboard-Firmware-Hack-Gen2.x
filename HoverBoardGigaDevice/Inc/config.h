@@ -7,23 +7,24 @@
 
 // LAYOUT_2_X is used in defines.h
 #ifdef GD32E230
-	//LAYOUT_2_7	// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 	#define LAYOUT 7
+#elif MM32SPIN05
+	#define LAYOUT 8
 #else
 	#define LAYOUT 6
 #endif
 
-#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
+//#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
 //#define SLAVE			// uncomment for SLAVE firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
-//#define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
+#define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
 
 #define BAT_CELLS         	6        // battery number of cells. Normal Hoverboard battery: 10s
 
 #if defined(MASTER) || defined(SINGLE)
 	#define MASTER_OR_SINGLE
 	
-	//#define REMOTE_DUMMY
-	#define REMOTE_UART
+	#define REMOTE_DUMMY
+	//#define REMOTE_UART
 	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 
@@ -31,7 +32,7 @@
 		#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
 	#endif
 
-//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
 //#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
 
 	#define SPEED_COEFFICIENT   -1
