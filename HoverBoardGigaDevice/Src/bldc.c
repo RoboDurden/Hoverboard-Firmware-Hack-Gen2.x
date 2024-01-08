@@ -161,10 +161,8 @@ void CalculateBLDC(void)
     if (buzzerTimer % buzzerFreq == 0)
 		{
 			buzzerToggle = buzzerToggle == RESET ? SET : RESET; // toggle variable
-		  gpio_bit_write(GPIOB, GPIO_PIN_9, buzzerToggle);
-			
-			
 			digitalWrite(BUZZER,buzzerToggle);
+		  //gpio_bit_write(BUZZER_PORT, BUZZER_PIN, buzzerToggle);
     }
   }
 	else
