@@ -1,8 +1,5 @@
 // WARNING: no pin tracing yet done, simply a copy of 2.0 to test compiling
 
-	#define BUZZER_PIN GPIO_PIN_9
-	#define BUZZER_PORT GPIOB
-
 
 #ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define HAS_BUZZER
@@ -25,7 +22,7 @@
 	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
 */
 
-#define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
+#define TODO_PIN PC13	// WARNING, the MM32SPIN05 does not have a bigger the 48 pin package. So PC13 might be in use !!
 
 // LED defines
 #define LED_GREEN PA15
@@ -38,6 +35,13 @@
 
 // Mosfet output, little onboard led
 #define MOSFET_OUT	PC13
+
+	#define TIMER_BLDC 		TIM1
+	#define RCU_TIMER_BLDC 		RCU_TIM1
+	#define TIMER_BLDC_CHANNEL_G 	TIM_CH_2
+	#define TIMER_BLDC_CHANNEL_B 	TIM_CH_1
+	#define TIMER_BLDC_CHANNEL_Y 	TIM_CH_0
+
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
@@ -54,7 +58,7 @@
 
 // Hall sensor defines
 #define HALL_A	PB11
-#define HALL_B	PF1
+#define HALL_B	TODO_PIN
 #define HALL_C	PC14
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
