@@ -1,6 +1,10 @@
 // WARNING, the pins have been traced on a 2.61 board (two-sys_V1.5.1-AI)
 // 2.61 should be compatible to 2.6 = two-sys_V1.5
 
+// see image Schematics_2.6/hoverboard_gen2-6.1_Uart0_header.jpg on how to access the usart0 serial port.
+// big thanks to AILIFE4798
+
+
 #ifdef MASTER_OR_SINGLE		// layout 2.2, 2.6 and 2.7 have buzzer on the slave board.
 #else
 	#define HAS_BUZZER
@@ -80,16 +84,15 @@
 // 	A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 	
 
 // ADC defines
-#define VBATT	PA4		// robo just guessing
-#define CURRENT_DC	PA6	// robo just guessing, next guess would be PB0
-// 	PA0 PA6 PB0 PB1 	
+#define VBATT	PA4		
+#define CURRENT_DC	PA6	
 
 
 // Self hold defines
-#define SELF_HOLD	PB2		// robo: called latch on the pin tracing ?
+#define SELF_HOLD	PB2		// robo: called latch on the pin tracing image
 
 // Button defines
-#define BUTTON	PA5		// robo: called BTN detect on the pin tracing image ?
+#define BUTTON	PA5		// robo: called BTN detect on the pin tracing image
 
 #ifdef HAS_BUZZER
 	// Buzzer defins
