@@ -1516,7 +1516,7 @@
               <MiscControls></MiscControls>
               <Define>MM32SPIN05</Define>
               <Undefine></Undefine>
-              <IncludePath>.\RTE\IncludeMM32;.\Src\MM32_HAL_lib</IncludePath>
+              <IncludePath>.\RTE\IncludeMM32;.\Device\MM32SPIN0x_q\HAL_Lib\Inc;.\Device\MM32SPIN0x_q\Include;.\Device\CMSIS\KEIL_Core</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
