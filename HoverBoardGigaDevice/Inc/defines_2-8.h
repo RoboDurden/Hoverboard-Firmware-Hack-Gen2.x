@@ -36,11 +36,21 @@
 // Mosfet output, little onboard led
 #define MOSFET_OUT	PC13
 
+// found in hal_tim.h of MM32SPIN0x_q_Samples
+typedef enum {
+    TIM_Channel_1 = 0x0000,  ///< TIM Channel 1
+    TIM_Channel_2 = 0x0004,  ///< TIM Channel 2
+    TIM_Channel_3 = 0x0008,  ///< TIM Channel 3
+    TIM_Channel_4 = 0x000C,  ///< TIM Channel 4
+    TIM_Channel_5 = 0x0010   ///< TIM Channel 5
+} TIMCHx_Typedef;
+
+
 	#define TIMER_BLDC 		TIM1
 	#define RCU_TIMER_BLDC 		RCU_TIM1
-	#define TIMER_BLDC_CHANNEL_G 	TIM_CH_2
-	#define TIMER_BLDC_CHANNEL_B 	TIM_CH_1
-	#define TIMER_BLDC_CHANNEL_Y 	TIM_CH_0
+	#define TIMER_BLDC_CHANNEL_G 	TIM_Channel_3
+	#define TIMER_BLDC_CHANNEL_B 	TIM_Channel_2
+	#define TIMER_BLDC_CHANNEL_Y 	TIM_Channel_1
 
 
 // Brushless Control DC (BLDC) defines
