@@ -99,11 +99,10 @@ ErrStatus Watchdog_init(void)
 void TimeoutTimer_init(void)
 {
 	// Enable timer clock
-	rcu_periph_clock_enable(RCU_TIMER_TIMEOUT);
+	rcu_periph_clock_enable(RCU_TIMER13);
 	
 	// Initial deinitialize of the timer
-	
-	timer_deinit(TIMER_TIMEOUT);
+	timer_deinit(TIMER13);
 	
 	// Set up the basic parameter struct for the timer
 	// Update event will be fired every 1ms
@@ -113,15 +112,15 @@ void TimeoutTimer_init(void)
 	timeoutTimer_paramter_struct.period							= 72000000 / 2 / TIMEOUT_FREQ;
 	timeoutTimer_paramter_struct.clockdivision 			= TIMER_CKDIV_DIV1;
 	timeoutTimer_paramter_struct.repetitioncounter 	= 0;
-	timer_auto_reload_shadow_disable(TIMER_TIMEOUT);
-	timer_init(TIMER_TIMEOUT, &timeoutTimer_paramter_struct);
+	timer_auto_reload_shadow_disable(TIMER13);
+	timer_init(TIMER13, &timeoutTimer_paramter_struct);
 	
 	// Enable TIMER_INT_UP interrupt and set priority
-	TARGET_nvic_irq_enable(TIMER_TIMEOUT_IRQn, 0, 0);
-	timer_interrupt_enable(TIMER_TIMEOUT, TIMER_INT_UP);
+	TARGET_nvic_irq_enable(TIMER13_IRQn, 0, 0);
+	timer_interrupt_enable(TIMER13, TIMER_INT_UP);
 	
 	// Enable timer
-	timer_enable(TIMER_TIMEOUT);
+	timer_enable(TIMER13);
 }
 
 //----------------------------------------------------------------------------

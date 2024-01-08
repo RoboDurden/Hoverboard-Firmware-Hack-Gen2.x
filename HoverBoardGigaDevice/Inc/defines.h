@@ -48,13 +48,6 @@
 	#define TIMER_BLDC_CHANNEL_Y 	TIMER_CH_0
 #endif
 
-#ifndef TIMER_TIMEOUT
-	#define TIMER_TIMEOUT TIMER13
-	#define TIMEOUT_IrqHandler TIMER13_IRQHandler
-	#define RCU_TIMER_TIMEOUT	RCU_TIMER13
-	#define TIMER_TIMEOUT_IRQn TIMER13_IRQn
-#endif
-
 /*
 #ifdef DEBUG_LED_PIN
   #define DEBUG_LedSet(bSet){gpio_bit_write(DEBUG_LED_PORT, DEBUG_LED_PIN, bSet);}
