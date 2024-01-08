@@ -7,6 +7,26 @@
 	#include "mm32_device.h"
 	
 	#define ErrStatus ErrorStatus
+	
+	/* GPIO pin definitions */
+	#define GPIO_PIN_0                 BIT(0)                /*!< GPIO pin 0 */
+	#define GPIO_PIN_1                 BIT(1)                /*!< GPIO pin 1 */
+	#define GPIO_PIN_2                 BIT(2)                /*!< GPIO pin 2 */
+	#define GPIO_PIN_3                 BIT(3)                /*!< GPIO pin 3 */
+	#define GPIO_PIN_4                 BIT(4)                /*!< GPIO pin 4 */
+	#define GPIO_PIN_5                 BIT(5)                /*!< GPIO pin 5 */
+	#define GPIO_PIN_6                 BIT(6)                /*!< GPIO pin 6 */
+	#define GPIO_PIN_7                 BIT(7)                /*!< GPIO pin 7 */
+	#define GPIO_PIN_8                 BIT(8)                /*!< GPIO pin 8 */
+	#define GPIO_PIN_9                 BIT(9)                /*!< GPIO pin 9 */
+	#define GPIO_PIN_10                BIT(10)               /*!< GPIO pin 10 */
+	#define GPIO_PIN_11                BIT(11)               /*!< GPIO pin 11 */
+	#define GPIO_PIN_12                BIT(12)               /*!< GPIO pin 12 */
+	#define GPIO_PIN_13                BIT(13)               /*!< GPIO pin 13 */
+	#define GPIO_PIN_14                BIT(14)               /*!< GPIO pin 14 */
+	#define GPIO_PIN_15                BIT(15)               /*!< GPIO pin 15 */
+	#define GPIO_PIN_ALL               BITS(0,15)            /*!< GPIO pin all */
+	
 #else
 	#include "gd32f1x0.h"
 	
@@ -65,47 +85,47 @@
 	#define AF_USART1_TX(pin)	(pin==PA8 ? GPIO_AF_4 : GPIO_AF_1)		// GD32F130: AF4 = PA8 , AF1 = PA2 or PA14
 	#define AF_USART1_RX(pin)	(pin==PB0 ? GPIO_AF_4 : GPIO_AF_1)		// GD32F130: AF4 = PB0 , AF1 = PA3 or PA15
 
-	#define digitalWrite(pin,set) gpio_bit_write(pin&0xffffff00U, BIT(pin&0xfU), set)
+	#define digitalWrite(pin,set) gpio_bit_write((GPIO_TypeDef*)(pin&0xffffff00U),  (BIT(pin&0xfU) ), set)
 	#define digitalRead(pin) 			gpio_input_bit_get(pin&0xffffff00U, BIT(pin&0xfU))
 
 	
-	#define PA15	( GPIOA | 15 )
-	#define PA14	( GPIOA | 14 )
-	#define PA13	( GPIOA | 13 )
-	#define PA12	( GPIOA | 12 )
-	#define PA11	( GPIOA | 11 )
-	#define PA10	( GPIOA | 10 )
-	#define PA9		( GPIOA | 9 )
-	#define PA8		( GPIOA | 8 )
-	#define PA7		( GPIOA | 7 )
-	#define PA6		( GPIOA | 6 )
-	#define PA5		( GPIOA | 5 )
-	#define PA4		( GPIOA | 4 )
-	#define PA3		( GPIOA | 3 )
-	#define PA2		( GPIOA | 2 )
-	#define PA1		( GPIOA | 1 )
-	#define PA0		( GPIOA | 0 )
+	#define PA15	( (uint32_t)GPIOA | 15 )
+	#define PA14	( (uint32_t)GPIOA | 14 )
+	#define PA13	( (uint32_t)GPIOA | 13 )
+	#define PA12	( (uint32_t)GPIOA | 12 )
+	#define PA11	( (uint32_t)GPIOA | 11 )
+	#define PA10	( (uint32_t)GPIOA | 10 )
+	#define PA9		( (uint32_t)GPIOA | 9 )
+	#define PA8		( (uint32_t)GPIOA | 8 )
+	#define PA7		( (uint32_t)GPIOA | 7 )
+	#define PA6		( (uint32_t)GPIOA | 6 )
+	#define PA5		( (uint32_t)GPIOA | 5 )
+	#define PA4		( (uint32_t)GPIOA | 4 )
+	#define PA3		( (uint32_t)GPIOA | 3 )
+	#define PA2		( (uint32_t)GPIOA | 2 )
+	#define PA1		( (uint32_t)GPIOA | 1 )
+	#define PA0		( (uint32_t)GPIOA | 0 )
 
-	#define PB15	( GPIOB | 15 )
-	#define PB14	( GPIOB | 14 )
-	#define PB13	( GPIOB | 13 )
-	#define PB12	( GPIOB | 12 )
-	#define PB11	( GPIOB | 11 )
-	#define PB10	( GPIOB | 10 )
-	#define PB9		( GPIOB | 9 )
-	#define PB8		( GPIOB | 8 )
-	#define PB7		( GPIOB | 7 )
-	#define PB6		( GPIOB | 6 )
-	#define PB5		( GPIOB | 5 )
-	#define PB4		( GPIOB | 4 )
-	#define PB3		( GPIOB | 3 )
-	#define PB2		( GPIOB | 2 )
-	#define PB1		( GPIOB | 1 )
-	#define PB0		( GPIOB | 0 )
+	#define PB15	( (uint32_t)GPIOB | 15 )
+	#define PB14	( (uint32_t)GPIOB | 14 )
+	#define PB13	( (uint32_t)GPIOB | 13 )
+	#define PB12	( (uint32_t)GPIOB | 12 )
+	#define PB11	( (uint32_t)GPIOB | 11 )
+	#define PB10	( (uint32_t)GPIOB | 10 )
+	#define PB9		( (uint32_t)GPIOB | 9 )
+	#define PB8		( (uint32_t)GPIOB | 8 )
+	#define PB7		( (uint32_t)GPIOB | 7 )
+	#define PB6		( (uint32_t)GPIOB | 6 )
+	#define PB5		( (uint32_t)GPIOB | 5 )
+	#define PB4		( (uint32_t)GPIOB | 4 )
+	#define PB3		( (uint32_t)GPIOB | 3 )
+	#define PB2		( (uint32_t)GPIOB | 2 )
+	#define PB1		( (uint32_t)GPIOB | 1 )
+	#define PB0		( (uint32_t)GPIOB | 0 )
 
-	#define PC15	( GPIOC | 15 )
-	#define PC14	( GPIOC | 14 )
-	#define PC13	( GPIOC | 13 )
+	#define PC15	( (uint32_t)GPIOC | 15 )
+	#define PC14	( (uint32_t)GPIOC | 14 )
+	#define PC13	( (uint32_t)GPIOC | 13 )
 
 	#define PF7	( GPIOF | 7 )
 	#define PF6	( GPIOF | 6 )

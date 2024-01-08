@@ -1,5 +1,8 @@
 // WARNING: no pin tracing yet done, simply a copy of 2.0 to test compiling
 
+	#define BUZZER_PIN GPIO_PIN_9
+	#define BUZZER_PORT GPIOB
+
 
 #ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define HAS_BUZZER
