@@ -5,7 +5,14 @@
 	#define TARGET_adc_vbat_disable()
 #elif defined MM32SPIN05	
 	#include "mm32_device.h"
-	
+	#include "hal_conf.h"
+	void TIM2_IRQHandler(void)	// just for testing
+	{
+			TIM_ClearITPendingBit(TIM2, TIM_IT_Update);		// fine, now TIM_IT_Update is defined
+	}
+
+	#include "hal_device.h"
+	#include "hal_rcc.h"
 	#define ErrStatus ErrorStatus
 	
 	/* GPIO pin definitions */
