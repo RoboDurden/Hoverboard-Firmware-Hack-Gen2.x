@@ -510,6 +510,11 @@
               <FilePath>.\Inc\defines_2-7.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-8.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-8.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-10.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-10.h</FilePath>
@@ -1213,6 +1218,11 @@
               <FilePath>.\Inc\defines_2-7.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-8.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-8.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-10.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-10.h</FilePath>
@@ -1416,7 +1426,7 @@
       <TargetName>MM32SPIN05</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6210000::V6.21::ARMCLANG</pCCUsed>
+      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -1914,6 +1924,11 @@
               <FileName>defines_2-7.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-7.h</FilePath>
+            </File>
+            <File>
+              <FileName>defines_2-8.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-8.h</FilePath>
             </File>
             <File>
               <FileName>defines_2-10.h</FileName>

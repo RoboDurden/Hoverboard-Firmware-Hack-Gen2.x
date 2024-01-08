@@ -5,6 +5,8 @@
 	#define TARGET_adc_vbat_disable()
 #elif defined MM32SPIN05	
 	#include "mm32_device.h"
+	
+	#define ErrStatus ErrorStatus
 #else
 	#include "gd32f1x0.h"
 	

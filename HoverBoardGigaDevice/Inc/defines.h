@@ -136,7 +136,9 @@
 // Useful math function defines
 #define ABS(a) (((a) < 0.0) ? -(a) : (a))
 #define CLAMP(x, low, high) (((x) > (high)) ? (high) : (((x) < (low)) ? (low) : (x)))
-#define MAX(x, high) (((x) > (high)) ? (high) : (x))
+#ifndef MAX
+	#define MAX(x, high) (((x) > (high)) ? (high) : (x))
+#endif	
 #define MAP(x, xMin, xMax, yMin, yMax) ((x - xMin) * (yMax - yMin) / (xMax - xMin) + yMin)
 
 // ################################################################################
