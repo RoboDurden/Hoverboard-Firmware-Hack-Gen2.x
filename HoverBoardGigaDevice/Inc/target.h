@@ -10,11 +10,15 @@
 	{
 			TIM_ClearITPendingBit(TIM2, TIM_IT_Update);		// fine, now TIM_IT_Update is defined
 	}
-	#define timer_interrupt_flag_clear TIM_ClearITPendingBit
-	#define TIMER_INT_UP TIM_IT_Update
 	#include "hal_device.h"
 	#include "hal_rcc.h"
 	#define ErrStatus ErrorStatus
+	
+	#define timer_interrupt_flag_clear TIM_ClearITPendingBit
+	#define TIMER_INT_UP TIM_IT_Update
+
+	#define dma_interrupt_flag_get(DMA_CH0, DMA_INT_FLAG_FTF) 1
+	#define dma_interrupt_flag_clear(DMA_CH0, DMA_INT_FLAG_FTF) DMA_ClearITPendingBit(DMA1_IT_TC1)
 	
 	/* GPIO pin definitions */
 	#define GPIO_PIN_0                 BIT(0)                /*!< GPIO pin 0 */
