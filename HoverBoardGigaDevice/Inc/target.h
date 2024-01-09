@@ -10,7 +10,8 @@
 	{
 			TIM_ClearITPendingBit(TIM2, TIM_IT_Update);		// fine, now TIM_IT_Update is defined
 	}
-
+	#define timer_interrupt_flag_clear TIM_ClearITPendingBit
+	#define TIMER_INT_UP TIM_IT_Update
 	#include "hal_device.h"
 	#include "hal_rcc.h"
 	#define ErrStatus ErrorStatus
