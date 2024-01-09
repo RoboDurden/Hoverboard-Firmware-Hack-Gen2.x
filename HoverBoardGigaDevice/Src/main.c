@@ -15,7 +15,6 @@
 #include "string.h"
 #include <math.h>     
 //#include "arm_math.h" 
-
 #ifdef BUZZER
 	extern uint8_t buzzerFreq;    						// global variable for the buzzer pitch. can be 1, 2, 3, 4, 5, 6, 7...
 	extern uint8_t buzzerPattern; 						// global variable for the buzzer pattern. can be 1, 2, 3, 4, 5, 6, 7...
