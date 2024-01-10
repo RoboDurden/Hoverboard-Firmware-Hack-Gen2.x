@@ -11,8 +11,8 @@
 #elif MM32SPIN05
 	#define LAYOUT 8
 #else
-	#define LAYOUT 6
-	#define LAYOUT_SUB 1	// Layout 6 exisits as 2.6.0 and 2.6.1
+	#define LAYOUT 18
+	#define LAYOUT_SUB 0	// Layout 6 exisits as 2.6.0 and 2.6.1
 #endif
 
 #define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
@@ -24,10 +24,10 @@
 #if defined(MASTER) || defined(SINGLE)
 	#define MASTER_OR_SINGLE
 	
-	//#define REMOTE_DUMMY
+	#define REMOTE_DUMMY
 	//#define REMOTE_UART
 	//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
-	#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
+	//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 	//#define REMOTE_AUTODETECT		// !! highly experimental !! will drive the motor without hall input to detect the hall inputs..
 	
 	#ifdef REMOTE_UARTBUS

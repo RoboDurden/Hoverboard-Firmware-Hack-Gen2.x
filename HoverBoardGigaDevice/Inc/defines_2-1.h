@@ -23,66 +23,43 @@
 
 
 // LED defines CORRECT
-#define LED_GREEN GPIO_PIN_3
-#define LED_GREEN_PORT GPIOB
-#define LED_ORANGE GPIO_PIN_4
-#define LED_ORANGE_PORT GPIOB
-#define LED_RED GPIO_PIN_15
-#define LED_RED_PORT GPIOA
+#define LED_GREEN PB3
+#define LED_ORANGE PB4
+#define LED_RED PA5
 
-#define UPPER_LED_PIN GPIO_PIN_5
-#define UPPER_LED_PORT GPIOB
-#define LOWER_LED_PIN GPIO_PIN_8
-#define LOWER_LED_PORT GPIOB
+#define UPPER_LED PB5
+#define LOWER_LED PB8
 
 
 // Mosfet output CORRECT
-#define MOSFET_OUT_PIN GPIO_PIN_13
-#define MOSFET_OUT_PORT GPIOC
+#define MOSFET_OUT PC13
 
 // Brushless Control DC (BLDC) defines
 #define TIMER_BLDC_PULLUP	GPIO_PUPD_NONE	// robo
 // Channel G CORRECT
-#define RCU_TIMER_BLDC RCU_TIMER0
-#define TIMER_BLDC TIMER0
-#define TIMER_BLDC_CHANNEL_G TIMER_CH_2
-#define TIMER_BLDC_GH_PIN GPIO_PIN_10
-#define TIMER_BLDC_GH_PORT GPIOA
-#define TIMER_BLDC_GL_PIN GPIO_PIN_15
-#define TIMER_BLDC_GL_PORT GPIOB
+#define BLDC_GH PA10
+#define BLDC_GL PB15
 // Channel B CORRECT
-#define TIMER_BLDC_CHANNEL_B TIMER_CH_1
-#define TIMER_BLDC_BH_PIN GPIO_PIN_9
-#define TIMER_BLDC_BH_PORT GPIOA
-#define TIMER_BLDC_BL_PIN GPIO_PIN_14
-#define TIMER_BLDC_BL_PORT GPIOB
+#define BLDC_BH PA9
+#define BLDC_BL PB14
 // Channel Y CORRECT
-#define TIMER_BLDC_CHANNEL_Y TIMER_CH_0
-#define TIMER_BLDC_YH_PIN GPIO_PIN_8
-#define TIMER_BLDC_YH_PORT GPIOA
-#define TIMER_BLDC_YL_PIN GPIO_PIN_13
-#define TIMER_BLDC_YL_PORT GPIOB
+#define BLDC_YH PA8
+#define BLDC_YL PB13
 
 // Timer BLDC short circuit emergency shutoff define LOOKS LIKE
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN GPIO_PIN_12
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT GPIOB
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN PB12
 
 // Hall sensor defines CORRECT
-#define HALL_A_PIN GPIO_PIN_0
-#define HALL_A_PORT GPIOA
-#define HALL_C_PIN GPIO_PIN_11
-#define HALL_C_PORT GPIOB
-#define HALL_B_PIN GPIO_PIN_1
-#define HALL_B_PORT GPIOA
+#define HALL_A PA0
+#define HALL_C PB11
+#define HALL_B PA1
 
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #define HAS_USART0	// uncomment if this layout has a usart0
 #ifdef HAS_USART0
-	#define USART0_TX_PIN	GPIO_PIN_6
-	#define USART0_TX_PORT	GPIOB
-	#define USART0_RX_PIN	GPIO_PIN_7
-	#define USART0_RX_PORT	GPIOB
+	#define USART0_TX	PB6
+	#define USART0_RX	PB7
 	
 	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
@@ -91,10 +68,8 @@
 // GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
 #define HAS_USART1	// uncomment if this layout has a usart1
 #ifdef HAS_USART1
-	#define USART1_TX_PIN		GPIO_PIN_2
-	#define USART1_TX_PORT	GPIOA
-	#define USART1_RX_PIN		GPIO_PIN_3
-	#define USART1_RX_PORT	GPIOA
+	#define USART1_TX		PA2
+	#define USART1_RX		PA3
 	
 	#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	//#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
@@ -102,31 +77,23 @@
 
 
 // ADC defines CORRECT
-#define VBATT_PIN	GPIO_PIN_4
-#define VBATT_PORT GPIOA
-#define VBATT_CHANNEL ADC_CHANNEL_4
-#define CURRENT_DC_PIN	GPIO_PIN_6
-#define CURRENT_DC_PORT GPIOA
-#define CURRENT_DC_CHANNEL ADC_CHANNEL_6
+#define VBATT	PA4
+#define CURRENT_DC PA6
 
 // Self hold defines CORRECT
-#define SELF_HOLD_PIN GPIO_PIN_2
-#define SELF_HOLD_PORT GPIOB
+#define SELF_HOLD PB2
 
 // Button defines CORRECT - voltage is too low
-#define BUTTON_PIN GPIO_PIN_5
-#define BUTTON_PORT GPIOA
+#define BUTTON PA5
 
 
 #ifdef BUZZER
 	// Buzzer defins CORRECT
-	#define BUZZER_PIN GPIO_PIN_9
-	#define BUZZER_PORT GPIOB
+	#define BUZZER PB9
 #endif
 
 #ifdef MASTER
 	// Charge state defines CORRECT
-	#define CHARGE_STATE_PIN GPIO_PIN_15
-	#define CHARGE_STATE_PORT GPIOC
+	#define CHARGE_STATE PC15
 #endif
 
