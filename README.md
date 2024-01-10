@@ -1,8 +1,12 @@
-### 2023/12/28 the following layouts are ready to use (99%):
+# code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
+### Gen2.x MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-MM32)
+
+## 2025/1/10 the following layouts are ready to use (99%):
 
 - 2.0
 - 2.2 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
 - 2.3 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+- 2.6.1 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/49
 - 2.10 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/25
 - 2.13 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33
 - 2.18 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
