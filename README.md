@@ -26,8 +26,8 @@ Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 - This is a fork from https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
 - with different defines_2-x.h for two different board layouts :-) 
 - Simply set `#define LAYOUT x` to your 2.x board in `Inc/config.h` :-))
-- You can download compiled binaries [here](HoverBoardGigaDevice/BinariesToFlash/) or there: [pionierland.de/hoverhack/gen2/ReadyToFlash](https://pionierland.de/hoverhack/gen2/ReadyToFlash/) (the test-firmwares will ignore uart speed and will repeat speed from -300 to 300 instead)
-- Binaries probably not yet working: [HoverBoardGigaDevice/BinariesToTest/](HoverBoardGigaDevice/BinariesToTest/)
+- You can download compiled binaries [here](BinariesReadyToFlash/) (the Dummy-firmwares will ignore uart speed and will repeat speed from -300 to 300 instead)
+- Binaries probably not yet working: [BinariesToTest/](BinariesToTest/)
 - Make sure your board is one of the supported layouts ! **Wrong pin assignments can shortcut the battery and kill the mosfets !!**
 
 
