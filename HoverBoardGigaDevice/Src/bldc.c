@@ -319,7 +319,7 @@ void CalculateBLDC(void)
 						uint16_t iTime = msTicks-msTicksOld;
 						if (	(iTime > 2) && (iTime < 7)	)	// the hall on-time should match the rotation speed
 						{
-							if (10 == iTest++)
+							if (5 == iTest++)
 							{
 								aPinHall[iHall] = iHallPin;
 								//sprintf(sMessage, "hall %i=%i : %i ms\n",iHall,iHallPin,iTime);
@@ -404,11 +404,10 @@ void CalculateBLDC(void)
 						iTest = 0;
 						if (msTicks > msTicksTest)
 						{
-							iHall++;	
-							if (iHall < 6)
+							if (iHall < 5)
 							{
-								sprintf(sMessage, "wrong oder: %i %i\n",posOld,posNew);
-								AutoDetectHallOrderInit(iHall);	// test next permutation
+								sprintf(sMessage, "wrong oder %i\n",iHall);
+								AutoDetectHallOrderInit(iHall+1);	// test next permutation
 							}
 							else
 							{
