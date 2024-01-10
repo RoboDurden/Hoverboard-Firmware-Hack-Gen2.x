@@ -8,6 +8,10 @@
 
 #define LOST_CONNECTION_STOP_MILLIS 500		// set speed to 0 when 500 ms no command received
 
+#define COUNT_PinDigital 27
+
+#define AUTODETECT_Stage_Startup 0
+#define AUTODETECT_Stage_Hall 1
 
 // Only master communicates with steering device
 #ifdef MASTER

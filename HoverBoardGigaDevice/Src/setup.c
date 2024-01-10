@@ -32,6 +32,17 @@
 #include "../Inc/defines.h"
 #include "../Inc/it.h"
 
+#ifdef REMOTE_AUTODETECT
+
+	extern uint32_t LED_GREEN;
+	extern uint32_t LED_ORANGE;
+	extern uint32_t LED_RED;
+
+	extern uint32_t HALL_A;
+	extern uint32_t HALL_B;
+	extern uint32_t HALL_C;
+#endif	
+
 #define TIMEOUT_FREQ  1000
 
 // timeout timer parameter structs

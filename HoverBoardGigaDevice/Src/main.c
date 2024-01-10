@@ -27,7 +27,17 @@
   #define BUZZER_MelodyUp()
 #endif
 
-	
+
+#ifdef REMOTE_AUTODETECT
+
+	extern uint32_t LED_GREEN;
+	extern uint32_t LED_ORANGE;
+	extern uint32_t LED_RED;
+
+	extern uint32_t HALL_A;
+	extern uint32_t HALL_B;
+	extern uint32_t HALL_C;
+#endif	
 
 uint32_t steerCounter = 0;								// Steer counter for setting update rate
 int32_t speed = 0; 												// global variable for speed.    -1000 to 1000

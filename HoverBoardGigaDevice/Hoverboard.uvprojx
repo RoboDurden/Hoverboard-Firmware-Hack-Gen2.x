@@ -480,6 +480,11 @@
               <FilePath>.\Inc\defines.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-ad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-ad.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-0.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-0.h</FilePath>
@@ -1078,6 +1083,11 @@
               <FilePath>.\Inc\defines.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-ad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-ad.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-0.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-0.h</FilePath>
@@ -1674,6 +1684,11 @@
               <FileName>defines.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines.h</FilePath>
+            </File>
+            <File>
+              <FileName>defines_2-ad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-ad.h</FilePath>
             </File>
             <File>
               <FileName>defines_2-0.h</FileName>

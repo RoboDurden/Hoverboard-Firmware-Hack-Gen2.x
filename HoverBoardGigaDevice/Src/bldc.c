@@ -1,17 +1,50 @@
 
 #include "../Inc/defines.h"
-
+#include <stdio.h>
 
 #ifdef REMOTE_AUTODETECT
+
+	extern char sMessage[255];
+
+	extern uint16_t iAutoDetectStage;
+	extern uint16_t iAutoDetectStageStep;
+
+	extern uint32_t LED_GREEN;
+	extern uint32_t LED_ORANGE;
+	extern uint32_t LED_RED;
+
+	extern uint32_t HALL_A;
+	extern uint32_t HALL_B;
+	extern uint32_t HALL_C;
+
+	extern uint32_t aPinHall[3];
+	extern uint32_t aPinDigital[COUNT_PinDigital];
+	extern const char *aPinName[COUNT_PinDigital];
+
+	uint8_t bHallOld = 2;
+	uint32_t msTicksTest;
+	uint8_t iHall = 0;
+	uint8_t iHallPin = 0;
+	uint8_t iTest = 0;
+	
+
 	uint32_t msTicksAuto = 0;
 	extern uint32_t msTicks;
 	uint8_t posAuto = 1;
+	uint8_t posOld = 0;
+	uint32_t msTicksOld;
+
+	void AutoDetectHallInit()
+	{
+		pinMode(aPinDigital[iHall],GPIO_MODE_INPUT);
+		msTicksTest = msTicks + 1000;
+		msTicksOld = 0;
+		iTest = 0;
+	}
 
 	/*
-	uint8_t posOld = 0;
 	extern int16_t aiDebug[7];
 	uint8_t iDebugPos = 0;
-	uint32_t msTicksOld;
 
 	uint16_t iBldc = 0;
 	uint16_t iBldcOld = 0;
@@ -235,6 +268,81 @@ void CalculateBLDC(void)
 			if (posAuto == 7)	posAuto = 1;
 			pos = posAuto;
 			msTicksAuto = msTicks;
+		}
+		
+		if (	(iAutoDetectStage == AUTODETECT_Stage_Startup) && (msTicks > 1000)	)
+		{
+			iAutoDetectStage = AUTODETECT_Stage_Hall;
+			AutoDetectHallInit();
+		}
+		
+		if (iAutoDetectStage == AUTODETECT_Stage_Hall)
+		{
+			uint8_t bHall = digitalRead(aPinDigital[iHallPin]);
+			if (bHall != bHallOld)
+			{
+				if (!bHall)	// rotor has left the hall sensor
+				{
+					uint16_t iTime = msTicks-msTicksOld;
+					if (	(iTime > 2) && (iTime < 7)	)	// the hall on-time should match the rotation speed
+					{
+						if (10 == iTest++)
+						{
+							aPinHall[iHall] = iHallPin;
+							//sprintf(sMessage, "hall %i=%i : %i ms\n",iHall,iHallPin,iTime);
+							sprintf(sMessage, "hall %i = P%s : %i ms\n",iHall,aPinName[iHallPin],iTime);
+							
+							iHall++;	// next hall sensor
+							if (iHall < 3)
+							{
+								iHallPin++;
+								if (iHallPin < COUNT_PinDigital)
+								{
+									AutoDetectHallInit();
+								}
+								else
+								{
+									iAutoDetectStage++;	// no more io pins to test :-/
+								}
+							}
+							else	// finished with this stage
+							{
+								iHall = 0;
+								iAutoDetectStage++;
+							}
+						}
+					}
+					else
+					{
+						iTest = 0;
+						//sprintf(sMessage, "hall %i,%i : %i ms\n",iHall,iHallPin,iTime);
+					}
+				}
+				bHallOld  = bHall;
+				msTicksOld = msTicks;
+			}
+			else if (msTicks > msTicksTest)
+			{
+				iHallPin++;		// try next io pin for this hall position
+				if (iHallPin < COUNT_PinDigital)
+				{
+					sprintf(sMessage, "%i try %i\n",iHall,iHallPin);
+					AutoDetectHallInit();
+				}
+				else
+				{
+					iHall = 0;
+					iAutoDetectStage++;	// no more io pins to test :-/
+				}
+			}
+			
+			
+			if (pos != posOld)
+			{
+				posOld = pos;
+				msTicksOld = msTicks;
+			}
+			
 		}
 	#else
 		// Determine current position based on hall sensors

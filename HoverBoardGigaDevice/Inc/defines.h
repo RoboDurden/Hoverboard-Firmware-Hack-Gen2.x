@@ -6,7 +6,9 @@
 #include "../Inc/config.h"
 #include "../Inc/remote.h"
 
-#if LAYOUT == 0
+#if defined(REMOTE_AUTODETECT)
+	#include "defines_2-ad.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/??
+#elif LAYOUT == 0
 	#include "defines_2-0.h"		// https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
 #elif LAYOUT == 1
 	#include "defines_2-1.h"		// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
