@@ -6,8 +6,13 @@
 
 
 #ifdef MASTER_OR_SINGLE		// layout 2.2, 2.6 and 2.7 have buzzer on the slave board.
+	#if LAYOUT_SUB == 0
+		#define HAS_BUZZER
+	#endif
 #else
-	#define HAS_BUZZER
+	#if LAYOUT_SUB == 1
+		#define HAS_BUZZER
+	#endif
 #endif
 
 /* GD32F130 48pin possible IO pins: 
