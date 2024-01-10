@@ -18,7 +18,7 @@
 	extern uint32_t HALL_C;
 
 	extern uint32_t aPinHall[3];
-	uint8_t aHallOrder[6][3] = {{0,2,1},{1,2,0},{1,0,2},{0,1,2},{2,0,1},{2,1,0}};
+	uint8_t aHallOrder[6][3] = {{0,2,1},{0,1,2},{1,2,0},{1,0,2},{2,0,1},{2,1,0}};
 		
 	extern uint32_t aPinDigital[COUNT_PinDigital];
 	extern const char *aPinName[COUNT_PinDigital];
@@ -59,7 +59,7 @@
 	void AutoDetectHallOrderInit(uint8_t iHallSet)	// iHallSet = 0..5 = 6 possible permutations
 	{
 		iHall = iHallSet;
-		sprintf(sMessage, "oder %i\n",iHall);
+		//sprintf(sMessage, "oder %i\n",iHall);
 		
 		HALL_A = aPinDigital[ aPinHall[ aHallOrder[iHall][0] ] ];
 		HALL_B = aPinDigital[ aPinHall[ aHallOrder[iHall][1] ] ];
@@ -347,8 +347,9 @@ void CalculateBLDC(void)
 						}
 						else
 						{
+							//if (	(iTime > 1) && (iTime < 50)	)	// the hall on-time should match the rotation speed							
+							//	sprintf(sMessage, "hall %i,%i : %i ms\n",iHall,iHallPin,iTime);
 							iTest = 0;
-							//sprintf(sMessage, "hall %i,%i : %i ms\n",iHall,iHallPin,iTime);
 						}
 					}
 					bHallOld  = bHall;
@@ -381,13 +382,19 @@ void CalculateBLDC(void)
 				uint8_t posNew = hall_to_pos[hall];
 				if (posNew != posOld)
 				{
-					if (((posOld == 6) && (posNew == 1)) || (posNew == posOld+1)	)	// valid hall input
+					if (	(posOld == posAuto) && 
+								(	((posOld == 6) && (posNew == 1)) || (posNew == posOld+1) )
+							)	// valid hall input
 					{
 						if (20 < iTest++)
 						{
 							uint16_t iTime = msTicks-msTicksOld;
-							//sprintf(sMessage, "hall oder: %i\n",iHall);
-							sprintf(sMessage, " oder %i: %i %i\n",iTime,posOld,posNew);
+							//sprintf(sMessage, "hall oder: %i = %i,%i,%i\n",iHall,aHallOrder[iHall][0],aHallOrder[iHall][1],aHallOrder[iHall][2]);
+							sprintf(sMessage, "hall oder %i :\n#define HALL_A = P%s\n#define HALL_B = P%s\n#define HALL_C = P%s\n",iHall
+								, aPinName[aPinHall[ aHallOrder[iHall][0] ] ]
+								, aPinName[aPinHall[ aHallOrder[iHall][1] ] ]
+								, aPinName[aPinHall[ aHallOrder[iHall][2] ] ]	);
+							//sprintf(sMessage, " auto %i: %i %i\n",posAuto,posOld,posNew);
 							iAutoDetectStage++;
 							//AutoDetectNextStage();
 						}
