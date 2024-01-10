@@ -12,6 +12,7 @@
 
 #define AUTODETECT_Stage_Startup 0
 #define AUTODETECT_Stage_Hall 1
+#define AUTODETECT_Stage_HallOrder 2
 
 // Only master communicates with steering device
 #ifdef MASTER

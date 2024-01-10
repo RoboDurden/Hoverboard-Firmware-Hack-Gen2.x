@@ -18,6 +18,8 @@
 	extern uint32_t HALL_C;
 
 	extern uint32_t aPinHall[3];
+	uint8_t aHallOrder[6][3] = {{0,2,1},{1,2,0},{1,0,2},{0,1,2},{2,0,1},{2,1,0}};
+		
 	extern uint32_t aPinDigital[COUNT_PinDigital];
 	extern const char *aPinName[COUNT_PinDigital];
 
@@ -34,6 +36,19 @@
 	uint8_t posOld = 0;
 	uint32_t msTicksOld;
 
+	void AutoDetectNextStage()
+	{
+		iHall = 0;
+		iAutoDetectStage++;
+	}
+	void AutoDetectSetStage(uint8_t iSet)
+	{
+		iHall = 0;
+		iHallPin = 0;
+		iAutoDetectStage = iSet;
+	}
+
+	
 	void AutoDetectHallInit()
 	{
 		pinMode(aPinDigital[iHall],GPIO_MODE_INPUT);
@@ -41,7 +56,20 @@
 		msTicksOld = 0;
 		iTest = 0;
 	}
+	void AutoDetectHallOrderInit(uint8_t iHallSet)	// iHallSet = 0..5 = 6 possible permutations
+	{
+		iHall = iHallSet;
+		sprintf(sMessage, "oder %i\n",iHall);
+		
+		HALL_A = aPinDigital[ aPinHall[ aHallOrder[iHall][0] ] ];
+		HALL_B = aPinDigital[ aPinHall[ aHallOrder[iHall][1] ] ];
+		HALL_C = aPinDigital[ aPinHall[ aHallOrder[iHall][2] ] ];
+		msTicksTest = msTicks + 1000;
+		msTicksOld = 0;
+		iTest = 0;
+	}
 
+	
 	/*
 	extern int16_t aiDebug[7];
 	uint8_t iDebugPos = 0;
@@ -248,6 +276,8 @@ void CalculateBLDC(void)
 	hall_a = digitalRead(HALL_A);
 	hall_b = digitalRead(HALL_B);
 	hall_c = digitalRead(HALL_C);
+	hall = hall_a * 1 + hall_b * 2 + hall_c * 4;
+	
 	//hall_a = gpio_input_bit_get(HALL_A_PORT, HALL_A_PIN);
 	//hall_b = gpio_input_bit_get(HALL_B_PORT, HALL_B_PIN);
 	//hall_c = gpio_input_bit_get(HALL_C_PORT, HALL_C_PIN);
@@ -262,88 +292,137 @@ void CalculateBLDC(void)
 	#endif
 
 	#ifdef REMOTE_AUTODETECT
-		if (msTicks - msTicksAuto >= 15)
+	
+		if (iAutoDetectStage <= AUTODETECT_Stage_HallOrder)	// simulate hall 
 		{
-			posAuto++;
-			if (posAuto == 7)	posAuto = 1;
-			pos = posAuto;
-			msTicksAuto = msTicks;
-		}
-		
-		if (	(iAutoDetectStage == AUTODETECT_Stage_Startup) && (msTicks > 1000)	)
-		{
-			iAutoDetectStage = AUTODETECT_Stage_Hall;
-			AutoDetectHallInit();
-		}
-		
-		if (iAutoDetectStage == AUTODETECT_Stage_Hall)
-		{
-			uint8_t bHall = digitalRead(aPinDigital[iHallPin]);
-			if (bHall != bHallOld)
+			if (msTicks - msTicksAuto >= 15)
 			{
-				if (!bHall)	// rotor has left the hall sensor
+				posAuto++;
+				if (posAuto == 7)	posAuto = 1;
+				pos = posAuto;
+				msTicksAuto = msTicks;
+			}
+			
+			if (	(iAutoDetectStage == AUTODETECT_Stage_Startup) && (msTicks > 1000)	)
+			{
+				AutoDetectNextStage();
+				AutoDetectHallInit();
+			}
+			
+			if (iAutoDetectStage == AUTODETECT_Stage_Hall)		// find the three hall pins :-)
+			{
+				uint8_t bHall = digitalRead(aPinDigital[iHallPin]);
+				if (bHall != bHallOld)
 				{
-					uint16_t iTime = msTicks-msTicksOld;
-					if (	(iTime > 2) && (iTime < 7)	)	// the hall on-time should match the rotation speed
+					if (!bHall)	// rotor has left the hall sensor
 					{
-						if (10 == iTest++)
+						uint16_t iTime = msTicks-msTicksOld;
+						if (	(iTime > 2) && (iTime < 7)	)	// the hall on-time should match the rotation speed
 						{
-							aPinHall[iHall] = iHallPin;
-							//sprintf(sMessage, "hall %i=%i : %i ms\n",iHall,iHallPin,iTime);
-							sprintf(sMessage, "hall %i = P%s : %i ms\n",iHall,aPinName[iHallPin],iTime);
-							
-							iHall++;	// next hall sensor
-							if (iHall < 3)
+							if (10 == iTest++)
 							{
-								iHallPin++;
-								if (iHallPin < COUNT_PinDigital)
+								aPinHall[iHall] = iHallPin;
+								//sprintf(sMessage, "hall %i=%i : %i ms\n",iHall,iHallPin,iTime);
+								sprintf(sMessage, "hall %i = P%s : %i ms\n",iHall,aPinName[iHallPin],iTime);
+								
+								iHall++;	// next hall sensor
+								if (iHall < 3)
 								{
-									AutoDetectHallInit();
+									iHallPin++;
+									if (iHallPin < COUNT_PinDigital)
+									{
+										AutoDetectHallInit();
+									}
+									else
+									{
+										AutoDetectSetStage(AUTODETECT_Stage_Startup);	// no more io pins to test :-/
+									}
 								}
-								else
+								else	// finished with this stage
 								{
-									iAutoDetectStage++;	// no more io pins to test :-/
+									AutoDetectNextStage();
+									AutoDetectHallOrderInit(0);
 								}
 							}
-							else	// finished with this stage
-							{
-								iHall = 0;
-								iAutoDetectStage++;
-							}
+						}
+						else
+						{
+							iTest = 0;
+							//sprintf(sMessage, "hall %i,%i : %i ms\n",iHall,iHallPin,iTime);
+						}
+					}
+					bHallOld  = bHall;
+					msTicksOld = msTicks;
+				}
+				else if (msTicks > msTicksTest)
+				{
+					iHallPin++;		// try next io pin for this hall position
+					if (iHallPin < COUNT_PinDigital)
+					{
+						//sprintf(sMessage, "%i try %i\n",iHall,iHallPin);
+						sprintf(sMessage, "%i try %i = P%s\n",iHall,iHallPin,aPinName[iHallPin]);
+						AutoDetectHallInit();
+					}
+					else
+					{
+						AutoDetectSetStage(AUTODETECT_Stage_Startup);	// no more io pins to test :-/
+					}
+				}
+				
+				if (pos != posOld)
+				{
+					posOld = pos;
+					msTicksOld = msTicks;
+				}
+			}
+			
+			else if (iAutoDetectStage == AUTODETECT_Stage_HallOrder)
+			{
+				uint8_t posNew = hall_to_pos[hall];
+				if (posNew != posOld)
+				{
+					if (((posOld == 6) && (posNew == 1)) || (posNew == posOld+1)	)	// valid hall input
+					{
+						if (20 < iTest++)
+						{
+							uint16_t iTime = msTicks-msTicksOld;
+							//sprintf(sMessage, "hall oder: %i\n",iHall);
+							sprintf(sMessage, " oder %i: %i %i\n",iTime,posOld,posNew);
+							iAutoDetectStage++;
+							//AutoDetectNextStage();
 						}
 					}
 					else
 					{
 						iTest = 0;
-						//sprintf(sMessage, "hall %i,%i : %i ms\n",iHall,iHallPin,iTime);
+						if (msTicks > msTicksTest)
+						{
+							iHall++;	
+							if (iHall < 6)
+							{
+								sprintf(sMessage, "wrong oder: %i %i\n",posOld,posNew);
+								AutoDetectHallOrderInit(iHall);	// test next permutation
+							}
+							else
+							{
+								sprintf(sMessage, "no hall oder found: %i\n",iHall);
+								AutoDetectSetStage(AUTODETECT_Stage_Startup);	// no more hall permutations to test :-/
+							}
+						}
 					}
-				}
-				bHallOld  = bHall;
-				msTicksOld = msTicks;
-			}
-			else if (msTicks > msTicksTest)
-			{
-				iHallPin++;		// try next io pin for this hall position
-				if (iHallPin < COUNT_PinDigital)
-				{
-					sprintf(sMessage, "%i try %i\n",iHall,iHallPin);
-					AutoDetectHallInit();
-				}
-				else
-				{
-					iHall = 0;
-					iAutoDetectStage++;	// no more io pins to test :-/
+					posOld = posNew;
+					msTicksOld = msTicks;
 				}
 			}
 			
-			
-			if (pos != posOld)
-			{
-				posOld = pos;
-				msTicksOld = msTicks;
-			}
 			
 		}
+		else
+		{
+			pos = hall_to_pos[hall];
+		}
+
+		
 	#else
 		// Determine current position based on hall sensors
 		hall = hall_a * 1 + hall_b * 2 + hall_c * 4;
