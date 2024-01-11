@@ -361,7 +361,7 @@ int main (void)
 		digitalWrite(MOSFET_OUT,	(steerCounter%200) < 100	);	// onboard led blinking :-)
 
 	#ifdef REMOTE_AUTODETECT
-		AutodetectMain();
+		//AutodetectMain();
 	#endif
 
 		

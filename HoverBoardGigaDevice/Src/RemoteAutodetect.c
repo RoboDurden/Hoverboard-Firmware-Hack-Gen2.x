@@ -147,6 +147,8 @@ const char* GetPinName(uint32_t iPin)
 		
 uint8_t RemovePinDigital(uint32_t iValue )
 {
+	if (!iValue)
+			return 0;
 	uint8_t i;
 	for (i = 0; i<iPinCount; i++)
 	{
@@ -213,14 +215,14 @@ void AutoDetectLedInit(uint8_t iTestNew)
 	msTicksTest = msTicks + 2000;
 }
 
-const char* asLed[5] = {"red","orange","green","up","down"};
-uint32_t aiPinLed[5] = {0,0,0,0,0};		// the found led pins: red , orange , green, up , down
+const char* asLed[6] = {"red","orange","green","up","down","buzzer"};
+uint32_t aiPinLed[6] = {0,0,0,0,0,0};		// the found led pins: red , orange , green, up , down
 int8_t iMove = +1;
 
 void ListLeds()
 {
-	sprintf(sMessage, "#define LED_RED\t%s\n#define LED_ORANGE\t%s\n#define LED_GREEN\t%s\n#define UPPER_LED\t%s\n#define LOWER_LED\t%s\n"
-			,	GetPinName(aiPinLed[0]),	GetPinName(aiPinLed[1]),	GetPinName(aiPinLed[2]),	GetPinName(aiPinLed[3]),	GetPinName(aiPinLed[4])	);
+	sprintf(sMessage, "#define LED_RED\t\t%s\n#define LED_ORANGE\t%s\n#define LED_GREEN\t%s\n#define UPPER_LED\t%s\n#define LOWER_LED\t%s\n#define BUZZER\t%s\n"
+			,	GetPinName(aiPinLed[0]),	GetPinName(aiPinLed[1]),	GetPinName(aiPinLed[2]),	GetPinName(aiPinLed[3]),	GetPinName(aiPinLed[4]),	GetPinName(aiPinLed[5])	);
 }
 
 void AutodetectMain()
@@ -234,10 +236,12 @@ void AutodetectMain()
 			if (msTicksTest > msTicks)	// wait for last sMessage to be sent
 				return;
 			iAutoDetectStageOld = iAutoDetectStage;
-			for (i=0;i<5;i++)	aiPinLed[i] = 0; 
+			for (i=0;i<6;i++)	aiPinLed[i] = 0; 
 			AutoDetectLedInit(0);
-			sprintf(sMessage,"send 'r'=red or 'o'=orange or 'g'=green or 'u'=up or 'd'=down when led lights up :-)\n'c' to reset , '-' to toggle direction , 'l' to list\nand 'x' when finished.\n");
+			sprintf(sMessage,"send 'r'=red,\t'o'=orange,\t'g'=green,\t'u'=up,\t'd'=down,\t'b'=buzzer\n'c' to reset , '-' to toggle direction , 'l' to list\nand 'x' when finished.\n");
 		}
+		
+		digitalWrite(aoPin[iTest].i,(msTicks%4)>0 ? 1 : 0);	// 250 Hz 75% pwm ratio
 
 		int8_t iFound = -1;
 		uint8_t bCommand = 1;
@@ -248,17 +252,18 @@ void AutodetectMain()
 		case 'g': iFound = 2; break;
 		case 'u': iFound = 3; break;
 		case 'd': iFound = 4; break;
+		case 'b': iFound = 5; break;
 		case 'l': ListLeds(); break;
 			case '-': iMove *= -1; sprintf(sMessage, "direction: %i\n",iMove); break;
 		case 'c': 
-			for (i=0;i<5;i++)	aiPinLed[i] = 0; 
+			for (i=0;i<6;i++)	aiPinLed[i] = 0; 
 			iMove = +1;
 			AutoDetectLedInit(0);
 			sprintf(sMessage, "all led pins cleared.");
 			break;
 		case 'x': 
 				ListLeds();
-				for (i=0;i<5;i++)	RemovePinDigital(aiPinLed[i]); 
+				for (i=0;i<6;i++)	RemovePinDigital(aiPinLed[i]); 
 				AutoDetectNextStage();
 				break;
 		default : bCommand = 0;
