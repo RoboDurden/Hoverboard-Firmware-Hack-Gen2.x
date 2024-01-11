@@ -190,6 +190,8 @@ void AutoDetectSetStage(uint8_t iSet)
 	iTest = iRepeat = 0;
 	iTestPin = 0;
 	iAutoDetectStage = iSet;
+	msTicksTest = msTicks + 500;
+	
 }
 void AutoDetectNextStage()
 {
@@ -229,6 +231,8 @@ void AutodetectMain()
 	{
 		if (iAutoDetectStageOld != iAutoDetectStage)
 		{
+			if (msTicksTest > msTicks)	// wait for last sMessage to be sent
+				return;
 			iAutoDetectStageOld = iAutoDetectStage;
 			for (i=0;i<5;i++)	aiPinLed[i] = 0; 
 			AutoDetectLedInit(0);
@@ -454,8 +458,8 @@ uint8_t AutodetectBldc(uint8_t posNew)
 						for (i=0; i<3; i++)	RemovePinDigital(aiPinDelete[i]);
 						
 						
-						iAutoDetectStage++;
-						//AutoDetectNextStage();
+						//iAutoDetectStage++;
+						AutoDetectNextStage();
 					}
 				}
 				else
