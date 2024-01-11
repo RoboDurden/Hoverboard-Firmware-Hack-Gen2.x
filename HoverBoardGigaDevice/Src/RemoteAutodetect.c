@@ -64,8 +64,8 @@ void RemoteUpdate(void)
 	sMessage[0] = '\0';
 }
 
-char cCommand;
-char cRxLast;
+char cCommand = 0;
+char cRxLast = ' ';
 
 // Update USART steer input
 void RemoteCallback(void)
@@ -212,7 +212,7 @@ void AutoDetectLedInit(uint8_t iTestNew)
 	pinMode(aoPin[iTest].i,GPIO_MODE_OUTPUT);
 	digitalWrite(aoPin[iTest].i,1);
 	
-	msTicksTest = msTicks + 2000;
+	msTicksTest = msTicks + 1000;
 }
 
 const char* asLed[6] = {"red","orange","green","up","down","buzzer"};
@@ -238,7 +238,7 @@ void AutodetectMain()
 			iAutoDetectStageOld = iAutoDetectStage;
 			for (i=0;i<6;i++)	aiPinLed[i] = 0; 
 			AutoDetectLedInit(0);
-			sprintf(sMessage,"send 'r'=red,\t'o'=orange,\t'g'=green,\t'u'=up,\t'd'=down,\t'b'=buzzer\n'c' to reset , '-' to toggle direction , 'l' to list\nand 'x' when finished.\n");
+			sprintf(sMessage,"'r'=red,\t'o'=orange,\t'g'=green,\t'u'=up,\t'd'=down,\t'b'=buzzer\n' '/RET to pause,\t'-' to toggle direction,\t'l' to list\n'c' to reset and 'x' when finished.\n");
 		}
 		
 		digitalWrite(aoPin[iTest].i,(msTicks%4)>0 ? 1 : 0);	// 250 Hz 75% pwm ratio
@@ -254,7 +254,17 @@ void AutodetectMain()
 		case 'd': iFound = 4; break;
 		case 'b': iFound = 5; break;
 		case 'l': ListLeds(); break;
-			case '-': iMove *= -1; sprintf(sMessage, "direction: %i\n",iMove); break;
+		case ' ': 
+			if (!iMove)
+			{
+				iMove=1; sprintf(sMessage, "continue\n");
+			}
+			else
+			{
+				iMove=0; sprintf(sMessage, "pause\n");
+			}
+			break;
+		case '-': iMove *= -1; sprintf(sMessage, "direction: %i\n",iMove); break;
 		case 'c': 
 			for (i=0;i<6;i++)	aiPinLed[i] = 0; 
 			iMove = +1;
@@ -268,7 +278,11 @@ void AutodetectMain()
 				break;
 		default : bCommand = 0;
 		}
-		if (bCommand) cCommand = 0;
+		if (bCommand) 
+		{
+			cCommand = 0;
+			cRxLast = ' ';	// so a single return will pause/unpause
+		}
 		
 		if (iFound >= 0)
 		{
@@ -277,7 +291,10 @@ void AutodetectMain()
 		}
 		else if (msTicks > msTicksTest)
 		{
-			if (iMove > 0)
+			if (iMove == 0)
+			{
+			}
+			else if (iMove > 0)
 				iTest = (iTest + iMove) % iPinCount;		// try next io pin for this hall position
 			else if (iTest == 0)
 					iTest = iPinCount-1;
