@@ -273,7 +273,7 @@ void AutodetectMain()
 		if (iFound >= 0)
 		{
 			aiPinLed[iFound] = aoPin[iTest].i;
-			sprintf(sMessage, "led %s = %s\n",	asLed[iFound],GetPinName(aiPinLed[iFound])	);
+			sprintf(sMessage, "%s = %s\n",	asLed[iFound],GetPinName(aiPinLed[iFound])	);
 		}
 		else if (msTicks > msTicksTest)
 		{
