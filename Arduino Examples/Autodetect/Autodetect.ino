@@ -29,7 +29,9 @@ void loop()
 {
   if (Serial.available())  // If anything comes in Serial (USB),
   {      
-    oSerialHover.write(Serial.read());   // read it and send it to hoverboard
+    char c = Serial.read();
+    //Serial.println(c );
+    oSerialHover.write(c);   // read it and send it to hoverboard
   }
 
   if (oSerialHover.available())   // If anything comes in from hoverboard

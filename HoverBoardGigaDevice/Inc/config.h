@@ -7,6 +7,10 @@
 				// outputs ascii to uart 19200 baud to TX=PB6 , RX=PB7
 
 #ifdef REMOTE_AUTODETECT
+	
+	#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
+	//#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
+
 	#define SINGLE
 	#define MASTER_OR_SINGLE
 	#define BAT_CELLS         	6        // battery number of cells. Normal Hoverboard battery: 10s

@@ -279,6 +279,10 @@ uint32_t iTimeNextLoop = 0;
 int main (void)
 {
 	
+	#ifdef REMOTE_AUTODETECT
+		AutodetectInit();
+	#endif
+	
 	#ifdef MASTER_OR_SINGLE
 		FlagStatus enableSlave = RESET;
 		FlagStatus chargeStateLowActive = SET;
@@ -355,6 +359,11 @@ int main (void)
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
 		DEBUG_LedSet(	(steerCounter%200) < 10	,1)
 		digitalWrite(MOSFET_OUT,	(steerCounter%200) < 100	);	// onboard led blinking :-)
+
+	#ifdef REMOTE_AUTODETECT
+		AutodetectMain();
+	#endif
+
 		
 		#ifdef SLAVE	
 			SetPWM(pwmSlave);
