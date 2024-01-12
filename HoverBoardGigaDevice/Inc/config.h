@@ -38,8 +38,8 @@
 	#if defined(MASTER) || defined(SINGLE)
 		#define MASTER_OR_SINGLE
 		
-		#define REMOTE_DUMMY
-		//#define REMOTE_UART
+		//#define REMOTE_DUMMY
+		#define REMOTE_UART
 		//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 		//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 		
@@ -53,7 +53,7 @@
 		#define SPEED_COEFFICIENT   -1
 		#define STEER_COEFFICIENT   1
 		
-		#define CHECK_BUTTON		// disable = add '//' if you use a slave board as master
+		//#define CHECK_BUTTON		// disable = add '//' if you use a slave board as master
 	#endif
 #endif
 

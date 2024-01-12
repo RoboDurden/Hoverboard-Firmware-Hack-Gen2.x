@@ -180,6 +180,11 @@ void CalculateBLDC(void)
 	#else
 		currentDC = 0.42; 	// testing with no CURRENT_DC pin yet
 	#endif
+
+	#ifdef REMOTE_AUTODETECT
+		currentDC = 0.42; 	// testing with no CURRENT_DC pin yet
+		batteryVoltage = BAT_CELLS * 3.6;		// testing with no VBATT pin yet
+	#endif
 	
   // Disable PWM when current limit is reached (current chopping), enable is not set or timeout is reached
 	if (currentDC > DC_CUR_LIMIT || bldc_enable == RESET || timedOut == SET)
@@ -216,8 +221,9 @@ void CalculateBLDC(void)
 
 	// Determine current position based on hall sensors
 	#ifdef REMOTE_AUTODETECT
+
 		pos = AutodetectBldc(hall_to_pos[hall]);
-		AutodetectMain();
+		AutodetectScan(buzzerTimer,offsetdc);
 	#else
 		pos = hall_to_pos[hall];
 	#endif

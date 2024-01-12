@@ -29,12 +29,12 @@
 //#include "target.h"
 
 // LED defines
+#define LED_GREEN PA15
+#define LED_ORANGE PA12
+#define LED_RED PB3
 
 #define UPPER_LED	PA1
 #define LOWER_LED	PA0
-
-#define UPPER_LED2	PB5		//	robo: the middle pin of the 3pin led header between the 3led (left) and 2led (right)
-													//	VBATT!!! , PB5 , ? = simply blinking,
 
 
 // Mosfet output, little onboard led
@@ -54,7 +54,7 @@
 #define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12
 
 // Hall sensor defines
-
+// -> remoteAutodetect.h
 
 
 // robo: on 2.0 this is the USART0 header to the left of the st-link header: GND , PB4 , PB4 , +5V
@@ -82,17 +82,12 @@
 #endif
 
 
-//	so available for analog input: A5 A6 A7 B0 B1 	
+// ADC defines
+#define VBATT		PA4
+#define CURRENT_DC PA6
 	
 
 
-// ADC defines
-#define VBATT	PA4
-#define ADC_BATTERY_VOLT      0.0258320368	// robo newly gaged
-
-#define CURRENT_DC	PA6
-
-#define PHASE_CURRENT_X	PA7		// robo: maybe because some oscilating values
 
 // Self hold defines
 #define SELF_HOLD	PB2

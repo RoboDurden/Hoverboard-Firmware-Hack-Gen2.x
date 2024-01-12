@@ -13,20 +13,18 @@
 static char sMessage[512];
 
 
-extern uint32_t LED_GREEN;
-extern uint32_t LED_ORANGE;
-extern uint32_t LED_RED;
-
 extern uint32_t HALL_A;
 extern uint32_t HALL_B;
 extern uint32_t HALL_C;
-
 
 
 #define AUTODETECT_Stage_Startup 0
 #define AUTODETECT_Stage_Hall 1
 #define AUTODETECT_Stage_HallOrder 2
 #define AUTODETECT_Stage_Led 3
+#define AUTODETECT_Stage_VBatt 4
+#define AUTODETECT_Stage_CurrentDC 5
+#define AUTODETECT_Stage_Finished 6
 
 uint8_t AutodetectBldc(uint8_t posNew);
 

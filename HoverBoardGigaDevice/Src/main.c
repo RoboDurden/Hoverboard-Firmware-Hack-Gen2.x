@@ -28,16 +28,6 @@
 #endif
 
 
-#ifdef REMOTE_AUTODETECT
-
-	extern uint32_t LED_GREEN;
-	extern uint32_t LED_ORANGE;
-	extern uint32_t LED_RED;
-
-	extern uint32_t HALL_A;
-	extern uint32_t HALL_B;
-	extern uint32_t HALL_C;
-#endif	
 
 uint32_t steerCounter = 0;								// Steer counter for setting update rate
 int32_t speed = 0; 												// global variable for speed.    -1000 to 1000
@@ -81,8 +71,9 @@ uint32_t inactivity_timeout_counter = 0;	// Inactivity counter
 void ShowBatteryState(uint32_t pin);
 void BeepsBackwards(FlagStatus beepsBackwards);
 
-const float lookUpTableAngle[181] =  
-{
+#ifndef REMOTE_AUTODETECT
+	const float lookUpTableAngle[181] =  
+	{
   -1,
   -0.937202577,
   -0.878193767,
@@ -264,7 +255,9 @@ const float lookUpTableAngle[181] =
   -1.138700863,
   -1.067005175,
   -1
-};
+	};
+#endif	// not REMOTE_AUTODETECT
+
 #endif
 
 
@@ -350,6 +343,24 @@ int main (void)
 
 	DEBUG_LedSet(RESET,1)
 	digitalWrite(UPPER_LED,RESET);
+	
+#ifdef REMOTE_AUTODETECT
+  while(1)
+	{
+		if (millis() < iTimeNextLoop)	
+			continue;
+		iTimeNextLoop = millis() + DELAY_IN_MAIN_LOOP;
+		
+		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
+		
+		if ((steerCounter % 2) == 0)	// something like DELAY_IN_MAIN_LOOP = 10 ms
+		{
+			RemoteUpdate();
+		}
+		// Reload watchdog (watchdog fires after 1,6 seconds)
+		fwdgt_counter_reload();
+	}
+#else	
   while(1)
 	{
 		if (millis() < iTimeNextLoop)	
@@ -359,11 +370,6 @@ int main (void)
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
 		DEBUG_LedSet(	(steerCounter%200) < 10	,1)
 		digitalWrite(MOSFET_OUT,	(steerCounter%200) < 100	);	// onboard led blinking :-)
-
-	#ifdef REMOTE_AUTODETECT
-		//AutodetectMain();
-	#endif
-
 		
 		#ifdef SLAVE	
 			SetPWM(pwmSlave);
@@ -520,6 +526,7 @@ int main (void)
 		// Reload watchdog (watchdog fires after 1,6 seconds)
 		fwdgt_counter_reload();
   }
+	#endif
 }
 
 //----------------------------------------------------------------------------
