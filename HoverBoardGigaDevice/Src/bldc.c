@@ -223,7 +223,7 @@ void CalculateBLDC(void)
 	#ifdef REMOTE_AUTODETECT
 
 		pos = AutodetectBldc(hall_to_pos[hall]);
-		AutodetectScan(buzzerTimer,offsetdc);
+		AutodetectScan(buzzerTimer);
 	#else
 		pos = hall_to_pos[hall];
 	#endif

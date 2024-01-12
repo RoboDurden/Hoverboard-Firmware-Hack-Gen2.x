@@ -27,6 +27,7 @@ extern uint32_t HALL_C;
 #define AUTODETECT_Stage_Finished 6
 
 uint8_t AutodetectBldc(uint8_t posNew);
+void AutodetectScan(uint16_t buzzerTimer);
 
 void AutodetectMain();
 

@@ -303,7 +303,7 @@ float fVBatt;
 float fCurrentDC;
 int16_t iOffsetDC;
 
-void AutodetectScan(uint16_t buzzerTimer,int16_t iDebug)
+void AutodetectScan(uint16_t buzzerTimer)
 {
 	uint8_t i;
 	
