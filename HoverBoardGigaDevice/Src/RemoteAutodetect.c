@@ -204,7 +204,7 @@ uint16_t iStageOld = -1;
 uint32_t msTicksTest;
 uint8_t iTest = 0;		// an index pointer testing different positbilities
 uint8_t iTestPin = 0;	// a pin variable used while testing
-uint8_t iTestStart = 0;		// an index pointer to the first pin tested in a stage
+int8_t iTestStart = -1;		// an index pointer to the first pin tested in a stage
 
 uint8_t iRepeat = 0;	// a counter to repeat before some finding is accepted
 int16_t iAverage = 0;	// a variable to averarge over some reading
@@ -417,9 +417,9 @@ void AutodetectScan(uint16_t buzzerTimer)
 				fCurrentDC = ((adc_buffer.v_batt - iOffsetDC) * MOTOR_AMP_CONV_DC_AMP);
 				
 				iInterval = iInterval % (MS_INTERVAL/2);
-				if ( (iInterval>20) && (iInterval<50) ) // regenerative current due to rotation change
+				if ( (iInterval>20) && (iInterval<60) ) // regenerative current due to rotation change
 				{
-					if (fCurrentDC < 0)
+					if (	(fCurrentDC < 0) && (fCurrentDC > -0.5)	)
 					{
 							if (iAverage < 32767)	iAverage++;
 					}
@@ -455,7 +455,11 @@ void AutodetectScan(uint16_t buzzerTimer)
 			}
 			break;
 		case '-': iMove *= -1; sprintf(sMessage, "direction: %i\n",iMove); break;
-		case 'x': HidePinDigital(aoPin[iTest].i); msTicksTest = 0; break;
+		case 'x': 
+			HidePinDigital(aoPin[iTest].i); 
+			if (iTest == iTestStart)	iTestStart = -1;
+			msTicksTest = 0; // skip this test interval
+			break;
 		case 'c': 
 			for (i=iFrom;i<iTo;i++)	aiPinScan[i] = 0; 
 				
@@ -495,6 +499,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 
 			if (SetNextTestPin())
 			{
+				if (iTestStart < 0) iTestStart = iTest;
 				if (iStage == AUTODETECT_Stage_CurrentDC)
 				{
 					if (iTest == iTestStart)	// a complete cycle of available adc pins
@@ -509,7 +514,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 				}
 				else
 					sprintf(sMessage, "try %s\n",aoPin[iTest].s);
-					
+				
 				ScanInit(iTest);
 			}
 			else
