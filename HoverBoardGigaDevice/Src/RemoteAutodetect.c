@@ -358,9 +358,8 @@ void AutodetectScan(uint16_t buzzerTimer)
 				sprintf(sMessage,"'f'=current DC");
 			}
 				
-			sprintf(sMessage,"%s\nRET to pause,\t'-' to toggle direction,\t'l' to list\n'c' to reset, 'x' to delete and 's' when finished.\nnow %s",sMessage,aoPin[iTest].s);
-			
 			ScanInit(0);
+			sprintf(sMessage,"%s\nRET to pause,\t'-' to toggle direction,\t'l' to list\n'c' to reset, 'x' to delete and 's' when finished.\nnow %s",sMessage,aoPin[iTest].s);
 			iTestStart = iTest;
 			return;	// to allow sMessage to be sent
 		}
