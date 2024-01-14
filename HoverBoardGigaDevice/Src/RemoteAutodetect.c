@@ -486,7 +486,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 			//sprintf(sMessage,"%i\n",adc_buffer.v_batt);
 		}
 		digitalWrite(aoPin[iTest].i,(buzzerTimer%8000) < 700 ? 0 : 1);	// relase SELF_HOLD for a short time
-	break;
+		break;
 	}
 
 	
