@@ -18,13 +18,14 @@ extern uint32_t HALL_B;
 extern uint32_t HALL_C;
 
 
-#define AUTODETECT_Stage_Startup 0
-#define AUTODETECT_Stage_Hall 1
-#define AUTODETECT_Stage_HallOrder 2
-#define AUTODETECT_Stage_Led 3
-#define AUTODETECT_Stage_VBatt 4
-#define AUTODETECT_Stage_CurrentDC 5
-#define AUTODETECT_Stage_Finished 6
+#define AUTODETECT_Stage_Startup 1
+#define AUTODETECT_Stage_Hall 2
+#define AUTODETECT_Stage_HallOrder 4
+#define AUTODETECT_Stage_Led 8
+#define AUTODETECT_Stage_VBatt 16
+#define AUTODETECT_Stage_CurrentDC 32
+#define AUTODETECT_Stage_Hold 64
+#define AUTODETECT_Stage_Finished 128
 
 uint8_t AutodetectBldc(uint8_t posNew);
 void AutodetectScan(uint16_t buzzerTimer);

@@ -12,6 +12,7 @@
 
 void setup() 
 {
+  pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(115200);
   Serial.println("Hello Hoverbaord V2.x Autodetect :-)");
 
@@ -27,6 +28,7 @@ void setup()
 
 void loop() 
 {
+  digitalWrite(LED_BUILTIN, (millis()%2000) < 500);
   if (Serial.available())  // If anything comes in Serial (USB),
   {      
     char c = Serial.read();
