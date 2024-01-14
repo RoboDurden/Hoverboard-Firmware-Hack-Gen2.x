@@ -337,7 +337,7 @@ void ScanList(uint8_t bLed)
 	}
 	else
 	{
-		sprintf(sMessage, "\n#define VBATT\t\t%s\n#define CURRENT_DC\t%s\n#define SELF_HOLD\t%s\n#define BUTTON\t%s\n"
+		sprintf(sMessage, "\n#define VBATT\t\t%s\n#define CURRENT_DC\t%s\n#define SELF_HOLD\t%s\n#define BUTTON\t\t%s\n"
 				,	GetPinName(aiPinScan[6]),	GetPinName(aiPinScan[7]),	GetPinName(aiPinScan[8]),	GetPinName(aiPinScan[9]));
 	}
 		
