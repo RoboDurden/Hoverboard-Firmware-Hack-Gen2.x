@@ -108,44 +108,39 @@ typedef struct {
 
 #define STATE_ADC 1
 #define STATE_HIDE 2
+#define STATE_OFF 4
+#define STATE_ON 8
 
-#define COUNT_PinDigital 31
+//#define TEST
+
+#ifdef TEST
+	#define COUNT_PinDigital 22
+	PinAD aoPin[COUNT_PinDigital] = {	// 2.13 pins removed for testing: led + buzzer + vbatt + currentDC
+			{PC14,"PC14",0}	,{PF1,"PF1",0}		,{PB11,"PB11",1}	,{PF0,"PF0",0}		, 
+			{PA5,"PA5",1} 		, {PC13,"PC13",0}	 ,{PC15,"PC15",0}	,
+			{PA7,"PA7",1}		,{PB0,"PB0",1}		,{PB1,"PB1",1}		,{PB2,"PB2",0}	,{PB10,"PB10",0}	,
+			{PB12,"PB12",0}	,{PA11,"PA11",0}	,{PF6,"PF6",0}	,{PF7,"PF7",0} 	,
+			{PB4,"PB4",0}		,{PB5,"PB5",0}		,
+			{PB6,"PB6",0}		,{PB7,"PB7",0}		,{PB8,"PB8",0}		,{PB9,"PB9",0}	};
+#else
+
+	#define COUNT_PinDigital 31
+
+	PinAD aoPin[COUNT_PinDigital] = {
+			{PC13,"PC13",0}	,{PC14,"PC14",0}	,{PC15,"PC15",0}	,{PF0,"PF0",0}	,{PF1,"PF1",0}		,
+			{PA0,"PA0",1}		,{PB11,"PB11",1}		,{PA4,"PA4",1}		,{PA5,"PA5",1}	,{PA6,"PA6",1} 	,
+			{PA7,"PA7",1}		,{PB0,"PB0",1}		,{PB1,"PB1",1}		,{PB2,"PB2",0}	,{PB10,"PB10",0}	,
+			{PA1,"PA1",0}	,{PB12,"PB12",0}	,{PA11,"PA11",0}	,{PF6,"PF6",0}	,{PF7,"PF7",0} 	,
+			{PA12,"PA12",0}	,{PA15,"PA15",0}	,{PB3,"PB3",0}		,{PB4,"PB4",0}	,{PB5,"PB5",0}	,
+			{PB6,"PB6",0}		,{PB7,"PB7",0}		,{PB8,"PB8",0}		,{PB9,"PB9",0}	,{PA2,"PA2",1}	,
+			{PA3,"PA3",1}
+			};
+#endif
 uint8_t iPinCount = COUNT_PinDigital;
-
-/*
-PinAD aoPin[COUNT_PinDigital] = {	// 2.13 pins removed for testing: led + buzzer + vbatt + currentDC
-		{PC13,"PC13",0}	,{PC14,"PC14",0}	,{PC15,"PC15",0}	,{PF0,"PF0",0}	,{PF1,"PF1",0}		,
-		{PB11,"PB11",1}	,{PA5,"PA5",1} 		,
-		{PA7,"PA7",1}		,{PB0,"PB0",1}		,{PB1,"PB1",1}		,{PB2,"PB2",0}	,{PB10,"PB10",0}	,
-		{PB12,"PB12",0}	,{PA11,"PA11",0}	,{PF6,"PF6",0}	,{PF7,"PF7",0} 	,
-		{PB4,"PB4",0}		,{PB5,"PB5",0}		,
-		{PB6,"PB6",0}		,{PB7,"PB7",0}		,{PB8,"PB8",0}		,{PB9,"PB9",0}	};
-*/
-
-
-PinAD aoPin[COUNT_PinDigital] = {
-		{PC13,"PC13",0}	,{PC14,"PC14",0}	,{PC15,"PC15",0}	,{PF0,"PF0",0}	,{PF1,"PF1",0}		,
-		{PA0,"PA0",1}		,{PB11,"PB11",1}		,{PA4,"PA4",1}		,{PA5,"PA5",1}	,{PA6,"PA6",1} 	,
-		{PA7,"PA7",1}		,{PB0,"PB0",1}		,{PB1,"PB1",1}		,{PB2,"PB2",0}	,{PB10,"PB10",0}	,
-		{PA1,"PA1",0}	,{PB12,"PB12",0}	,{PA11,"PA11",0}	,{PF6,"PF6",0}	,{PF7,"PF7",0} 	,
-		{PA12,"PA12",0}	,{PA15,"PA15",0}	,{PB3,"PB3",0}		,{PB4,"PB4",0}	,{PB5,"PB5",0}	,
-		{PB6,"PB6",0}		,{PB7,"PB7",0}		,{PB8,"PB8",0}		,{PB9,"PB9",0}	,{PA2,"PA2",1}	,
-		{PA3,"PA3",1}
-		};
-
+			
+			
 const char* sTodoPin = "TODO_PIN";
 		
-/*
-uint32_t aiPinCount[COUNT_PinDigital] = // all possible io pins for GD32 48pin mcu
-						{	PC13,PC14,PC15,PF0 ,PF1 ,PA0 ,PA1 ,PA4 ,PA5 ,PA6 ,
-							PA7 ,PB0 ,PB1 ,PB2 ,PB10,PB11,PB12,PA11,PF6 ,PF7 ,
-							PA12,PA15,PB3,PB4,PB5,PB8,PB9};
-
-char* asPinDigital[COUNT_PinDigital] = 
-									{	"C13","C14","C15","F0" ,"F1" ,"A0" ,"A1" ,"A4" ,"A5","A6" ,
-										"A7" ,"B0" ,"B1" ,"B2" ,"B10","B11","B12","A11","F6","F7" ,
-										"A12","A15","B3" ,"B4" ,"B5" ,"B8" ,"B9"};
-*/
 
 const char* GetPinName(uint32_t iPin)
 {
@@ -223,7 +218,7 @@ uint8_t iRepeat = 0;	// a counter to repeat before some finding is accepted
 int16_t iAverage = 0;	// a variable to averarge over some reading
 int16_t iAverageMax = -32767;	// a variable to stor the maximun averarge 
 
-void AutoDetectSetStage(uint8_t iSet)
+void AutoDetectSetStage(uint16_t iSet)
 {
 	iTest = iRepeat = 0;
 	iTestPin = 0;
@@ -261,7 +256,7 @@ uint8_t SetNextTestPin()
 			return 0;	// one loop and no pin found -> exit
 		if (aoPin[iTest].wState & STATE_HIDE)
 				continue;
-		if (	(wStage & (AUTODETECT_Stage_Led|AUTODETECT_Stage_Hold)) || (aoPin[iTest].wState & STATE_ADC))
+		if (	(wStage & (AUTODETECT_Stage_Led|AUTODETECT_Stage_Hold|AUTODETECT_Stage_Button)) || (aoPin[iTest].wState & STATE_ADC))
 			return 1;	// Stage_Led accepts any io pin, stage_Adc only adc-pins
 		
 	} while (1);
@@ -271,8 +266,18 @@ void ScanInit(uint8_t iTestNew)
 {
 	iTest = iTestNew;
 	uint8_t i;
-	if (wStage == AUTODETECT_Stage_Hold)
+	switch (wStage)
 	{
+	case AUTODETECT_Stage_Button:
+		pinMode(aiPinScan[8],GPIO_MODE_OUTPUT);
+		digitalWrite(aiPinScan[8],1);	// SELF_HOLD pin to high
+		for (i=0;i<iPinCount; i++)	
+		{
+			if (!(aoPin[i].wState & STATE_HIDE))
+				pinMode(aoPin[i].i,GPIO_MODE_INPUT);
+		}
+		break;
+	case AUTODETECT_Stage_Hold:
 		for (i=0;i<iPinCount; i++)	
 		{
 			if (!(aoPin[i].wState & STATE_HIDE))
@@ -283,9 +288,8 @@ void ScanInit(uint8_t iTestNew)
 		}
 		//pinMode(VBAT, GPIO_MODE_ANALOG);
 		adc_regular_channel_config(0, ADC_CHANNEL_18, ADC_SAMPLETIME_13POINT5);	// ADC_CHANNEL_18 = VBAT
-	}
-	else
-	{
+		break;
+	default:
 		for (i=0;i<iPinCount; i++)	
 		{
 			if (!(aoPin[i].wState & STATE_HIDE))
@@ -304,6 +308,9 @@ void ScanInit(uint8_t iTestNew)
 		iAverageMax = 32767;
 		iTestPin = iTest;
 		break;
+	case AUTODETECT_Stage_Button:
+		msTicksTest = msTicks + 100;		// default time interval
+		break;
 	default:	
 		if ((aoPin[iTest].wState & STATE_ADC) == 0)	// this is not an adc pin
 		{
@@ -321,19 +328,32 @@ void ScanInit(uint8_t iTestNew)
 
 
 
-void ScanList()
+void ScanList(uint8_t bLed)
 {
-	if (wStage == AUTODETECT_Stage_Led)
+	if (bLed)
 	{
 		sprintf(sMessage, "#define LED_RED\t\t%s\n#define LED_ORANGE\t%s\n#define LED_GREEN\t%s\n#define UPPER_LED\t%s\n#define LOWER_LED\t%s\n#define BUZZER\t%s\n"
 				,	GetPinName(aiPinScan[0]),	GetPinName(aiPinScan[1]),	GetPinName(aiPinScan[2]),	GetPinName(aiPinScan[3]),	GetPinName(aiPinScan[4]),	GetPinName(aiPinScan[5])	);
 	}
 	else
 	{
-		sprintf(sMessage, "\n#define VBATT\t\t%s\n#define CURRENT_DC\t%s\n"
-				,	GetPinName(aiPinScan[6]),	GetPinName(aiPinScan[7]));
+		sprintf(sMessage, "\n#define VBATT\t\t%s\n#define CURRENT_DC\t%s\n#define SELF_HOLD\t%s\n#define BUTTON\t%s\n"
+				,	GetPinName(aiPinScan[6]),	GetPinName(aiPinScan[7]),	GetPinName(aiPinScan[8]),	GetPinName(aiPinScan[9]));
 	}
 		
+}
+
+
+uint32_t aPinHall[3] = {0,0,0};		// the found hall pins (aoPin will map to PA1, etc
+uint8_t aHallOrder[6][3] = {{0,2,1},{2,0,1},{0,1,2},{1,2,0},{1,0,2},{2,1,0}};	// possible permutations to test
+
+void HallList()
+{
+	//sprintf(sMessage, "hall oder: %i = %i,%i,%i\n",iTest,aHallOrder[iTest][0],aHallOrder[iTest][1],aHallOrder[iTest][2]);
+	sprintf(sMessage, "#define HALL_A = %s\n#define HALL_B = %s\n#define HALL_C = %s\n"
+		, aoPin[aPinHall[ aHallOrder[iTest][0] ] ].s
+		, aoPin[aPinHall[ aHallOrder[iTest][1] ] ].s
+		, aoPin[aPinHall[ aHallOrder[iTest][2] ] ].s	);
 }
 
 
@@ -346,7 +366,27 @@ int16_t iOffsetDC;
 
 void AutodetectScan(uint16_t buzzerTimer)
 {
-	uint8_t i;
+	if (msTicksWait > msTicks)	// wait for last sMessage to be sent
+		return;
+
+	
+	if (wStage == AUTODETECT_Stage_Results)
+	{
+		SetPWM(0);
+		switch(iRepeat)
+		{
+		case 0:
+			ScanList(1);
+			break;
+		case 1:
+			HallList();
+			AutoDetectNextStage();
+			break;
+		}
+		msTicksWait = msTicks + 300;
+		iRepeat++;
+		return;
+	}
 	
 	if (wStage == AUTODETECT_Stage_Finished)
 	{
@@ -354,12 +394,11 @@ void AutodetectScan(uint16_t buzzerTimer)
 		return;
 	}
 	
-	if (msTicksWait > msTicks)	// wait for last sMessage to be sent
-		return;
 	
-	if (	(wStage < AUTODETECT_Stage_Led) || (wStage > AUTODETECT_Stage_Hold)	)
+	if (	(wStage < AUTODETECT_Stage_Led) || (wStage > AUTODETECT_Stage_Button)	)
 		return;
 
+	uint8_t i;
 	// AUTODETECT_Stage_Led or AUTODETECT_Stage_VBatt or AUTODETECT_Stage_CurrentDC or AUTODETECT_Stage_Hold
 	uint8_t iFrom,iTo;
 	switch (wStage)
@@ -368,6 +407,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 		case AUTODETECT_Stage_VBatt: 		iFrom = 6; iTo = 7; break;
 		case AUTODETECT_Stage_CurrentDC: iFrom = 7; iTo = 8; break;
 		case AUTODETECT_Stage_Hold: 		iFrom = 8; iTo = 9; break;
+		case AUTODETECT_Stage_Button: 		iFrom = 9; iTo = 10; break;
 	}
 		
 	SetPWM(-200);		// default speed
@@ -377,16 +417,17 @@ void AutodetectScan(uint16_t buzzerTimer)
 		
 		//for (i=iFrom;i<iTo;i++)	aiPinScan[i] = 0; 
 
+		ScanInit(0);
 		switch (wStage)
 		{
 			case AUTODETECT_Stage_Led: sprintf(sMessage,"'r'=red,\t'o'=orange,\t'g'=green,\t'u'=up,\t'd'=down,\t'b'=buzzer"); break;
 			case AUTODETECT_Stage_VBatt: sprintf(sMessage,"'v'=battery voltage"); break;
 			case AUTODETECT_Stage_CurrentDC: sprintf(sMessage,"current_DC: wait one cycle :-)"); break;
 		}
-		ScanInit(0);
 		switch (wStage)
 		{
 			case AUTODETECT_Stage_Hold: sprintf(sMessage,"now detecting SELF_HOLD pin,\nrelease the on/off button !!!\n"); break;
+			case AUTODETECT_Stage_Button: sprintf(sMessage,"now 'b'=BUTTON pin,\nrelease the on/off button and hit ENTER\n"); break;
 			default:	
 				sprintf(sMessage,"%s\n'i'=toggle auto-next-pin,\t'-'=toggle direction,\t'x'=delete pin\n'l'=list,\t'c'=reset and 's'=next stage",sMessage);
 				if (wScanConfig & SCAN_AutoInc)
@@ -486,16 +527,55 @@ void AutodetectScan(uint16_t buzzerTimer)
 			//sprintf(sMessage,"%i\n",adc_buffer.v_batt);
 		}
 		digitalWrite(aoPin[iTest].i,(buzzerTimer%8000) < 700 ? 0 : 1);	// relase SELF_HOLD for a short time
+		switch(cCommand)
+		{
+			case 'h': iFound = 8; msTicksTest = 0; break;
+			default : bCommand--;
+		}
+		break;
+	case AUTODETECT_Stage_Button:
+		SetPWM(0);
+		uint8_t bOn = digitalRead(aoPin[iTest].i);
+		switch (iRepeat)
+		{
+		case 0:
+			//if (buzzerTimer % 32000 == 0)	sprintf(sMessage,"release on/off button and hit ENTER\n");
+			break;
+		case 1:
+			aoPin[iTest].wState = (aoPin[iTest].wState & ~STATE_OFF) | bOn * STATE_OFF;
+			break;
+		case 2:
+			//if (buzzerTimer % 32000 == 0)	sprintf(sMessage,"push on/off button and hit ENTER\n");
+			break;
+		case 3:
+			aoPin[iTest].wState = (aoPin[iTest].wState & ~STATE_ON) | bOn * STATE_ON;
+			break;
+		}
+
+		switch(cCommand)
+		{
+		case ' ': 
+			if (	(iRepeat==0) || (iRepeat==2)	)
+			{
+				iRepeat++;
+				iTestStart = iTest; 
+				msTicksTest = msTicks+100; 
+			}
+			cCommand = 0;
+			break;
+		default : bCommand--;
+		}
+		
 		break;
 	}
 
 	
-	if (!(wScanConfig & SCAN_AutoInc) && !(wStage & (AUTODETECT_Stage_CurrentDC|AUTODETECT_Stage_Hold))	)
+	if (!(wScanConfig & SCAN_AutoInc) && !(wStage & (AUTODETECT_Stage_CurrentDC|AUTODETECT_Stage_Hold|AUTODETECT_Stage_Button))	)
 		msTicksTest = msTicks + 100;	// never 
 	
 	switch(cCommand)	// general serial commands that apply to all stages
 	{
-	case 'l': ScanList(); break;
+	case 'l': ScanList(wStage == AUTODETECT_Stage_Led); break;
 	case 'i': 
 			if (wScanConfig & SCAN_AutoInc)
 					wScanConfig -= SCAN_AutoInc;
@@ -535,7 +615,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 		sprintf(sMessage, "all pins cleared.");
 		break;
 	case 's': 	// save
-			ScanList();
+			ScanList(wStage == AUTODETECT_Stage_Led);
 			for (i=iFrom;i<iTo;i++)	HidePinDigital(aiPinScan[i]); 
 			AutoDetectNextStage();
 			break;
@@ -572,8 +652,9 @@ void AutodetectScan(uint16_t buzzerTimer)
 		if (SetNextTestPin())
 		{
 			if (iTestStart < 0) iTestStart = iTest;
-			if (wStage == AUTODETECT_Stage_CurrentDC)
+			switch (wStage)
 			{
+			case AUTODETECT_Stage_CurrentDC:
 				if (iTest == iTestStart)	// a complete cycle of available adc pins
 				{
 					sprintf(sMessage," : %i\n#define CURRENT_DC = %s //%i\nnow %s",iAverage,aoPin[iTestPin].s,iAverageMax,aoPin[iTest].s);
@@ -583,9 +664,39 @@ void AutodetectScan(uint16_t buzzerTimer)
 				}
 				else
 					sprintf(sMessage," : %i\nnow %s",iAverage,aoPin[iTest].s);
-			}
-			else
+				break;
+			case AUTODETECT_Stage_Button:
+				if (iTest == iTestStart)	// a complete cycle of available adc pins
+				{
+					switch (iRepeat)
+					{
+					case 1:
+						sprintf(sMessage,"push button and hit ENTER\n");
+						//msTicksWait = msTicks + 300;
+						iRepeat = 2;
+						break;
+					case 3:
+						sprintf(sMessage,"");
+						for (i=0;i<iPinCount; i++)	
+						{
+							if (!(aoPin[i].wState & STATE_HIDE))
+							{
+								if (!(aoPin[i].wState & STATE_OFF) && (aoPin[i].wState & STATE_ON))
+								{
+									aiPinScan[9] = aoPin[i].i;
+									sprintf(sMessage,"%s#define BUTTON\t%s\n",sMessage,aoPin[i].s);
+								}
+							}
+						}
+						sprintf(sMessage,"%srelease button and hit ENTER\n",sMessage);
+						//msTicksWait = msTicks + 300;
+						iRepeat = 0;
+					}
+				}
+				break;
+			default:
 				sprintf(sMessage, "try %s\n",aoPin[iTest].s);
+			}		
 			
 			ScanInit(iTest);
 		}
@@ -599,9 +710,6 @@ void AutodetectScan(uint16_t buzzerTimer)
 }
 
 
-
-uint32_t aPinHall[3] = {0,0,0};		// the found hall pins (aoPin will map to PA1, etc
-uint8_t aHallOrder[6][3] = {{0,2,1},{2,0,1},{0,1,2},{1,2,0},{1,0,2},{2,1,0}};	// possible permutations to test
 
 	
 
@@ -758,13 +866,7 @@ uint8_t AutodetectBldc(uint8_t posNew)
 					{
 						uint16_t iTime = msTicks-msTicksOld;
 						
-						
-						//sprintf(sMessage, "hall oder: %i = %i,%i,%i\n",iTest,aHallOrder[iTest][0],aHallOrder[iTest][1],aHallOrder[iTest][2]);
-						sprintf(sMessage, "hall oder %i :\n#define HALL_A = %s\n#define HALL_B = %s\n#define HALL_C = %s\n",iTest
-							, aoPin[aPinHall[ aHallOrder[iTest][0] ] ].s
-							, aoPin[aPinHall[ aHallOrder[iTest][1] ] ].s
-							, aoPin[aPinHall[ aHallOrder[iTest][2] ] ].s	);
-						//sprintf(sMessage, " auto %i: %i %i\n",posAuto,posOld,posNew);
+						HallList();
 
 						uint8_t i;
 						for (i=0; i<3; i++)	HidePinDigital(aoPin[aPinHall[i]].i);
