@@ -117,24 +117,24 @@ typedef struct {
 #ifdef TEST
 	#define COUNT_PinDigital 22
 	PinAD aoPin[COUNT_PinDigital] = {	// 2.13 pins removed for testing: led + buzzer + vbatt + currentDC
-			{PC14,"PC14",0}	,{PF1,"PF1",0}		,{PB11,"PB11",1}	,{PF0,"PF0",0}		, 
-			{PA5,"PA5",1} 		, {PC13,"PC13",0}	 ,{PC15,"PC15",0}	,
-			{PA7,"PA7",1}		,{PB0,"PB0",1}		,{PB1,"PB1",1}		,{PB2,"PB2",0}	,{PB10,"PB10",0}	,
-			{PB12,"PB12",0}	,{PA11,"PA11",0}	,{PF6,"PF6",0}	,{PF7,"PF7",0} 	,
-			{PB4,"PB4",0}		,{PB5,"PB5",0}		,
-			{PB6,"PB6",0}		,{PB7,"PB7",0}		,{PB8,"PB8",0}		,{PB9,"PB9",0}	};
+			{PC14,"C14",0}	,{PF1,"F1",0}		,{PB11,"B11",1}	,{PF0,"F0",0}		, 
+			{PA5,"A5",1} 		, {PC13,"C13",0}	 ,{PC15,"C15",0}	,
+			{PA7,"A7",1}		,{PB0,"B0",1}		,{PB1,"B1",1}		,{PB2,"B2",0}	,{PB10,"B10",0}	,
+			{PB12,"B12",0}	,{PA11,"A11",0}	,{PF6,"F6",0}	,{PF7,"F7",0} 	,
+			{PB4,"B4",0}		,{PB5,"B5",0}		,
+			{PB6,"B6",0}		,{PB7,"B7",0}		,{PB8,"B8",0}		,{PB9,"B9",0}	};
 #else
 
 	#define COUNT_PinDigital 31
 
 	PinAD aoPin[COUNT_PinDigital] = {
-			{PC13,"PC13",0}	,{PC14,"PC14",0}	,{PC15,"PC15",0}	,{PF0,"PF0",0}	,{PF1,"PF1",0}		,
-			{PA0,"PA0",1}		,{PB11,"PB11",0}		,{PA4,"PA4",1}		,{PA5,"PA5",1}	,{PA6,"PA6",1} 	,
-			{PA7,"PA7",1}		,{PB0,"PB0",1}		,{PB1,"PB1",1}		,{PB2,"PB2",0}	,{PB10,"PB10",0}	,
-			{PA1,"PA1",1}	,{PB12,"PB12",0}	,{PA11,"PA11",0}	,{PF6,"PF6",0}	,{PF7,"PF7",0} 	,
-			{PA12,"PA12",0}	,{PA15,"PA15",0}	,{PB3,"PB3",0}		,{PB4,"PB4",0}	,{PB5,"PB5",0}	,
-			{PB6,"PB6",0}		,{PB7,"PB7",0}		,{PB8,"PB8",0}		,{PB9,"PB9",0}	,{PA2,"PA2",1}	,
-			{PA3,"PA3",1}
+			{PC13,"C13",0}	,{PC14,"C14",0}	,{PC15,"C15",0}	,{PF0,"F0",0}	,{PF1,"F1",0}		,
+			{PA0,"A0",1}		,{PB11,"B11",0}		,{PA4,"A4",1}		,{PA5,"A5",1}	,{PA6,"A6",1} 	,
+			{PA7,"A7",1}		,{PB0,"B0",1}		,{PB1,"B1",1}		,{PB2,"B2",0}	,{PB10,"B10",0}	,
+			{PA1,"A1",1}	,{PB12,"B12",0}	,{PA11,"A11",0}	,{PF6,"F6",0}	,{PF7,"F7",0} 	,
+			{PA12,"A12",0}	,{PA15,"A15",0}	,{PB3,"B3",0}		,{PB4,"B4",0}	,{PB5,"B5",0}	,
+			{PB6,"B6",0}		,{PB7,"B7",0}		,{PB8,"B8",0}		,{PB9,"B9",0}	,{PA2,"A2",1}	,
+			{PA3,"A3",1}
 			};
 #endif
 			
@@ -347,7 +347,7 @@ void ListFound(uint8_t iFrom, uint8_t iTo)
 	bMessageWait = 1;
 	sprintf(sMessage,"\r\n");
 	for (i=iFrom; i<iTo; i++)
-		sprintf(sMessage,"%s#define %s\t\t%s\r\n",sMessage,asScan[i],GetPinName(aiPinScan[i]));
+		sprintf(sMessage,"%s#define %s\t\tP%s\r\n",sMessage,asScan[i],GetPinName(aiPinScan[i]));
 	
 	bMessageWait = 0;
 }
@@ -484,7 +484,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 	case AUTODETECT_Stage_VBatt:
 		fVBatt = fVBatt * 0.9 + ((float)adc_buffer.v_batt * ADC_BATTERY_VOLT) * 0.1;
 		if (buzzerTimer % 16000 == 0)	// 16 kHz
-			sprintf(sMessage,"%s: VBATT ?= %.2f\r\n",aoPin[iTest].s,fVBatt);
+			sprintf(sMessage,"P%s: VBATT ?= %.2f\r\n",aoPin[iTest].s,fVBatt);
 		
 		switch(cCommand)
 		{
@@ -670,6 +670,9 @@ void AutodetectScan(uint16_t buzzerTimer)
 	{
 		switch (wStage)
 		{
+//		case AUTODETECT_Stage_VBatt:
+//			pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+//			break;
 		case AUTODETECT_Stage_CurrentDC:
 			if (iAverageMax < iAverage)
 			{
@@ -723,7 +726,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 							}
 						}
 						aiPinScan[SCAN_SELF_HOLD] = aoPin[iTestPin].i;
-						sprintf(sMessage,"%s\r\n#define SELF_HOLD %s //%i\r\nbridge OnOff button and hit ENTER",sMessage,aoPin[iTestPin].s,iMax);
+						sprintf(sMessage,"%s\r\nSELF_HOLD P%s //%i\r\nbridge OnOff button and hit ENTER",sMessage,aoPin[iTestPin].s,iMax);
 						break;
 					}
 					break;
@@ -733,7 +736,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 			case AUTODETECT_Stage_CurrentDC:
 				if (iTest == iTestStart)	// a complete cycle of available adc pins
 				{
-					sprintf(sMessage," : %i\r\n#define CURRENT_DC = %s //%i\r\nnow %s",iAverage,aoPin[iTestPin].s,iAverageMax,aoPin[iTest].s);
+					sprintf(sMessage," : %i\r\nCURRENT_DC = %s //%i\r\nnow %s",iAverage,aoPin[iTestPin].s,iAverageMax,aoPin[iTest].s);
 					aiPinScan[SCAN_CURRENT_DC] = aoPin[iTestPin].i;
 					iTestPin = iAverage = 0;	// reset for next cycle
 					iAverageMax =-32767;
@@ -760,7 +763,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 								if (!(aoPin[i].wState & STATE_OFF) && (aoPin[i].wState & STATE_ON))
 								{
 									aiPinScan[SCAN_BUTTON] = aoPin[i].i;
-									sprintf(sMessage,"%s#define BUTTON\t%s\r\n",sMessage,aoPin[i].s);
+									sprintf(sMessage,"%sBUTTON\t%s\r\n",sMessage,aoPin[i].s);
 								}
 							}
 						}
