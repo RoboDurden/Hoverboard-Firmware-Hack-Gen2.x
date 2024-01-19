@@ -222,7 +222,7 @@ void CalculateBLDC(void)
 	// Determine current position based on hall sensors
 	#ifdef REMOTE_AUTODETECT
 
-		pos = AutodetectBldc(hall_to_pos[hall]);
+		pos = AutodetectBldc(hall_to_pos[hall],buzzerTimer);
 		AutodetectScan(buzzerTimer);
 	#else
 		pos = hall_to_pos[hall];

@@ -64,6 +64,9 @@ extern float currentDC; 									// global variable for current dc
 extern float realSpeed; 									// global variable for real Speed
 uint8_t slaveError = 0;										// global variable for slave error
 	
+
+#ifndef REMOTE_AUTODETECT
+
 extern FlagStatus timedOut;								// Timeoutvariable set by timeout timer
 
 uint32_t inactivity_timeout_counter = 0;	// Inactivity counter
@@ -71,7 +74,6 @@ uint32_t inactivity_timeout_counter = 0;	// Inactivity counter
 void ShowBatteryState(uint32_t pin);
 void BeepsBackwards(FlagStatus beepsBackwards);
 
-#ifndef REMOTE_AUTODETECT
 	const float lookUpTableAngle[181] =  
 	{
   -1,
@@ -363,6 +365,8 @@ int main (void)
 		// Reload watchdog (watchdog fires after 1,6 seconds)
 		fwdgt_counter_reload();
 	}
+}
+
 #else	
   while(1)
 	{
@@ -529,7 +533,6 @@ int main (void)
 		// Reload watchdog (watchdog fires after 1,6 seconds)
 		fwdgt_counter_reload();
   }
-	#endif
 }
 
 //----------------------------------------------------------------------------
@@ -615,4 +618,7 @@ void BeepsBackwards(FlagStatus beepsBackwards)
 		BuzzerSet(0,0)	// (iFrequency, iPattern)
 	}
 }
+#endif
+
+
 #endif

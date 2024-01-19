@@ -42,7 +42,7 @@ extern uint32_t HALL_C;
 	#define AUTODETECT_Stage_Finished 512
 #endif
 
-uint8_t AutodetectBldc(uint8_t posNew);
+uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer);
 void AutodetectScan(uint16_t buzzerTimer);
 
 void AutodetectMain();
