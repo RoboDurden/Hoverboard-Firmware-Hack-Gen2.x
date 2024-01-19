@@ -302,17 +302,19 @@ int main (void)
 	
 	// Init timeout timer
 	TimeoutTimer_init();
-	
+
 	// Init GPIOs
 	GPIO_init();
-	DEBUG_LedSet(SET,1)
-	digitalWrite(UPPER_LED,SET);
+	#ifndef REMOTE_AUTODETECT
+		DEBUG_LedSet(SET,1)
+		digitalWrite(UPPER_LED,SET);
 
+		
+		// Activate self hold direct after GPIO-init
+		digitalWrite(SELF_HOLD,SET);
+		//gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
+	#endif
 	
-	// Activate self hold direct after GPIO-init
-	digitalWrite(SELF_HOLD,SET);
-	//gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
-
 	#ifdef USART0_BAUD
 			USART0_Init(USART0_BAUD);
 	#endif
@@ -330,20 +332,21 @@ int main (void)
 	// afterwards watchdog will be fired
 	fwdgt_counter_reload();
 
+	#ifndef REMOTE_AUTODETECT
 
-	// Startup-Sound
-	BUZZER_MelodyDown()
+		// Startup-Sound
+		BUZZER_MelodyDown()
 
-#ifdef CHECK_BUTTON
-	// Wait until button is released
-	while (digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
-	//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
-	Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
-#endif
+		#ifdef CHECK_BUTTON
+			// Wait until button is released
+			while (digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+			//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+			Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
+		#endif
 
-	DEBUG_LedSet(RESET,1)
-	digitalWrite(UPPER_LED,RESET);
-	
+		DEBUG_LedSet(RESET,1)
+		digitalWrite(UPPER_LED,RESET);
+	#endif
 #ifdef REMOTE_AUTODETECT
   while(1)
 	{

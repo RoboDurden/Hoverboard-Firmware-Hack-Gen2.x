@@ -50,7 +50,7 @@
 
 
 // Timer BLDC short circuit emergency shutoff define
-#define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN	TODO_PIN
 
 // Hall sensor defines
 
