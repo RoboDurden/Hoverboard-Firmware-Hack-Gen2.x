@@ -10,12 +10,32 @@
 
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
+static uint8_t bMessageWait = 0;
 static char sMessage[512];
 
 
 extern uint32_t HALL_A;
 extern uint32_t HALL_B;
 extern uint32_t HALL_C;
+
+
+#define SCAN_HALL_A			0
+#define SCAN_HALL_B			1
+#define SCAN_HALL_C			2
+#define SCAN_PHASE_A		3
+#define SCAN_PHASE_B		4
+#define SCAN_PHASE_C		5
+#define SCAN_LED_RED		6
+#define SCAN_LED_ORANGE	7
+#define SCAN_LED_GREEN		8
+#define SCAN_UPPER_LED		9
+#define SCAN_LOWER_LED		10
+#define SCAN_BUZZER				11
+#define SCAN_VBATT				12
+#define SCAN_CURRENT_DC		13
+#define SCAN_SELF_HOLD		14
+#define SCAN_BUTTON				15
+
 
 //#define STAGE_TEST
 #ifdef STAGE_TEST
