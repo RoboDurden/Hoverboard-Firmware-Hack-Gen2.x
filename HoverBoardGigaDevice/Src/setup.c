@@ -368,10 +368,12 @@ void ADC_init(void)
 	// Set trigger of ADC
 	adc_external_trigger_config(ADC_REGULAR_CHANNEL, ENABLE);
 	adc_external_trigger_source_config(ADC_REGULAR_CHANNEL, ADC_EXTTRIG_REGULAR_NONE);
-	
+
 	// Disable the temperature sensor, Vrefint and vbat channel
 	adc_tempsensor_vrefint_disable();
-	TARGET_adc_vbat_disable();
+	#ifndef REMOTE_AUTODETECT
+		TARGET_adc_vbat_disable();
+	#endif
 	
 	// ADC analog watchdog disable
 	adc_watchdog_disable();

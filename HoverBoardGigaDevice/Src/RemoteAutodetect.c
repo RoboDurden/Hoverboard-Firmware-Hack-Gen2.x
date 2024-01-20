@@ -194,6 +194,7 @@ uint32_t msTicksTest,msTicksWait;
 uint8_t iTest = 0;		// an index pointer testing different positbilities
 uint8_t iTestPin = 0;	// a pin variable used while testing
 int8_t iTestStart = -1;		// an index pointer to the first pin tested in a stage
+//int8_t iTestInitOld = -1;
 
 uint8_t iRepeat = 0;	// a counter to repeat before some finding is accepted
 int16_t iAverage = 0;	// a variable to averarge over some reading
@@ -203,6 +204,7 @@ void AutoDetectSetStage(uint16_t iSet)
 {
 	iTest = iRepeat = 0;
 	iTestPin = 0;
+	//iTestInitOld = -1;
 	wStage = iSet;
 	msTicksWait = msTicks + 300;	// to allow sMessage of last stage to be sent via serial
 	
@@ -254,7 +256,7 @@ uint8_t SetNextTestPin()
 		
 		if (iTest == iTestOld) 
 		{
-			sprintf(sMessage,"\r\nno more pins found\r\n");
+			//sprintf(sMessage,"\r\nno more pins found\r\n");
 			AutoDetectSetStage(AUTODETECT_Stage_Results);
 			return 0;	// one loop and no pin found -> exit
 		}
@@ -267,6 +269,7 @@ uint8_t SetNextTestPin()
 }
 
 uint16_t iVBatMinTest = 65535;
+float fVBattOld,fVBattFound;	// fVBattVar,
 
 void ScanInit(uint8_t iTestNew)
 {
@@ -335,10 +338,22 @@ void ScanInit(uint8_t iTestNew)
 				return;	// no more adc pins left
 		}
 		//gpio_deinit(iPinNew);
+		/*
+		if (iTestInitOld >= 0)
+		{
+			pinMode(aoPin[iTestInitOld].i,GPIO_MODE_OUTPUT);
+			digitalWrite(aoPin[iTestInitOld].i,1);
+			//pinModePull(aoPin[iTestInitOld].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+		}
+		*/
+		//ADC_init();
 		pinMode(iPinNew, GPIO_MODE_ANALOG);
 		adc_regular_channel_config(0, PIN_TO_CHANNEL(iPinNew), ADC_SAMPLETIME_13POINT5);
 		msTicksTest = msTicks + (wStage == AUTODETECT_Stage_VBatt ? 2000 : 4000);
 	}
+	
+	//iTestInitOld = iTest;
+	fVBattOld = -42;
 }
 
 void ListFound(uint8_t iFrom, uint8_t iTo)
@@ -380,10 +395,12 @@ int16_t iOffsetDC;
 
 void AutodetectScan(uint16_t buzzerTimer)
 {
+	if (wStage & (AUTODETECT_Stage_Startup|AUTODETECT_Stage_Hall|AUTODETECT_Stage_HallOrder)	)
+		return;
+
 	if (msTicksWait > msTicks)	// wait for last sMessage to be sent
 		return;
 
-	
 	if (wStage == AUTODETECT_Stage_Results)
 	{
 		SetPWM(0);
@@ -414,8 +431,6 @@ void AutodetectScan(uint16_t buzzerTimer)
 	}
 	
 	
-	if (	(wStage < AUTODETECT_Stage_Led) || (wStage > AUTODETECT_Stage_Button)	)
-		return;
 
 	uint8_t i;
 	// AUTODETECT_Stage_Led or AUTODETECT_Stage_VBatt or AUTODETECT_Stage_CurrentDC or AUTODETECT_Stage_Hold
@@ -484,11 +499,21 @@ void AutodetectScan(uint16_t buzzerTimer)
 	case AUTODETECT_Stage_VBatt:
 		fVBatt = fVBatt * 0.9 + ((float)adc_buffer.v_batt * ADC_BATTERY_VOLT) * 0.1;
 		if (buzzerTimer % 16000 == 0)	// 16 kHz
-			sprintf(sMessage,"P%s: VBATT ?= %.2f\r\n",aoPin[iTest].s,fVBatt);
+		{
+			//fVBattVar = (fVBattOld == -42) ? 0 : ABS(fVBattOld-fVBatt);
+			//fVBattVar = (fVBattOld == -42) ? 0 : 0.7 * fVBattVar +  0.3 * ABS(fVBattOld-fVBatt);
+			sprintf(sMessage,"P%s: VBATT ?= %.2f V +- %.2f\r\n",aoPin[iTest].s,fVBatt,(fVBattOld == -42) ? 0 : ABS(fVBattOld-fVBatt));
+			//sprintf(sMessage,"%s: %.2f\t%.2f\n",aoPin[iTest].s,fVBatt,fVBattVar);
+			fVBattOld = fVBatt;
+		}
 		
 		switch(cCommand)
 		{
-		case 'v': iFound = SCAN_VBATT; msTicksTest = 0; break;
+		case 'v': 
+			iFound = SCAN_VBATT; 
+			fVBattFound = fVBatt;
+			msTicksTest = 0; 
+			break;
 		default : bCommand--;
 		}
 		break;
@@ -547,7 +572,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 				iVBatMinTest = adc_buffer.current_dc;
 			
 			//digitalWrite(aoPin[iTest].i,1);	// relase SELF_HOLD for a short time
-			digitalWrite(aoPin[iTest].i,(buzzerTimer%8000) < 500 ? 0 : 1);	// relase SELF_HOLD for a short time
+			digitalWrite(aoPin[iTest].i,(buzzerTimer%8000) < 400 ? 0 : 1);	// relase SELF_HOLD for a short time
 			break;
 		}
 
@@ -834,11 +859,22 @@ void AutoDetectHallOrderInit(uint8_t iTestSet)	// iTestSet = 0..5 = 6 possible p
 
 uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer)
 {
+		// AUTODETECT_Stage_Startup
+		if (wStage == AUTODETECT_Stage_Startup	)
+		{
+			SetPWM(0);
+			if (msTicks > 500)
+				AutoDetectNextStage();
+			return posNew;
+		}
+	
+	
 		if (0 == (wStage & (AUTODETECT_Stage_Startup|AUTODETECT_Stage_Hall|AUTODETECT_Stage_HallOrder))	)
 			return posNew;
-		
-		
-		SetPWM(msTicks > 500 ? -200 : (int32_t)msTicks * -2 / 5);
+
+		//SetPWM(msTicks > 500 ? -200 : (int32_t)msTicks * -2 / 5);
+		//SetPWM(fVBattFound > 30 ? -150 : -200);
+		SetPWM(-120 - 4*(42-(int16_t)fVBattFound));
 
 		if (msTicks - msTicksAuto >= 15)
 		{
@@ -851,11 +887,6 @@ uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer)
 		if (msTicksWait > msTicks)	// wait for last sMessage to be sent
 			return posAuto;
 		
-		// AUTODETECT_Stage_Startup
-		if (	(wStage == AUTODETECT_Stage_Startup) && (msTicks > 1000)	)
-		{
-			AutoDetectNextStage();
-		}
 
 		
 		// AUTODETECT_Stage_Hall

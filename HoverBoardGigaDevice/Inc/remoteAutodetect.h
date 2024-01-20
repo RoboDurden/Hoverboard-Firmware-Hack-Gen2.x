@@ -51,10 +51,10 @@ extern uint32_t HALL_C;
 	#define AUTODETECT_Stage_Finished 	512
 #else
 	#define AUTODETECT_Stage_Startup 1
-	#define AUTODETECT_Stage_Hall 2
-	#define AUTODETECT_Stage_HallOrder 4
-	#define AUTODETECT_Stage_Led 8
-	#define AUTODETECT_Stage_VBatt 16
+	#define AUTODETECT_Stage_Hall 4
+	#define AUTODETECT_Stage_HallOrder 8
+	#define AUTODETECT_Stage_Led 16
+	#define AUTODETECT_Stage_VBatt 2
 	#define AUTODETECT_Stage_CurrentDC 32
 	#define AUTODETECT_Stage_Hold 64
 	#define AUTODETECT_Stage_Button 128
