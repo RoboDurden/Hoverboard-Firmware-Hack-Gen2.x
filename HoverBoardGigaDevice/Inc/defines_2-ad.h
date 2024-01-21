@@ -28,18 +28,6 @@
 
 //#include "target.h"
 
-// LED defines
-#define LED_GREEN TODO_PIN
-#define LED_ORANGE TODO_PIN
-#define LED_RED TODO_PIN
-
-#define UPPER_LED	TODO_PIN
-#define LOWER_LED	TODO_PIN
-
-
-// Mosfet output, little onboard led
-#define MOSFET_OUT	TODO_PIN
-
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
 #define BLDC_GL PB15		
@@ -55,11 +43,8 @@
 
 // Hall sensor defines
 // -> remoteAutodetect.h
+// have become uint32_t variables in autodetect.c
 
-
-// robo: on 2.0 this is the USART0 header to the left of the st-link header: GND , PB4 , PB4 , +5V
-// Debug pin defines -  no longer has any function in code !
-#define DEBUG_PIN TODO_PIN
 
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
@@ -83,26 +68,8 @@
 
 
 // ADC defines
-#define VBATT		TODO_PIN
-#define CURRENT_DC TODO_PIN
+//#define VBATT		PA4	//TODO_PIN	// has become a uint32_t variable in autodetect.c
+//#define CURRENT_DC PA6	//TODO_PIN
 	
-
-
-
-// Self hold defines
-#define SELF_HOLD	TODO_PIN
-
-// Button defines
-#define BUTTON	TODO_PIN
-
-#ifdef HAS_BUZZER
-	// Buzzer defins
-	#define BUZZER	TODO_PIN
-#endif
-
-#ifdef MASTER
-	// Charge state defines
-	#define CHARGE_STATE	TODO_PIN
-#endif
 
 #endif

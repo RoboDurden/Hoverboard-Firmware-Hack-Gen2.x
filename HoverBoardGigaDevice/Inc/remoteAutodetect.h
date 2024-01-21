@@ -10,8 +10,8 @@
 
 #define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
 
-static uint8_t bMessageWait = 0;
-static char sMessage[512];
+extern uint8_t bMessageWait;
+extern char sMessage[512];
 
 
 extern uint32_t HALL_A;
@@ -50,16 +50,16 @@ extern uint32_t HALL_C;
 	#define AUTODETECT_Stage_Results 		256
 	#define AUTODETECT_Stage_Finished 	512
 #else
-	#define AUTODETECT_Stage_Startup 1
-	#define AUTODETECT_Stage_Hall 4
-	#define AUTODETECT_Stage_HallOrder 8
-	#define AUTODETECT_Stage_Led 16
-	#define AUTODETECT_Stage_VBatt 2
-	#define AUTODETECT_Stage_CurrentDC 32
-	#define AUTODETECT_Stage_Hold 64
-	#define AUTODETECT_Stage_Button 128
-	#define AUTODETECT_Stage_Results 256
-	#define AUTODETECT_Stage_Finished 512
+	#define AUTODETECT_Stage_Startup 	1
+	#define AUTODETECT_Stage_VBatt 		2
+	#define AUTODETECT_Stage_Hold 		4
+	#define AUTODETECT_Stage_Button 	8
+	#define AUTODETECT_Stage_Led 			16
+	#define AUTODETECT_Stage_Hall 		32
+	#define AUTODETECT_Stage_HallOrder 64
+	#define AUTODETECT_Stage_CurrentDC 128
+	#define AUTODETECT_Stage_Results 	256
+	#define AUTODETECT_Stage_Finished	512
 #endif
 
 uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer);

@@ -32,8 +32,6 @@
 #include "../Inc/defines.h"
 #include "../Inc/it.h"
 
-#ifdef REMOTE_AUTODETECT
-#endif	
 
 #define TIMEOUT_FREQ  1000
 
@@ -355,14 +353,19 @@ void ADC_init(void)
 	dma_channel_enable(DMA_CH0);
 	
 	adc_channel_length_config(ADC_REGULAR_CHANNEL, 2);
-	#ifdef VBATT
-		adc_regular_channel_config(0, PIN_TO_CHANNEL(VBATT), ADC_SAMPLETIME_13POINT5);
+	
+	#ifdef REMOTE_AUTODETECT
+		adc_regular_channel_config(1, PIN_TO_CHANNEL(TODO_PIN), ADC_SAMPLETIME_13POINT5);
+			// for some reason, the adc channel 1 used for VBat (3.3V) has to be set to TODO_PIN = PF4
+	#else
+		#ifdef VBATT
+			adc_regular_channel_config(0, PIN_TO_CHANNEL(VBATT), ADC_SAMPLETIME_13POINT5);
+		#endif
+		#ifdef CURRENT_DC
+			adc_regular_channel_config(1, PIN_TO_CHANNEL(CURRENT_DC), ADC_SAMPLETIME_13POINT5);
+		#endif
 	#endif
-	#ifdef CURRENT_DC
-		adc_regular_channel_config(1, PIN_TO_CHANNEL(CURRENT_DC), ADC_SAMPLETIME_13POINT5);
-	#endif
-	//adc_regular_channel_config(0, VBATT_CHANNEL, ADC_SAMPLETIME_13POINT5);
-	//adc_regular_channel_config(1, CURRENT_DC_CHANNEL, ADC_SAMPLETIME_13POINT5);
+	
 	adc_data_alignment_config(ADC_DATAALIGN_RIGHT);
 	
 	// Set trigger of ADC

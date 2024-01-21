@@ -334,21 +334,6 @@ int main (void)
 	// afterwards watchdog will be fired
 	fwdgt_counter_reload();
 
-	#ifndef REMOTE_AUTODETECT
-
-		// Startup-Sound
-		BUZZER_MelodyDown()
-
-		#ifdef CHECK_BUTTON
-			// Wait until button is released
-			while (digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
-			//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
-			Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
-		#endif
-
-		DEBUG_LedSet(RESET,1)
-		digitalWrite(UPPER_LED,RESET);
-	#endif
 #ifdef REMOTE_AUTODETECT
   while(1)
 	{
@@ -362,13 +347,29 @@ int main (void)
 		{
 			RemoteUpdate();
 		}
+		SetEnable(1);
+
 		// Reload watchdog (watchdog fires after 1,6 seconds)
 		fwdgt_counter_reload();
 	}
 }
 
 #else	
-  while(1)
+
+	// Startup-Sound
+	BUZZER_MelodyDown()
+
+	#ifdef CHECK_BUTTON
+		// Wait until button is released
+		while (digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+		//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+		Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
+	#endif
+
+	DEBUG_LedSet(RESET,1)
+	digitalWrite(UPPER_LED,RESET);
+
+	while(1)
 	{
 		if (millis() < iTimeNextLoop)	
 			continue;

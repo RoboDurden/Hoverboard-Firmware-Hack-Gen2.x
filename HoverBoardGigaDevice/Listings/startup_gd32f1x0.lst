@@ -558,15 +558,15 @@ ARM Macro Assembler    Page 9
               00000400 
               00000000 
 Command Line: --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depend=.\obj
-ects\startup_gd32f1x0.d -o.\objects\startup_gd32f1x0.o -I.\RTE\_GD32F130C8 -IC:
-\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Us
-ers\Admin\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Firmware
-\Peripherals\inc -IC:\Users\Admin\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_D
-FP\3.2.1\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERS
-ION SETA 539" --predefine="_RTE_ SETA 1" --predefine="GD32F1x0 SETA 1" --predef
-ine="GD32F130_150 SETA 1" --predefine="USE_STDPERIPH_DRIVER SETA 1" --predefine
-="_RTE_ SETA 1" --list=.\listings\startup_gd32f1x0.lst RTE/Device/GD32F130C8/st
-artup_gd32f1x0.s
+ects\startup_gd32f1x0.d -o.\objects\startup_gd32f1x0.o -I.\RTE\_GD32F130C8 -I"C
+:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include" 
+-I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\De
+vice\Firmware\Peripherals\inc" -I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\G
+igaDevice\GD32F1x0_DFP\3.2.1\Device\Include" --predefine="__EVAL SETA 1" --pred
+efine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="GD32
+F1x0 SETA 1" --predefine="GD32F130_150 SETA 1" --predefine="USE_STDPERIPH_DRIVE
+R SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_gd32f1x0.lst RTE
+/Device/GD32F130C8/startup_gd32f1x0.s
 
 
 

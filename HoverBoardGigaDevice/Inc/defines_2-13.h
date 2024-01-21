@@ -91,7 +91,7 @@
 
 
 // ADC defines
-#define VBATT	PA4
+#define VBATT	PA4		// not PA4, autodetect suggests PB0 :-)
 #define ADC_BATTERY_VOLT      0.0258320368	// robo newly gaged
 
 #define CURRENT_DC	PA6
