@@ -283,6 +283,8 @@ void ScanInit(uint8_t iTestNew)
 		iVBatMinTest = 65535;
 		//pinMode(VBAT, GPIO_MODE_ANALOG);
 		//adc_regular_channel_config(1, ADC_CHANNEL_18, ADC_SAMPLETIME_13POINT5);	// ADC_CHANNEL_18 = VBAT
+		adc_regular_channel_config(0, PIN_TO_CHANNEL(PF4), ADC_SAMPLETIME_13POINT5);
+		//adc_regular_channel_config(1, PIN_TO_CHANNEL(PF4), ADC_SAMPLETIME_13POINT5);
 		break;
 	default:
 		for (i=0;i<COUNT_PinDigital; i++)	
@@ -329,6 +331,7 @@ void ScanInit(uint8_t iTestNew)
 		//ADC_init();
 		pinMode(iPinNew, GPIO_MODE_ANALOG);
 		adc_regular_channel_config(0, PIN_TO_CHANNEL(iPinNew), ADC_SAMPLETIME_13POINT5);
+		//adc_regular_channel_config(1, PIN_TO_CHANNEL(iPinNew), ADC_SAMPLETIME_13POINT5);
 		msTicksTestNext = (wStage == AUTODETECT_Stage_VBatt ? 2000 : 4000);
 		iAverage = iRepeat = 0;
 	}
@@ -632,11 +635,11 @@ void AutodetectScan(uint16_t buzzerTimer)
 		break;
 	case AUTODETECT_Stage_Hold:
 		
-		if (iVBatMinTest > adc_buffer.current_dc)
-			iVBatMinTest = adc_buffer.current_dc;
+		if (iVBatMinTest > adc_buffer.v_batt)
+			iVBatMinTest = adc_buffer.v_batt;
 		
 		//digitalWrite(aoPin[iTest].i,1);	// relase SELF_HOLD for a short time
-		digitalWrite(aoPin[iTest].i,(buzzerTimer%4000) < 400 ? 0 : 1);	// relase SELF_HOLD for a short time
+		digitalWrite(aoPin[iTest].i,(buzzerTimer%3000) < 100 ? 0 : 1);	// relase SELF_HOLD for a short time
 		break;
 	case AUTODETECT_Stage_Button:
 		SetPWM(0);

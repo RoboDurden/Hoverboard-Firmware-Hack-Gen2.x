@@ -352,12 +352,13 @@ void ADC_init(void)
 	// Enable DMA channel 0
 	dma_channel_enable(DMA_CH0);
 	
-	adc_channel_length_config(ADC_REGULAR_CHANNEL, 2);
 	
 	#ifdef REMOTE_AUTODETECT
-		adc_regular_channel_config(1, PIN_TO_CHANNEL(TODO_PIN), ADC_SAMPLETIME_13POINT5);
+		adc_channel_length_config(ADC_REGULAR_CHANNEL, 1);
+		adc_regular_channel_config(0, PIN_TO_CHANNEL(TODO_PIN), ADC_SAMPLETIME_13POINT5);
 			// for some reason, the adc channel 1 used for VBat (3.3V) has to be set to TODO_PIN = PF4
 	#else
+		adc_channel_length_config(ADC_REGULAR_CHANNEL, 2);
 		#ifdef VBATT
 			adc_regular_channel_config(0, PIN_TO_CHANNEL(VBATT), ADC_SAMPLETIME_13POINT5);
 		#endif
