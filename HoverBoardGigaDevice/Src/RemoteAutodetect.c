@@ -548,36 +548,14 @@ void AutodetectScan(uint16_t buzzerTimer)
 		}
 		break;
 	case AUTODETECT_Stage_VBatt:
+		SetPWM(	(msTicks % 4000) < 2000 ? -300 : 0);	// strong motor to see a load when hand on motor
 		fVBatt = fVBatt * 0.9 + ((float)adc_buffer.v_batt * ADC_BATTERY_VOLT) * 0.1;
 		//pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,(buzzerTimer%32000 < 16000) ? GPIO_PUPD_PULLDOWN : GPIO_PUPD_PULLUP);
 		if (buzzerTimer % 16000 == 0)	// 16 kHz
 		{
 			float fDelta = (fVBattOld == -42) ? 0 : ABS(fVBattOld-fVBatt);
 			sprintf(sMessage,"P%s: %.2f V +- %.2f\r\n", aoPin[iTest].s,fVBatt,fDelta);
-			
-			/*
-			uint8_t bVBatt = digitalRead(aoPin[iTest].i);
-			iAverage += bVBatt ? +1 : -1;
 			fVBattOld = fVBatt;
-			uint8_t bYes = 0;
-			if (fDelta > 1.0)
-			{
-				iAverage = iRepeat = 0;
-			}
-			else if (5 == iRepeat++)
-			{
-				if (ABS(iAverage) < 4)
-				{
-					bYes = 1;
-				}
-				iAverage = iRepeat = 0;
-			}
-			//fVBattVar = (fVBattOld == -42) ? 0 : ABS(fVBattOld-fVBatt);
-			//fVBattVar = (fVBattOld == -42) ? 0 : 0.7 * fVBattVar +  0.3 * ABS(fVBattOld-fVBatt);
-			sprintf(sMessage,"P%s: %i %.2f V +- %.2f%s\r\n", aoPin[iTest].s,bVBatt,fVBatt,fDelta,(bYes==1) ? "\tYES":"");
-			//sprintf(sMessage,"%s: %.2f\t%.2f\n",aoPin[iTest].s,fVBatt,fVBattVar);
-			// VBATT ?= 
-			*/
 		}
 		
 		switch(cCmd)
