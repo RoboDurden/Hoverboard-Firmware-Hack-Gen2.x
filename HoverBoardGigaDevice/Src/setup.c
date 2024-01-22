@@ -136,10 +136,10 @@ void GPIO_init(void)
 	rcu_periph_clock_enable(RCU_GPIOC);
 	rcu_periph_clock_enable(RCU_GPIOF);
 	
-	// Init emergency shutdown pin
-	pinModeAF(TIMER_BLDC_EMERGENCY_SHUTDOWN,AF_TIMER0_BRKIN,GPIO_PUPD_NONE,GPIO_OSPEED_50MHZ)
-	//gpio_mode_set(TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT , GPIO_MODE_AF, GPIO_PUPD_NONE, TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN);
-	//gpio_af_set(TIMER_BLDC_EMERGENCY_SHUTDOWN_PORT, GPIO_AF_2, TIMER_BLDC_EMERGENCY_SHUTDOWN_PIN);
+	#ifdef TIMER_BLDC_EMERGENCY_SHUTDOWN
+		// Init emergency shutdown pin
+		pinModeAF(TIMER_BLDC_EMERGENCY_SHUTDOWN,AF_TIMER0_BRKIN,GPIO_PUPD_NONE,GPIO_OSPEED_50MHZ)
+	#endif
 	
 	// Init PWM output Pins
 	// Configure: Alternate functions,  [Floating mode] / Pull-up / Pull-down
@@ -168,7 +168,9 @@ void GPIO_init(void)
 		pinMode(UPPER_LED,	GPIO_MODE_OUTPUT);
 		pinMode(LOWER_LED,	GPIO_MODE_OUTPUT);
 
-		pinMode(MOSFET_OUT,	GPIO_MODE_OUTPUT);
+		#ifdef MOSFET_OUT
+			pinMode(MOSFET_OUT,	GPIO_MODE_OUTPUT);
+		#endif
 
 
 		#ifdef DEBUG_LED_PIN

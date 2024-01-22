@@ -377,7 +377,9 @@ int main (void)
 		
 		steerCounter++;		// something like DELAY_IN_MAIN_LOOP = 5 ms
 		DEBUG_LedSet(	(steerCounter%200) < 10	,1)
-		digitalWrite(MOSFET_OUT,	(steerCounter%200) < 100	);	// onboard led blinking :-)
+		#ifdef MOSFET_OUT
+			digitalWrite(MOSFET_OUT,	(steerCounter%200) < 100	);	// onboard led blinking :-)
+		#endif
 		
 		#ifdef SLAVE	
 			SetPWM(pwmSlave);

@@ -1,5 +1,5 @@
-#ifndef DEFINES_2_x_H
-#define DEFINES_2_x_H
+#ifndef DEFINES_2_12_H
+#define DEFINES_2_12_H
 
 #ifdef MASTER_OR_SINGLE		// layout 2.2 and 2.7 have buzzer on the slave board.
 	#define HAS_BUZZER

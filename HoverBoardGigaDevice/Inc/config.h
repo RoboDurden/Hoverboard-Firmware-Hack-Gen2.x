@@ -24,6 +24,8 @@
 		#define LAYOUT 7
 	#elif MM32SPIN05
 		#define LAYOUT 8
+	#elif GD32F103
+		#define LAYOUT 12
 	#else
 		#define LAYOUT 13
 		#define LAYOUT_SUB 0	// Layout 6 exisits as 2.6.0 and 2.6.1
