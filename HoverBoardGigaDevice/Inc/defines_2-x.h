@@ -38,10 +38,6 @@
 
 
 
-#define TODO_PIN PF4	// PF4 is only accessible on the largest GD32F130Rx LQFP64 pinouts mcu
-
-// Mosfet output, little onboard led
-//#define MOSFET_OUT	PC13
 
 
 // Brushless Control DC (BLDC) defines
@@ -55,7 +51,7 @@
 
 
 // Timer BLDC short circuit emergency shutoff define
-//#define TIMER_BLDC_EMERGENCY_SHUTDOWN	TODO_PIN
+//#define TIMER_BLDC_EMERGENCY_SHUTDOWN	P_UNKOWN
 
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!

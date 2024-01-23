@@ -30,11 +30,12 @@ extern uint32_t HALL_C;
 #define SCAN_LED_GREEN		8
 #define SCAN_UPPER_LED		9
 #define SCAN_LOWER_LED		10
-#define SCAN_BUZZER				11
-#define SCAN_VBATT				12
-#define SCAN_CURRENT_DC		13
-#define SCAN_SELF_HOLD		14
-#define SCAN_BUTTON				15
+#define SCAN_ONBOARD_LED	11
+#define SCAN_BUZZER				12
+#define SCAN_VBATT				13
+#define SCAN_CURRENT_DC		14
+#define SCAN_SELF_HOLD		15
+#define SCAN_BUTTON				16
 
 
 //#define STAGE_TEST
