@@ -51,8 +51,8 @@
 
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #ifdef HAS_USART0
-	#define USART0_TX	PA11
-	#define USART0_RX	PA12
+	#define USART0_TX	PB6
+	#define USART0_RX	PB7
 	
 	//#define USART0_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	#define USART0_REMOTE						// uncomment if this usart is used for optional remote control
