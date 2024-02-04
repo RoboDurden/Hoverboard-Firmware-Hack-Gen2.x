@@ -11,7 +11,6 @@
 //		#include "defines_2-xy.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
 // to defines.h and set #define LAYOUT xy in config.h in your chosen GD32E230/MM32SPIN05/GD32F103/GD32F130 target section
 
-
 // autodetect 2.13 as example only !!!!!!!!!!!!!!!!!!!!!!! begin
 #define HALL_A		PB11
 #define HALL_B		PC14
@@ -34,10 +33,6 @@
 #define BUTTON		PC15
 // autodetect 2.13 as example only !!!!!!!!!!!!!!!!!!!!!!! end
 
-// choose the serial ports available (and set them to Remote or MasterSlave below)
-#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
-#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
-
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0
@@ -53,6 +48,9 @@
 //#define TIMER_BLDC_EMERGENCY_SHUTDOWN	P_UNKOWN
 
 
+// choose the serial ports available (and set them to Remote or MasterSlave below)
+
+#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
 // GD32F130 USART0 TX/RX:	(PA9/PA10)AF1	, (PB6/PB7)AF0 , 	(PA2/PA3)AF1 , (PA14/PA15)AF1 GD32F130x4 only!
 #ifdef HAS_USART0
 	#define USART0_TX	PB6
@@ -63,6 +61,7 @@
 #endif
 
 
+#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
 // GD32F130 USART1 GD32F130 TX/RX: (PA14/PA15)AF1 , (PA2,PA3)AF1	, (PA8/PB0)AlternateFunction4
 #ifdef HAS_USART1
 	#define USART1_TX		PA2

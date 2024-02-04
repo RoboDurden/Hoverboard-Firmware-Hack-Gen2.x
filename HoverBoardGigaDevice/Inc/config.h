@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define REMOTE_AUTODETECT		// !! highly experimental 
+//#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 				// outputs ascii to uart 19200 baud to TX=PB6 , RX=PB7
@@ -27,7 +27,7 @@
 	#elif GD32F103
 		#define LAYOUT 12
 	#else
-		#define LAYOUT 13
+		#define LAYOUT 20
 		#define LAYOUT_SUB 0	// Layout 6 exisits as 2.6.0 and 2.6.1
 	#endif
 
@@ -40,8 +40,8 @@
 	#if defined(MASTER) || defined(SINGLE)
 		#define MASTER_OR_SINGLE
 		
-		//#define REMOTE_DUMMY
-		#define REMOTE_UART
+		#define REMOTE_DUMMY
+		//#define REMOTE_UART
 		//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 		//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 		
