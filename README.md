@@ -1,4 +1,6 @@
-# code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
+# please read and support the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) here :-)
+
+## code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
 ### Gen2.x MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-MM32)
 
 ## 2024/1/10 the following layouts are ready to use (99%):
@@ -18,6 +20,7 @@ layouts worth testing (with a 2A cc constant current power supply / dcdc-step-do
 - 2.7 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
 - 2.11 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
 - 2.15 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38
+- 2.20 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58
   
 ### 2023/10/14 youtube video: https://youtu.be/_wU6mSyRgx4
 Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
@@ -150,6 +153,12 @@ Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 ![layout 2.19](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-19.jpg)
 - [details](Schematics_2.19/)
 - [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/52)
+
+
+#### version/layout 2.20: GD32F130C8
+![layout 2.20](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-20.jpg)
+- [details](Schematics_2.20/)
+- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58)
 
 
 ---
