@@ -3,7 +3,7 @@
 ***
 
 ### code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
-### MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-MM32)
+### MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/AILIFE4798/Hoverboard-Firmware-Hack-Gen2.x-MM32)
 
 ***
 
