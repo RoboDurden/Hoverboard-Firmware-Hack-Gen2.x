@@ -1,4 +1,4 @@
-# please read and support the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) here :-)
+# find you board with the 'interactive search' on the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) here :-)
 
 ## code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
 ### Gen2.x MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-MM32)
@@ -13,7 +13,7 @@
 - 2.13 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33
 - 2.18 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
 
-layouts worth testing (with a 2A cc constant current power supply / dcdc-step-down converter):
+layouts worth testing (with a 2A cc constant current power supply / dcdc-step-down converter | 1.5 42V charger):
 
 - 2.1 this repo here was a fork from a running 2.1 firmware
 - 2.4 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
@@ -22,9 +22,6 @@ layouts worth testing (with a 2A cc constant current power supply / dcdc-step-do
 - 2.15 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38
 - 2.20 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58
   
-### 2023/10/14 youtube video: https://youtu.be/_wU6mSyRgx4
-Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
-
 ### Update 2.x:
 - This is a fork from https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
 - with different defines_2-x.h for two different board layouts :-) 
@@ -37,128 +34,6 @@ Hoverboard Gen 2.x now 7 of 12 boards and 4 control methods
 #### Update 2.1:
 - That's a fork from https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
 - Compiles with Keil version 6 :-))
-
----
-
-#### version/layout 2.0:
-![layout 2.0](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-0.jpg)
-- [pin configuration](pins_2.0.md)
-- [details](Schematics_2.0/)
-
-
-#### version/layout 2.1:
-![layout 2.1](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-1.jpg)
-
-
-#### version/layout 2.2:
-![layout 2.2](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-2.jpg)
-- [details](Schematics_2.2/)
-- [how to unlock..](https://github.com/JRomainG/GD32F130K6-hoverboard-hack)
-
-
-#### version/layout 2.3:
-![layout 2.3](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-3.jpg)
-- [details](Schematics_2.3/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20)
-
-#### todo: version/layout 2.4:
-![layout 2.4](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-4.jpg)
-- [details](Schematics_2.4/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3)
-
-#### todo: version/layout 2.5:
-![layout 2.4](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-5.jpg)
-- [details](Schematics_2.5/)
-
-
-#### todo: version/layout 2.6  and 2.6.1:
-![layout 2.4](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-6.jpg)
-- [details](Schematics_2.6/)
-- [issue 2.6](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/12)
-- [issue 2.6.1](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/49)
-
-
-#### todo: version/layout 2.7: = GD32E230C8T6 :-/
-![layout 2.4](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-7.jpg)
-- [details](Schematics_2.7/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16)
-
-
-#### todo: version/layout 2.8: = MM32SPIN05PFOP :-( 
-![layout 2.8](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-8.jpg)
-- [details](Schematics_2.8/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/22)
-
-
-#### todo: version/layout 2.9: = GD32F103C6T6
-![layout 2.9](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-9.jpg)
-- [details](Schematics_2.9/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/23)
-
-
-#### todo: version/layout 2.10: = GD32F130
-![layout 2.10](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-10.jpg)
-- [details](Schematics_2.10/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/25)
-
-
-#### todo: version/layout 2.11: = GD32F130
-![layout 2.11](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-11.jpg)
-- [details](Schematics_2.11/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27)
-
-
-#### todo: version/layout 2.12: = GD32F103 or STM32F103
-![layout 2.12](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-12.jpg)
-- [details](Schematics_2.12/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/28)
-
-
-#### version/layout 2.13: = GD32F130
-![layout 2.13](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-13.jpg)
-- [details](Schematics_2.13/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33)
-
-
-#### version/layout 2.14: = GD32F130 C6=32kB ?
-![layout 2.14](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-14.jpg)
-- [details](Schematics_2.14/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/36)
-
-
-#### version/layout 2.15: = GD32F130C8
-![layout 2.15](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-15.jpg)
-- [details](Schematics_2.15/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38)
-
-
-#### version/layout 2.16: = GD32F130C8
-![layout 2.16](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-16.jpg)
-- [details](Schematics_2.16/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/42)
-
-
-#### version/layout 2.17: GD32F130C6 = 32 kB :-/
-![layout 2.16](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-17.jpg)
-- [details](Schematics_2.17/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/44)
-
-#### version/layout 2.18: only change to 2.0 is Hall_A <-> Hall_C
-![layout 2.18](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-18.jpg)
-- [details](Schematics_2.18/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40)
-
-
-#### version/layout 2.19: GD32F130C6 = 32 kB :-/
-![layout 2.19](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-19.jpg)
-- [details](Schematics_2.19/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/52)
-
-
-#### version/layout 2.20: GD32F130C8
-![layout 2.20](https://raw.githubusercontent.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/main/Overview/Overview_2-20.jpg)
-- [details](Schematics_2.20/)
-- [issue](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58)
 
 
 ---
