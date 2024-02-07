@@ -127,17 +127,30 @@ typedef struct {
 			{PB6,"B6",0}		,{PB7,"B7",0}		,{PB8,"B8",0}		,{PB9,"B9",0}	};
 #else
 
-	#define COUNT_PinDigital 31
+	#ifdef GD32F103	// no PF0 and PF1 on 48 pin package
+		#define COUNT_PinDigital 29
+		PinAD aoPin[COUNT_PinDigital] = {
+				{PC13,"C13",0}	,{PC14,"C14",0}	,{PC15,"C15",0}			,
+				{PA0,"A0",1}		,{PB11,"B11",0}		,{PA4,"A4",1}		,{PA5,"A5",1}	,{PA6,"A6",1} 	,
+				{PA7,"A7",1}		,{PB0,"B0",1}		,{PB1,"B1",1}		,{PB2,"B2",0}	,{PB10,"B10",0}	,
+				{PA1,"A1",1}	,{PB12,"B12",0}	,{PA11,"A11",0}	,{PF6,"F6",0}	,{PF7,"F7",0} 	,
+				{PA12,"A12",0}	,{PA15,"A15",0}	,{PB3,"B3",0}		,{PB4,"B4",0}	,{PB5,"B5",0}	,
+				{PB6,"B6",0}		,{PB7,"B7",0}		,{PB8,"B8",0}		,{PB9,"B9",0}	,{PA2,"A2",1}	,
+				{PA3,"A3",1}
+				};
 
-	PinAD aoPin[COUNT_PinDigital] = {
-			{PC13,"C13",0}	,{PC14,"C14",0}	,{PC15,"C15",0}	,{PF0,"F0",0}	,{PF1,"F1",0}		,
-			{PA0,"A0",1}		,{PB11,"B11",0}		,{PA4,"A4",1}		,{PA5,"A5",1}	,{PA6,"A6",1} 	,
-			{PA7,"A7",1}		,{PB0,"B0",1}		,{PB1,"B1",1}		,{PB2,"B2",0}	,{PB10,"B10",0}	,
-			{PA1,"A1",1}	,{PB12,"B12",0}	,{PA11,"A11",0}	,{PF6,"F6",0}	,{PF7,"F7",0} 	,
-			{PA12,"A12",0}	,{PA15,"A15",0}	,{PB3,"B3",0}		,{PB4,"B4",0}	,{PB5,"B5",0}	,
-			{PB6,"B6",0}		,{PB7,"B7",0}		,{PB8,"B8",0}		,{PB9,"B9",0}	,{PA2,"A2",1}	,
-			{PA3,"A3",1}
-			};
+	#else
+		#define COUNT_PinDigital 31
+		PinAD aoPin[COUNT_PinDigital] = {
+				{PC13,"C13",0}	,{PC14,"C14",0}	,{PC15,"C15",0}	,{PF0,"F0",0}	,{PF1,"F1",0}		,
+				{PA0,"A0",1}		,{PB11,"B11",0}		,{PA4,"A4",1}		,{PA5,"A5",1}	,{PA6,"A6",1} 	,
+				{PA7,"A7",1}		,{PB0,"B0",1}		,{PB1,"B1",1}		,{PB2,"B2",0}	,{PB10,"B10",0}	,
+				{PA1,"A1",1}	,{PB12,"B12",0}	,{PA11,"A11",0}	,{PF6,"F6",0}	,{PF7,"F7",0} 	,
+				{PA12,"A12",0}	,{PA15,"A15",0}	,{PB3,"B3",0}		,{PB4,"B4",0}	,{PB5,"B5",0}	,
+				{PB6,"B6",0}		,{PB7,"B7",0}		,{PB8,"B8",0}		,{PB9,"B9",0}	,{PA2,"A2",1}	,
+				{PA3,"A3",1}
+				};
+	#endif
 #endif
 			
 			
