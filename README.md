@@ -7,24 +7,36 @@
 
 ***
 
+### 2024/02/18: board numbering changed from Gen2.x to Gen2.t.v
+Gen2.1.4xf = split board . target 1 . version 4 x=64kb, f=FOC capable.
+
+The s(32kB)/x(64kB) flag and the f flag are for information only.
+
+Targets are the Keil targets:
+- 1 gd32f130 
+- 2 gd/stm32f103 
+- 3 gd32e230 
+- 4 mm32spin0x 
+- 5 lks32
+
 ## 2024/1/10 the following layouts are ready to use (99%):
 
-- 2.0
-- 2.2 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
-- 2.3 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-- 2.6.1 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/49
-- 2.10 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/25
-- 2.13 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33
-- 2.18 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
+- Gen2.1.1 (ex2.0)
+- Gen2.1.3 (ex2.2) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/5
+- Gen2.1.4 (ex2.3) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
+- Gen2.1.7.1 (ex2.6.1) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/49
+- Gen2.1.8 (ex2.10) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/25
+- Gen2.1.11 (ex2.13) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/33
+- Gen2.1.16 (ex2.18) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
 
 layouts worth testing (with a 2A cc constant current power supply / dcdc-step-down converter | 1.5 42V charger):
 
-- 2.1 this repo here was a fork from a running 2.1 firmware
-- 2.4 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
-- 2.7 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
-- 2.11 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
-- 2.15 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38
-- 2.20 https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58
+- Gen2.1.2 (ex2.1) this repo here was a fork from a running 2.1 firmware
+- Gen2.1.5 (ex2.4) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
+- Gen2.3.1 (ex2.7) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
+- Gen2.1.9 (ex2.11) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/27
+- Gen2.1.13 (ex2.15) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38
+- Gen2.1.18 (ex2.20) https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58
   
 ### Update 2.x:
 - This is a fork from https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
