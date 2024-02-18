@@ -398,14 +398,14 @@ ARM Macro Assembler    Page 7
               00000400 
               00000000 
 Command Line: --xref --diag_suppress=9931,A1950W --cpu=Cortex-M23 --depend=.\ob
-jects\startup_gd32e23x.d -o.\objects\startup_gd32e23x.o -I.\RTE\_GD32E230C8T6 -
-I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Includ
-e" -I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2
-\Device\Firmware\Peripherals\inc" -I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Pack
-s\GigaDevice\GD32E23x_DFP\1.0.2\Device\Include" --predefine="__EVAL SETA 1" --p
-redefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="G
-D32E23x SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_gd32e23x.l
-st RTE/Device/GD32E230C8/startup_gd32e23x.s
+jects\startup_gd32e23x.d -o.\objects\startup_gd32e23x.o -I.\RTE\_GD32E230 -I"C:
+\Users\PAN CF-LX6\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include" -
+I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\GigaDevice\GD32E23x_DFP\1.0.2\Dev
+ice\Firmware\Peripherals\inc" -I"C:\Users\PAN CF-LX6\AppData\Local\Arm\Packs\Gi
+gaDevice\GD32E23x_DFP\1.0.2\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="GD32E
+23x SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_gd32e23x.lst R
+TE/Device/GD32E230C8/startup_gd32e23x.s
 
 
 

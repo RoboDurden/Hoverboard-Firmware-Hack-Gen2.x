@@ -92,7 +92,8 @@ __INLINE void blockPWM(int pwm, int pwmPos, int *y, int *b, int *g)
       break;
     case 4:
       *y = 0;
-      *b = -pwm;
+      *b = -pwm
+		;
       *g = pwm;
       break;
     case 5:

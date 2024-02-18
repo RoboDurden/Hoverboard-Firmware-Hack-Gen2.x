@@ -6,45 +6,17 @@
 #include "../Inc/config.h"
 #include "../Inc/remote.h"
 
+
 #if defined(REMOTE_AUTODETECT)
 	#include "defines_2-ad.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/??
-#elif LAYOUT == 0
-	#include "defines_2-0.h"		// https://github.com/flo199213/Hoverboard-Firmware-Hack-Gen2
-#elif LAYOUT == 1
-	#include "defines_2-1.h"		// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
-#elif LAYOUT == 2
-	#include "defines_2-2.h"		// https://github.com/krisstakos/Hoverboard-Firmware-Hack-Gen2.1
-#elif LAYOUT == 3
-	#include "defines_2-3.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/20
-#elif LAYOUT == 4
-	#include "defines_2-4.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/3
-#elif LAYOUT == 6
-	#include "defines_2-6.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/49
-#elif LAYOUT == 7
-	#include "defines_2-7.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
-#elif LAYOUT == 8
-	#include "defines_2-8.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/22
-#elif LAYOUT == 10
-	#include "defines_2-10.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
-#elif LAYOUT == 11
-	#include "defines_2-11.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
-#elif LAYOUT == 12
-	#include "defines_2-12.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/54
-#elif LAYOUT == 13
-	#include "defines_2-13.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/16
-#elif LAYOUT == 14
-	#include "defines_2-14.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/36
-#elif LAYOUT == 15
-	#include "defines_2-15.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/38
-#elif LAYOUT == 16
-	#include "defines_2-16.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/42
-#elif LAYOUT == 17
-	#include "defines_2-17.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/44
-#elif LAYOUT == 18
-	#include "defines_2-18.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
-#elif LAYOUT == 20
-	#include "defines_2-20.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/58
+#else
+	#define STRINGIZE_AUX(a) #a
+	#define STRINGIZE(a) STRINGIZE_AUX(a)
+	#define INCLUE_FILE(target,version) STRINGIZE(defines_2-target-version.h)
+
+	#include INCLUE_FILE(TARGET , LAYOUT)	// "defines_2.target.version.h"
 #endif
+
 
 #ifndef TIMER_BLDC	// these defines should be equal for all Gen2 boards as they only have on bldc capable TIMER = TIMER0
 	#define TIMER_BLDC 		TIMER0

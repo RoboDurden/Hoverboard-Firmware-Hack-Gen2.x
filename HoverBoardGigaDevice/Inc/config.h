@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define REMOTE_AUTODETECT		// !! highly experimental 
+//#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 				// outputs ascii to uart 19200 baud to TX=PB6 , RX=PB7
@@ -20,15 +20,19 @@
 #else
 
 	// LAYOUT_2_X is used in defines.h
-	#ifdef GD32E230
-		#define LAYOUT 7
-	#elif MM32SPIN05
-		#define LAYOUT 8
-	#elif GD32F103
-		#define LAYOUT 12
-	#else
-		#define LAYOUT 20
+	#ifdef GD32F130
+		#define LAYOUT 1
 		#define LAYOUT_SUB 0	// Layout 6 exisits as 2.6.0 and 2.6.1
+		#define TARGET 1	// do not change TARGET here but in Keil IDE dropdown list !
+	#elif GD32F103
+		#define LAYOUT 1
+		#define TARGET 2	// do not change TARGET here but in Keil IDE dropdown list !
+	#elif GD32E230
+		#define LAYOUT 1
+		#define TARGET 3	// do not change TARGET here but in Keil IDE dropdown list !
+	#elif MM32SPIN05
+		#define LAYOUT 1
+		#define TARGET 4	// do not change TARGET here but in Keil IDE dropdown list !
 	#endif
 
 	#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file

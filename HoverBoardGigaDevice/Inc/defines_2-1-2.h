@@ -30,7 +30,6 @@
 #define UPPER_LED PB5
 #define LOWER_LED PB8
 
-
 // Mosfet output CORRECT
 #define MOSFET_OUT PC13
 
