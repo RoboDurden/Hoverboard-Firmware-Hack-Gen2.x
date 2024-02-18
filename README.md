@@ -7,6 +7,18 @@
 
 ***
 
+### 2024/02/18: board numbering changed from Gen2.x to Gen2.t.v
+Gen2.1.4xf = split board . target 1 . version 4 x=64kb, f=FOC capable.
+
+The s(32kB)/x(64kB) flag and the f flag are for information only.
+
+Targets are the Keil targets:
+- 1 gd32f130 
+- 2 gd/stm32f103 
+- 3 gd32e230 
+- 4 mm32spin0x 
+- 5 lks32
+
 ## 2024/1/10 the following layouts are ready to use (99%):
 
 - Gen2.1.1 (ex2.0)
