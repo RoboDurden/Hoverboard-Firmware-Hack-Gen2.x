@@ -20,19 +20,15 @@
 #else
 
 	// LAYOUT_2_X is used in defines.h
-	#ifdef GD32F130
+	#ifdef GD32F130		// TARGET = 1
 		#define LAYOUT 1
 		#define LAYOUT_SUB 0	// Layout 6 exisits as 2.6.0 and 2.6.1
-		#define TARGET 1	// do not change TARGET here but in Keil IDE dropdown list !
-	#elif GD32F103
+	#elif GD32F103		// TARGET = 2
 		#define LAYOUT 1
-		#define TARGET 2	// do not change TARGET here but in Keil IDE dropdown list !
-	#elif GD32E230
+	#elif GD32E230		// TARGET = 3
 		#define LAYOUT 1
-		#define TARGET 3	// do not change TARGET here but in Keil IDE dropdown list !
-	#elif MM32SPIN05
+	#elif MM32SPIN05	// TARGET = 4
 		#define LAYOUT 1
-		#define TARGET 4	// do not change TARGET here but in Keil IDE dropdown list !
 	#endif
 
 	#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
