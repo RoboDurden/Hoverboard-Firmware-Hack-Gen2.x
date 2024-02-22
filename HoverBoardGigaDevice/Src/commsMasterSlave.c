@@ -4,6 +4,7 @@
 #include "../Inc/comms.h"
 #include "../Inc/commsMasterSlave.h"
 #include "../Inc/bldc.h"
+#include "../Inc/led.h"
 #include "stdio.h"
 #include "string.h"
 

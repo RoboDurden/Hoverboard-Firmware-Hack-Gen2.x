@@ -21,7 +21,7 @@
 
 	// LAYOUT_2_X is used in defines.h
 	#ifdef GD32F130		// TARGET = 1
-		#define LAYOUT 1
+		#define LAYOUT 13	
 		#define LAYOUT_SUB 0	// Layout 6 exisits as 2.6.0 and 2.6.1
 	#elif GD32F103		// TARGET = 2
 		#define LAYOUT 1
@@ -40,8 +40,8 @@
 	#if defined(MASTER) || defined(SINGLE)
 		#define MASTER_OR_SINGLE
 		
-		#define REMOTE_DUMMY
-		//#define REMOTE_UART
+		//#define REMOTE_DUMMY
+		#define REMOTE_UART
 		//#define REMOTE_UARTBUS	// ESP32 as master and multiple boards as multiple slaves ESP.tx-Hovers.rx and ESP.rx-Hovers.tx
 		//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 		
