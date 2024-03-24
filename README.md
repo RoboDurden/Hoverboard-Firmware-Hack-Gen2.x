@@ -1,5 +1,6 @@
-# find you board with the 'interactive search' on the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) here :-)
+# find your board with the 'interactive search' on the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) here :-)
 
+# study the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) before opening a new issue !
 ***
 
 ### code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
