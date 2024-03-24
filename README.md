@@ -19,6 +19,8 @@ Targets are the Keil targets:
 - 4 mm32spin0x 
 - 5 lks32
 
+![grafik](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/assets/12238841/63038831-7bfc-46c6-b59f-c2ccb016b637)
+
 ## 2024/1/10 the following layouts are ready to use (99%):
 
 - Gen2.1.1 (ex2.0)
