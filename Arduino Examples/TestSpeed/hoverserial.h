@@ -62,7 +62,7 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
   
   //typedef struct{   // new version
   //   uint16_t cStart = START_FRAME;   // new version
-  typedef struct __attribute__((packed, aligned(1))) {  // old version
+  typedef struct __attribute__((packed, aligned(1))) {
      uint8_t  cStart = '/';
      uint8_t  iDataType = 0;    //  unique id for this data struct
      uint8_t  iSlave;       //  contains the slave id this message is intended for
@@ -70,7 +70,7 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
      uint8_t  wState = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
      uint16_t checksum;
   } SerialServer2Hover;
-  typedef struct __attribute__((packed, aligned(1))) {  // old version
+  typedef struct __attribute__((packed, aligned(1))) {
      uint8_t  cStart = '/';
      uint8_t  iDataType = 1;    //  unique id for this data struct
      uint8_t  iSlave;       //  contains the slave id this message is intended for
@@ -80,7 +80,19 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
      uint8_t  wStateSlave = 0;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
      uint16_t checksum;
   } SerialServer2HoverMaster;
+  
+  typedef struct __attribute__((packed, aligned(1))) { 
+     uint8_t cStart     = '/';      //  unique id for this data struct
+     uint8_t  iDataType = 2;  //  unique id for this data struct
+     uint8_t  iSlave;     //  contains the slave id this message is intended for
+     float  fBattFull     = 42.0;    // 10s LiIon = 42.0;
+     float  fBattEmpty    = 27.0;    // 10s LiIon = 27.0;
+     uint8_t  iDriveMode  = 2;      //  MM32: 0=COM_VOLT, 1=COM_SPEED, 2=SINE_VOLT, 3=SINE_SPEED
+     int8_t   iSlaveNew   = -1;      //  if >= 0 contains the new slave id saved to eeprom
+     uint16_t checksum;
+  } SerialServer2HoverConfigMM32;
 
+  SerialServer2HoverConfigMM32 oHoverConfig;
 
   template <typename O,typename D> void HoverSendData(O& oSerial, D& oData)
   {
@@ -108,6 +120,14 @@ uint16_t CalcCRC(uint8_t *ptr, int count)
     DEBUGT("\tiSpeed",(float)oData.iSpeed/100.0);
     DEBUGT("\tiAmp",(float)oData.iAmp/100.0);
     DEBUGN("\tiVolt",(float)oData.iVolt/100.0);
+  }
+  void HoverLogConfigMM32(SerialServer2HoverConfigMM32& oConfig)
+  {
+    DEBUGT("config for iSlave",oConfig.iSlave);
+    DEBUGT("fBattFull",oConfig.fBattFull);
+    DEBUGT("fBattEmpty",oConfig.fBattEmpty);
+    DEBUGT("iDriveMode",oConfig.iDriveMode);
+    DEBUGN("iSlaveNew",oConfig.iSlaveNew);
   }
 
 #else

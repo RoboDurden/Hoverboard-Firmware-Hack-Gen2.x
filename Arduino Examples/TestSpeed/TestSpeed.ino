@@ -7,7 +7,7 @@
 #define ESP32       // comment out if using Arduino
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
-//#define REMOTE_UARTBUS
+#define REMOTE_UARTBUS
 
 #define SEND_MILLIS 100   // send commands to hoverboard every SEND_MILLIS millisesonds
 
@@ -27,14 +27,16 @@ void setup()
 {
   #ifdef _DEBUG
     Serial.begin(115200);
-    Serial.println("Hello Hoverbaord V2.x :-)");
+    Serial.println("Hello Hoverbaord Gen2.target.board :-)");
   #endif
   
   #ifdef ESP32
     // Serial interface, baud, RX GPIO, TX GPIO
     // Note: The GPIO numbers will not necessarily correspond to the
     // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
-    HoverSetupEsp32(oSerialHover,19200,39,37);
+    //HoverSetupEsp32(oSerialHover,19200,39,37); // Wemos S2 Mini
+    HoverSetupEsp32(oSerialHover,19200,16,17);  // Wemos Lolin32
+    
   #else
     HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif
@@ -42,12 +44,76 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
+uint8_t  iSendId = 0;   // only for UartBus
+int iLog = -1;  // -1: print log of all slaves, 0: only print log of slaveId 0
+
+void CheckConsoleMM32()
+{
+   if (!Serial.available())  // if there is terminal data comming from user
+    return;
+    
+  String sReceived = Serial.readStringUntil('\n');
+  Serial.println(sReceived);
+  boolean bSend = false;
+  int  iSendTo = -1;
+  String sCmd = ShiftValue(sReceived, " ");
+  if (isUInt(sCmd))
+  {
+    iSendTo = sCmd.toInt();
+    Serial.print(iSendTo);Serial.print("\t");
+    sCmd = ShiftValue(sReceived, " ");
+    
+  }
+  
+  if ( (sCmd == "m") || (sCmd == "mode"))
+  {
+    oHoverConfig.iDriveMode = ShiftValue(sReceived, "\n").toInt();
+    bSend = true;
+  }
+  else if ( (sCmd == "bl") || (sCmd == "batlow"))
+  {
+    oHoverConfig.fBattEmpty = ShiftValue(sReceived, "\n").toFloat();
+    bSend = true;
+  }
+  else if ( (sCmd == "bh") || (sCmd == "bathi"))
+  {
+    oHoverConfig.fBattFull = ShiftValue(sReceived, "\n").toFloat();
+    bSend = true;
+  }
+  else if ( (sCmd == "si") || (sCmd == "slave"))
+  {
+    oHoverConfig.iSlaveNew = ShiftValue(sReceived, "\n").toInt();
+    bSend = true;
+  }
+  else if ( (sCmd == "l") || (sCmd == "log"))
+  {
+    iLog = ShiftValue(sReceived, "\n").toInt();
+  }
+  else
+  {
+    Serial.print("unkown command: "); 
+  }
+  Serial.print(sCmd); Serial.print("\t value:"); Serial.println(ShiftValue(sReceived, "\n"));
+  
+  if (bSend)
+  {
+    for (int iTo=0; iTo<2; iTo++)
+    {
+      if (  (iSendTo<0) || (iSendTo == iTo)  )
+      {
+        oHoverConfig.iSlave = iTo;
+        HoverSendData(oSerialHover,oHoverConfig);
+        HoverLogConfigMM32(oHoverConfig);
+      }
+    }
+  }
+
+}
+
 unsigned long iLast = 0;
 unsigned long iNext = 0;
 unsigned long iTimeNextState = 3000;
 uint8_t  wState = 1;   // 1=ledGreen, 2=ledOrange, 4=ledRed, 8=ledUp, 16=ledDown   , 32=Battery3Led, 64=Disable, 128=ShutOff
-uint8_t  iSendId = 0;   // only ofr UartBus
-
 void loop()
 {
   unsigned long iNow = millis();
@@ -59,7 +125,8 @@ void loop()
   int iSteer = 1 * (ABS( (int)((iNow/400+100) % 400) - 200) - 100);   // repeats from +100 to -100 to +100 :-)
   //int iSteer = 0;
   //iSpeed /= 10;
-  //iSpeed = 200;
+  //iSpeed = -100;
+  //iSteer = 0;
   //iSpeed = iSteer = 0;
 
   if (iNow > iTimeNextState)
@@ -72,18 +139,22 @@ void loop()
   boolean bReceived;   
   while (bReceived = Receive(oSerialHover,oHoverFeedback))
   {
-    DEBUGT("millis",iNow-iLast);
-    DEBUGT("iSpeed",iSpeed);
-    //DEBUGT("iSteer",iSteer);
-    HoverLog(oHoverFeedback);
-    iLast = iNow;
+    if (  (iLog < 0) || (iLog == oHoverFeedback.iSlave)  )
+    {
+      DEBUGT("millis",iNow-iLast);
+      DEBUGT("iSpeed",iSpeed);
+      //DEBUGT("iSteer",iSteer);
+      HoverLog(oHoverFeedback);
+      iLast = iNow;
+    }
   }
 
   if (iNow > iNext)
   {
-    //DEBUGLN("time",iNow)
+    //DEBUGN("time",iNow)
     
     #ifdef REMOTE_UARTBUS
+      
       switch(iSendId++)
       {
       case 0: // left motor
@@ -95,12 +166,16 @@ void loop()
         break;
       }
       iNext = iNow + SEND_MILLIS/2;
-    #else
-      //if (bReceived)  // Reply only when you receive data
-        HoverSend(oSerialHover,iSteer,iSpeed,wState,wState);
+      CheckConsoleMM32();
       
+    #else
+    
+      //if (bReceived)  // Reply only when you receive data
+       HoverSend(oSerialHover,iSteer,iSpeed,wState,wState);
       iNext = iNow + SEND_MILLIS;
-  #endif
+      
+    #endif
+
   }
 
 }

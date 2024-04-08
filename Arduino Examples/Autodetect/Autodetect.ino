@@ -20,7 +20,9 @@ void setup()
     // Serial interface, baud, RX GPIO, TX GPIO
     // Note: The GPIO numbers will not necessarily correspond to the
     // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
-      oSerialHover.begin(19200, SERIAL_8N1, 39, 37);
+    //oSerialHover.begin(19200, SERIAL_8N1, 39, 37);  // Wemos S2 Mini
+    oSerialHover.begin(19200, SERIAL_8N1, 16, 17);  // Wemos Lolin32
+      
   #else
     oSerialHover.begin(iBaud);
   #endif
@@ -38,6 +40,10 @@ void loop()
 
   if (oSerialHover.available())   // If anything comes in from hoverboard
   {     
-    Serial.write(oSerialHover.read());   // read it and send it out Serial (USB)
+    char c = oSerialHover.read();
+    if (  (c >= 0x11) && (c <= 0x14)  )
+      oSerialHover.write(c);  // send back to hoverboard because MM32 pinFinder that way detects your serial port :-)
+    else
+      Serial.write(c);   // read it and send it out Serial (USB)
   }
 }
