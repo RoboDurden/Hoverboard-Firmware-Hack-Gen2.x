@@ -1,0 +1,4 @@
+Serial numbers
+
+2.4.1 master:	63 BF F4 14 377C750000324D4D	(RoboDurden)
+2.4.1 slave:	26 4F F4 10 377C750000324D4D	(RoboDurden)
