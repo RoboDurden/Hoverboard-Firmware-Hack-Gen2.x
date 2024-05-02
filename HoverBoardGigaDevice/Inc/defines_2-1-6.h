@@ -29,6 +29,8 @@
 #define HALL_B		PA1
 #define HALL_C		PB11
 
+#define VBATT	PA4		
+
 #define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
 
 
