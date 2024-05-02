@@ -71,7 +71,7 @@ extern FlagStatus timedOut;								// Timeoutvariable set by timeout timer
 
 uint32_t inactivity_timeout_counter = 0;	// Inactivity counter
 
-void ShowBatteryState(uint32_t pin);
+void ShowBatteryState(uint8_t iLevel);
 void BeepsBackwards(FlagStatus beepsBackwards);
 
 	const float lookUpTableAngle[181] =  
@@ -309,12 +309,16 @@ int main (void)
 	GPIO_init();
 	#ifndef REMOTE_AUTODETECT
 		DEBUG_LedSet(SET,1)
-		digitalWrite(UPPER_LED,SET);
+		
+		#ifdef UPPER_LED
+			digitalWrite(UPPER_LED,SET);
+		#endif
 
 		
-		// Activate self hold direct after GPIO-init
-		digitalWrite(SELF_HOLD,SET);
-		//gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, SET);
+		#ifdef SELF_HOLD
+			// Activate self hold direct after GPIO-init
+			digitalWrite(SELF_HOLD,SET);
+		#endif
 	#endif
 	
 	#ifdef USART0_BAUD
@@ -367,7 +371,9 @@ int main (void)
 	#endif
 
 	DEBUG_LedSet(RESET,1)
-	digitalWrite(UPPER_LED,RESET);
+	#ifdef UPPER_LED
+		digitalWrite(UPPER_LED,RESET);
+	#endif
 
 	while(1)
 	{
@@ -433,7 +439,7 @@ int main (void)
 			if (batteryVoltage > BAT_LOW_LVL1)
 			{
 				// Show green battery light
-				ShowBatteryState(LED_GREEN);
+				ShowBatteryState(2);
 				
 				// Beeps backwards
 				BeepsBackwards(beepsBackwards);
@@ -443,7 +449,7 @@ int main (void)
 			else if (batteryVoltage > BAT_LOW_LVL2 && batteryVoltage < BAT_LOW_LVL1)
 			{
 				// Show orange battery light
-				ShowBatteryState(LED_ORANGE);
+					ShowBatteryState(1);
 				
 				BuzzerSet(5,8)	// (iFrequency, iPattern)
 			}
@@ -451,7 +457,7 @@ int main (void)
 			else if  (batteryVoltage > BAT_LOW_DEAD && batteryVoltage < BAT_LOW_LVL2)
 			{
 				// Show red battery light
-				ShowBatteryState(LED_RED);
+				ShowBatteryState(0);
 
 				BuzzerSet(5,1)	// (iFrequency, iPattern)
 			}
@@ -516,15 +522,21 @@ int main (void)
 			if (!(wState & STATE_LedBattLevel))
 			{
 				digitalWrite(LED_GREEN,wState & STATE_LedGreen ? SET : RESET);
-				digitalWrite(LED_ORANGE,wState & STATE_LedOrange ? SET : RESET);
+				#ifdef LED_ORANGE
+					digitalWrite(LED_ORANGE,wState & STATE_LedOrange ? SET : RESET);
+				#endif
 				digitalWrite(LED_RED,wState & STATE_LedRed ? SET : RESET);
 				//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
 				//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
 				//gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
 			}
 		#endif
-		digitalWrite(UPPER_LED,wState & STATE_LedUp ? SET : RESET);
-		digitalWrite(LOWER_LED,wState & STATE_LedDown ? SET : RESET);
+		#ifdef UPPER_LED
+			digitalWrite(UPPER_LED,wState & STATE_LedUp ? SET : RESET);
+		#endif
+		#ifdef UPPER_LED
+			digitalWrite(UPPER_LED,wState & STATE_LedDown ? SET : RESET);
+		#endif
 		//gpio_bit_write(UPPER_LED_PORT, UPPER_LED_PIN, wState & STATE_LedUp ? SET : RESET);
 		//gpio_bit_write(LOWER_LED_PORT, LOWER_LED_PIN, wState & STATE_LedDown ? SET : RESET);
 
@@ -561,8 +573,9 @@ void ShutOff(void)
 	SetEnable(RESET);
 	SetPWM(0);
 	
-	digitalWrite(SELF_HOLD,RESET);
-	//gpio_bit_write(SELF_HOLD_PORT, SELF_HOLD_PIN, RESET);
+	#ifdef SELF_HOLD
+		digitalWrite(SELF_HOLD,RESET);
+	#endif
 	while(1)
 	{
 		// Reload watchdog until device is off
@@ -576,32 +589,28 @@ void ShutOff(void)
 //----------------------------------------------------------------------------
 // Shows the battery state on the LEDs
 //----------------------------------------------------------------------------
-void ShowBatteryState(uint32_t pin)
+void ShowBatteryState(uint8_t iLevel)
 {
 	if (!(wState & STATE_LedBattLevel))
 			return;
 	
 	#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
-		if(pin == LED_ORANGE)
+		if(iLevel == 1)
 		{
-			#ifdef THIRD_LED
+			#ifdef LED_ORANGE
 				digitalWrite(LED_ORANGE,SET);
-				//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, SET);
 			#else
 				digitalWrite(LED_GREEN,SET);
 				digitalWrite(LED_RED,SET);
-				//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, SET);
-				//gpio_bit_write(LED_RED_PORT, LED_RED, SET);
 			#endif
 		}
 		else
 		{
-			digitalWrite(LED_GREEN,	pin == LED_GREEN ? SET : RESET);
-			digitalWrite(LED_RED,	pin == LED_RED ? SET : RESET);
-			digitalWrite(LED_ORANGE,	RESET);
-			//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, pin == LED_GREEN ? SET : RESET);
-			//gpio_bit_write(LED_RED_PORT, LED_RED, pin == LED_RED ? SET : RESET);
-			//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, RESET);
+			digitalWrite(LED_GREEN,	iLevel==2 ? SET : RESET);
+			digitalWrite(LED_RED,	iLevel==0 ? SET : RESET);
+			#ifdef LED_ORANGE
+				digitalWrite(LED_ORANGE,	RESET);
+			#endif
 		}
 	#endif
 }

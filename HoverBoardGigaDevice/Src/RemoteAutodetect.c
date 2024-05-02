@@ -290,8 +290,9 @@ void ScanInit(uint8_t iTestNew)
 			if (!(aoPin[i].wState & STATE_HIDE))
 			{
 				//gpio_deinit(aoPin[i].i);
-				pinMode(aoPin[i].i,GPIO_MODE_OUTPUT);
-				digitalWrite(aoPin[iTest].i,1);	// every remaining io pin might be the SELF_HOLD pin
+				pinModePull(aoPin[i].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+				//pinMode(aoPin[i].i,GPIO_MODE_OUTPUT);
+				//digitalWrite(aoPin[iTest].i,1);	// every remaining io pin might be the SELF_HOLD pin
 			}
 		}
 		iVBatMinTest = 65535;
@@ -631,8 +632,16 @@ void AutodetectScan(uint16_t buzzerTimer)
 		if (iVBatMinTest > adc_buffer.v_batt)
 			iVBatMinTest = adc_buffer.v_batt;
 		
-		//digitalWrite(aoPin[iTest].i,1);	// relase SELF_HOLD for a short time
-		digitalWrite(aoPin[iTest].i,(buzzerTimer%3000) < 100 ? 0 : 1);	// relase SELF_HOLD for a short time
+		//digitalWrite(aoPin[iTest].i,(buzzerTimer%3000) < 100 ? 0 : 1);	// relase SELF_HOLD for a short time
+		if ((buzzerTimer%3000) < 100)	// relase SELF_HOLD for a short time
+		{
+			pinModePull(aoPin[i].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLDOWN);
+		}
+		else
+		{
+			pinModePull(aoPin[i].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+		}
+
 		break;
 	case AUTODETECT_Stage_Button:
 		SetPWM(0);

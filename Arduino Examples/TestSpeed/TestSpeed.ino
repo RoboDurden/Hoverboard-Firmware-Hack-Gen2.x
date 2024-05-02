@@ -97,7 +97,7 @@ void CheckConsoleMM32()
   
   if (bSend)
   {
-    for (int iTo=0; iTo<2; iTo++)
+    for (int iTo=0; iTo<4; iTo++)
     {
       if (  (iSendTo<0) || (iSendTo == iTo)  )
       {

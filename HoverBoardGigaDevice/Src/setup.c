@@ -163,11 +163,15 @@ void GPIO_init(void)
 
 		pinMode(LED_GREEN,	GPIO_MODE_OUTPUT);
 		pinMode(LED_RED,		GPIO_MODE_OUTPUT);
-		pinMode(LED_ORANGE,	GPIO_MODE_OUTPUT);
-
-		pinMode(UPPER_LED,	GPIO_MODE_OUTPUT);
-		pinMode(LOWER_LED,	GPIO_MODE_OUTPUT);
-
+		#ifdef LED_ORANGE
+			pinMode(LED_ORANGE,	GPIO_MODE_OUTPUT);
+		#endif
+		#ifdef UPPER_LED
+			pinMode(UPPER_LED,	GPIO_MODE_OUTPUT);
+		#endif
+		#ifdef LOWER_LED
+			pinMode(LOWER_LED,	GPIO_MODE_OUTPUT);
+		#endif
 		#ifdef MOSFET_OUT
 			pinMode(MOSFET_OUT,	GPIO_MODE_OUTPUT);
 		#endif
@@ -193,7 +197,9 @@ void GPIO_init(void)
 		#endif
 		
 		// Init self hold
-		pinMode(SELF_HOLD,	GPIO_MODE_OUTPUT);
+		#ifdef SELF_HOLD
+			pinMode(SELF_HOLD,	GPIO_MODE_OUTPUT);
+		#endif
 
 		#ifdef BUZZER
 			// Init buzzer
