@@ -552,14 +552,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 	{
 	case AUTODETECT_Stage_Led:
 		//digitalWrite(aoPin[iTest].i,(msTicks%4)>0 ? 1 : 0);	// 250 Hz 75% pwm ratio
-		if ((msTicks%4)>0 )	// 250 Hz 75% pwm ratio
-		{
-			pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLDOWN);
-		}
-		else
-		{
-			pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
-		}
+		pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,(msTicks%4)>0  ? GPIO_PUPD_PULLDOWN : GPIO_PUPD_PULLUP);
 	
 		switch(cCmd)
 		{
@@ -642,14 +635,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 			iVBatMinTest = adc_buffer.v_batt;
 		
 		//digitalWrite(aoPin[iTest].i,(buzzerTimer%3000) < 100 ? 0 : 1);	// relase SELF_HOLD for a short time
-		if ((buzzerTimer%3000) < 100)	// relase SELF_HOLD for a short time
-		{
-			pinModePull(aoPin[i].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLDOWN);
-		}
-		else
-		{
-			pinModePull(aoPin[i].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
-		}
+		pinModePull(aoPin[i].i,GPIO_MODE_INPUT,(buzzerTimer%3000) < 100 ? GPIO_PUPD_PULLDOWN : GPIO_PUPD_PULLUP);
 
 		break;
 	case AUTODETECT_Stage_Button:

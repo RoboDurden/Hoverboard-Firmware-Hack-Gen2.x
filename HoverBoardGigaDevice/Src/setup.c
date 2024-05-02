@@ -32,6 +32,18 @@
 #include "../Inc/defines.h"
 #include "../Inc/it.h"
 
+void pinMode(uint32_t pin, uint32_t mode)
+{
+	gpio_mode_set(pin&0xffffff00U, mode, GPIO_PUPD_NONE,BIT(pin&0xfU) );
+	gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, BIT(pin&0xfU));
+}
+
+void pinModePull	(uint32_t pin, uint32_t mode, uint32_t pull)
+{
+	gpio_mode_set(pin&0xffffff00U, mode, pull,BIT(pin&0xfU) );
+	gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, BIT(pin&0xfU));
+}
+
 
 #define TIMEOUT_FREQ  1000
 
