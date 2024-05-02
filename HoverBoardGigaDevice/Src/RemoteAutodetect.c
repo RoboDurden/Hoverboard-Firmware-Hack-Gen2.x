@@ -887,7 +887,7 @@ uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer)
 			switch(cCommand)
 			{
 			case 'r': 
-				wStage = AUTODETECT_Stage_Startup;
+				wStageOld = AUTODETECT_Stage_Startup;
 				//sprintf(sMessage, "\trestart\r\n");
 				AutoDetectSetStage(AUTODETECT_Stage_Hall);
 				break;
