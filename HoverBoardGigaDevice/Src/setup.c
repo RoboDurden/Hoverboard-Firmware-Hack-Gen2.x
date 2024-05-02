@@ -161,8 +161,12 @@ void GPIO_init(void)
 		#endif
 
 
-		pinMode(LED_GREEN,	GPIO_MODE_OUTPUT);
-		pinMode(LED_RED,		GPIO_MODE_OUTPUT);
+		#ifdef LED_GREEN
+			pinMode(LED_GREEN,	GPIO_MODE_OUTPUT);
+		#endif
+		#ifdef LED_RED
+			pinMode(LED_RED,		GPIO_MODE_OUTPUT);
+		#endif
 		#ifdef LED_ORANGE
 			pinMode(LED_ORANGE,	GPIO_MODE_OUTPUT);
 		#endif

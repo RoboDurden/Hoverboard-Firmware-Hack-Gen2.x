@@ -521,11 +521,15 @@ int main (void)
 		#if (!defined(TEST_HALL2LED)) && (!defined(DEBUG_LED))
 			if (!(wState & STATE_LedBattLevel))
 			{
-				digitalWrite(LED_GREEN,wState & STATE_LedGreen ? SET : RESET);
+				#ifdef LED_GREEN
+					digitalWrite(LED_GREEN,wState & STATE_LedGreen ? SET : RESET);
+				#endif
 				#ifdef LED_ORANGE
 					digitalWrite(LED_ORANGE,wState & STATE_LedOrange ? SET : RESET);
 				#endif
-				digitalWrite(LED_RED,wState & STATE_LedRed ? SET : RESET);
+				#ifdef LED_RED
+					digitalWrite(LED_RED,wState & STATE_LedRed ? SET : RESET);
+				#endif
 				//gpio_bit_write(LED_GREEN_PORT, LED_GREEN, wState & STATE_LedGreen ? SET : RESET);
 				//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, wState & STATE_LedOrange ? SET : RESET);
 				//gpio_bit_write(LED_RED_PORT, LED_RED, wState & STATE_LedRed ? SET : RESET);
@@ -600,14 +604,22 @@ void ShowBatteryState(uint8_t iLevel)
 			#ifdef LED_ORANGE
 				digitalWrite(LED_ORANGE,SET);
 			#else
-				digitalWrite(LED_GREEN,SET);
-				digitalWrite(LED_RED,SET);
+				#ifdef LED_GREEN
+					digitalWrite(LED_GREEN,SET);
+				#endif
+				#ifdef LED_RED
+					digitalWrite(LED_RED,SET);
+			#endif
 			#endif
 		}
 		else
 		{
-			digitalWrite(LED_GREEN,	iLevel==2 ? SET : RESET);
-			digitalWrite(LED_RED,	iLevel==0 ? SET : RESET);
+			#ifdef LED_GREEN
+				digitalWrite(LED_GREEN,	iLevel==2 ? SET : RESET);
+			#endif
+			#ifdef LED_RED
+				digitalWrite(LED_RED,	iLevel==0 ? SET : RESET);
+			#endif
 			#ifdef LED_ORANGE
 				digitalWrite(LED_ORANGE,	RESET);
 			#endif

@@ -17,6 +17,9 @@
 	#include INCLUE_FILE(TARGET , LAYOUT)	// "defines_2-target-version.h"
 #endif
 
+#ifndef BUTTON
+  #undef CHECK_BUTTON 
+#endif
 
 #ifndef TIMER_BLDC	// these defines should be equal for all Gen2 boards as they only have on bldc capable TIMER = TIMER0
 	#define TIMER_BLDC 		TIMER0
