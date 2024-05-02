@@ -272,9 +272,9 @@ void ScanInit(uint8_t iTestNew)
 	{
 	case AUTODETECT_Stage_Button:
 
-		//gpio_deinit(aiPinScan[SCAN_SELF_HOLD]);
-		pinMode(aiPinScan[SCAN_SELF_HOLD],GPIO_MODE_OUTPUT);
-		digitalWrite(aiPinScan[SCAN_SELF_HOLD],1);	// SELF_HOLD pin to high
+		pinModePull(aiPinScan[SCAN_SELF_HOLD],GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+		//pinMode(aiPinScan[SCAN_SELF_HOLD],GPIO_MODE_OUTPUT);
+		//digitalWrite(aiPinScan[SCAN_SELF_HOLD],1);	// SELF_HOLD pin to high
 		for (i=0;i<COUNT_PinDigital; i++)	
 		{
 			if (!(aoPin[i].wState & STATE_HIDE))
@@ -318,7 +318,7 @@ void ScanInit(uint8_t iTestNew)
 	{
 	case AUTODETECT_Stage_Led:
 		//gpio_deinit(iPinNew);
-		pinMode(iPinNew,GPIO_MODE_OUTPUT);
+		//pinMode(iPinNew,GPIO_MODE_OUTPUT);
 		break;
 	case AUTODETECT_Stage_Hold:
 		//iTestPin = iTest;
@@ -551,7 +551,16 @@ void AutodetectScan(uint16_t buzzerTimer)
 	switch (wStage)
 	{
 	case AUTODETECT_Stage_Led:
-		digitalWrite(aoPin[iTest].i,(msTicks%4)>0 ? 1 : 0);	// 250 Hz 75% pwm ratio
+		//digitalWrite(aoPin[iTest].i,(msTicks%4)>0 ? 1 : 0);	// 250 Hz 75% pwm ratio
+		if ((msTicks%4)>0 )	// 250 Hz 75% pwm ratio
+		{
+			pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLDOWN);
+		}
+		else
+		{
+			pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+		}
+	
 		switch(cCmd)
 		{
 		case 'r': iFound = SCAN_LED_RED; break;

@@ -1,15 +1,15 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-//#define REMOTE_AUTODETECT		// !! highly experimental 
+#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 				// outputs ascii to uart 19200 baud to TX=PB6 , RX=PB7
 
 #ifdef REMOTE_AUTODETECT
 	
-	//#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
-	#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
+	#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
+	//#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
 
 	#define SINGLE
 	#define MASTER_OR_SINGLE
@@ -21,7 +21,7 @@
 
 	// LAYOUT_2_X is used in defines.h
 	#ifdef GD32F130		// TARGET = 1
-		#define LAYOUT 6
+		#define LAYOUT 4
 		#define LAYOUT_SUB 1	// Layout 2.1.7 exisits as 2.1.7.0 and 2.1.7.1
 	#elif GD32F103		// TARGET = 2
 		#define LAYOUT 1

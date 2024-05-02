@@ -20,14 +20,15 @@ void setup()
     // Serial interface, baud, RX GPIO, TX GPIO
     // Note: The GPIO numbers will not necessarily correspond to the
     // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
-    //oSerialHover.begin(19200, SERIAL_8N1, 39, 37);  // Wemos S2 Mini
-    oSerialHover.begin(19200, SERIAL_8N1, 16, 17);  // Wemos Lolin32
+    oSerialHover.begin(19200, SERIAL_8N1, 39, 37);  // Wemos S2 Mini
+    //oSerialHover.begin(19200, SERIAL_8N1, 16, 17);  // Wemos Lolin32
       
   #else
     oSerialHover.begin(iBaud);
   #endif
 }
 
+unsigned long iTimeTest = 0;
 void loop() 
 {
   digitalWrite(LED_BUILTIN, (millis()%2000) < 500);
@@ -46,4 +47,10 @@ void loop()
     else
       Serial.write(c);   // read it and send it out Serial (USB)
   }
+  
+  //if (millis() < iTimeTest)
+    return;
+
+  iTimeTest = millis() + 1000;
+  Serial.println(millis());
 }
