@@ -52,15 +52,19 @@ extern uint32_t HALL_C;
 	#define AUTODETECT_Stage_Finished 	512
 #else
 	#define AUTODETECT_Stage_Startup 	1
-	#define AUTODETECT_Stage_VBatt 		2
-	#define AUTODETECT_Stage_Hold 			4
-	#define AUTODETECT_Stage_Button 		8
-	#define AUTODETECT_Stage_Led 				16
-	#define AUTODETECT_Stage_Hall 			32
-	#define AUTODETECT_Stage_HallOrder 	64
-	#define AUTODETECT_Stage_CurrentDC 128
-	#define AUTODETECT_Stage_Results 	256
-	#define AUTODETECT_Stage_Finished	512
+	#define AUTODETECT_Stage_Menu 		2
+	#define AUTODETECT_Stage_VBatt 		4
+	#define AUTODETECT_Stage_Hold 			8
+	#define AUTODETECT_Stage_Button 		16
+	#define AUTODETECT_Stage_Led 				32
+	#define AUTODETECT_Stage_Hall 			64
+	#define AUTODETECT_Stage_HallOrder 	128
+	#define AUTODETECT_Stage_CurrentDC 256
+	#define AUTODETECT_Stage_Results 	512
+	#define AUTODETECT_Stage_Finished	1024
+
+	#define AUTODETECT_Stage_None	2048
+	
 #endif
 
 uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer);
