@@ -114,7 +114,9 @@ typedef struct {
 #define STATE_ADC 1
 #define STATE_HIDE 2
 #define STATE_OFF 4
-#define STATE_ON 8
+#define STATE_OFF2 8
+#define STATE_ON 16
+#define STATE_ON2 32
 
 //#define TEST
 
@@ -284,7 +286,8 @@ void ScanInit(uint8_t iTestNew)
 			if (!(aoPin[i].wState & STATE_HIDE))
 			{
 				//gpio_deinit(aoPin[i].i);
-				pinMode(aoPin[i].i,GPIO_MODE_INPUT);
+				//pinMode(aoPin[i].i,GPIO_MODE_INPUT);
+				pinModePull(aoPin[i].i,GPIO_MODE_INPUT,iRepeat%2 ? GPIO_PUPD_PULLUP : GPIO_PUPD_PULLDOWN);
 			}
 		}
 		break;
@@ -311,7 +314,8 @@ void ScanInit(uint8_t iTestNew)
 			if (!(aoPin[i].wState & STATE_HIDE))
 			{
 				//gpio_deinit(aoPin[i].i);
-				pinMode(aoPin[i].i,GPIO_MODE_INPUT);
+				//pinMode(aoPin[i].i,GPIO_MODE_INPUT);
+				pinModePull(aoPin[i].i,GPIO_MODE_INPUT,GPIO_PUPD_NONE);
 			}
 		}
 	}
@@ -329,7 +333,7 @@ void ScanInit(uint8_t iTestNew)
 		msTicksTestNext = 100;		// default time interval
 		break;
 	case AUTODETECT_Stage_Button:
-		msTicksTestNext = 100;		// default time interval
+		msTicksTestNext = 20;		// default time interval
 		break;
 	default:	
 		if ((aoPin[iTest].wState & STATE_ADC) == 0)	// this is not an adc pin
@@ -536,7 +540,8 @@ void AutodetectScan(uint16_t buzzerTimer)
 				break;
 			case AUTODETECT_Stage_Menu:
 				sprintf(sMessage,"autodetect menu:\r\n"); 
-				for (uint16_t iStage=0; iStage < 6+iHallStagesCompleted; iStage++)
+				uint16_t iStage;
+				for (iStage=0; iStage < 6+iHallStagesCompleted; iStage++)
 				{
 					sprintf(sMessage,"%s%i: %s\r\n",sMessage,iStage,asStage[iStage]);
 				}
@@ -680,15 +685,16 @@ void AutodetectScan(uint16_t buzzerTimer)
 		}
 		break;
 	case AUTODETECT_Stage_Hold:
-		
-		if (iVBatMinTest > adc_buffer.v_batt)
-			iVBatMinTest = adc_buffer.v_batt;
-		
 		//digitalWrite(aoPin[iTest].i,(buzzerTimer%3000) < 100 ? 0 : 1);	// relase SELF_HOLD for a short time
-		//pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,(buzzerTimer%3000) < 3000 ? GPIO_PUPD_PULLDOWN : GPIO_PUPD_PULLUP);
 		//pinMode(aoPin[iTest].i,GPIO_MODE_INPUT);
-		pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLDOWN);
-
+		if (bHoldAutofind) 
+		{
+			if (iVBatMinTest > adc_buffer.v_batt)		// try to detect the "(buzzerTimer%100) < 3000 " voltage dip 
+				iVBatMinTest = adc_buffer.v_batt;
+			pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,(buzzerTimer%3000) < 100 ? GPIO_PUPD_PULLDOWN : GPIO_PUPD_PULLUP);			
+		}
+		else	pinModePull(aoPin[iTest].i,GPIO_MODE_INPUT,GPIO_PUPD_PULLDOWN);
+			
 		switch(cCmd)
 		{
 			case 'f': iFound = SCAN_SELF_HOLD; msTicksTest = 0; break;
@@ -699,6 +705,10 @@ void AutodetectScan(uint16_t buzzerTimer)
 	case AUTODETECT_Stage_Button:
 		SetPWM(0);
 		uint8_t bOn = digitalRead(aoPin[iTest].i);
+		uint8_t wSet = STATE_OFF << iRepeat;		// STATE_OFF , STATE_OFF2, STATE_ON, STATE_ON2
+		aoPin[iTest].wState = (aoPin[iTest].wState & ~wSet) | bOn * wSet;
+	
+	/*
 		if (iRepeat)
 		{
 			aoPin[iTest].wState = (aoPin[iTest].wState & ~STATE_ON) | bOn * STATE_ON;
@@ -707,12 +717,15 @@ void AutodetectScan(uint16_t buzzerTimer)
 		{
 			aoPin[iTest].wState = (aoPin[iTest].wState & ~STATE_OFF) | bOn * STATE_OFF;
 		}
+		*/
 		break;
 	}
 	
 	if (iFound >= 0)
 	{
 		aiPinScan[iFound] = aoPin[iTest].i;
+		for (i=iFrom;i<iTo;i++)	HidePinDigital(aiPinScan[i]); 
+		
 		sprintf(sMessage, "%s = %s\r\n",	asScan[iFound],GetPinName(aoPin[iTest].i)	);
 		msTicksTest = 0; // skip this test interval
 	}
@@ -798,8 +811,9 @@ void AutodetectScan(uint16_t buzzerTimer)
 				break;
 			case AUTODETECT_Stage_Button:
 				if (iTest == iTestStart)	// a complete cycle of available adc pins
-				{
-					if(iRepeat)
+				{						
+					iRepeat++;
+					if(iRepeat == 4)
 					{
 						sprintf(sMessage,"");
 						uint8_t iFound = 0;
@@ -807,7 +821,8 @@ void AutodetectScan(uint16_t buzzerTimer)
 						{
 							if (!(aoPin[i].wState & STATE_HIDE))
 							{
-								if (!(aoPin[i].wState & STATE_OFF) && (aoPin[i].wState & STATE_ON))
+								if (	(!(aoPin[i].wState & STATE_OFF) && (aoPin[i].wState & STATE_ON))
+										|| (!(aoPin[i].wState & STATE_OFF2) && (aoPin[i].wState & STATE_ON2))	)
 								{
 									aiPinScan[SCAN_BUTTON] = aoPin[i].i;
 									sprintf(sMessage,"\r\n%sBUTTON\t%s",sMessage,aoPin[i].s);
@@ -817,16 +832,16 @@ void AutodetectScan(uint16_t buzzerTimer)
 						}
 						sprintf(sMessage,"%s\r\n%i pins found. release OnOff button",sMessage,iFound);
 						iRepeat = 0;
+						bWait4Enter = 1;
 					}
-					else
+					else if (iRepeat == 2)
 					{
 						sprintf(sMessage,"\r\nbridge OnOff button");
-						iRepeat++;
+						bWait4Enter = 1;
 					}
-					bWait4Enter = 1;
+					else sprintf(sMessage, "\r\n%s",aoPin[iTest].s);
 				}
-				else
-					sprintf(sMessage, " %s",aoPin[iTest].s);
+				else sprintf(sMessage, " %s",aoPin[iTest].s);
 				break;
 			default:
 				sprintf(sMessage, "try %s\r\n",aoPin[iTest].s);
