@@ -21,12 +21,18 @@
 #define BUZZER		PA11
 
 #define VBATT		PA5
-#define CURRENT_DC		PB1		// probably wrong
+//#define CURRENT_DC		PB1		// probably wrong
+#define CURRENT_DC	PA6		// from manualy pin tracing, see below
+
 #define SELF_HOLD		PA3
 //#define BUTTON		P??
 #define BUTTON_PU		PA4
 
 #define HAS_USART0	// uncomment if this layout has a usart0
+
+#define ADC_BATTERY_VOLT      0.025392524927  	//	robo, calibrated with 27V power supply
+#define MOTOR_AMP_CONV_DC_AMP 0.0201465201465		//	robo,  only a very quick comparison to multimeter
+
 
 // Brushless Control DC (BLDC) defines
 #define BLDC_GH PA10		// green	, Tommyboi2001 all bldc pins same as 2.0

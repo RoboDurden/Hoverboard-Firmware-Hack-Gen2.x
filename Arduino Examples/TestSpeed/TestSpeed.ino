@@ -3,24 +3,31 @@
 //    PB6 (Hoverboard-TX) and PB7 (Hoverboard-RX) can handle 5V I/O-Level :-)
 //
 //    please share feedback to https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x
-
-#define ESP32       // comment out if using Arduino
 #define _DEBUG      // debug output to first hardware serial port
 //#define DEBUG_RX    // additional hoverboard-rx debug output
-#define REMOTE_UARTBUS
+
+#define ESP32       // comment out if using Arduino
+
+#define REMOTE_UARTBUS  // one serial bus to control them all :-)
 
 #define SEND_MILLIS 100   // send commands to hoverboard every SEND_MILLIS millisesonds
 
 #include "util.h"
 #include "hoverserial.h"
 
+#define BAUDRATE 19200   // 19200 is default on hoverboard side because Arudino Nano SoftwareSerial can not do 115200
+
 #ifdef ESP32
+  const int pinRX = 39, pinTX = 37;   // Wemos S2 Mini
+  //const int pinRX = 16, pinTX = 17;    Wemos Lolin32
   #define oSerialHover Serial1    // ESP32
 #else
   #include <SoftwareSerial.h>    // not compatible with RCReceiver because of interrupt conflicts.
-  SoftwareSerial oSerialHover(9,8); // RX, TX 
+  const int pinRX = 9, pinTX = 8;
+  SoftwareSerial oSerialHover(pinRX,pinTX); // RX, TX 
   #define oSerialHover Serial    // Arduino
 #endif
+
 SerialHover2Server oHoverFeedback;
 
 void setup()
@@ -34,11 +41,10 @@ void setup()
     // Serial interface, baud, RX GPIO, TX GPIO
     // Note: The GPIO numbers will not necessarily correspond to the
     // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
-    //HoverSetupEsp32(oSerialHover,19200,39,37); // Wemos S2 Mini
-    HoverSetupEsp32(oSerialHover,19200,16,17);  // Wemos Lolin32
+    HoverSetupEsp32(oSerialHover,BAUDRATE,pinRX,pinTX); 
     
   #else
-    HoverSetupArduino(oSerialHover,19200);    //  8 Mhz Arduino Mini too slow for 115200 !!!
+    HoverSetupArduino(oSerialHover,BAUDRATE);    //  8 Mhz Arduino Mini too slow for 115200 !!!
   #endif
 
   pinMode(LED_BUILTIN, OUTPUT);

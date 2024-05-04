@@ -9,7 +9,7 @@
 //#define DEBUG_RX    // additional hoverboard-rx debug output
 
 #define REMOTE_UARTBUS 
-//#define SEND2SINGLES  // uncomment this line if you want to send to two master that then will control their slaves
+//#define SEND2SINGLES  // uncomment this line if you not want to send to two master that then will control their slaves but to directly to all 4 singles
 
 #include "util.h"
 #include "hoverserial.h"
