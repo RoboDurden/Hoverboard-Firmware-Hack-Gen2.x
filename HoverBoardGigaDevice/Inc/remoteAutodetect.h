@@ -36,6 +36,7 @@ extern uint32_t HALL_C;
 #define SCAN_CURRENT_DC		14
 #define SCAN_SELF_HOLD		15
 #define SCAN_BUTTON				16
+#define SCAN_BUTTON_PULLUP	17
 
 
 //#define STAGE_TEST

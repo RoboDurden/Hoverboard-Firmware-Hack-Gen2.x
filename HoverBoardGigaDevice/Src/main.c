@@ -365,7 +365,7 @@ int main (void)
 
 	#ifdef CHECK_BUTTON
 		// Wait until button is released
-		while (digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
+		while (BUTTON_PUSHED == digitalRead(BUTTON)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
 		//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)){fwdgt_counter_reload();} // Reload watchdog while button is pressed
 		Delay(10); //debounce to prevent immediate ShutOff (100 is to much with a switch instead of a push button)
 	#endif
@@ -473,10 +473,10 @@ int main (void)
 
 			#ifdef CHECK_BUTTON
 				// Shut device off when button is pressed
-				if (digitalRead(BUTTON))
+				if (BUTTON_PUSHED == digitalRead(BUTTON))
 				//if (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN))
 				{
-					while (digitalRead(BUTTON)) {fwdgt_counter_reload();}
+					while (BUTTON_PUSHED == digitalRead(BUTTON)) {fwdgt_counter_reload();}
 					//while (gpio_input_bit_get(BUTTON_PORT, BUTTON_PIN)) {fwdgt_counter_reload();}
 					ShutOff();
 				}

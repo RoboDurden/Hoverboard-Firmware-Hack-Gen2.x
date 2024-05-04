@@ -224,10 +224,14 @@ void GPIO_init(void)
 			//gpio_output_options_set(BUZZER_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, BUZZER_PIN);
 		#endif
 
-		#ifdef MASTER	
+		#ifdef MASTER_OR_SINGLE
 		
 			// Init button
-			pinMode(BUTTON,	GPIO_MODE_INPUT);
+			#ifdef BUTTON_PU
+				pinModePull(BUTTON_PU,GPIO_MODE_INPUT,GPIO_PUPD_PULLUP);
+			#else
+				pinMode(BUTTON,	GPIO_MODE_INPUT);
+			#endif
 			
 			#ifdef CHARGE_STATE_PIN
 				// Init charge state

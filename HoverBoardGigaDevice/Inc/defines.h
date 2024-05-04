@@ -17,8 +17,15 @@
 	#include INCLUE_FILE(TARGET , LAYOUT)	// "defines_2-target-version.h"
 #endif
 
-#ifndef BUTTON
-  #undef CHECK_BUTTON 
+#ifdef BUTTON
+	#define BUTTON_PUSHED 1
+#else
+	#ifdef BUTTON_PU
+		#define BUTTON_PUSHED 1		// very strangely, even so the button needs a pullup, digitalRead gives 1 when button pushed
+		#define BUTTON BUTTON_PU
+	#else
+		#undef CHECK_BUTTON 
+	#endif
 #endif
 
 #ifndef TIMER_BLDC	// these defines should be equal for all Gen2 boards as they only have on bldc capable TIMER = TIMER0

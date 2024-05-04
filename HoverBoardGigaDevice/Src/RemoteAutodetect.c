@@ -238,8 +238,8 @@ void AutoDetectNextStage()
 
 
 
-const char* asScan[17] = {"HALL_A","HALL_B","HALL_C","PHASE_A","PHASE_B","PHASE_C","LED_RED","LED_ORANGE","LED_GREEN","UPPER_LED","LOWER_LED","ONBOARD_LED","BUZZER","VBATT","CURRENT_DC","SELF_HOLD","BUTTON"};
-uint32_t aiPinScan[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};		// the found pins
+const char* asScan[18] = {"HALL_A","HALL_B","HALL_C","PHASE_A","PHASE_B","PHASE_C","LED_RED","LED_ORANGE","LED_GREEN","UPPER_LED","LOWER_LED","ONBOARD_LED","BUZZER","VBATT","CURRENT_DC","SELF_HOLD","BUTTON","BUTTON_PU"};
+uint32_t aiPinScan[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};		// the found pins
 
 uint8_t aHallOrder[6][3] = {{0,2,1},{2,0,1},{0,1,2},{1,2,0},{1,0,2},{2,1,0}};	// possible permutations to test
 
@@ -417,7 +417,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 		{
 		case 0:	ListFound(0,6);	break;
 		case 1:	ListFound(6,13);	break;
-		case 2:	ListFound(13,17);	break;
+		case 2:	ListFound(13,18);	break;
 		case 3:	wStageOld = -1; AutoDetectSetStage(AUTODETECT_Stage_Menu);	return;
 		}
 		msTicksWait = msTicks + 200;
@@ -447,7 +447,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 			iFrom = SCAN_SELF_HOLD; iTo = SCAN_BUTTON; 
 			if (bHoldAutofind) bNeverLeave=0;
 			break;
-		case AUTODETECT_Stage_Button: 		iFrom = SCAN_BUTTON; iTo = SCAN_BUTTON+1; bNeverLeave=0;	break;
+		case AUTODETECT_Stage_Button: 		iFrom = SCAN_BUTTON; iTo = SCAN_BUTTON_PULLUP+1; bNeverLeave=0;	break;
 	}
 	//if (!(wStage & (AUTODETECT_Stage_CurrentDC|AUTODETECT_Stage_Button))	)	//AUTODETECT_Stage_Hold|
 	if (bNeverLeave)
@@ -821,11 +821,15 @@ void AutodetectScan(uint16_t buzzerTimer)
 						{
 							if (!(aoPin[i].wState & STATE_HIDE))
 							{
-								if (	(!(aoPin[i].wState & STATE_OFF) && (aoPin[i].wState & STATE_ON))
-										|| (!(aoPin[i].wState & STATE_OFF2) && (aoPin[i].wState & STATE_ON2))	)
+								int8_t iScanPin = -1;
+								if (!(aoPin[i].wState & STATE_OFF) && (aoPin[i].wState & STATE_ON))
+									iScanPin = SCAN_BUTTON;
+								if	(!(aoPin[i].wState & STATE_OFF2) && (aoPin[i].wState & STATE_ON2))
+									iScanPin = SCAN_BUTTON_PULLUP;
+								if (iScanPin >= 0)
 								{
-									aiPinScan[SCAN_BUTTON] = aoPin[i].i;
-									sprintf(sMessage,"\r\n%sBUTTON\t%s",sMessage,aoPin[i].s);
+									aiPinScan[iScanPin] = aoPin[i].i;
+									sprintf(sMessage,"\r\n%s%s\t%s",sMessage,asScan[iScanPin],aoPin[i].s);
 									iFound++;
 								}
 							}

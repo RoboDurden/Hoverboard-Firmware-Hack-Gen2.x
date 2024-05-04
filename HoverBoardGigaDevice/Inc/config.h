@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define REMOTE_AUTODETECT		// !! highly experimental 
+//#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 				// outputs ascii to uart 19200 baud to TX=PB6 , RX=PB7
@@ -49,13 +49,13 @@
 			#define SLAVE_ID	1		// must be unique for all hoverboards connected to the bus
 		#endif
 
-	//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
-	//#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
+		#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+		//#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
 
 		#define SPEED_COEFFICIENT   -1
 		#define STEER_COEFFICIENT   1
 		
-		//#define CHECK_BUTTON		// disable = add '//' if you use a slave board as master
+		#define CHECK_BUTTON		// disable = add '//' if you use a slave board as master
 	#endif
 #endif
 
