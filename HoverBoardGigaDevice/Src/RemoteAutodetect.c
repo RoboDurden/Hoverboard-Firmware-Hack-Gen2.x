@@ -224,7 +224,18 @@ void RemoteCallback(void)
 			{
 				wMenuStage |= AUTODETECT_Stage_Button;
 				ListFound(SCAN_SELF_HOLD,SCAN_SELF_HOLD+1);
-				HidePinDigital(aiPinScan[SCAN_SELF_HOLD]);
+			}
+			if (aiPinScan[SCAN_HALL_A] && aiPinScan[SCAN_HALL_B] && aiPinScan[SCAN_HALL_C])
+			{
+				wMenuStage |= AUTODETECT_Stage_HallOrder|AUTODETECT_Stage_CurrentDC;
+			}
+			uint8_t i;
+			for (i=0; i<=SCAN_BUTTON_PULLUP; i++)
+			{
+				if (aiPinScan[i])
+				{
+					HidePinDigital(aiPinScan[i]);
+				}
 			}
 			iSerialHoverType = 0;
 		}
@@ -1162,9 +1173,10 @@ uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer)
 				{
 					if (20 < iRepeat++)
 					{
-						aiPinScan[0] = HALL_A;
-						aiPinScan[1] = HALL_B;
-						aiPinScan[2] = HALL_C;
+						aiPinScan[SCAN_HALL_A] = HALL_A;
+						aiPinScan[SCAN_HALL_B] = HALL_B;
+						aiPinScan[SCAN_HALL_C] = HALL_C;
+						oDataHeader.wCmd = DATA_Save;
 						
 						ListFound(0,6);
 
