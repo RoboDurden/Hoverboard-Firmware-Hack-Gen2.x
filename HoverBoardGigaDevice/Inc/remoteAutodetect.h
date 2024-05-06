@@ -66,7 +66,11 @@ extern uint32_t HALL_C;
 
 	#define AUTODETECT_Stage_None	2048
 	
+	
 #endif
+
+#define MENU_INIT (2|AUTODETECT_Stage_VBatt|AUTODETECT_Stage_Hold|AUTODETECT_Stage_Led|AUTODETECT_Stage_Hall|AUTODETECT_Stage_Results)
+	// stages shown in menu right from start, 2 stands for 'do all'
 
 uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer);
 void AutodetectScan(uint16_t buzzerTimer);

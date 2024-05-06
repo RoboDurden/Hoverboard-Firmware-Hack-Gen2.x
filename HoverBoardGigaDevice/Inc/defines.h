@@ -71,6 +71,7 @@
 #ifdef USART0_REMOTE	
 	#if defined(MASTER_OR_SINGLE) && defined(REMOTE_BAUD)
 		#define USART0_BAUD REMOTE_BAUD		// defined in remoteUart.h or remoteCrsf.h or remoteUartBus.h
+		#define USART_REMOTE USART0
 	#endif
 #elif defined(USART0_MASTERSLAVE)
 	#ifdef MASTER_OR_SLAVE
@@ -82,6 +83,9 @@
 #ifdef USART1_REMOTE	
 	#if defined(MASTER_OR_SINGLE) && defined(REMOTE_BAUD)
 		#define USART1_BAUD REMOTE_BAUD		// defined in remoteUart.h or remoteCrsf.h or remoteUartBus.h
+		#undef USART1_REMOTE
+		#define USART_REMOTE USART1
+		
 	#endif
 #elif defined(USART1_MASTERSLAVE)
 	#ifdef MASTER_OR_SLAVE
