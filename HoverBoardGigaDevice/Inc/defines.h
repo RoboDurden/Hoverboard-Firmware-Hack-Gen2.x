@@ -83,7 +83,7 @@
 #ifdef USART1_REMOTE	
 	#if defined(MASTER_OR_SINGLE) && defined(REMOTE_BAUD)
 		#define USART1_BAUD REMOTE_BAUD		// defined in remoteUart.h or remoteCrsf.h or remoteUartBus.h
-		#undef USART1_REMOTE
+		//#undef USART1_REMOTE
 		#define USART_REMOTE USART1
 		
 	#endif

@@ -1,8 +1,14 @@
 #ifndef DEFINES_2_1_6_H
 #define DEFINES_2_1_6_H
 
+// todo: BUTTON not working but hiliving is sure to have traced the pin correctly with the help of ailife
+
+
 #if LAYOUT_SUB == 1
+	// v1.3
 	// = 2.1.6.1: https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/80
+#else	// 0
+	// v1.1
 #endif
 
 
@@ -10,17 +16,11 @@
 	#define HAS_BUZZER
 #endif
 
-// add autodetect #defines below and rename to defines_2-xy.h
-// then add another
-//	#elif LAYOUT == xy
-//		#include "defines_2-xy.h"		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/40
-// to defines.h and set #define LAYOUT xy in config.h in your chosen GD32E230/MM32SPIN05/GD32F103/GD32F130 target section
-
-
+// autodetect section begin
 #define LED_RED		PB4
-//#define LED_ORANGE		P??
+#define LED_ORANGE PA15		// hiliving 2.1.6.1
 #define LED_GREEN		PB3
-//#define UPPER_LED		P??
+#define UPPER_LED		PB5		// hiliving 2.1.6.1
 //#define LOWER_LED		P??
 //#define ONBOARD_LED		P??
 #define BUZZER		PB9
@@ -30,6 +30,16 @@
 #define HALL_C		PB11
 
 #define VBATT	PA4		
+#define ADC_BATTERY_VOLT      0.02488682634 	// V_Batt to V_BattMeasure = factor 30: ( (ADC-Data/4095) *3,3V *30 ) 
+
+#define CURRENT_DC	PA6	
+
+
+#define SELF_HOLD	PB2
+#define BUTTON_PU	PA5
+
+// autodetect section end
+
 
 #define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
 
@@ -66,6 +76,14 @@
 	//#define USART1_MASTERSLAVE		// uncomment if this usart is used for master-slave communication
 	#define USART1_REMOTE				// uncomment if this usart is used for optional remote control
 #endif
+
+#ifdef MASTER
+	// Charge state defines
+	#define CHARGE_STATE	PC15		// hiliving ?
+#endif
+
+// Timer BLDC short circuit emergency shutoff define
+#define TIMER_BLDC_EMERGENCY_SHUTDOWN	PB12	// hiliving ?
 
 
 #endif
