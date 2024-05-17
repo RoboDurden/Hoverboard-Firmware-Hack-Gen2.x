@@ -14,12 +14,18 @@
   #define OUT2N(s,i)
 #endif
 
-
+// Serial interface, baud, RX GPIO, TX GPIO
+// Note: The GPIO numbers will not necessarily correspond to the
+// pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
+#define BAUDRATE 19200   // 19200 is default on hoverboard side because Arudino Nano SoftwareSerial can not do 115200
 #ifdef ESP32
+  const int pinRX = 39, pinTX = 37;   // Wemos S2 Mini
+  //const int pinRX = 16, pinTX = 17;    Wemos Lolin32
   #define oSerialHover Serial1    // ESP32
 #else
   #include <SoftwareSerial.h>    
-  SoftwareSerial oSerialHover(9,8); // RX, TX 
+  const int pinRX = 9, pinTX = 8;
+  SoftwareSerial oSerialHover(pinRX,pinTX); // RX, TX 
   #define oSerialHover Serial    // Arduino
 #endif
 
@@ -30,12 +36,7 @@ void setup()
   Serial.println("Hello Hoverbaord V2.x Autodetect :-)");
 
   #ifdef ESP32
-    // Serial interface, baud, RX GPIO, TX GPIO
-    // Note: The GPIO numbers will not necessarily correspond to the
-    // pin number printed on the PCB. Refer to your ESP32 documentation for pin to GPIO mappings.
-    oSerialHover.begin(19200, SERIAL_8N1, 39, 37);  // Wemos S2 Mini
-    //oSerialHover.begin(19200, SERIAL_8N1, 16, 17);  // Wemos Lolin32
-      
+    oSerialHover.begin(BAUDRATE, SERIAL_8N1, pinRX,pinTX);
   #else
     oSerialHover.begin(iBaud);
   #endif
@@ -115,5 +116,8 @@ void loop()
     }
     Serial.write(c);   // read it and send it out Serial (USB)
   }
-  
+  if (iTimeTest > millis())
+    return;
+  iTimeTest = millis() + 1000;
+  //Serial.println(millis()); 
 }

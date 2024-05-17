@@ -8,7 +8,9 @@
 
 #define ESP32       // comment out if using Arduino
 
-#define REMOTE_UARTBUS  // one serial bus to control them all :-)
+// #define HOVERBOARD_MM32  // uncomment if a MM32 Hoverboard firmware is connected (and no GD32 or STM32)
+
+//#define REMOTE_UARTBUS  // one serial bus to control them all :-)
 
 #define SEND_MILLIS 100   // send commands to hoverboard every SEND_MILLIS millisesonds
 
@@ -53,68 +55,70 @@ void setup()
 uint8_t  iSendId = 0;   // only for UartBus
 int iLog = -1;  // -1: print log of all slaves, 0: only print log of slaveId 0
 
-void CheckConsoleMM32()
-{
-   if (!Serial.available())  // if there is terminal data comming from user
-    return;
-    
-  String sReceived = Serial.readStringUntil('\n');
-  Serial.println(sReceived);
-  boolean bSend = false;
-  int  iSendTo = -1;
-  String sCmd = ShiftValue(sReceived, " ");
-  if (isUInt(sCmd))
+#ifdef HOVERBOARD_MM32
+  void CheckConsoleMM32()
   {
-    iSendTo = sCmd.toInt();
-    Serial.print(iSendTo);Serial.print("\t");
-    sCmd = ShiftValue(sReceived, " ");
-    
-  }
-  
-  if ( (sCmd == "m") || (sCmd == "mode"))
-  {
-    oHoverConfig.iDriveMode = ShiftValue(sReceived, "\n").toInt();
-    bSend = true;
-  }
-  else if ( (sCmd == "bl") || (sCmd == "batlow"))
-  {
-    oHoverConfig.fBattEmpty = ShiftValue(sReceived, "\n").toFloat();
-    bSend = true;
-  }
-  else if ( (sCmd == "bh") || (sCmd == "bathi"))
-  {
-    oHoverConfig.fBattFull = ShiftValue(sReceived, "\n").toFloat();
-    bSend = true;
-  }
-  else if ( (sCmd == "si") || (sCmd == "slave"))
-  {
-    oHoverConfig.iSlaveNew = ShiftValue(sReceived, "\n").toInt();
-    bSend = true;
-  }
-  else if ( (sCmd == "l") || (sCmd == "log"))
-  {
-    iLog = ShiftValue(sReceived, "\n").toInt();
-  }
-  else
-  {
-    Serial.print("unkown command: "); 
-  }
-  Serial.print(sCmd); Serial.print("\t value:"); Serial.println(ShiftValue(sReceived, "\n"));
-  
-  if (bSend)
-  {
-    for (int iTo=0; iTo<4; iTo++)
+     if (!Serial.available())  // if there is terminal data comming from user
+      return;
+      
+    String sReceived = Serial.readStringUntil('\n');
+    Serial.println(sReceived);
+    boolean bSend = false;
+    int  iSendTo = -1;
+    String sCmd = ShiftValue(sReceived, " ");
+    if (isUInt(sCmd))
     {
-      if (  (iSendTo<0) || (iSendTo == iTo)  )
+      iSendTo = sCmd.toInt();
+      Serial.print(iSendTo);Serial.print("\t");
+      sCmd = ShiftValue(sReceived, " ");
+      
+    }
+    
+    if ( (sCmd == "m") || (sCmd == "mode"))
+    {
+      oHoverConfig.iDriveMode = ShiftValue(sReceived, "\n").toInt();
+      bSend = true;
+    }
+    else if ( (sCmd == "bl") || (sCmd == "batlow"))
+    {
+      oHoverConfig.fBattEmpty = ShiftValue(sReceived, "\n").toFloat();
+      bSend = true;
+    }
+    else if ( (sCmd == "bh") || (sCmd == "bathi"))
+    {
+      oHoverConfig.fBattFull = ShiftValue(sReceived, "\n").toFloat();
+      bSend = true;
+    }
+    else if ( (sCmd == "si") || (sCmd == "slave"))
+    {
+      oHoverConfig.iSlaveNew = ShiftValue(sReceived, "\n").toInt();
+      bSend = true;
+    }
+    else if ( (sCmd == "l") || (sCmd == "log"))
+    {
+      iLog = ShiftValue(sReceived, "\n").toInt();
+    }
+    else
+    {
+      Serial.print("unkown command: "); 
+    }
+    Serial.print(sCmd); Serial.print("\t value:"); Serial.println(ShiftValue(sReceived, "\n"));
+    
+    if (bSend)
+    {
+      for (int iTo=0; iTo<4; iTo++)
       {
-        oHoverConfig.iSlave = iTo;
-        HoverSendData(oSerialHover,oHoverConfig);
-        HoverLogConfigMM32(oHoverConfig);
+        if (  (iSendTo<0) || (iSendTo == iTo)  )
+        {
+          oHoverConfig.iSlave = iTo;
+          HoverSendData(oSerialHover,oHoverConfig);
+          HoverLogConfigMM32(oHoverConfig);
+        }
       }
     }
+  
   }
-
-}
+#endif
 
 unsigned long iLast = 0;
 unsigned long iNext = 0;
@@ -145,7 +149,9 @@ void loop()
   boolean bReceived;   
   while (bReceived = Receive(oSerialHover,oHoverFeedback))
   {
-    if (  (iLog < 0) || (iLog == oHoverFeedback.iSlave)  )
+    #ifdef REMOTE_UARTBUS
+      if (  (iLog < 0) || (iLog == oHoverFeedback.iSlave)  )
+    #endif
     {
       DEBUGT("millis",iNow-iLast);
       DEBUGT("iSpeed",iSpeed);
@@ -172,7 +178,9 @@ void loop()
         break;
       }
       iNext = iNow + SEND_MILLIS/2;
-      CheckConsoleMM32();
+      #ifdef HOVERBOARD_MM32
+        CheckConsoleMM32();
+      #endif
       
     #else
     
