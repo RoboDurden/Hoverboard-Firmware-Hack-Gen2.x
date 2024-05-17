@@ -6,11 +6,13 @@
   #define OUTC(code) {code}
   #define OUT(s)  {Serial.print(s);}
   #define OUT2T(s,i)  {Serial.print(s);Serial.print(": ");Serial.print(i);Serial.print("  ");}
+  #define OUT2TX(s,i)  {Serial.print(s);Serial.print(": ");Serial.print(i,HEX);Serial.print("  ");}
   #define OUT2N(s,i)  {Serial.print(s);Serial.print(": ");Serial.print(i);Serial.println();}
 #else
   #define OUTC(code)
   #define OUT(s)
   #define OUT2T(s,i)
+  #define OUT2TX(s,i)
   #define OUT2N(s,i)
 #endif
 
@@ -86,7 +88,9 @@ void loop()
       if (oHeaderRx.wCmd == DATA_Request)
       {
         oSerialHover.write((uint8_t*) &oDataHeader, sizeof(oDataHeader)); 
+        //delay(100);
         oSerialHover.write((uint8_t*) aiPinScan, sizeof(aiPinScan)); 
+        OUT2N("DATA_Request",sizeof(oDataHeader)+sizeof(aiPinScan));
       }
       else
       {
@@ -94,8 +98,13 @@ void loop()
         memcpy((uint8_t*)aiPinScan, (uint8_t*)aiPinScanRx, sizeof(aiPinScanRx));
       }
       OUTC(
+        #define AHB2_BUS_BASE         ((uint32_t)0x48000000U)        /*!< ahb2 base address                */
+
         OUT("\npins:\t")
-        for (int i=0; i<PINS_DETECT; i++){  OUT2T(asScan[i],aiPinScan[i])}
+        for (int i=0; i<PINS_DETECT; i++)
+        {  
+          OUT2T(asScan[i],aiPinScan[i] & ~AHB2_BUS_BASE)
+        }
         OUT("\n")
       )
       return;    

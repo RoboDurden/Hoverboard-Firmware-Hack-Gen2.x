@@ -11,7 +11,6 @@
 extern uint32_t msTicks;
 
 char asStage[9][10] = {"do all","VBatt","Hold","Button","Led","Hall","HallOrder","CurrentDc","Results"};
-uint8_t iHallStagesCompleted = 0;
 uint16_t wMenuStage = MENU_INIT;
 													
 #pragma pack(1)
@@ -191,11 +190,12 @@ void RemoteUpdate(void)
 
 char cCommand = 0;
 char cRxLast = ' ';
-uint8_t iSerialHoverType = 0;
 
 HeaderData oHeaderRx;
-uint8_t aBufferData[sizeof(oHeaderRx)-1 +sizeof(aiPinScan)];
+uint8_t aBufferData[sizeof(oHeaderRx)+sizeof(aiPinScan)];
 uint8_t iBufferData = 0;
+
+void AutoDetectHallOrderInit(uint8_t iTestSet);
 
 // Update USART steer input
 void RemoteCallback(void)
@@ -207,18 +207,13 @@ void RemoteCallback(void)
 		uint8_t cRead = usart1_rx_buf[0];
 	#endif
 	
-	if (cRead == 0x01)	// incoming HeaderData + aiPinScan
-	{
-		iSerialHoverType = 1;
-		return;
-	}
-	if (iSerialHoverType == 1)
+	if (iBufferData>0)
 	{
 		aBufferData[iBufferData++] = cRead;
 		if (iBufferData == sizeof(aBufferData))
 		{
-			memcpy(	((uint8_t*)&oHeaderRx)+1, aBufferData, sizeof(oHeaderRx)-1	);   // 0x01 already read
-			memcpy(	(uint8_t*)aiPinScan, aBufferData+sizeof(oHeaderRx)-1, sizeof(aiPinScan)	);   // 0x01 already read
+			memcpy(	((uint8_t*)&oHeaderRx), aBufferData, sizeof(oHeaderRx)	);
+			memcpy(	(uint8_t*)aiPinScan, aBufferData+sizeof(oHeaderRx), sizeof(aiPinScan)	); 
 			
 			if (aiPinScan[SCAN_SELF_HOLD])
 			{
@@ -228,6 +223,7 @@ void RemoteCallback(void)
 			if (aiPinScan[SCAN_HALL_A] && aiPinScan[SCAN_HALL_B] && aiPinScan[SCAN_HALL_C])
 			{
 				wMenuStage |= AUTODETECT_Stage_HallOrder|AUTODETECT_Stage_CurrentDC;
+				AutoDetectHallOrderInit(0);				
 			}
 			uint8_t i;
 			for (i=0; i<=SCAN_BUTTON_PULLUP; i++)
@@ -237,10 +233,18 @@ void RemoteCallback(void)
 					HidePinDigital(aiPinScan[i]);
 				}
 			}
-			iSerialHoverType = 0;
+			iBufferData = 0;
+			//ListFound(0,3);
 		}
+		//else	sprintf(sMessage, "iBufferData: %i = %i\r\n",iBufferData,sizeof(aBufferData));
 		return;
 	}
+	else if (cRead == 0x01)	// incoming HeaderData + aiPinScan
+	{
+		iBufferData = 1;	   // 0x01 at 0 already read
+		return;
+	}
+	
 	
 	if (	(cRead == 13) || (cRead == 10) )
 	{
@@ -312,12 +316,14 @@ void AutoDetectSetStage(uint16_t iSet)
 uint8_t bReturnToMenu = 0;
 void AutoDetectNextStage()
 {
+	if (wStage >= AUTODETECT_Stage_Finished)
+		bReturnToMenu = 1;
 	AutoDetectSetStage(bReturnToMenu ? AUTODETECT_Stage_Menu : wStage<<1);
 }
 
 
 
-uint8_t aHallOrder[6][3] = {{0,2,1},{2,0,1},{0,1,2},{1,2,0},{1,0,2},{2,1,0}};	// possible permutations to test
+uint8_t aHallOrder[6][3] = {{0,1,2},{0,2,1},{1,0,2},{2,0,1},{1,2,0},{2,1,0}};	// possible permutations to test
 
 
 uint8_t SetNextTestPin()
@@ -332,7 +338,7 @@ uint8_t SetNextTestPin()
 		if (iTest == iTestOld) 
 		{
 			//sprintf(sMessage,"\r\nno more pins found\r\n");
-			AutoDetectSetStage(AUTODETECT_Stage_Results);
+			//AutoDetectSetStage(AUTODETECT_Stage_Results);
 			return 0;	// one loop and no pin found -> exit
 		}
 		if (aoPin[iTest].wState & STATE_HIDE)
@@ -502,7 +508,8 @@ void AutodetectScan(uint16_t buzzerTimer)
 	if (wStage == AUTODETECT_Stage_Finished)
 	{
 		SetPWM(0);
-		digitalWrite(aiPinScan[SCAN_SELF_HOLD],0);	// SELF_HOLD pin to high
+		//digitalWrite(aiPinScan[SCAN_SELF_HOLD],0);	// SELF_HOLD pin to high
+		AutoDetectSetStage(AUTODETECT_Stage_Menu);
 		return;
 	}
 
@@ -516,7 +523,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 		case AUTODETECT_Stage_Startup: 		iFrom = 0; iTo = 0; break;
 		case AUTODETECT_Stage_Led: 				iFrom = SCAN_LED_RED; iTo = SCAN_VBATT; break;
 		case AUTODETECT_Stage_VBatt: 			iFrom = SCAN_VBATT; iTo = SCAN_CURRENT_DC; break;
-		case AUTODETECT_Stage_CurrentDC: 	iFrom = SCAN_CURRENT_DC; iTo = SCAN_SELF_HOLD; bNeverLeave=bCurrentManualMode;	break;
+		case AUTODETECT_Stage_CurrentDC: 	iFrom = SCAN_CURRENT_DC; iTo = SCAN_SELF_HOLD; bNeverLeave=0;	break;
 		case AUTODETECT_Stage_Hold: 			
 			iFrom = SCAN_SELF_HOLD; iTo = SCAN_BUTTON; 
 			if (iHoldAutofind) bNeverLeave=0;
@@ -567,12 +574,19 @@ void AutodetectScan(uint16_t buzzerTimer)
 				wStageOld = -1;
 				AutoDetectSetStage(AUTODETECT_Stage_Menu);
 				bWait4Enter = 0;
+				//oDataHeader.wCmd = DATA_Request;		// only for testing ?
 				return;
 		case 't': 
 			iHoldAutofind = iHoldAutofind ? 0 : 100;
 			sprintf(sMessage, "auto find: %i\r\n",iHoldAutofind);
 		case 'm': 
-			bCurrentManualMode = bCurrentManualMode ? 0 : 1;
+			if (bCurrentManualMode)
+			{
+				bCurrentManualMode = 0;
+				iTestStart = iTest;
+			}
+			else	bCurrentManualMode = 1;
+			
 			sprintf(sMessage, "manual mode: %i\r\n",bCurrentManualMode);
 			break;
 		}
@@ -615,6 +629,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 			case AUTODETECT_Stage_Startup:
 				//oDataHeader.wCmd = DATA_Request;
 				sprintf(sMessage,"hit ENTER:\r\n"); 
+				//oDataHeader.wCmd = DATA_Request;
 				break;
 			case AUTODETECT_Stage_Menu:
 				sprintf(sMessage,"autodetect menu:\r\n"); 
@@ -666,7 +681,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 		}
 		if (cCmd)
 			AutoDetectNextStage();
-		break;
+		return;
 	case AUTODETECT_Stage_Menu:
 		if (	(cCmd >= 48) && (cCmd < 58) )
 		{
@@ -720,23 +735,28 @@ void AutodetectScan(uint16_t buzzerTimer)
 		}
 		break;
 	case AUTODETECT_Stage_CurrentDC:
-		if (bCurrentManualMode)
+		if (iTimeCountdown>3000)
 		{
-			SetPWM(	(msTicks % 4000) < 2000 ? -300 : 0);	// strong motor to see a load when hand on motor
+			SetPWM(0);
+			if (iTimeCountdown>3500)	// wait 0,5s to let the motor stop
+			{
+				iOffsetDC = 2000;	// reset 
+			}
+			else
+			{
+				iOffsetDC = (adc_buffer.v_batt + iOffsetDC) / 2;
+				iAverage = 0; 	// initialize value
+			}
 		}
 		else
 		{
-			if (iTimeCountdown>3000)
+			fCurrentDC = ((adc_buffer.v_batt - iOffsetDC) * MOTOR_AMP_CONV_DC_AMP);
+			if (bCurrentManualMode)
 			{
-				SetPWM(0);
-				if (iTimeCountdown>3500)	// wait 0,5s to let the motor stop
+				SetPWM(iTimeCountdown>2000 ? 0 : -300);	// strong motor to see a load when hand on motor
+				if (buzzerTimer % 3200 == 0)	// 16 kHz
 				{
-					iOffsetDC = 2000;	// reset 
-				}
-				else
-				{
-					iOffsetDC = (adc_buffer.v_batt + iOffsetDC) / 2;
-					iAverage = 0; 	// initialize value
+					sprintf(sMessage,"%s: CURRENT_DC ?= %.2f\r\n",aoPin[iTest].s,fCurrentDC);
 				}
 			}
 			else
@@ -745,7 +765,6 @@ void AutodetectScan(uint16_t buzzerTimer)
 				uint16_t iInterval = MS_INTERVAL - (iTimeCountdown % MS_INTERVAL);
 				int16_t iPwm = iInterval<(MS_INTERVAL/2) ? -700 : 700;
 				SetPWM(	iPwm);	// strong motor to see a load when hand on motor
-				fCurrentDC = ((adc_buffer.v_batt - iOffsetDC) * MOTOR_AMP_CONV_DC_AMP);
 				
 				iInterval = iInterval % (MS_INTERVAL/2);
 				if ( (iInterval>20) && (iInterval<60) ) // regenerative current due to rotation change
@@ -759,8 +778,6 @@ void AutodetectScan(uint16_t buzzerTimer)
 							if (iAverage > -32767)	iAverage--;
 					}
 				}
-				//if (buzzerTimer % 1500 == 0)	// 16 kHz
-				//	sprintf(sMessage,"%s: CURRENT_DC ?= %.2f %i %i %i\r\n",aoPin[iTest].s,fCurrentDC,iPwm,iInterval,iAverage);
 			}
 		}
 		switch(cCmd)
@@ -877,6 +894,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 						if (iMax)
 						{
 							aiPinScan[SCAN_SELF_HOLD] = aoPin[iTestPin].i;
+							oDataHeader.wCmd = DATA_Save;
 							wMenuStage |= AUTODETECT_Stage_Button;
 							sprintf(sMessage,"%s\r\nSELF_HOLD P%s //%i\r\nbridge OnOff button",sMessage,GetPinName(aiPinScan[SCAN_SELF_HOLD]),iMax);
 						}
@@ -898,13 +916,16 @@ void AutodetectScan(uint16_t buzzerTimer)
 				sprintf(sMessage,"%s\r\n%i now %s : ",sMessage,iRepeat,aoPin[iTest].s);
 				break;
 			case AUTODETECT_Stage_CurrentDC:
-				if ((!bCurrentManualMode) && (iTest == iTestStart))	// a complete cycle of available adc pins
+				if (bCurrentManualMode)
+					break;
+
+				if (iTest == iTestStart)	// a complete cycle of available adc pins
 				{
 					sprintf(sMessage," : %i\r\nCURRENT_DC = %s //%i\r\nnow %s",iAverage,aoPin[iTestPin].s,iAverageMax,aoPin[iTest].s);
 					aiPinScan[SCAN_CURRENT_DC] = aoPin[iTestPin].i;
+					oDataHeader.wCmd = DATA_Save;
 					iTestPin = iAverage = 0;	// reset for next cycle
 					iAverageMax =-32767;
-					//iHallStagesCompleted = 3;
 				}
 				else
 					sprintf(sMessage," : %i\r\nnow %s",iAverage,aoPin[iTest].s);
@@ -929,6 +950,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 								if (iScanPin >= 0)
 								{
 									aiPinScan[iScanPin] = aoPin[i].i;
+									oDataHeader.wCmd = DATA_Save;
 									sprintf(sMessage,"\r\n%s%s\t%s",sMessage,asScan[iScanPin],aoPin[i].s);
 									iFound++;
 								}
@@ -958,7 +980,7 @@ void AutodetectScan(uint16_t buzzerTimer)
 		{
 			
 			AutoDetectNextStage();
-			sprintf(sMessage, "now stage %i\r\n",wStage);
+			sprintf(sMessage, "no more free pins ! now stage %i\r\n",wStage);
 		}
 	}
 }
@@ -1151,7 +1173,6 @@ uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer)
 					{
 							//HallList();
 							ListFound(0,3);
-							iHallStagesCompleted = 1;
 							wMenuStage |= AUTODETECT_Stage_HallOrder;
 							AutoDetectNextStage();
 					}
@@ -1194,7 +1215,6 @@ uint8_t AutodetectBldc(uint8_t posNew,uint16_t buzzerTimer)
 
 						uint8_t i;
 						for (i=0; i<3+iPhaseCurrent; i++)	HidePinDigital(aiPinScan[i]);
-						iHallStagesCompleted = 2;
 						wMenuStage |= AUTODETECT_Stage_CurrentDC;
 						AutoDetectNextStage();
 					}

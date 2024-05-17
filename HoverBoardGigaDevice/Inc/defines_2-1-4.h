@@ -21,8 +21,7 @@
 #define BUZZER		PA11
 
 #define VBATT		PA5
-//#define CURRENT_DC		PB1		// probably wrong
-#define CURRENT_DC	PA6		// from manualy pin tracing, see below
+#define CURRENT_DC	PA6		// autodetect manual mode
 
 #define SELF_HOLD		PA3
 //#define BUTTON		P??
