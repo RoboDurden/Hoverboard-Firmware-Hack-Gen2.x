@@ -1,14 +1,14 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define REMOTE_AUTODETECT		// !! highly experimental 
+//#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 
 #ifdef REMOTE_AUTODETECT
 	
-	#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
-	//#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
+	//#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
+	#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
 
 	#define SINGLE
 	#define MASTER_OR_SINGLE
