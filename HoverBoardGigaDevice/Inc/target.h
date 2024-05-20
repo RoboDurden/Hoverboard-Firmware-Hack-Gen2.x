@@ -38,7 +38,10 @@
 	#define GPIO_PIN_14                BIT(14)               /*!< GPIO pin 14 */
 	#define GPIO_PIN_15                BIT(15)               /*!< GPIO pin 15 */
 	#define GPIO_PIN_ALL               BITS(0,15)            /*!< GPIO pin all */
-	
+
+#elif defined GD32F103
+	#include "gd32f10x.h"
+
 #else
 	#include "gd32f1x0.h"
 	

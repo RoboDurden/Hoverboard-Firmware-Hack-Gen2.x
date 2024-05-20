@@ -4,13 +4,12 @@
 #endif
 
 // autodetect 2024/04/05 by robo
-
 #define HALL_A		PA0
 #define HALL_B		PA1
 #define HALL_C		PA2
 #define PHASE_A		PA7
 #define PHASE_B		PB0
-//#define PHASE_C		P??
+#define PHASE_C		PB1
 
 #define LED_RED		PA15
 #define LED_ORANGE		PB4
@@ -21,11 +20,12 @@
 #define BUZZER		PA11
 
 #define VBATT		PA5
-#define CURRENT_DC	PA6		// autodetect manual mode
-
+#define CURRENT_DC		PA6
 #define SELF_HOLD		PA3
 //#define BUTTON		P??
 #define BUTTON_PU		PA4
+
+
 
 #define HAS_USART0	// uncomment if this layout has a usart0
 

@@ -1,14 +1,14 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-//#define REMOTE_AUTODETECT		// !! highly experimental 
+#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 
 #ifdef REMOTE_AUTODETECT
 	
-	//#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
-	#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
+	#define HAS_USART0	// tx=PB6,rx=PB7	uncomment to connect via 19200 baud serial
+	//#define HAS_USART1	// tx=PA2,rx=PA3	uncomment to connect via 19200 baud serial
 
 	#define SINGLE
 	#define MASTER_OR_SINGLE
@@ -20,7 +20,7 @@
 
 	// LAYOUT_2_X is used in defines.h
 	#ifdef GD32F130		// TARGET = 1
-		#define LAYOUT 1
+		#define LAYOUT 4
 		#define LAYOUT_SUB 1	// Layout 2.1.7 exisits as 2.1.7.0 and 2.1.7.1
 	#elif GD32F103		// TARGET = 2
 		#define LAYOUT 1
@@ -30,9 +30,9 @@
 		#define LAYOUT 1
 	#endif
 
-	#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
+	//#define MASTER		// uncomment for MASTER firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
 	//#define SLAVE			// uncomment for SLAVE firmware. Choose USART0_MASTERSLAVE or USART1_MASTERSLAVE in your defines_2-?.h file
-	//#define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
+	#define SINGLE			// uncomment if firmware is for single board and no master-slave dual board setup
 
 	#define BAT_CELLS         	10        // battery number of cells. Normal Hoverboard battery: 10s
 
@@ -45,7 +45,7 @@
 		//#define REMOTE_CRSF		// https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/issues/26
 		
 		#ifdef REMOTE_UARTBUS
-			#define SLAVE_ID	1		// must be unique for all hoverboards connected to the bus
+			#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
 		#endif
 
 		//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
