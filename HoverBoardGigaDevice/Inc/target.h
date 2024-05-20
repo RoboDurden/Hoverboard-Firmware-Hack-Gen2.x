@@ -42,6 +42,54 @@
 #elif defined GD32F103
 	#include "gd32f10x.h"
 
+	/*
+		void gpio_init(uint32_t gpio_periph, uint32_t mode, uint32_t speed, uint32_t pin)
+	    \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G) 
+			\param[in]  mode: gpio pin mode, only one parameter can be selected which is shown as below:
+				\arg        GPIO_MODE_AIN: analog input mode
+				\arg        GPIO_MODE_IN_FLOATING: floating input mode
+				\arg        GPIO_MODE_IPD: pull-down input mode
+				\arg        GPIO_MODE_IPU: pull-up input mode
+				\arg        GPIO_MODE_OUT_OD: GPIO output with open-drain
+				\arg        GPIO_MODE_OUT_PP: GPIO output with push-pull
+				\arg        GPIO_MODE_AF_OD: AFIO output with open-drain
+				\arg        GPIO_MODE_AF_PP: AFIO output with push-pull
+			\param[in]  speed: gpio output max speed value, only one parameter can be selected which is shown as below:
+				\arg        GPIO_OSPEED_10MHZ: output max speed 10MHz
+				\arg        GPIO_OSPEED_2MHZ: output max speed 2MHz
+				\arg        GPIO_OSPEED_50MHZ: output max speed 50MHz
+			\param[in]  pin: GPIO pin, one or more parameters can be selected which are shown as below:
+				\arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+	*/
+
+	#define GPIO_MODE_INPUT GPIO_MODE_IN_FLOATING
+	#define GPIO_MODE_OUTPUT GPIO_MODE_OUT_OD
+	#define pinMode(pin,mode) \
+	{\
+		gpio_init(pin&0xffffff00U, mode, GPIO_OSPEED_10MHZ, BIT(pin&0xfU))\
+	}
+	//gpio_bit_set(pin&0xffffff00U, BIT(pin&0xfU));\
+	
+	#define pinModePull(pin,mode,pull) \
+	{\
+		gpio_init(pin&0xffffff00U, (pull==GPIO_PUPD_PULLUP ? GPIO_MODE_IPU : GPIO_MODE_IPD) , GPIO_OSPEED_10MHZ, BIT(pin&0xfU))\
+	}
+
+	#define pinModeAF(pin, AF, pullUpDown,speed) \
+	{\
+		todo :-/ \
+		gpio_mode_set(pin&0xffffff00U , GPIO_MODE_AF, pullUpDown, BIT(pin&0xfU));	\
+		gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, speed, BIT(pin&0xfU));	\
+		gpio_af_set(pin&0xffffff00U, AF(pin), BIT(pin&0xfU));		\
+	}
+	
+
+	
+	
+	
+	#define digitalWrite(pin,set) gpio_bit_write(pin&0xffffff00U,  (BIT(pin&0xfU) ), set)
+	#define digitalRead(pin) 			gpio_input_bit_get(pin&0xffffff00U, BIT(pin&0xfU))
+
 #else
 	#include "gd32f1x0.h"
 	
@@ -70,12 +118,12 @@
 	#define PIN_TO_CHANNEL(pin) ((pin&0xffffff00U) ==  GPIOA ? (pin&0xfU) : (pin&0xfU+8) )
 
 /* function in setup.c instead of define saves memory
-	#define pinModeOld(pin,mode) \
+	#define pinMode(pin,mode) \
 	{\
 		gpio_mode_set(pin&0xffffff00U, mode, GPIO_PUPD_NONE,BIT(pin&0xfU) );	\
 		gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, BIT(pin&0xfU));\
 	}
-	#define pinModePullOld(pin,mode,pull) \
+	#define pinModePull(pin,mode,pull) \
 	{\
 		gpio_mode_set(pin&0xffffff00U, mode, pull,BIT(pin&0xfU) );	\
 		gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, BIT(pin&0xfU));\
@@ -106,6 +154,10 @@
 	#define digitalRead(pin) 			gpio_input_bit_get(pin&0xffffff00U, BIT(pin&0xfU))
 
 	
+
+#endif	
+	
+
 	#define PA15	( (uint32_t)GPIOA | 15 )
 	#define PA14	( (uint32_t)GPIOA | 14 )
 	#define PA13	( (uint32_t)GPIOA | 13 )
@@ -157,7 +209,4 @@
 	B12 B13 B14 B15 A8 A9 A10 A11 A12 A13 F6 F7
 	A14 A15 B3 B4 B5 B6 B7 B8 B9 	*/ 
 
-#endif	
-	
-	
 	

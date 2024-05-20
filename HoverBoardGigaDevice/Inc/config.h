@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define REMOTE_AUTODETECT		// !! highly experimental 
+//#define REMOTE_AUTODETECT		// !! highly experimental 
 				// ONLY test with 1-2A constant current power supply !!!!
 				// will drive the motor without hall input to detect the hall pins..
 
