@@ -32,20 +32,19 @@
 #include "../Inc/defines.h"
 #include "../Inc/it.h"
 
-/*
-
-void pinModeNew(uint32_t pin, uint32_t mode)
+#ifndef pinMode
+void pinMode(uint32_t pin, uint32_t mode)
 {
 	gpio_mode_set(pin&0xffffff00U, mode, GPIO_PUPD_NONE,BIT(pin&0xfU) );
 	gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, BIT(pin&0xfU));
 }
 
-void pinModePullNew	(uint32_t pin, uint32_t mode, uint32_t pull)
+void pinModePull(uint32_t pin, uint32_t mode, uint32_t pull)
 {
 	gpio_mode_set(pin&0xffffff00U, mode, pull,BIT(pin&0xfU) );
 	gpio_output_options_set(pin&0xffffff00U, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, BIT(pin&0xfU));
 }
-*/
+#endif
 
 
 #define TIMEOUT_FREQ  1000
@@ -165,6 +164,7 @@ void GPIO_init(void)
 	pinModeAF(BLDC_BL, AF_TIMER0_BLDC, TIMER_BLDC_PULLUP, GPIO_OSPEED_2MHZ);
 	pinModeAF(BLDC_YH, AF_TIMER0_BLDC, TIMER_BLDC_PULLUP, GPIO_OSPEED_2MHZ);
 	pinModeAF(BLDC_YL, AF_TIMER0_BLDC, TIMER_BLDC_PULLUP, GPIO_OSPEED_2MHZ);
+
 
 	
 	#ifndef REMOTE_AUTODETECT
@@ -359,12 +359,13 @@ void ADC_init(void)
 	
 	// Initialize DMA channel 0 for ADC
 	dma_deinit(DMA_CH0);
+	
 	dma_init_struct_adc.direction = DMA_PERIPHERAL_TO_MEMORY;
 	dma_init_struct_adc.memory_addr = (uint32_t)&adc_buffer;
 	dma_init_struct_adc.memory_inc = DMA_MEMORY_INCREASE_ENABLE;
 	dma_init_struct_adc.memory_width = DMA_MEMORY_WIDTH_16BIT;
 	dma_init_struct_adc.number = 2;
-	dma_init_struct_adc.periph_addr = (uint32_t)&ADC_RDATA;
+	dma_init_struct_adc.periph_addr = (uint32_t)&TARGET_ADC_RDATA;
 	dma_init_struct_adc.periph_inc = DMA_PERIPH_INCREASE_DISABLE;
 	dma_init_struct_adc.periph_width = DMA_PERIPHERAL_WIDTH_16BIT;
 	dma_init_struct_adc.priority = DMA_PRIORITY_ULTRA_HIGH;

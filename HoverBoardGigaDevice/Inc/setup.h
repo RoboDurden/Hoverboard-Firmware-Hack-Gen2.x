@@ -34,8 +34,11 @@
 //#include "gd32f1x0.h"
 #include "../Inc/config.h"
 
-//void pinModePull	(uint32_t pin, uint32_t mode, uint32_t pull);
-//void pinMode(uint32_t pin, uint32_t mode);
+
+#ifndef pinMode
+	void pinModePull	(uint32_t pin, uint32_t mode, uint32_t pull);
+	void pinMode(uint32_t pin, uint32_t mode);
+#endif
 
 //#define USART0_RX_BUFFERSIZE 1
 //#define USART1_RX_BUFFERSIZE 1

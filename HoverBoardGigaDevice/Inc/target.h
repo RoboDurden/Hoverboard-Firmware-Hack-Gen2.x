@@ -3,6 +3,8 @@
 	#define TARGET_nvic_irq_enable(a, b, c){nvic_irq_enable(a, b);}
 	#define TARGET_nvic_priority_group_set(a)	// that function does not exist for this target = not needed ?
 	#define TARGET_adc_vbat_disable()
+		#define TARGET_ADC_RDATA ADC_RDATA
+
 #elif defined MM32SPIN05	
 	#include "mm32_device.h"
 	#include "hal_conf.h"
@@ -39,8 +41,32 @@
 	#define GPIO_PIN_15                BIT(15)               /*!< GPIO pin 15 */
 	#define GPIO_PIN_ALL               BITS(0,15)            /*!< GPIO pin all */
 
+	#define TARGET_ADC_RDATA ADC_RDATA
+
 #elif defined GD32F103
 	#include "gd32f10x.h"
+
+	/* GD32F103
+		#define GPIO_PIN_15 	BIT(15)		// same as gd32f130
+	
+		#define GPIOA                      (GPIO_BASE + 0x00000000U)
+		#define GPIOB                      (GPIO_BASE + 0x00000400U)
+		#define GPIOC                      (GPIO_BASE + 0x00000800U)	// ??????
+		#define GPIOD                      (GPIO_BASE + 0x00000C00U)
+		#define GPIOE                      (GPIO_BASE + 0x00001000U)
+		#define GPIOF                      (GPIO_BASE + 0x00001400U)
+		#define GPIOG                      (GPIO_BASE + 0x00001800U)
+
+		#define GPIO_BASE             (APB2_BUS_BASE + 0x00000800U)	// ??????
+		and not #define GPIO_BASE     (AHB2_BUS_BASE + 0x00000000U) // GD32F130
+
+		#define APB2_BUS_BASE         ((uint32_t)0x40010000U)        
+		and not #define AHB2_BUS_BASE ((uint32_t)0x48000000U)        // GD32F130
+	*/
+	
+	// GD32F130 has 10 channels PA0..PA7 = 0..7 and PB0,PB1 = 8,9 . Only 64 pin MCU has further adc on GPIOC
+	#define PIN_TO_CHANNEL(pin) ((pin&0xffffff00U) ==  GPIOA ? (pin&0xfU) : (pin&0xfU+8) )
+
 
 	/*
 		void gpio_init(uint32_t gpio_periph, uint32_t mode, uint32_t speed, uint32_t pin)
@@ -83,19 +109,60 @@
 		gpio_af_set(pin&0xffffff00U, AF(pin), BIT(pin&0xfU));		\
 	}
 	
-
-	
-	
 	
 	#define digitalWrite(pin,set) gpio_bit_write(pin&0xffffff00U,  (BIT(pin&0xfU) ), set)
 	#define digitalRead(pin) 			gpio_input_bit_get(pin&0xffffff00U, BIT(pin&0xfU))
 
+	// setup.c
+	
+	#define TARGET_nvic_priority_group_set nvic_priority_group_set
+	#define fwdgt_window_value_config(a) SUCCESS
+	#define rcu_periph_clock_enable(RCU_TIMER_TIMEOUT) rcu_periph_clock_enable(RCU_TIMER3)
+	#define TIMER13_IRQn TIMER3_IRQn
+	
+	//setup.c::Adc_init()
+	#define RCU_ADC RCU_ADC0
+	#define RCU_DMA RCU_DMA0
+	#define RCU_ADCCK_APB2_DIV6 RCU_CKADC_CKAPB2_DIV6
+	#define dma_deinit(a) dma_deinit(DMA0, a)
+	#define TARGET_ADC_RDATA ADC_RDATA(ADC0)
+	#define dma_init(a,b) dma_init(DMA0,a,b)
+	#define dma_circulation_enable(a) dma_circulation_enable(DMA0,a)
+	#define dma_memory_to_memory_disable(a) dma_memory_to_memory_disable(DMA0,a)
+	#define dma_interrupt_enable(a,b) dma_interrupt_enable(DMA0,a,b)
+	#define dma_transfer_number_config(a,b) dma_transfer_number_config(DMA0,a,b)
+	#define dma_channel_enable(a) dma_channel_enable(DMA0,a)
+	#define adc_channel_length_config(a,b) adc_channel_length_config(ADC0,a,b)
+	#define adc_regular_channel_config(a,b,c)	adc_regular_channel_config(ADC0,a,b,c)
+	#define adc_data_alignment_config(a)	adc_data_alignment_config(ADC0,a)
+	#define adc_external_trigger_config(a,b)	adc_external_trigger_config(ADC0,a,b)
+	#define adc_external_trigger_source_config(a,b)	adc_external_trigger_source_config(ADC0,a,b)
+	#define ADC_EXTTRIG_REGULAR_NONE ADC0_1_2_EXTTRIG_REGULAR_NONE
+	#define TARGET_adc_vbat_disable adc_tempsensor_vrefint_disable
+	#define adc_watchdog_disable() adc_watchdog_disable(ADC0)
+	#define adc_enable()	adc_enable(ADC0)
+	#define adc_calibration_enable()	adc_calibration_enable(ADC0)
+	#define adc_dma_mode_enable()	adc_dma_mode_enable(ADC0)
+	#define adc_special_function_config(a,b)	adc_special_function_config(ADC0,a,b)
+	
+	#define DMA_Channel0_IRQn DMA0_Channel0_IRQn
+	#define TARGET_nvic_irq_enable(a, b, c){nvic_irq_enable(a, b, c);}
+
+	// it.c
+	#define TIMER0_BRK_UP_TRG_COM_IRQHandler TIMER0_UP_IRQHandler
+	#define adc_software_trigger_enable(a) adc_software_trigger_enable(ADC0,a)
+	#define dma_interrupt_flag_get(a,b)	dma_interrupt_flag_get(DMA0,a,b)
+	#define dma_interrupt_flag_clear(a,b)	dma_interrupt_flag_clear(DMA0,a,b)
+	
 #else
 	#include "gd32f1x0.h"
 	
 	#define TARGET_nvic_irq_enable(a, b, c){nvic_irq_enable(a, b, c);}
 	#define TARGET_nvic_priority_group_set(a){nvic_priority_group_set(a);}
 	#define TARGET_adc_vbat_disable(){adc_vbat_disable();}
+	
+	#define TARGET_ADC_RDATA ADC_RDATA
+	
 #endif
 
 

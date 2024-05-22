@@ -20,7 +20,7 @@
 
 	// LAYOUT_2_X is used in defines.h
 	#ifdef GD32F130		// TARGET = 1
-		#define LAYOUT 4
+		#define LAYOUT 1
 		#define LAYOUT_SUB 1	// Layout 2.1.7 exisits as 2.1.7.0 and 2.1.7.1
 	#elif GD32F103		// TARGET = 2
 		#define LAYOUT 1
@@ -48,7 +48,12 @@
 			#define SLAVE_ID	0		// must be unique for all hoverboards connected to the bus
 		#endif
 
-		//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+		#ifdef REMOTE_DUMMY
+			#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+		#else
+			//#define TEST_HALL2LED	// led the 3-led panel blink according to the hall sensors
+		#endif
+		
 		//#define DEBUG_LED		// uncomment to activate DEBUG_LedSet(bSet,iColor) macro. iCol: 0=green, 1=organge, 2=red
 
 		#define SPEED_COEFFICIENT   -1
