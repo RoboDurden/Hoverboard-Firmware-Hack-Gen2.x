@@ -207,7 +207,10 @@ void CalculateBLDC(void)
 
 	#ifdef TEST_HALL2LED
 		digitalWrite(LED_GREEN,hall_a);
+	
+	#ifdef LED_ORANGE
 		digitalWrite(LED_ORANGE,hall_b);
+	#endif
 		digitalWrite(LED_RED,hall_c);
 		//pio_bit_write(LED_GREEN_PORT, LED_GREEN, hall_a);
 		//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, hall_b);

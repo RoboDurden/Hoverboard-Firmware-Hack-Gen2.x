@@ -10,7 +10,7 @@
       <TargetName>GD32F130</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
+      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -623,6 +623,11 @@
               <FileName>defines_2-x-y.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
+            </File>
+            <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1252,6 +1257,11 @@
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
             </File>
+            <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1880,6 +1890,11 @@
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
             </File>
+            <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2507,6 +2522,11 @@
               <FileName>defines_2-x-y.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
+            </File>
+            <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
             </File>
           </Files>
         </Group>
