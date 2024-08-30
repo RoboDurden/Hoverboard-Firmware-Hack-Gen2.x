@@ -206,15 +206,21 @@ void CalculateBLDC(void)
 	//hall_c = gpio_input_bit_get(HALL_C_PORT, HALL_C_PIN);
 
 	#ifdef TEST_HALL2LED
+		#ifdef LED_ORANGE
+			digitalWrite(LED_ORANGE,hall_b);
+		#elif defined(UPPER_LED)
+			digitalWrite(UPPER_LED,hall_b);
+		#elif defined(LOWER_LED)
+			digitalWrite(LOWER_LED,hall_b);
+		#else
+			if (hall_b)
+			{
+				digitalWrite(LED_GREEN,(steerCounter%2) < 1);
+				digitalWrite(LED_RED,(steerCounter%2) < 1);
+			}
+		#endif
 		digitalWrite(LED_GREEN,hall_a);
-	
-	#ifdef LED_ORANGE
-		digitalWrite(LED_ORANGE,hall_b);
-	#endif
 		digitalWrite(LED_RED,hall_c);
-		//pio_bit_write(LED_GREEN_PORT, LED_GREEN, hall_a);
-		//gpio_bit_write(LED_ORANGE_PORT, LED_ORANGE, hall_b);
-		//gpio_bit_write(LED_RED_PORT, LED_RED, hall_c);
 	#endif
 
 	// Determine current position based on hall sensors

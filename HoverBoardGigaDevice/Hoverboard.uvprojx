@@ -10,7 +10,7 @@
       <TargetName>GD32F130</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
+      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -605,6 +605,11 @@
               <FilePath>.\Inc\defines_2-1-18.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-2-1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-2-1.h</FilePath>
@@ -623,11 +628,6 @@
               <FileName>defines_2-x-y.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
-            </File>
-            <File>
-              <FileName>defines_2-1-20.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1238,6 +1238,11 @@
               <FilePath>.\Inc\defines_2-1-18.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-2-1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-2-1.h</FilePath>
@@ -1256,11 +1261,6 @@
               <FileName>defines_2-x-y.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
-            </File>
-            <File>
-              <FileName>defines_2-1-20.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1871,6 +1871,11 @@
               <FilePath>.\Inc\defines_2-1-18.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-2-1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-2-1.h</FilePath>
@@ -1889,11 +1894,6 @@
               <FileName>defines_2-x-y.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
-            </File>
-            <File>
-              <FileName>defines_2-1-20.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2504,6 +2504,11 @@
               <FilePath>.\Inc\defines_2-1-18.h</FilePath>
             </File>
             <File>
+              <FileName>defines_2-1-20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
+            </File>
+            <File>
               <FileName>defines_2-2-1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-2-1.h</FilePath>
@@ -2522,11 +2527,6 @@
               <FileName>defines_2-x-y.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\defines_2-x-y.h</FilePath>
-            </File>
-            <File>
-              <FileName>defines_2-1-20.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Inc\defines_2-1-20.h</FilePath>
             </File>
           </Files>
         </Group>

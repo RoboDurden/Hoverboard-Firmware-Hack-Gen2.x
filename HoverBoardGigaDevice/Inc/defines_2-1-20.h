@@ -1,16 +1,20 @@
 #ifndef DEFINES_2_1_20_H
 #define DEFINES_2_1_20_H
 
-#define HALL_A PC13
-#define HALL_B PA1
-#define HALL_C PC14
 #define LED_RED PB4
 #define LED_GREEN PB3
 #define UPPER_LED PB2
 #define LOWER_LED PB5
+
+#define HALL_A PC13
+#define HALL_B PA1
+#define HALL_C PC14
+
 #define BUZZER PB9
+
 #define VBATT PA4
 #define CURRENT_DC PA0 
+
 #define SELF_HOLD	PB12
 #define BUTTON PA12
 
