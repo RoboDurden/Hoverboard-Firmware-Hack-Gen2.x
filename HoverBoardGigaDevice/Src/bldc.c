@@ -71,7 +71,7 @@ const uint8_t hall_to_pos[8] =
 //----------------------------------------------------------------------------
 // Block PWM calculation based on position
 //----------------------------------------------------------------------------
-__INLINE void blockPWM(int pwm, int pwmPos, int *y, int *b, int *g)
+__INLINE void blockPWM(int pwm, int pwmPos, int *y, int *b, int *g)		// robo 2024/09/04: remove __INLINE for PlatformIO
 {
   switch(pwmPos)
 	{
