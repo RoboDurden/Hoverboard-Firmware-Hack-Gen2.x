@@ -4,8 +4,8 @@
 ***
 
 ### code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
-### MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/AILIFE4798/Hoverboard-Firmware-Hack-Gen2.x-MM32)
-### MM32 EFeru FOC port go here [MM32SPIN05_Hoberboard_hack](https://github.com/trondin/MM32SPIN05_Hoberboard_hack)
+### MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://github.com/AILIFE4798/Hoverboard-Firmware-Hack-Gen2.x-MM32) (uartBus protocol, pinFinder)
+#### MM32 EFeru FOC port go here [MM32SPIN05_Hoberboard_hack](https://github.com/trondin/MM32SPIN05_Hoberboard_hack) (no foc,but EFeru uart protocol)
 ***
 
 ### 2024/02/18: board numbering changed from Gen2.x to Gen2.t.v
