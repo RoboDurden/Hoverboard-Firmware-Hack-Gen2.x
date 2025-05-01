@@ -3,7 +3,6 @@
 # study the [Wiki](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x/wiki) before opening a new issue !
 ***
 
-### code moved to [Hoverboard-Firmware-Hack-Gen2.x-GD32](https://github.com/RoboDurden/Hoverboard-Firmware-Hack-Gen2.x-GD32) !!
 ### MM32 port go here [Hoverboard-Firmware-Hack-Gen2.x-MM32](https://gitlab.com/ailife8881/Hoverboard-Firmware-Hack-Gen2.x-MM32)) (uartBus protocol, pinFinder)
 #### MM32 EFeru FOC port go here [MM32SPIN05_Hoberboard_hack](https://github.com/trondin/MM32SPIN05_Hoberboard_hack) (no foc,but EFeru uart protocol)
 both MM32 firmwares run on this $4.4 (+$5 shipping) pair of Gen2.4.2 boards: https://www.aliexpress.com/item/1005005959910034.html (tell me if you find a likewise offer that ships to Germany/EU)
